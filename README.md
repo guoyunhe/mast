@@ -28,10 +28,11 @@ Install the app for the current user and register the desktop launcher:
 make install
 ```
 
-Install it system-wide instead:
+This follows the usual `prefix`-based Makefile pattern and installs under
+`$HOME/.local` by default. Install it system-wide instead:
 
 ```bash
-sudo make install-system
+sudo make prefix=/usr/local install
 ```
 
 After installation, you can start the app from the application menu or by running:
@@ -49,3 +50,9 @@ make dist
 ```
 
 This creates source and wheel packages in `dist/`.
+
+To stage a package into a temporary root, use `DESTDIR`:
+
+```bash
+make DESTDIR=/tmp/package-root prefix=/usr install
+```

@@ -7,7 +7,8 @@ SYSTEM_APPLICATIONS_DIR = /usr/local/share/applications
 
 define update_desktop_database
 	@if command -v update-desktop-database >/dev/null 2>&1 && [ -d "$(1)" ]; then \
-		update-desktop-database "$(1)" >/dev/null 2>&1 || true; \
+		update-desktop-database "$(1)" >/dev/null 2>&1 || \
+			echo "Warning: failed to update desktop database in $(1)." >&2; \
 	fi
 endef
 

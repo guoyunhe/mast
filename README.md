@@ -19,3 +19,33 @@ Selecting a module opens a separate placeholder window for future implementation
 python3 -m pip install -r requirements.txt
 python3 -m yast3
 ```
+
+## Install on Linux
+
+Install the app for the current user and register the desktop launcher:
+
+```bash
+./scripts/install.sh
+```
+
+Install it system-wide instead:
+
+```bash
+sudo ./scripts/install.sh --system
+```
+
+After installation, you can start the app from the application menu or by running:
+
+```bash
+yast3
+```
+
+## Package
+
+Build standard Python distribution artifacts for Linux packaging workflows:
+
+```bash
+./scripts/package.sh
+```
+
+This creates source and wheel packages in `dist/`.

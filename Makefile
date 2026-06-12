@@ -1,5 +1,7 @@
 PYTHON ?= python3
 PIP := $(PYTHON) -m pip
+USER_APPLICATIONS_DIR = $${XDG_DATA_HOME:-$$HOME/.local/share}/applications
+SYSTEM_APPLICATIONS_DIR = /usr/local/share/applications
 
 .PHONY: install install-system dist clean
 
@@ -11,15 +13,15 @@ endef
 
 install:
 	$(PIP) install --upgrade --user .
-	$(call update_desktop_database,$${XDG_DATA_HOME:-$$HOME/.local/share}/applications)
+	$(call update_desktop_database,$(USER_APPLICATIONS_DIR))
 
 install-system:
 	@if [ "$$(id -u)" -ne 0 ]; then \
-		echo "Error: install-system requires root privileges." >&2; \
+		echo "Error: install-system must be run as root (for example: sudo make install-system)." >&2; \
 		exit 1; \
 	fi
 	$(PIP) install --upgrade .
-	$(call update_desktop_database,/usr/local/share/applications)
+	$(call update_desktop_database,$(SYSTEM_APPLICATIONS_DIR))
 
 dist: clean
 	$(PIP) install --upgrade build

@@ -122,7 +122,7 @@ class MainWindow(QMainWindow):
             }
             """
         )
-        button.clicked.connect(lambda checked=False, item=module, item_icon=icon: self.open_module_window(item, item_icon))
+        button.clicked.connect(module.launch)
         return button
 
     def _resolve_icon(self, icon_names: tuple[str, ...], fallback: QStyle.StandardPixmap) -> QIcon:
@@ -132,12 +132,6 @@ class MainWindow(QMainWindow):
                 return icon
 
         return self.style().standardIcon(fallback)
-
-    def open_module_window(self, module: Module, icon: QIcon) -> None:
-        window = ModuleWindow(module, icon)
-        window.show()
-        window.activateWindow()
-        self.open_windows.add(window)
 
 
 def main() -> int:

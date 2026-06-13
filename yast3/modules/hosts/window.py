@@ -120,8 +120,8 @@ class HostsWindow(QMainWindow):
         layout.addWidget(self.table)
 
         # Load hosts
-        # Tuple: (enabled, ip, hostname, comment, editable)
-        self.hosts_entries: list[tuple[bool, str, str, str, bool]] = []
+        # Tuple: (enabled, ip, hostnames: list[str], comment, editable)
+        self.hosts_entries: list[tuple[bool, str, list[str], str, bool]] = []
         self.load_hosts()
 
     def _looks_like_ip(self, string: str) -> bool:
@@ -184,48 +184,52 @@ class HostsWindow(QMainWindow):
                 parts = content.split(None, 1)
                 # If no parts or first part doesn't look like an IP address, treat as pure comment
                 if not parts or not self._looks_like_ip(parts[0]):
-                    # (enabled, ip, hostname, comment, editable=False)
-                    self.hosts_entries.append((True, "", "", content, False))
+                    # (enabled, ip, hostnames, comment, editable=False)
+                    self.hosts_entries.append((True, "", [], content, False))
                     continue
                 
                 # This is a disabled entry (commented-out hosts entry)
                 ip = parts[0]
-                hostname = parts[1] if len(parts) > 1 else ""
-                # Check for inline comment (starts with # after whitespace)
-                if hostname and hostname.lstrip().startswith("#"):
-                    # (enabled, ip, hostname, comment, editable=False)
-                    self.hosts_entries.append((False, ip, "", hostname.lstrip()[1:].strip(), False))
-                else:
-                    hostname_parts = hostname.split(None, 1) if hostname else [""]
-                    host = hostname_parts[0] if hostname_parts else ""
-                    comment = hostname_parts[1] if len(hostname_parts) > 1 else ""
-                    # (enabled, ip, hostname, comment, editable=True)
-                    self.hosts_entries.append((False, ip, host, comment.lstrip("#").strip() if comment else "", True))
+                rest = parts[1] if len(parts) > 1 else ""
+                hostnames, comment = self._parse_hostnames_and_comment(rest)
+                # (enabled, ip, hostnames, comment, editable=True if has hostnames)
+                self.hosts_entries.append((False, ip, hostnames, comment, len(hostnames) > 0))
                 continue
 
             # Normal entry
             parts = stripped.split(None, 1)
             if parts and parts[0]:
                 ip = parts[0]
-                hostname = parts[1] if len(parts) > 1 else ""
-                # Check for inline comment (starts with # after whitespace)
-                if hostname and hostname.lstrip().startswith("#"):
-                    # (enabled, ip, hostname, comment, editable=False)
-                    self.hosts_entries.append((True, ip, "", hostname.lstrip()[1:].strip(), False))
-                    continue
-                hostname_parts = hostname.split(None, 1) if hostname else [""]
-                host = hostname_parts[0] if hostname_parts else ""
-                comment = hostname_parts[1] if len(hostname_parts) > 1 else ""
-                # (enabled, ip, hostname, comment, editable=True)
-                self.hosts_entries.append((True, ip, host, comment.lstrip("#").strip() if comment else "", True))
+                rest = parts[1] if len(parts) > 1 else ""
+                hostnames, comment = self._parse_hostnames_and_comment(rest)
+                # (enabled, ip, hostnames, comment, editable=True if has hostnames)
+                self.hosts_entries.append((True, ip, hostnames, comment, len(hostnames) > 0))
 
         self.populate_table()
+
+    def _parse_hostnames_and_comment(self, rest: str) -> tuple[list[str], str]:
+        """Parse hostname string into hostnames list and comment."""
+        if not rest:
+            return [], ""
+        
+        parts = rest.split()
+        hostnames = []
+        comment = ""
+        
+        for i, part in enumerate(parts):
+            if part.startswith("#"):
+                # This and remaining parts are comment
+                comment = " ".join(parts[i:]).lstrip("#").strip()
+                break
+            hostnames.append(part)
+        
+        return hostnames, comment
 
     def populate_table(self) -> None:
         """Populate the table with host entries."""
         self.table.setRowCount(len(self.hosts_entries))
 
-        for row, (enabled, ip, hostname, comment, editable) in enumerate(self.hosts_entries):
+        for row, (enabled, ip, hostnames, comment, editable) in enumerate(self.hosts_entries):
             # Enabled checkbox (only for editable entries)
             if editable:
                 enabled_widget = QWidget()
@@ -242,8 +246,8 @@ class HostsWindow(QMainWindow):
             # IP Address
             self.table.setItem(row, 1, QTableWidgetItem(ip))
 
-            # Hostname
-            self.table.setItem(row, 2, QTableWidgetItem(hostname))
+            # Hostnames (join multiple hostnames with space)
+            self.table.setItem(row, 2, QTableWidgetItem(" ".join(hostnames)))
 
             # Comment
             self.table.setItem(row, 3, QTableWidgetItem(comment))
@@ -251,17 +255,18 @@ class HostsWindow(QMainWindow):
     def toggle_enabled(self, row: int, state: int) -> None:
         """Toggle the enabled state of a host entry."""
         if 0 <= row < len(self.hosts_entries):
-            _enabled, ip, hostname, comment, editable = self.hosts_entries[row]
-            self.hosts_entries[row] = (state == Qt.CheckState.Checked.value, ip, hostname, comment, editable)
+            _enabled, ip, hostnames, comment, editable = self.hosts_entries[row]
+            self.hosts_entries[row] = (state == Qt.CheckState.Checked.value, ip, hostnames, comment, editable)
 
     def add_host(self) -> None:
         """Add a new host entry."""
         dialog = AddEditHostDialog(self)
         if dialog.exec():
-            ip, hostname, comment = dialog.get_values()
-            if ip and hostname:
-                # (enabled, ip, hostname, comment, editable=True)
-                self.hosts_entries.append((True, ip, hostname, comment, True))
+            ip, hostname_str, comment = dialog.get_values()
+            hostnames = hostname_str.split() if hostname_str else []
+            if ip and hostnames:
+                # (enabled, ip, hostnames, comment, editable=True)
+                self.hosts_entries.append((True, ip, hostnames, comment, True))
                 row = self.table.rowCount()
                 self.table.insertRow(row)
                 self.populate_row(row)
@@ -275,12 +280,13 @@ class HostsWindow(QMainWindow):
             QMessageBox.information(self, _("Information"), _("Please select a host entry to edit."))
             return
 
-        enabled, ip, hostname, comment, editable = self.hosts_entries[current_row]
-        dialog = AddEditHostDialog(self, ip, hostname, comment)
+        enabled, ip, hostnames, comment, editable = self.hosts_entries[current_row]
+        dialog = AddEditHostDialog(self, ip, " ".join(hostnames), comment)
         if dialog.exec():
-            new_ip, new_hostname, new_comment = dialog.get_values()
-            if new_ip and new_hostname:
-                self.hosts_entries[current_row] = (enabled, new_ip, new_hostname, new_comment, editable)
+            new_ip, new_hostname_str, new_comment = dialog.get_values()
+            new_hostnames = new_hostname_str.split() if new_hostname_str else []
+            if new_ip and new_hostnames:
+                self.hosts_entries[current_row] = (enabled, new_ip, new_hostnames, new_comment, editable)
                 self.populate_row(current_row)
             else:
                 QMessageBox.warning(self, _("Error"), _("IP address and hostname are required."))
@@ -299,7 +305,7 @@ class HostsWindow(QMainWindow):
 
     def populate_row(self, row: int) -> None:
         """Populate a single table row."""
-        enabled, ip, hostname, comment, editable = self.hosts_entries[row]
+        enabled, ip, hostnames, comment, editable = self.hosts_entries[row]
 
         # Clear cell widget first
         self.table.setCellWidget(row, 0, None)
@@ -317,13 +323,13 @@ class HostsWindow(QMainWindow):
             self.table.setCellWidget(row, 0, enabled_widget)
 
         self.table.setItem(row, 1, QTableWidgetItem(ip))
-        self.table.setItem(row, 2, QTableWidgetItem(hostname))
+        self.table.setItem(row, 2, QTableWidgetItem(" ".join(hostnames)))
         self.table.setItem(row, 3, QTableWidgetItem(comment))
 
     def save_hosts(self) -> None:
         """Save hosts to /etc/hosts file."""
         lines = []
-        for enabled, ip, hostname, comment, editable in self.hosts_entries:
+        for enabled, ip, hostnames, comment, editable in self.hosts_entries:
             if not editable:
                 # Pure comment line - just write the comment
                 lines.append("# " + comment)
@@ -332,7 +338,7 @@ class HostsWindow(QMainWindow):
             line = ""
             if not enabled:
                 line += "# "
-            line += ip + "\t" + hostname
+            line += ip + "\t" + " ".join(hostnames)
             if comment:
                 line += "\t# " + comment
             lines.append(line)

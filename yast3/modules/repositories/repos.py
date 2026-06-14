@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
+import configparser
 import os
-import re
 import subprocess
 import tempfile
 from dataclasses import dataclass, field
@@ -36,70 +36,50 @@ class RepoEntry:
 
 
 def parse_repo_file(filepath: str) -> list[RepoEntry]:
-    """Parse a single .repo file."""
+    """Parse a single .repo file using configparser."""
     entries: list[RepoEntry] = []
     
     try:
-        with open(filepath, "r") as f:
-            content = f.read()
-    except Exception:
-        return entries
-    
-    # Split by [section] headers
-    sections = re.split(r'\n\[', content)
-    
-    for section in sections:
-        if not section.strip():
-            continue
+        config = configparser.ConfigParser()
+        config.optionxform = str  # Preserve case of keys
+        config.read(filepath)
         
-        # Find section id (first line before newline)
-        lines = section.split('\n', 1)
-        repo_id = lines[0].strip().strip('[]')
-        body = lines[1] if len(lines) > 1 else ''
-        
-        if not repo_id:
-            continue
-        
-        entry = RepoEntry(id=repo_id, filename=os.path.basename(filepath))
-        
-        # Parse key=value pairs
-        for line in body.split('\n'):
-            line = line.strip()
-            if not line or line.startswith('#'):
-                continue
+        for section in config.sections():
+            entry = RepoEntry(id=section, filename=os.path.basename(filepath))
             
-            if '=' in line:
-                key, value = line.split('=', 1)
-                key = key.strip().lower()
-                value = value.strip()
+            for key, value in config.items(section):
+                key_lower = key.lower()
                 
-                if key == 'name':
+                if key_lower == 'name':
                     entry.name = value
-                elif key == 'enabled':
-                    entry.enabled = value.lower() in ('1', 'true', 'yes')
-                elif key == 'autorefresh':
-                    entry.autorefresh = value.lower() in ('1', 'true', 'yes')
-                elif key == 'baseurl':
+                elif key_lower == 'enabled':
+                    entry.enabled = value.lower() in ('1', 'true', 'yes', 'on')
+                elif key_lower == 'autorefresh':
+                    entry.autorefresh = value.lower() in ('1', 'true', 'yes', 'on')
+                elif key_lower == 'baseurl':
                     entry.baseurl = value
-                elif key == 'mirrorlist':
+                elif key_lower == 'mirrorlist':
                     entry.mirrorlist = value
-                elif key == 'type':
+                elif key_lower == 'type':
                     entry.type = value
-                elif key == 'gpgcheck':
-                    entry.gpgcheck = value.lower() in ('1', 'true', 'yes')
-                elif key == 'gpgkey':
+                elif key_lower == 'gpgcheck':
+                    entry.gpgcheck = value.lower() in ('1', 'true', 'yes', 'on')
+                elif key_lower == 'gpgkey':
                     entry.gpgkey = value
-                elif key == 'priority':
+                elif key_lower == 'priority':
                     try:
                         entry.priority = int(value)
                     except ValueError:
                         pass
-                elif key == 'keep_packages':
-                    entry.keep_packages = value.lower() in ('1', 'true', 'yes')
+                elif key_lower == 'keep_packages':
+                    entry.keep_packages = value.lower() in ('1', 'true', 'yes', 'on')
                 else:
                     entry.other_options[key] = value
-        
-        entries.append(entry)
+            
+            entries.append(entry)
+            
+    except Exception:
+        pass
     
     return entries
 
@@ -130,48 +110,42 @@ def save_repo_entry(entry: RepoEntry, use_pkexec: bool = True) -> Literal["ok", 
     filepath = os.path.join(REPOS_DIR, entry.filename)
     
     # Check if we need to read existing content
-    existing_entries = []
+    config = configparser.ConfigParser()
+    config.optionxform = str
     if os.path.exists(filepath):
-        existing_entries = parse_repo_file(filepath)
+        config.read(filepath)
     
-    # Replace or add this entry
-    found = False
-    for i, e in enumerate(existing_entries):
-        if e.id == entry.id:
-            existing_entries[i] = entry
-            found = True
-            break
+    # Remove existing section if present
+    if entry.id in config.sections():
+        config.remove_section(entry.id)
     
-    if not found:
-        existing_entries.append(entry)
+    # Add new section
+    config[entry.id] = {}
     
-    # Generate content
-    lines = []
-    for e in existing_entries:
-        lines.append(f"[{e.id}]")
-        lines.append(f"name={e.name}")
-        lines.append(f"enabled={'1' if e.enabled else '0'}")
-        lines.append(f"autorefresh={'1' if e.autorefresh else '0'}")
-        if e.baseurl:
-            lines.append(f"baseurl={e.baseurl}")
-        if e.mirrorlist:
-            lines.append(f"mirrorlist={e.mirrorlist}")
-        lines.append(f"type={e.type}")
-        lines.append(f"gpgcheck={'1' if e.gpgcheck else '0'}")
-        if e.gpgkey:
-            lines.append(f"gpgkey={e.gpgkey}")
-        lines.append(f"priority={e.priority}")
-        lines.append(f"keep_packages={'1' if e.keep_packages else '0'}")
-        for key, value in e.other_options.items():
-            lines.append(f"{key}={value}")
-        lines.append("")  # Empty line between sections
+    # Set values
+    if entry.name:
+        config[entry.id]['name'] = entry.name
+    config[entry.id]['enabled'] = '1' if entry.enabled else '0'
+    config[entry.id]['autorefresh'] = '1' if entry.autorefresh else '0'
+    if entry.baseurl:
+        config[entry.id]['baseurl'] = entry.baseurl
+    if entry.mirrorlist:
+        config[entry.id]['mirrorlist'] = entry.mirrorlist
+    config[entry.id]['type'] = entry.type
+    config[entry.id]['gpgcheck'] = '1' if entry.gpgcheck else '0'
+    if entry.gpgkey:
+        config[entry.id]['gpgkey'] = entry.gpgkey
+    config[entry.id]['priority'] = str(entry.priority)
+    config[entry.id]['keep_packages'] = '1' if entry.keep_packages else '0'
     
-    content = '\n'.join(lines).rstrip('\n') + '\n'
+    # Add other options
+    for key, value in entry.other_options.items():
+        config[entry.id][key] = value
     
     # Try direct write first
     try:
         with open(filepath, "w") as f:
-            f.write(content)
+            config.write(f)
         return "ok"
     except PermissionError:
         if not use_pkexec:
@@ -182,7 +156,7 @@ def save_repo_entry(entry: RepoEntry, use_pkexec: bool = True) -> Literal["ok", 
     # Use pkexec to get root permission
     try:
         with tempfile.NamedTemporaryFile(mode="w", suffix=".repo", delete=False) as tmp:
-            tmp.write(content)
+            config.write(tmp)
             tmp_path = tmp.name
         
         result = subprocess.run(
@@ -208,11 +182,18 @@ def delete_repo_entry(entry: RepoEntry, use_pkexec: bool = True) -> Literal["ok"
     if not os.path.exists(filepath):
         return "ok"
     
-    existing_entries = parse_repo_file(filepath)
-    remaining_entries = [e for e in existing_entries if e.id != entry.id]
+    config = configparser.ConfigParser()
+    config.optionxform = str
+    config.read(filepath)
     
-    # If no entries remain, delete the file
-    if not remaining_entries:
+    if entry.id not in config.sections():
+        return "ok"
+    
+    # Remove the section
+    config.remove_section(entry.id)
+    
+    # If no sections remain, delete the file
+    if not config.sections():
         try:
             os.remove(filepath)
             return "ok"
@@ -236,32 +217,10 @@ def delete_repo_entry(entry: RepoEntry, use_pkexec: bool = True) -> Literal["ok"
         except Exception:
             return "error"
     
-    # Otherwise, write remaining entries
-    lines = []
-    for e in remaining_entries:
-        lines.append(f"[{e.name}]")
-        lines.append(f"name={e.name}")
-        lines.append(f"enabled={'1' if e.enabled else '0'}")
-        lines.append(f"autorefresh={'1' if e.autorefresh else '0'}")
-        if e.baseurl:
-            lines.append(f"baseurl={e.baseurl}")
-        if e.mirrorlist:
-            lines.append(f"mirrorlist={e.mirrorlist}")
-        lines.append(f"type={e.type}")
-        lines.append(f"gpgcheck={'1' if e.gpgcheck else '0'}")
-        if e.gpgkey:
-            lines.append(f"gpgkey={e.gpgkey}")
-        lines.append(f"priority={e.priority}")
-        lines.append(f"keep_packages={'1' if e.keep_packages else '0'}")
-        for key, value in e.other_options.items():
-            lines.append(f"{key}={value}")
-        lines.append("")
-    
-    content = '\n'.join(lines).rstrip('\n') + '\n'
-    
+    # Otherwise, write remaining sections
     try:
         with open(filepath, "w") as f:
-            f.write(content)
+            config.write(f)
         return "ok"
     except PermissionError:
         if not use_pkexec:
@@ -271,7 +230,7 @@ def delete_repo_entry(entry: RepoEntry, use_pkexec: bool = True) -> Literal["ok"
     
     try:
         with tempfile.NamedTemporaryFile(mode="w", suffix=".repo", delete=False) as tmp:
-            tmp.write(content)
+            config.write(tmp)
             tmp_path = tmp.name
         
         result = subprocess.run(

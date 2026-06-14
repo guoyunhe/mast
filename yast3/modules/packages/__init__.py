@@ -2,6 +2,7 @@
 
 from PySide6.QtWidgets import QMdiSubWindow
 
+from ...i18n import _
 from ...module import Module
 
 from .winodw import PackagesWindow

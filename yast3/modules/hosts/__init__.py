@@ -1,5 +1,6 @@
 """Hosts module package."""
 
+from ...i18n import _
 from ...module import Module
 
 from .window import HostsWindow

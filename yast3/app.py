@@ -1,4 +1,5 @@
 from __future__ import annotations
+from .i18n import _
 from .module import Module
 from .modules import *
 

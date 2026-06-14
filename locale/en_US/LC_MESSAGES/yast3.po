@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  yast3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 15:23+0000\n"
+"POT-Creation-Date: 2026-06-14 05:01+0000\n"
 "PO-Revision-Date: 2024-01-01 00:00+0000\n"
 "Last-Translator: \n"
 "Language: en_US\n"
@@ -16,6 +16,144 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+
+#: yast3/app.py:48
+msgid "This settings page is not implemented yet."
+msgstr "This settings page is not implemented yet."
+
+#: yast3/modules/hosts/__init__.py:12
+msgid "Hosts"
+msgstr "Hosts"
+
+#: yast3/modules/hosts/__init__.py:18 yast3/modules/packages/__init__.py:19
+msgid "YaST3"
+msgstr "YaST3"
+
+#: yast3/modules/hosts/window.py:35
+msgid "Add/Edit Host Entry"
+msgstr "Add/Edit Host Entry"
+
+#: yast3/modules/hosts/window.py:42
+msgid "IP Address:"
+msgstr "IP Address:"
+
+#: yast3/modules/hosts/window.py:51
+msgid "Hostname:"
+msgstr "Hostname:"
+
+#: yast3/modules/hosts/window.py:58
+msgid "Comment:"
+msgstr "Comment:"
+
+#: yast3/modules/hosts/window.py:77 yast3/modules/packages/winodw.py:11
+msgid "System ready"
+msgstr "System ready"
+
+#: yast3/modules/hosts/window.py:78 yast3/modules/packages/winodw.py:12
+msgid "File"
+msgstr "File"
+
+#: yast3/modules/hosts/window.py:87
+msgid "Add"
+msgstr "Add"
+
+#: yast3/modules/hosts/window.py:91
+msgid "Edit"
+msgstr "Edit"
+
+#: yast3/modules/hosts/window.py:95
+msgid "Delete"
+msgstr "Delete"
+
+#: yast3/modules/hosts/window.py:101
+msgid "Save"
+msgstr "Save"
+
+#: yast3/modules/hosts/window.py:110
+msgid "IP Address"
+msgstr "IP Address"
+
+#: yast3/modules/hosts/window.py:110
+msgid "Hostname"
+msgstr "Hostname"
+
+#: yast3/modules/hosts/window.py:110
+msgid "Comment"
+msgstr "Comment"
+
+#: yast3/modules/hosts/window.py:137 yast3/modules/hosts/window.py:140
+#: yast3/modules/hosts/window.py:199 yast3/modules/hosts/window.py:226
+#: yast3/modules/hosts/window.py:271 yast3/modules/hosts/window.py:273
+#: yast3/modules/hosts/window.py:275
+msgid "Error"
+msgstr "Error"
+
+#: yast3/modules/hosts/window.py:137
+#, python-brace-format
+msgid "Cannot read {0}. Root permission required."
+msgstr "Cannot read {0}. Root permission required."
+
+#: yast3/modules/hosts/window.py:140
+#, python-brace-format
+msgid "{0} not found."
+msgstr "{0} not found."
+
+#: yast3/modules/hosts/window.py:199 yast3/modules/hosts/window.py:226
+msgid "IP address and hostname are required."
+msgstr "IP address and hostname are required."
+
+#: yast3/modules/hosts/window.py:205 yast3/modules/hosts/window.py:232
+msgid "Information"
+msgstr "Information"
+
+#: yast3/modules/hosts/window.py:205
+msgid "Please select a host entry to edit."
+msgstr "Please select a host entry to edit."
+
+#: yast3/modules/hosts/window.py:232
+msgid "Please select a host entry to delete."
+msgstr "Please select a host entry to delete."
+
+#: yast3/modules/hosts/window.py:235
+msgid "Confirm"
+msgstr "Confirm"
+
+#: yast3/modules/hosts/window.py:235
+msgid "Are you sure you want to delete this entry?"
+msgstr "Are you sure you want to delete this entry?"
+
+#: yast3/modules/hosts/window.py:268
+msgid "Success"
+msgstr "Success"
+
+#: yast3/modules/hosts/window.py:268
+msgid "Hosts file saved successfully."
+msgstr "Hosts file saved successfully."
+
+#: yast3/modules/hosts/window.py:269
+msgid "Saved successfully"
+msgstr "Saved successfully"
+
+#: yast3/modules/hosts/window.py:271
+#, python-brace-format
+msgid "Cannot write to {0}. Root permission required."
+msgstr "Cannot write to {0}. Root permission required."
+
+#: yast3/modules/hosts/window.py:273
+msgid "Authentication failed or pkexec not available."
+msgstr "Authentication failed or pkexec not available."
+
+#: yast3/modules/hosts/window.py:275
+msgid "Failed to save hosts file."
+msgstr "Failed to save hosts file."
+
+#: yast3/modules/packages/__init__.py:13
+msgid "Packages"
+msgstr "Packages"
+
+#: yast3/modules/packages/winodw.py:17
+msgid "I am a button"
+msgstr "I am a button"
 
 #~ msgid "YaST3"
 #~ msgstr "YaST3"

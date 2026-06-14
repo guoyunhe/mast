@@ -3,9 +3,11 @@
 from .hosts import HostsModule
 from .packages import PackagesModule
 from .repositories import RepositoriesModule
+from .ssh import SSHClientModule
 
 __all__ = [
 	'HostsModule',
 	'PackagesModule',
 	'RepositoriesModule',
+	'SSHClientModule',
 ]

@@ -2,7 +2,6 @@ from __future__ import annotations
 from .module import Module
 from .modules import *
 
-from dataclasses import dataclass
 from typing import Iterable
 from weakref import WeakSet
 
@@ -15,7 +14,6 @@ from PySide6.QtWidgets import (
     QLabel,
     QMainWindow,
     QScrollArea,
-    QStyle,
     QToolButton,
     QVBoxLayout,
     QWidget,
@@ -24,7 +22,6 @@ from PySide6.QtWidgets import (
 
 MODULES: tuple[Module, ...] = (
     HostsModule(),
-    PackagesModule(),
 )
 
 

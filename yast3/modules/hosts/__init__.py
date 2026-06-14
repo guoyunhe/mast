@@ -18,6 +18,6 @@ class HostsModule(Module):
             self.window.setWindowTitle(self.name + ' — ' + _("YaST3"))
         self.window.show()
         self.window.activateWindow()
-
+    
 
 __all__ = ['HostsModule']

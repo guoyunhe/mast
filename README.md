@@ -2,11 +2,20 @@
 
 Save YaST ♥️ with Python 3 & Qt6 Widgets.
 
-## Overview
+## Modules
 
-YaST3 starts as a desktop settings shell inspired by the system settings app on Windows.
-The main window shows settings modules in a grid, each with a themed GNU/Linux icon and label.
-Selecting a module opens a separate placeholder window for future implementation.
+Available:
+
+- Hosts: manage `/etc/hosts`
+
+Planned:
+
+- Hostname: manage system hostname
+- Repositories && Mirrors: manage software repositories and mirrors (rpm)
+- Packages: manage installed software packages (rpm)
+- SSH Client: manage SSH client settings, keys and hosts (user)
+- SSH Server: manage SSH server settings (system)
+- Git: manage Git settings
 
 ## Requirements
 

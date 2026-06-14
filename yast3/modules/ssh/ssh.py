@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import stat
 from dataclasses import dataclass, field
 from typing import Literal
 
@@ -197,6 +198,112 @@ def save_ssh_config(entries: list[SSHConfigEntry]) -> Literal["ok", "permission_
         return "permission_denied"
     except Exception:
         return "error"
+
+
+@dataclass
+class PermissionIssue:
+    """Represents a single permission security issue."""
+    path: str
+    current_mode: int
+    expected_mode: int
+    description: str
+
+
+def check_ssh_permissions() -> list[PermissionIssue]:
+    """Check SSH directory and files for insecure permissions.
+    
+    Returns:
+        List of PermissionIssue objects for items that need fixing.
+    """
+    issues: list[PermissionIssue] = []
+    
+    if not os.path.exists(SSH_CONFIG_DIR):
+        return issues
+    
+    # Check ~/.ssh directory permissions
+    try:
+        dir_stat = os.stat(SSH_CONFIG_DIR)
+        dir_mode = stat.S_IMODE(dir_stat.st_mode)
+        if dir_mode != 0o700:
+            issues.append(PermissionIssue(
+                path=SSH_CONFIG_DIR,
+                current_mode=dir_mode,
+                expected_mode=0o700,
+                description="SSH directory should be accessible only by owner"
+            ))
+    except Exception:
+        pass
+    
+    # Check files in ~/.ssh directory
+    try:
+        files = os.listdir(SSH_CONFIG_DIR)
+    except Exception:
+        return issues
+    
+    for filename in files:
+        filepath = os.path.join(SSH_CONFIG_DIR, filename)
+        if os.path.isdir(filepath):
+            continue
+        
+        try:
+            file_stat = os.stat(filepath)
+            file_mode = stat.S_IMODE(file_stat.st_mode)
+        except Exception:
+            continue
+        
+        # Determine expected permissions based on file type
+        if filename.endswith('.pub'):
+            # Public keys: 644 is acceptable, 600 is also fine
+            expected_mode = 0o644
+            if file_mode != 0o644 and file_mode != 0o600:
+                issues.append(PermissionIssue(
+                    path=filepath,
+                    current_mode=file_mode,
+                    expected_mode=expected_mode,
+                    description=f"Public key file '{filename}' should be readable by others"
+                ))
+        elif filename in ('config', 'authorized_keys', 'known_hosts'):
+            # Config and authorized_keys: 600
+            expected_mode = 0o600
+            if file_mode != 0o600:
+                issues.append(PermissionIssue(
+                    path=filepath,
+                    current_mode=file_mode,
+                    expected_mode=expected_mode,
+                    description=f"SSH file '{filename}' should be accessible only by owner"
+                ))
+        else:
+            # Private keys: 600 strictly
+            expected_mode = 0o600
+            if file_mode != 0o600:
+                issues.append(PermissionIssue(
+                    path=filepath,
+                    current_mode=file_mode,
+                    expected_mode=expected_mode,
+                    description=f"Private key file '{filename}' should be accessible only by owner"
+                ))
+    
+    return issues
+
+
+def fix_ssh_permissions(issues: list[PermissionIssue]) -> list[str]:
+    """Fix SSH permission issues.
+    
+    Args:
+        issues: List of PermissionIssue objects to fix.
+    
+    Returns:
+        List of paths that failed to fix.
+    """
+    failed: list[str] = []
+    
+    for issue in issues:
+        try:
+            os.chmod(issue.path, issue.expected_mode)
+        except Exception:
+            failed.append(issue.path)
+    
+    return failed
 
 
 def get_available_options() -> list[tuple[str, str]]:

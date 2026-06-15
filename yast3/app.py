@@ -120,12 +120,3 @@ class MainWindow(QMainWindow):
             icon = QIcon.fromTheme(name)
             if not icon.isNull():
                 return icon
-
-def main() -> int:
-    app = QApplication.instance() or QApplication([])
-    app.setApplicationName("YaST3")
-
-    window = MainWindow()
-    window.show()
-
-    return app.exec()

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  yast3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-15 15:13+0000\n"
+"POT-Creation-Date: 2026-06-15 15:21+0000\n"
 "PO-Revision-Date: 2026-06-14 05:40+0000\n"
 "Last-Translator: \n"
 "Language: zh_CN\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: yast3/app.py:50
 msgid "This settings module is not implemented yet."
-msgstr ""
+msgstr "此设置模块尚未实现。"
 
 #: yast3/modules/git/__init__.py:13
 msgid "Git"
@@ -218,322 +218,311 @@ msgstr "恢复为原始值"
 #: yast3/modules/hostname/__init__.py:13 yast3/modules/hostname/window.py:41
 #: yast3/modules/hosts/window.py:65
 msgid "Hostname"
-msgstr ""
+msgstr "主机名"
 
 #: yast3/modules/hostname/window.py:31 yast3/modules/hosts/window.py:34
 #: yast3/modules/packages/winodw.py:15 yast3/modules/repositories/window.py:31
 #: yast3/modules/ssh/window.py:25
 msgid "File"
-msgstr ""
+msgstr "文件"
 
 #: yast3/modules/hostname/window.py:46
 msgid ""
 "Manage the system hostname. The hostname will be updated in /etc/hostname"
 " and /etc/hosts."
-msgstr ""
+msgstr "管理系统主机名。主机名将在 /etc/hostname 和 /etc/hosts 中更新。"
 
 #: yast3/modules/hostname/window.py:53
 msgid "Current hostname:"
-msgstr ""
+msgstr "当前主机名："
 
 #: yast3/modules/hostname/window.py:63
-#, fuzzy
 msgid "New hostname:"
-msgstr "用户名"
+msgstr "新主机名："
 
 #: yast3/modules/hostname/window.py:67
 msgid "Enter new hostname"
-msgstr ""
+msgstr "输入新主机名"
 
 #: yast3/modules/hostname/window.py:75
 msgid "Apply"
-msgstr ""
+msgstr "应用"
 
 #: yast3/modules/hostname/window.py:92
 msgid "/etc/hostname not found."
-msgstr ""
+msgstr "/etc/hostname 未找到。"
 
 #: yast3/modules/hostname/window.py:93 yast3/modules/hostname/window.py:96
 #: yast3/modules/hostname/window.py:99
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 #: yast3/modules/hostname/window.py:95
 msgid "Cannot read /etc/hostname. Root permission required."
-msgstr ""
+msgstr "无法读取 /etc/hostname。需要 root 权限。"
 
 #: yast3/modules/hostname/window.py:98
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Failed to load hostname: {0}"
-msgstr "保存 Git 配置失败。"
+msgstr "加载主机名失败：{0}"
 
 #: yast3/modules/hostname/window.py:106
 msgid "Hostname cannot be empty."
-msgstr ""
+msgstr "主机名不能为空。"
 
 #: yast3/modules/hostname/window.py:111
 msgid "Hostname is too long (maximum 253 characters)."
-msgstr ""
+msgstr "主机名过长（最多 253 个字符）。"
 
 #: yast3/modules/hostname/window.py:117
 msgid "Hostname contains invalid characters."
-msgstr ""
+msgstr "主机名包含无效字符。"
 
 #: yast3/modules/hostname/window.py:125 yast3/modules/hosts/window.py:195
 #: yast3/modules/repositories/window.py:214 yast3/modules/ssh/hosts/tab.py:166
 #: yast3/modules/ssh/keys/generate_dialog.py:174
 msgid "Confirm"
-msgstr ""
+msgstr "确认"
 
 #: yast3/modules/hostname/window.py:126
 #, python-brace-format
 msgid "Are you sure you want to change the hostname from '{0}' to '{1}'?"
-msgstr ""
+msgstr "您确定要将主机名从 '{0}' 改为 '{1}' 吗？"
 
 #: yast3/modules/hostname/window.py:136
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Hostname changed successfully to '{0}'."
-msgstr "保存成功"
+msgstr "主机名已成功更改为 '{0}'。"
 
 #: yast3/modules/hostname/window.py:138
 msgid "Hostname updated"
-msgstr ""
+msgstr "主机名已更新"
 
 #: yast3/modules/hostname/window.py:140
 msgid "Permission denied. Root permission required."
-msgstr ""
+msgstr "权限被拒绝。需要 root 权限。"
 
 #: yast3/modules/hostname/window.py:142 yast3/modules/hosts/window.py:233
 #: yast3/modules/repositories/window.py:244
 msgid "Authentication failed or pkexec not available."
-msgstr ""
+msgstr "认证失败或 pkexec 不可用。"
 
 #: yast3/modules/hostname/window.py:144
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Failed to set hostname: {0}"
-msgstr "保存 Git 配置失败。"
+msgstr "设置主机名失败：{0}"
 
 #: yast3/modules/hosts/__init__.py:13 yast3/modules/ssh/window.py:38
 msgid "Hosts"
-msgstr ""
+msgstr "主机"
 
 #: yast3/modules/hosts/dialogs.py:18
 msgid "Add/Edit Host Entry"
-msgstr ""
+msgstr "添加/编辑主机条目"
 
 #: yast3/modules/hosts/dialogs.py:25
-#, fuzzy
 msgid "IP Address:"
-msgstr "邮箱地址"
+msgstr "IP 地址："
 
 #: yast3/modules/hosts/dialogs.py:34
 msgid "Hostname:"
-msgstr ""
+msgstr "主机名："
 
 #: yast3/modules/hosts/dialogs.py:41
 #: yast3/modules/ssh/keys/generate_dialog.py:112
-#, fuzzy
 msgid "Comment:"
-msgstr "提交"
+msgstr "注释："
 
 #: yast3/modules/hosts/window.py:43 yast3/modules/repositories/window.py:38
 #: yast3/modules/ssh/dialogs.py:51 yast3/modules/ssh/hosts/tab.py:38
 #: yast3/modules/ssh/keys/tab.py:37
 msgid "Add"
-msgstr ""
+msgstr "添加"
 
 #: yast3/modules/hosts/window.py:46 yast3/modules/repositories/window.py:42
 #: yast3/modules/ssh/hosts/tab.py:42
 msgid "Edit"
-msgstr ""
+msgstr "编辑"
 
 #: yast3/modules/hosts/window.py:50 yast3/modules/repositories/window.py:46
 #: yast3/modules/ssh/hosts/tab.py:46 yast3/modules/ssh/keys/tab.py:46
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
 #: yast3/modules/hosts/window.py:65
-#, fuzzy
 msgid "IP Address"
-msgstr "邮箱地址"
+msgstr "IP 地址"
 
 #: yast3/modules/hosts/window.py:65 yast3/modules/ssh/keys/tab.py:61
-#, fuzzy
 msgid "Comment"
-msgstr "提交"
+msgstr "注释"
 
 #: yast3/modules/hosts/window.py:92
 #, python-brace-format
 msgid "Cannot read {0}. Root permission required."
-msgstr ""
+msgstr "无法读取 {0}。需要 root 权限。"
 
 #: yast3/modules/hosts/window.py:95
 #, python-brace-format
 msgid "{0} not found."
-msgstr ""
+msgstr "{0} 未找到。"
 
 #: yast3/modules/hosts/window.py:159 yast3/modules/hosts/window.py:186
-#, fuzzy
 msgid "IP address and hostname are required."
-msgstr "用户名和邮箱为必填项。"
+msgstr "IP 地址和主机名是必需的。"
 
 #: yast3/modules/hosts/window.py:165 yast3/modules/hosts/window.py:192
 #: yast3/modules/repositories/window.py:169
 #: yast3/modules/repositories/window.py:210 yast3/modules/ssh/hosts/tab.py:141
 #: yast3/modules/ssh/hosts/tab.py:158
 msgid "Information"
-msgstr ""
+msgstr "信息"
 
 #: yast3/modules/hosts/window.py:165 yast3/modules/ssh/hosts/tab.py:141
 msgid "Please select a host entry to edit."
-msgstr ""
+msgstr "请选择要编辑的主机条目。"
 
 #: yast3/modules/hosts/window.py:192 yast3/modules/ssh/hosts/tab.py:158
 msgid "Please select a host entry to delete."
-msgstr ""
+msgstr "请选择要删除的主机条目。"
 
 #: yast3/modules/hosts/window.py:195 yast3/modules/ssh/hosts/tab.py:166
 msgid "Are you sure you want to delete this entry?"
-msgstr ""
+msgstr "您确定要删除此条目吗？"
 
 #: yast3/modules/hosts/window.py:228
-#, fuzzy
 msgid "Hosts file saved successfully."
-msgstr "保存成功"
+msgstr "主机文件保存成功。"
 
 #: yast3/modules/hosts/window.py:231
 #, python-brace-format
 msgid "Cannot write to {0}. Root permission required."
-msgstr ""
+msgstr "无法写入 {0}。需要 root 权限。"
 
 #: yast3/modules/hosts/window.py:235
-#, fuzzy
 msgid "Failed to save hosts file."
-msgstr "保存 Git 配置失败。"
+msgstr "保存主机文件失败。"
 
 #: yast3/modules/packages/__init__.py:14 yast3/modules/packages/winodw.py:13
 #: yast3/modules/packages/winodw.py:20
 msgid "Packages"
-msgstr ""
+msgstr "软件包"
 
 #: yast3/modules/repositories/__init__.py:13
 msgid "Repositories"
-msgstr ""
+msgstr "软件源"
 
 #: yast3/modules/repositories/dialogs.py:17
 msgid "Add Repository"
-msgstr ""
+msgstr "添加软件源"
 
 #: yast3/modules/repositories/dialogs.py:17
 msgid "Edit Repository"
-msgstr ""
+msgstr "编辑软件源"
 
 #: yast3/modules/repositories/dialogs.py:24
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: yast3/modules/repositories/dialogs.py:31
 #: yast3/modules/repositories/window.py:56 yast3/modules/ssh/keys/tab.py:61
-#, fuzzy
 msgid "Name"
-msgstr "用户名"
+msgstr "名称"
 
 #: yast3/modules/repositories/dialogs.py:37
 #: yast3/modules/repositories/window.py:59
 msgid "Enabled"
-msgstr ""
+msgstr "启用"
 
 #: yast3/modules/repositories/dialogs.py:42
 #: yast3/modules/repositories/window.py:60
-#, fuzzy
 msgid "Auto Refresh"
-msgstr "自动 CRLF"
+msgstr "自动刷新"
 
 #: yast3/modules/repositories/dialogs.py:48
 msgid "URL Type"
-msgstr ""
+msgstr "URL 类型"
 
 #: yast3/modules/repositories/dialogs.py:50
 msgid "Base URL"
-msgstr ""
+msgstr "基础 URL"
 
 #: yast3/modules/repositories/dialogs.py:50
 msgid "Mirror List"
-msgstr ""
+msgstr "镜像列表"
 
 #: yast3/modules/repositories/dialogs.py:56
 #: yast3/modules/repositories/window.py:57
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: yast3/modules/repositories/dialogs.py:63
 msgid "Path"
-msgstr ""
+msgstr "路径"
 
 #: yast3/modules/repositories/dialogs.py:70
 msgid "Type"
-msgstr ""
+msgstr "类型"
 
 #: yast3/modules/repositories/dialogs.py:78
 msgid "Check GPG signature"
-msgstr ""
+msgstr "检查 GPG 签名"
 
 #: yast3/modules/repositories/dialogs.py:84
 msgid "GPG Key URL"
-msgstr ""
+msgstr "GPG 密钥 URL"
 
 #: yast3/modules/repositories/dialogs.py:91
 #: yast3/modules/repositories/window.py:58
 msgid "Priority"
-msgstr ""
+msgstr "优先级"
 
 #: yast3/modules/repositories/dialogs.py:99
 msgid "Keep packages"
-msgstr ""
+msgstr "保留软件包"
 
 #: yast3/modules/repositories/window.py:87
 msgid "Cannot read repository directory. Root permission required."
-msgstr ""
+msgstr "无法读取软件源目录。需要 root 权限。"
 
 #: yast3/modules/repositories/window.py:135
 #: yast3/modules/repositories/window.py:180
 msgid "Repository ID is required."
-msgstr ""
+msgstr "软件源 ID 是必需的。"
 
 #: yast3/modules/repositories/window.py:138
 #: yast3/modules/repositories/window.py:183
 msgid "URL is required."
-msgstr ""
+msgstr "URL 是必需的。"
 
 #: yast3/modules/repositories/window.py:169
 msgid "Please select a repository to edit."
-msgstr ""
+msgstr "请选择要编辑的软件源。"
 
 #: yast3/modules/repositories/window.py:210
 msgid "Please select a repository to delete."
-msgstr ""
+msgstr "请选择要删除的软件源。"
 
 #: yast3/modules/repositories/window.py:214
 #, python-brace-format
 msgid "Are you sure you want to delete repository '{}'?"
-msgstr ""
+msgstr "您确定要删除软件源 '{}' 吗？"
 
 #: yast3/modules/repositories/window.py:242
 msgid "Cannot write to repository directory. Root permission required."
-msgstr ""
+msgstr "无法写入软件源目录。需要 root 权限。"
 
 #: yast3/modules/repositories/window.py:246
-#, fuzzy
 msgid "Failed to save repository configuration."
-msgstr "保存 Git 配置失败。"
+msgstr "保存软件源配置失败。"
 
 #: yast3/modules/ssh/__init__.py:19
 msgid "SSH Client"
-msgstr ""
+msgstr "SSH 客户端"
 
 #: yast3/modules/ssh/__init__.py:52
 msgid "SSH Permission Warning"
-msgstr ""
+msgstr "SSH 权限警告"
 
 #: yast3/modules/ssh/__init__.py:54
 #, python-brace-format
@@ -544,6 +533,11 @@ msgid ""
 "\n"
 "Would you like to fix them now?"
 msgstr ""
+"以下 SSH 项目的权限不安全：\n"
+"\n"
+"{0}\n"
+"\n"
+"您要现在修复它们吗？"
 
 #: yast3/modules/ssh/__init__.py:72
 #, python-brace-format
@@ -552,214 +546,212 @@ msgid ""
 "\n"
 "{0}"
 msgstr ""
+"修复以下项目的权限失败：\n"
+"\n"
+"{0}"
 
 #: yast3/modules/ssh/__init__.py:81
 msgid "SSH permissions have been fixed successfully."
-msgstr ""
+msgstr "SSH 权限已成功修复。"
 
 #: yast3/modules/ssh/dialogs.py:19
 msgid "Edit SSH Options"
-msgstr ""
+msgstr "编辑 SSH 选项"
 
 #: yast3/modules/ssh/dialogs.py:48
 msgid "Option name"
-msgstr ""
+msgstr "选项名称"
 
 #: yast3/modules/ssh/dialogs.py:50
 msgid "Option value"
-msgstr ""
+msgstr "选项值"
 
 #: yast3/modules/ssh/dialogs.py:77
 msgid "Option name is required."
-msgstr ""
+msgstr "选项名称是必需的。"
 
 #: yast3/modules/ssh/dialogs.py:83
 msgid "Option already exists."
-msgstr ""
+msgstr "选项已存在。"
 
 #: yast3/modules/ssh/dialogs.py:105
 msgid "Add/Edit SSH Host"
-msgstr ""
+msgstr "添加/编辑 SSH 主机"
 
 #: yast3/modules/ssh/dialogs.py:114
 msgid "Host Pattern:"
-msgstr ""
+msgstr "主机模式："
 
 #: yast3/modules/ssh/dialogs.py:120
 msgid "Edit Options"
-msgstr ""
+msgstr "编辑选项"
 
 #: yast3/modules/ssh/dialogs.py:146
 #, python-brace-format
 msgid "Options: {0}"
-msgstr ""
+msgstr "选项：{0}"
 
 #: yast3/modules/ssh/dialogs.py:148
 msgid "No options set"
-msgstr ""
+msgstr "未设置选项"
 
 #: yast3/modules/ssh/window.py:42
 msgid "Keys"
-msgstr ""
+msgstr "密钥"
 
 #: yast3/modules/ssh/hosts/tab.py:61
 msgid "Host Pattern"
-msgstr ""
+msgstr "主机模式"
 
 #: yast3/modules/ssh/hosts/tab.py:61
 msgid "Options"
-msgstr ""
+msgstr "选项"
 
 #: yast3/modules/ssh/hosts/tab.py:116 yast3/modules/ssh/hosts/tab.py:197
 #, python-brace-format
 msgid " and {0} more"
-msgstr ""
+msgstr " 还有 {0} 个"
 
 #: yast3/modules/ssh/hosts/tab.py:135 yast3/modules/ssh/hosts/tab.py:152
 msgid "Host pattern is required."
-msgstr ""
+msgstr "主机模式是必需的。"
 
 #: yast3/modules/ssh/hosts/tab.py:163
 msgid "Cannot delete the default host entry."
-msgstr ""
+msgstr "无法删除默认主机条目。"
 
 #: yast3/modules/ssh/hosts/tab.py:205
-#, fuzzy
 msgid "SSH config saved successfully."
-msgstr "Git 配置保存成功。"
+msgstr "SSH 配置保存成功。"
 
 #: yast3/modules/ssh/hosts/tab.py:207
 msgid "Cannot write to SSH config. Check permissions."
-msgstr ""
+msgstr "无法写入 SSH 配置。请检查权限。"
 
 #: yast3/modules/ssh/hosts/tab.py:209
-#, fuzzy
 msgid "Failed to save SSH config."
-msgstr "保存 Git 配置失败。"
+msgstr "保存 SSH 配置失败。"
 
 #: yast3/modules/ssh/keys/generate_dialog.py:69
 msgid "Generate SSH Key"
-msgstr ""
+msgstr "生成 SSH 密钥"
 
 #: yast3/modules/ssh/keys/generate_dialog.py:79
-#, fuzzy
 msgid "Key Name:"
-msgstr "用户名"
+msgstr "密钥名称："
 
 #: yast3/modules/ssh/keys/generate_dialog.py:81
 msgid "e.g., id_ed25519"
-msgstr ""
+msgstr "例如：id_ed25519"
 
 #: yast3/modules/ssh/keys/generate_dialog.py:87
 msgid "Key Type:"
-msgstr ""
+msgstr "密钥类型："
 
 #: yast3/modules/ssh/keys/generate_dialog.py:99
 msgid "Key Size:"
-msgstr ""
+msgstr "密钥大小："
 
 #: yast3/modules/ssh/keys/generate_dialog.py:114
 msgid "e.g., user@hostname"
-msgstr ""
+msgstr "例如：user@hostname"
 
 #: yast3/modules/ssh/keys/generate_dialog.py:120
 msgid "Passphrase:"
-msgstr ""
+msgstr "密码短语："
 
 #: yast3/modules/ssh/keys/generate_dialog.py:128
 #, python-brace-format
 msgid "The key will be saved to {0}"
-msgstr ""
+msgstr "密钥将保存到 {0}"
 
 #: yast3/modules/ssh/keys/generate_dialog.py:134
 msgid "Public Key:"
-msgstr ""
+msgstr "公钥："
 
 #: yast3/modules/ssh/keys/generate_dialog.py:150
 msgid "Generate"
-msgstr ""
+msgstr "生成"
 
 #: yast3/modules/ssh/keys/generate_dialog.py:168
-#, fuzzy
 msgid "Key name is required."
-msgstr "用户名和邮箱为必填项。"
+msgstr "密钥名称是必需的。"
 
 #: yast3/modules/ssh/keys/generate_dialog.py:175
 msgid "Key names starting with 'id_' are recommended. Continue anyway?"
-msgstr ""
+msgstr "建议密钥名称以 'id_' 开头。仍然继续吗？"
 
 #: yast3/modules/ssh/keys/generate_dialog.py:184
 msgid "A key with this name already exists."
-msgstr ""
+msgstr "此名称的密钥已存在。"
 
 #: yast3/modules/ssh/keys/generate_dialog.py:217
-#, fuzzy
 msgid "SSH key generated successfully."
-msgstr "保存成功"
+msgstr "SSH 密钥生成成功。"
 
 #: yast3/modules/ssh/keys/generate_dialog.py:220
 #, python-brace-format
 msgid "Failed to read public key: {0}"
-msgstr ""
+msgstr "读取公钥失败：{0}"
 
 #: yast3/modules/ssh/keys/generate_dialog.py:223
 #, python-brace-format
 msgid "Failed to generate SSH key: {0}"
-msgstr ""
+msgstr "生成 SSH 密钥失败：{0}"
 
 #: yast3/modules/ssh/keys/tab.py:41
 msgid "Copy Public Key"
-msgstr ""
+msgstr "复制公钥"
 
 #: yast3/modules/ssh/keys/tab.py:51
 msgid "Refresh"
-msgstr ""
+msgstr "刷新"
 
 #: yast3/modules/ssh/keys/tab.py:61
 msgid "Algorithm"
-msgstr ""
+msgstr "算法"
 
 #: yast3/modules/ssh/keys/tab.py:61
 msgid "Size"
-msgstr ""
+msgstr "大小"
 
 #: yast3/modules/ssh/keys/tab.py:61
 msgid "Fingerprint"
-msgstr ""
+msgstr "指纹"
 
 #: yast3/modules/ssh/keys/tab.py:61
 msgid "Passphrase"
-msgstr ""
+msgstr "密码短语"
 
 #: yast3/modules/ssh/keys/tab.py:61
 msgid "Public"
-msgstr ""
+msgstr "公钥"
 
 #: yast3/modules/ssh/keys/tab.py:61
 msgid "Private"
-msgstr ""
+msgstr "私钥"
 
 #: yast3/modules/ssh/keys/tab.py:110 yast3/modules/ssh/keys/tab.py:111
 #: yast3/modules/ssh/keys/tab.py:112
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: yast3/modules/ssh/keys/tab.py:110 yast3/modules/ssh/keys/tab.py:111
 #: yast3/modules/ssh/keys/tab.py:112
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: yast3/modules/ssh/keys/tab.py:141
 msgid "Public key copied to clipboard."
-msgstr ""
+msgstr "公钥已复制到剪贴板。"
 
 #: yast3/modules/ssh/keys/tab.py:143
 msgid "Cannot read public key file."
-msgstr ""
+msgstr "无法读取公钥文件。"
 
 #: yast3/modules/ssh/keys/tab.py:166
 msgid "Confirm Delete"
-msgstr ""
+msgstr "确认删除"
 
 #: yast3/modules/ssh/keys/tab.py:167
 #, python-brace-format
@@ -768,6 +760,9 @@ msgid ""
 "\n"
 "{0}"
 msgstr ""
+"您确定要删除以下密钥吗？\n"
+"\n"
+"{0}"
 
 #: yast3/modules/ssh/keys/tab.py:184
 #, python-brace-format
@@ -776,11 +771,13 @@ msgid ""
 "\n"
 "{0}"
 msgstr ""
+"删除某些文件失败：\n"
+"\n"
+"{0}"
 
 #: yast3/modules/ssh/keys/tab.py:187
-#, fuzzy
 msgid "Key deleted successfully."
-msgstr "保存成功"
+msgstr "密钥删除成功。"
 
 #~ msgid "This settings module is not implemented yet."
 #~ msgstr "此设置模块尚未实现"

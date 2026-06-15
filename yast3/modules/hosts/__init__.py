@@ -2,7 +2,6 @@
 
 from ...i18n import _
 from ...module import Module
-
 from .window import HostsWindow
 
 
@@ -16,7 +15,7 @@ class HostsModule(Module):
         """Launch the hosts module window."""
         if self.window is None:
             self.window = HostsWindow()
-            self.window.setWindowTitle(self.name + ' — ' + _("YaST3"))
+            self.window.setWindowTitle(self.name + " — " + _("YaST3"))
             self.window.closed.connect(self._on_window_closed)
         self.window.show()
         self.window.activateWindow()
@@ -24,6 +23,6 @@ class HostsModule(Module):
     def _on_window_closed(self) -> None:
         """Handle window closed signal."""
         self.window = None
-    
 
-__all__ = ['HostsModule']
+
+__all__ = ["HostsModule"]

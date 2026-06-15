@@ -8,10 +8,10 @@ from .repositories import RepositoriesModule
 from .ssh import SSHClientModule
 
 __all__ = [
-	'GitModule',
-	'HostnameModule',
-	'HostsModule',
-	'PackagesModule',
-	'RepositoriesModule',
-	'SSHClientModule',
+    "GitModule",
+    "HostnameModule",
+    "HostsModule",
+    "PackagesModule",
+    "RepositoriesModule",
+    "SSHClientModule",
 ]

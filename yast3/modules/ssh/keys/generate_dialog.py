@@ -22,9 +22,12 @@ from yast3.modules.ssh.ssh import SSH_CONFIG_DIR
 
 class GenerateKeyThread(QThread):
     """Thread for generating SSH key without blocking the UI."""
+
     finished = Signal(bool, str, str)  # success, private_key_path, error_message
 
-    def __init__(self, key_path: str, key_type: str, key_size: int, comment: str, passphrase: str):
+    def __init__(
+        self, key_path: str, key_type: str, key_size: int, comment: str, passphrase: str
+    ):
         super().__init__()
         self.key_path = key_path
         self.key_type = key_type
@@ -35,21 +38,29 @@ class GenerateKeyThread(QThread):
     def run(self) -> None:
         """Generate SSH key in background thread."""
         try:
-            cmd = ["ssh-keygen", "-t", self.key_type, "-f", self.key_path, "-N", self.passphrase]
-            
+            cmd = [
+                "ssh-keygen",
+                "-t",
+                self.key_type,
+                "-f",
+                self.key_path,
+                "-N",
+                self.passphrase,
+            ]
+
             if self.key_type == "rsa" and self.key_size:
                 cmd.extend(["-b", str(self.key_size)])
-            
+
             if self.comment:
                 cmd.extend(["-C", self.comment])
-            
+
             result = subprocess.run(
                 cmd,
                 capture_output=True,
                 text=True,
                 timeout=60,
             )
-            
+
             if result.returncode == 0:
                 self.finished.emit(True, self.key_path, "")
             else:
@@ -124,9 +135,7 @@ class GenerateKeyDialog(QDialog):
         layout.addLayout(passphrase_layout)
 
         # Info text
-        info_label = QLabel(
-            _("The key will be saved to {0}").format(SSH_CONFIG_DIR)
-        )
+        info_label = QLabel(_("The key will be saved to {0}").format(SSH_CONFIG_DIR))
         info_label.setStyleSheet("color: palette(mid);")
         layout.addWidget(info_label)
 
@@ -171,7 +180,8 @@ class GenerateKeyDialog(QDialog):
         # Validate name
         if not name.startswith("id_"):
             reply = QMessageBox.question(
-                self, _("Confirm"),
+                self,
+                _("Confirm"),
                 _("Key names starting with 'id_' are recommended. Continue anyway?"),
                 QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
             )
@@ -181,7 +191,9 @@ class GenerateKeyDialog(QDialog):
         # Check if key already exists
         key_path = os.path.join(SSH_CONFIG_DIR, name)
         if os.path.exists(key_path):
-            QMessageBox.warning(self, _("Error"), _("A key with this name already exists."))
+            QMessageBox.warning(
+                self, _("Error"), _("A key with this name already exists.")
+            )
             return
 
         key_type = self.type_combo.currentData()
@@ -194,7 +206,9 @@ class GenerateKeyDialog(QDialog):
         self.buttons.button(QDialogButtonBox.StandardButton.Cancel).setEnabled(False)
 
         # Start generation in background thread
-        self._keygen_thread = GenerateKeyThread(key_path, key_type, key_size, comment, passphrase)
+        self._keygen_thread = GenerateKeyThread(
+            key_path, key_type, key_size, comment, passphrase
+        )
         self._keygen_thread.finished.connect(self._on_generation_finished)
         self._keygen_thread.start()
 
@@ -209,15 +223,21 @@ class GenerateKeyDialog(QDialog):
             try:
                 with open(public_key_path, "r") as f:
                     public_key = f.read().strip()
-                
+
                 self.public_key_label.setVisible(True)
                 self.public_key_text.setVisible(True)
                 self.public_key_text.setPlainText(public_key)
-                
-                QMessageBox.information(self, _("Success"), _("SSH key generated successfully."))
+
+                QMessageBox.information(
+                    self, _("Success"), _("SSH key generated successfully.")
+                )
                 self.accept()
             except Exception as e:
-                QMessageBox.critical(self, _("Error"), _("Failed to read public key: {0}").format(str(e)))
+                QMessageBox.critical(
+                    self, _("Error"), _("Failed to read public key: {0}").format(str(e))
+                )
                 self.reject()
         else:
-            QMessageBox.critical(self, _("Error"), _("Failed to generate SSH key: {0}").format(error))
+            QMessageBox.critical(
+                self, _("Error"), _("Failed to generate SSH key: {0}").format(error)
+            )

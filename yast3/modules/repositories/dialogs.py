@@ -1,11 +1,20 @@
 """Dialog components for the Repositories module."""
 
 from PySide6.QtWidgets import (
-    QDialog, QDialogButtonBox, QHBoxLayout, QLabel, QLineEdit, QVBoxLayout,
-    QWidget, QCheckBox, QComboBox, QSpinBox
+    QCheckBox,
+    QComboBox,
+    QDialog,
+    QDialogButtonBox,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QSpinBox,
+    QVBoxLayout,
+    QWidget,
 )
 
 from yast3.i18n import _
+
 from .repos import RepoEntry
 
 
@@ -14,7 +23,9 @@ class RepoEditDialog(QDialog):
 
     def __init__(self, parent: QWidget | None = None, entry: RepoEntry | None = None):
         super().__init__(parent)
-        self.setWindowTitle(_("Add Repository") if entry is None else _("Edit Repository"))
+        self.setWindowTitle(
+            _("Add Repository") if entry is None else _("Edit Repository")
+        )
         self.setMinimumWidth(500)
 
         layout = QVBoxLayout(self)
@@ -54,7 +65,11 @@ class RepoEditDialog(QDialog):
         # URL
         url_layout = QHBoxLayout()
         url_layout.addWidget(QLabel(_("URL")))
-        self.url_edit = QLineEdit(entry.baseurl if entry and entry.baseurl else (entry.mirrorlist if entry else ""))
+        self.url_edit = QLineEdit(
+            entry.baseurl
+            if entry and entry.baseurl
+            else (entry.mirrorlist if entry else "")
+        )
         url_layout.addWidget(self.url_edit)
         layout.addLayout(url_layout)
 
@@ -69,7 +84,9 @@ class RepoEditDialog(QDialog):
         type_layout = QHBoxLayout()
         type_layout.addWidget(QLabel(_("Type")))
         self.type_combo = QComboBox()
-        self.type_combo.addItems(["rpm-md", "rpm-dir", "plaindir", "yum", "yast2", "obsolete"])
+        self.type_combo.addItems(
+            ["rpm-md", "rpm-dir", "plaindir", "yum", "yast2", "obsolete"]
+        )
         self.type_combo.setCurrentText(entry.type if entry else "rpm-md")
         type_layout.addWidget(self.type_combo)
         layout.addLayout(type_layout)
@@ -101,7 +118,9 @@ class RepoEditDialog(QDialog):
         layout.addWidget(self.keep_packages_check)
 
         # Buttons
-        self.buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
+        self.buttons = QDialogButtonBox(
+            QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
+        )
         self.buttons.accepted.connect(self.accept)
         self.buttons.rejected.connect(self.reject)
         layout.addWidget(self.buttons)

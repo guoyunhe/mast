@@ -3,8 +3,13 @@
 from PySide6.QtCore import QRegularExpression
 from PySide6.QtGui import QRegularExpressionValidator
 from PySide6.QtWidgets import (
-    QDialog, QDialogButtonBox, QHBoxLayout, QLabel, QLineEdit, QVBoxLayout,
-    QWidget
+    QDialog,
+    QDialogButtonBox,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QVBoxLayout,
+    QWidget,
 )
 
 from yast3.i18n import _
@@ -13,7 +18,13 @@ from yast3.i18n import _
 class HostsEditDialog(QDialog):
     """Dialog for adding or editing a host entry."""
 
-    def __init__(self, parent: QWidget | None = None, ip: str = "", hostname: str = "", comment: str = ""):
+    def __init__(
+        self,
+        parent: QWidget | None = None,
+        ip: str = "",
+        hostname: str = "",
+        comment: str = "",
+    ):
         super().__init__(parent)
         self.setWindowTitle(_("Add/Edit Host Entry"))
         self.setMinimumWidth(400)
@@ -44,10 +55,16 @@ class HostsEditDialog(QDialog):
         layout.addLayout(comment_layout)
 
         # Buttons
-        self.buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
+        self.buttons = QDialogButtonBox(
+            QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
+        )
         self.buttons.accepted.connect(self.accept)
         self.buttons.rejected.connect(self.reject)
         layout.addWidget(self.buttons)
 
     def get_values(self) -> tuple[str, str, str]:
-        return self.ip_edit.text().strip(), self.hostname_edit.text().strip(), self.comment_edit.text().strip()
+        return (
+            self.ip_edit.text().strip(),
+            self.hostname_edit.text().strip(),
+            self.comment_edit.text().strip(),
+        )

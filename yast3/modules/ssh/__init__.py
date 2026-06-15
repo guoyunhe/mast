@@ -7,7 +7,6 @@ from PySide6.QtWidgets import QMessageBox
 
 from ...i18n import _
 from ...module import Module
-
 from .ssh import check_ssh_permissions, fix_ssh_permissions
 from .window import SSHWindow
 
@@ -22,7 +21,7 @@ class SSHClientModule(Module):
         """Launch the SSH client module window."""
         if self.window is None:
             self.window = SSHWindow()
-            self.window.setWindowTitle(self.name + ' — ' + _("YaST3"))
+            self.window.setWindowTitle(self.name + " — " + _("YaST3"))
             self.window.closed.connect(self._on_window_closed)
 
         # Check SSH permissions before showing the window
@@ -69,17 +68,14 @@ class SSHClientModule(Module):
                     self.window,
                     _("Error"),
                     _(
-                        "Failed to fix permissions for the following items:\n\n"
-                        "{0}"
+                        "Failed to fix permissions for the following items:\n\n" "{0}"
                     ).format(failed_names),
                 )
             else:
                 QMessageBox.information(
                     self.window,
                     _("Success"),
-                    _(
-                        "SSH permissions have been fixed successfully."
-                    ),
+                    _("SSH permissions have been fixed successfully."),
                 )
 
     def _on_window_closed(self) -> None:
@@ -87,4 +83,4 @@ class SSHClientModule(Module):
         self.window = None
 
 
-__all__ = ['SSHClientModule']
+__all__ = ["SSHClientModule"]

@@ -5,20 +5,25 @@ from __future__ import annotations
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import (
     QCheckBox,
+    QHBoxLayout,
     QHeaderView,
     QMainWindow,
     QMessageBox,
     QPushButton,
     QTableWidget,
     QTableWidgetItem,
-    QHBoxLayout,
     QVBoxLayout,
     QWidget,
 )
 
 from yast3.i18n import _
 from yast3.modules.repositories.dialogs import RepoEditDialog
-from yast3.modules.repositories.repos import RepoEntry, load_repos, save_repo_entry, delete_repo_entry
+from yast3.modules.repositories.repos import (
+    RepoEntry,
+    delete_repo_entry,
+    load_repos,
+    save_repo_entry,
+)
 
 
 class RepositoriesWindow(QMainWindow):
@@ -27,8 +32,6 @@ class RepositoriesWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.resize(1200, 600)
-        
-        
 
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
@@ -52,22 +55,30 @@ class RepositoriesWindow(QMainWindow):
 
         self.table = QTableWidget()
         self.table.setColumnCount(5)
-        self.table.setHorizontalHeaderLabels([
-            _("Name"),
-            _("URL"),
-            _("Priority"),
-            _("Enabled"),
-            _("Auto Refresh")
-        ])
+        self.table.setHorizontalHeaderLabels(
+            [_("Name"), _("URL"), _("Priority"), _("Enabled"), _("Auto Refresh")]
+        )
 
-        self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Fixed)
-        self.table.setColumnWidth(0, self.table.fontMetrics().horizontalAdvance("M") * 32)
-        self.table.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
-        self.table.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
+        self.table.horizontalHeader().setSectionResizeMode(
+            0, QHeaderView.ResizeMode.Fixed
+        )
+        self.table.setColumnWidth(
+            0, self.table.fontMetrics().horizontalAdvance("M") * 32
+        )
+        self.table.horizontalHeader().setSectionResizeMode(
+            1, QHeaderView.ResizeMode.Stretch
+        )
+        self.table.horizontalHeader().setSectionResizeMode(
+            2, QHeaderView.ResizeMode.Fixed
+        )
         self.table.setColumnWidth(2, 60)
-        self.table.horizontalHeader().setSectionResizeMode(3, QHeaderView.ResizeMode.Fixed)
+        self.table.horizontalHeader().setSectionResizeMode(
+            3, QHeaderView.ResizeMode.Fixed
+        )
         self.table.setColumnWidth(3, 60)
-        self.table.horizontalHeader().setSectionResizeMode(4, QHeaderView.ResizeMode.Fixed)
+        self.table.horizontalHeader().setSectionResizeMode(
+            4, QHeaderView.ResizeMode.Fixed
+        )
         self.table.setColumnWidth(4, 80)
 
         self.table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
@@ -84,7 +95,11 @@ class RepositoriesWindow(QMainWindow):
         try:
             self.repo_entries = load_repos()
         except PermissionError:
-            QMessageBox.warning(self, _("Error"), _("Cannot read repository directory. Root permission required."))
+            QMessageBox.warning(
+                self,
+                _("Error"),
+                _("Cannot read repository directory. Root permission required."),
+            )
             return
 
         self.populate_table()
@@ -130,7 +145,7 @@ class RepositoriesWindow(QMainWindow):
             values = dialog.get_values()
             repo_id = values["id"]
             url = values["baseurl"] or values["mirrorlist"]
-            
+
             if not repo_id:
                 QMessageBox.warning(self, _("Error"), _("Repository ID is required."))
                 return
@@ -158,7 +173,7 @@ class RepositoriesWindow(QMainWindow):
             row = self.table.rowCount()
             self.table.insertRow(row)
             self.populate_row(row)
-            
+
             result = save_repo_entry(new_entry)
             if result != "ok":
                 self.handle_save_error(result)
@@ -166,7 +181,9 @@ class RepositoriesWindow(QMainWindow):
     def edit_repo(self) -> None:
         current_row = self.table.currentRow()
         if current_row < 0:
-            QMessageBox.information(self, _("Information"), _("Please select a repository to edit."))
+            QMessageBox.information(
+                self, _("Information"), _("Please select a repository to edit.")
+            )
             return
 
         entry = self.repo_entries[current_row]
@@ -175,7 +192,7 @@ class RepositoriesWindow(QMainWindow):
             values = dialog.get_values()
             repo_id = values["id"]
             url = values["baseurl"] or values["mirrorlist"]
-            
+
             if not repo_id:
                 QMessageBox.warning(self, _("Error"), _("Repository ID is required."))
                 return
@@ -199,7 +216,7 @@ class RepositoriesWindow(QMainWindow):
                 keep_packages=values["keep_packages"],
             )
             self.populate_row(current_row)
-            
+
             result = save_repo_entry(self.repo_entries[current_row])
             if result != "ok":
                 self.handle_save_error(result)
@@ -207,11 +224,17 @@ class RepositoriesWindow(QMainWindow):
     def delete_repo(self) -> None:
         current_row = self.table.currentRow()
         if current_row < 0:
-            QMessageBox.information(self, _("Information"), _("Please select a repository to delete."))
+            QMessageBox.information(
+                self, _("Information"), _("Please select a repository to delete.")
+            )
             return
 
         entry = self.repo_entries[current_row]
-        reply = QMessageBox.question(self, _("Confirm"), _("Are you sure you want to delete repository '{}'?").format(entry.name))
+        reply = QMessageBox.question(
+            self,
+            _("Confirm"),
+            _("Are you sure you want to delete repository '{}'?").format(entry.name),
+        )
         if reply == QMessageBox.StandardButton.Yes:
             result = delete_repo_entry(entry)
             if result == "ok":
@@ -239,8 +262,16 @@ class RepositoriesWindow(QMainWindow):
 
     def handle_save_error(self, result: str) -> None:
         if result == "permission_denied":
-            QMessageBox.critical(self, _("Error"), _("Cannot write to repository directory. Root permission required."))
+            QMessageBox.critical(
+                self,
+                _("Error"),
+                _("Cannot write to repository directory. Root permission required."),
+            )
         elif result == "pkexec_failed":
-            QMessageBox.critical(self, _("Error"), _("Authentication failed or pkexec not available."))
+            QMessageBox.critical(
+                self, _("Error"), _("Authentication failed or pkexec not available.")
+            )
         else:
-            QMessageBox.critical(self, _("Error"), _("Failed to save repository configuration."))
+            QMessageBox.critical(
+                self, _("Error"), _("Failed to save repository configuration.")
+            )

@@ -37,3 +37,44 @@ include-package-data = true
 "share/icons/hicolor/64x64/apps" = ["packaging/icons/yast3.svg"]
 "share/locale/zh_CN/LC_MESSAGES" = ["locale/zh_CN/LC_MESSAGES/yast3.mo"]
 "share/locale/en_US/LC_MESSAGES" = ["locale/en_US/LC_MESSAGES/yast3.mo"]
+
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 88
+include_trailing_comma = true
+multi_line_output = 3
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+extend-exclude = [
+    ".git",
+    ".tox",
+    ".venv",
+    "_build",
+    "build",
+    "dist",
+]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I"]
+ignore = []

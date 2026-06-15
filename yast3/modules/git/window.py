@@ -17,7 +17,11 @@ from PySide6.QtWidgets import (
 )
 
 from yast3.i18n import _
-from yast3.modules.git.git import GitConfig, get_git_config, is_git_installed, set_git_config
+from yast3.modules.git.git import (
+    get_git_config,
+    is_git_installed,
+    set_git_config,
+)
 
 
 class GitWindow(QMainWindow):
@@ -27,7 +31,6 @@ class GitWindow(QMainWindow):
         super().__init__()
         self.resize(600, 500)
         self.setWindowTitle(_("Git Configuration — YaST3"))
-        
 
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
@@ -41,32 +44,32 @@ class GitWindow(QMainWindow):
 
         # Tab widget
         self.tab_widget = QTabWidget()
-        
+
         # User tab
         self.user_tab = QWidget()
         self._setup_user_tab()
         self.tab_widget.addTab(self.user_tab, _("User"))
-        
+
         # Core tab
         self.core_tab = QWidget()
         self._setup_core_tab()
         self.tab_widget.addTab(self.core_tab, _("Core"))
-        
+
         # Commit tab
         self.commit_tab = QWidget()
         self._setup_commit_tab()
         self.tab_widget.addTab(self.commit_tab, _("Commit"))
-        
+
         # Merge tab
         self.merge_tab = QWidget()
         self._setup_merge_tab()
         self.tab_widget.addTab(self.merge_tab, _("Merge"))
-        
+
         # Other tab
         self.other_tab = QWidget()
         self._setup_other_tab()
         self.tab_widget.addTab(self.other_tab, _("Other"))
-        
+
         layout.addWidget(self.tab_widget)
 
         # Buttons
@@ -87,7 +90,7 @@ class GitWindow(QMainWindow):
         """Setup User settings tab."""
         layout = QVBoxLayout(self.user_tab)
         layout.setSpacing(12)
-        
+
         # User Name
         name_layout = QHBoxLayout()
         name_layout.addWidget(QLabel(_("User Name")))
@@ -111,14 +114,14 @@ class GitWindow(QMainWindow):
         self.signingkey_edit.setPlaceholderText(_("Enter GPG key ID"))
         signingkey_layout.addWidget(self.signingkey_edit)
         layout.addLayout(signingkey_layout)
-        
+
         layout.addStretch()
 
     def _setup_core_tab(self):
         """Setup Core settings tab."""
         layout = QVBoxLayout(self.core_tab)
         layout.setSpacing(12)
-        
+
         # Editor
         editor_layout = QHBoxLayout()
         editor_layout.addWidget(QLabel(_("Default Editor")))
@@ -144,14 +147,14 @@ class GitWindow(QMainWindow):
         self.safecrlf_combo.setCurrentText(self.config.core_safecrlf)
         safecrlf_layout.addWidget(self.safecrlf_combo)
         layout.addLayout(safecrlf_layout)
-        
+
         layout.addStretch()
 
     def _setup_commit_tab(self):
         """Setup Commit settings tab."""
         layout = QVBoxLayout(self.commit_tab)
         layout.setSpacing(12)
-        
+
         # Commit Template
         template_layout = QHBoxLayout()
         template_layout.addWidget(QLabel(_("Commit Template")))
@@ -166,14 +169,14 @@ class GitWindow(QMainWindow):
         self.gpgsign_check = QCheckBox(_("Sign commits with GPG"))
         self.gpgsign_check.setChecked(self.config.commit_gpgsign)
         layout.addWidget(self.gpgsign_check)
-        
+
         layout.addStretch()
 
     def _setup_merge_tab(self):
         """Setup Merge settings tab."""
         layout = QVBoxLayout(self.merge_tab)
         layout.setSpacing(12)
-        
+
         # Conflict Style
         conflictstyle_layout = QHBoxLayout()
         conflictstyle_layout.addWidget(QLabel(_("Conflict Style")))
@@ -191,14 +194,14 @@ class GitWindow(QMainWindow):
         self.rebase_combo.setCurrentText(self.config.pull_rebase)
         rebase_layout.addWidget(self.rebase_combo)
         layout.addLayout(rebase_layout)
-        
+
         layout.addStretch()
 
     def _setup_other_tab(self):
         """Setup Other settings tab."""
         layout = QVBoxLayout(self.other_tab)
         layout.setSpacing(12)
-        
+
         # Color UI
         self.color_ui_check = QCheckBox(_("Enable color output"))
         self.color_ui_check.setChecked(self.config.color_ui)
@@ -216,20 +219,19 @@ class GitWindow(QMainWindow):
         credential_layout = QHBoxLayout()
         credential_layout.addWidget(QLabel(_("Credential Helper")))
         self.credential_combo = QComboBox()
-        self.credential_combo.addItems(["", "cache", "store", "gnome-keyring", "kwallet"])
+        self.credential_combo.addItems(
+            ["", "cache", "store", "gnome-keyring", "kwallet"]
+        )
         self.credential_combo.setCurrentText(self.config.credential_helper)
         credential_layout.addWidget(self.credential_combo)
         layout.addLayout(credential_layout)
-        
+
         layout.addStretch()
 
     def _browse_template(self):
         """Browse for commit template file."""
         path, _filter = QFileDialog.getOpenFileName(
-            self,
-            _("Select Commit Template"),
-            "",
-            _("All Files (*)")
+            self, _("Select Commit Template"), "", _("All Files (*)")
         )
         if path:
             self.template_edit.setText(path)
@@ -243,7 +245,9 @@ class GitWindow(QMainWindow):
         user_email = self.email_edit.text().strip()
 
         if not user_name or not user_email:
-            QMessageBox.warning(self, _("Error"), _("User name and email are required."))
+            QMessageBox.warning(
+                self, _("Error"), _("User name and email are required.")
+            )
             return
 
         # Update config object
@@ -262,10 +266,14 @@ class GitWindow(QMainWindow):
         self.config.credential_helper = self.credential_combo.currentText()
 
         if set_git_config(self.config):
-            QMessageBox.information(self, _("Success"), _("Git configuration saved successfully."))
+            QMessageBox.information(
+                self, _("Success"), _("Git configuration saved successfully.")
+            )
             self.statusBar().showMessage(_("Saved successfully"), 3000)
         else:
-            QMessageBox.critical(self, _("Error"), _("Failed to save Git configuration."))
+            QMessageBox.critical(
+                self, _("Error"), _("Failed to save Git configuration.")
+            )
 
     def reset_config(self) -> None:
         """Reset all fields to original values."""
@@ -273,23 +281,23 @@ class GitWindow(QMainWindow):
         self.name_edit.setText(self.config.user_name)
         self.email_edit.setText(self.config.user_email)
         self.signingkey_edit.setText(self.config.user_signingkey)
-        
+
         # Core tab
         self.editor_edit.setText(self.config.core_editor)
         self.autocrlf_combo.setCurrentText(self.config.core_autocrlf)
         self.safecrlf_combo.setCurrentText(self.config.core_safecrlf)
-        
+
         # Commit tab
         self.template_edit.setText(self.config.commit_template)
         self.gpgsign_check.setChecked(self.config.commit_gpgsign)
-        
+
         # Merge tab
         self.conflictstyle_combo.setCurrentText(self.config.merge_conflictstyle)
         self.rebase_combo.setCurrentText(self.config.pull_rebase)
-        
+
         # Other tab
         self.color_ui_check.setChecked(self.config.color_ui)
         self.defaultbranch_edit.setText(self.config.init_defaultbranch)
         self.credential_combo.setCurrentText(self.config.credential_helper)
-        
+
         self.statusBar().showMessage(_("Reset to original values"), 2000)

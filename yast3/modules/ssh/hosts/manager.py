@@ -13,7 +13,7 @@ class HostManager:
     @staticmethod
     def load_config() -> Tuple[list[SSHConfigEntry], Optional[str]]:
         """Load SSH config from ~/.ssh/config file.
-        
+
         Returns:
             Tuple of (entries, error_message). Error message is None on success.
         """
@@ -31,30 +31,31 @@ class HostManager:
     @staticmethod
     def save_config(entries: list[SSHConfigEntry]) -> str:
         """Save SSH config to ~/.ssh/config file.
-        
+
         Returns:
             "ok" on success, "permission_denied" on permission error, "error" otherwise.
         """
         return save_ssh_config(entries)
 
     @staticmethod
-    def create_entry(host: str, options: dict = None, enabled: bool = True, editable: bool = True) -> SSHConfigEntry:
+    def create_entry(
+        host: str, options: dict = None, enabled: bool = True, editable: bool = True
+    ) -> SSHConfigEntry:
         """Create a new SSH config entry."""
         return SSHConfigEntry(
-            enabled=enabled,
-            host=host,
-            options=options or {},
-            editable=editable
+            enabled=enabled, host=host, options=options or {}, editable=editable
         )
 
     @staticmethod
-    def update_entry(entry: SSHConfigEntry, new_host: str, new_options: dict) -> SSHConfigEntry:
+    def update_entry(
+        entry: SSHConfigEntry, new_host: str, new_options: dict
+    ) -> SSHConfigEntry:
         """Update an existing SSH config entry."""
         return SSHConfigEntry(
             enabled=entry.enabled,
             host=new_host,
             options=new_options,
-            editable=entry.editable
+            editable=entry.editable,
         )
 
     @staticmethod

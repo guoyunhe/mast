@@ -14,7 +14,13 @@ from PySide6.QtWidgets import (
 )
 
 from .module import Module
-from .modules import *
+from .modules import (
+    GitModule,
+    HostnameModule,
+    HostsModule,
+    RepositoriesModule,
+    SSHClientModule,
+)
 
 
 class MainWindow(QMainWindow):
@@ -60,8 +66,7 @@ class MainWindow(QMainWindow):
         button.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextUnderIcon)
         button.setMinimumSize(180, 130)
         button.setAutoRaise(False)
-        button.setStyleSheet(
-            """
+        button.setStyleSheet("""
             QToolButton {
                 border: 1px solid palette(midlight);
                 border-radius: 12px;
@@ -72,8 +77,7 @@ class MainWindow(QMainWindow):
             QToolButton:hover {
                 background: palette(alternate-base);
             }
-            """
-        )
+            """)
         button.clicked.connect(module.launch)
         return button
 

@@ -1,10 +1,17 @@
 """Dialog components for the SSH module."""
 
-from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
-    QDialog, QDialogButtonBox, QFormLayout, QHBoxLayout, QLabel, QLineEdit,
-    QScrollArea, QVBoxLayout, QWidget, QPushButton, QTableWidget, QTableWidgetItem,
-    QHeaderView, QMessageBox
+    QDialog,
+    QDialogButtonBox,
+    QFormLayout,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QMessageBox,
+    QPushButton,
+    QScrollArea,
+    QVBoxLayout,
+    QWidget,
 )
 
 from yast3.i18n import _
@@ -34,7 +41,7 @@ class SSHOptionEditDialog(QDialog):
 
         # Available options combo
         self.available_options = get_available_options()
-        
+
         # Add known options
         for key, desc in self.available_options:
             edit = QLineEdit(self.options.get(key, ""))
@@ -56,7 +63,9 @@ class SSHOptionEditDialog(QDialog):
         layout.addLayout(custom_layout)
 
         # Buttons
-        self.buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
+        self.buttons = QDialogButtonBox(
+            QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
+        )
         self.buttons.accepted.connect(self.accept)
         self.buttons.rejected.connect(self.reject)
         layout.addWidget(self.buttons)
@@ -72,21 +81,21 @@ class SSHOptionEditDialog(QDialog):
         """Add a custom option."""
         key = self.custom_key_edit.text().strip()
         value = self.custom_value_edit.text().strip()
-        
+
         if not key:
             QMessageBox.warning(self, _("Error"), _("Option name is required."))
             return
-        
+
         # Check if already exists
         exists = any(k.lower() == key.lower() for k in self.options.keys())
         if exists:
             QMessageBox.warning(self, _("Error"), _("Option already exists."))
             return
-        
+
         self.options[key] = value
         self.custom_key_edit.clear()
         self.custom_value_edit.clear()
-        
+
         # Add to form
         edit = QLineEdit(value)
         self.options_layout.addRow(QLabel(key), edit)
@@ -100,7 +109,12 @@ class SSHOptionEditDialog(QDialog):
 class SSHEditDialog(QDialog):
     """Dialog for adding or editing an SSH host entry."""
 
-    def __init__(self, parent: QWidget | None = None, host: str = "", options: dict[str, str] = None):
+    def __init__(
+        self,
+        parent: QWidget | None = None,
+        host: str = "",
+        options: dict[str, str] = None,
+    ):
         super().__init__(parent)
         self.setWindowTitle(_("Add/Edit SSH Host"))
         self.setMinimumWidth(500)
@@ -128,7 +142,9 @@ class SSHEditDialog(QDialog):
         layout.addWidget(self.options_summary)
 
         # Buttons
-        self.buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
+        self.buttons = QDialogButtonBox(
+            QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
+        )
         self.buttons.accepted.connect(self.accept)
         self.buttons.rejected.connect(self.reject)
         layout.addWidget(self.buttons)

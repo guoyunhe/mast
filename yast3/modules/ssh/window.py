@@ -21,8 +21,6 @@ class SSHWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.resize(960, 640)
-        
-        
 
         # Central widget with tabs
         central_widget = QWidget()

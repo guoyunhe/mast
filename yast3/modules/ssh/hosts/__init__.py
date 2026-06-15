@@ -1,6 +1,6 @@
 """SSH Hosts module."""
 
-from .tab import HostsTab
 from .manager import HostManager
+from .tab import HostsTab
 
 __all__ = ["HostsTab", "HostManager"]

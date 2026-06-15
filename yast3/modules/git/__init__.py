@@ -2,7 +2,6 @@
 
 from ...i18n import _
 from ...module import Module
-
 from .window import GitWindow
 
 
@@ -16,7 +15,7 @@ class GitModule(Module):
         """Launch the Git module window."""
         if self.window is None:
             self.window = GitWindow()
-            self.window.setWindowTitle(self.name + ' — ' + _("YaST3"))
+            self.window.setWindowTitle(self.name + " — " + _("YaST3"))
             self.window.closed.connect(self._on_window_closed)
         self.window.show()
         self.window.activateWindow()
@@ -26,4 +25,4 @@ class GitModule(Module):
         self.window = None
 
 
-__all__ = ['GitModule']
+__all__ = ["GitModule"]

@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QApplication
 
-from yast3.main_window import MainWindow
 from yast3.i18n import init_i18n
+from yast3.main_window import MainWindow
 
 
 def main() -> int:

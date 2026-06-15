@@ -5,12 +5,12 @@ from __future__ import annotations
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QCheckBox,
+    QHBoxLayout,
     QHeaderView,
     QMessageBox,
     QPushButton,
     QTableWidget,
     QTableWidgetItem,
-    QHBoxLayout,
     QVBoxLayout,
     QWidget,
 )
@@ -59,14 +59,20 @@ class HostsTab(QWidget):
         self.table = QTableWidget()
         self.table.setColumnCount(3)
         self.table.setHorizontalHeaderLabels(["", _("Host Pattern"), _("Options")])
-        
+
         # Column widths
-        self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Fixed)
+        self.table.horizontalHeader().setSectionResizeMode(
+            0, QHeaderView.ResizeMode.Fixed
+        )
         self.table.setColumnWidth(0, 30)  # Checkbox column
-        self.table.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Fixed)
+        self.table.horizontalHeader().setSectionResizeMode(
+            1, QHeaderView.ResizeMode.Fixed
+        )
         self.table.setColumnWidth(1, 200)  # Host pattern column
-        self.table.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.Stretch)  # Options column
-        
+        self.table.horizontalHeader().setSectionResizeMode(
+            2, QHeaderView.ResizeMode.Stretch
+        )  # Options column
+
         self.table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.table.setSelectionMode(QTableWidget.SelectionMode.SingleSelection)
         layout.addWidget(self.table)
@@ -83,7 +89,7 @@ class HostsTab(QWidget):
         if error:
             QMessageBox.warning(self, _("Error"), _(error))
             return
-        
+
         self.entries = entries
         self.populate_table()
 
@@ -138,7 +144,9 @@ class HostsTab(QWidget):
         """Edit the selected SSH host entry."""
         current_row = self.table.currentRow()
         if current_row < 0:
-            QMessageBox.information(self, _("Information"), _("Please select a host entry to edit."))
+            QMessageBox.information(
+                self, _("Information"), _("Please select a host entry to edit.")
+            )
             return
 
         entry = self.entries[current_row]
@@ -146,7 +154,9 @@ class HostsTab(QWidget):
         if dialog.exec():
             new_host, new_options = dialog.get_values()
             if new_host:
-                self.entries[current_row] = HostManager.update_entry(entry, new_host, new_options)
+                self.entries[current_row] = HostManager.update_entry(
+                    entry, new_host, new_options
+                )
                 self.populate_row(current_row)
             else:
                 QMessageBox.warning(self, _("Error"), _("Host pattern is required."))
@@ -155,15 +165,21 @@ class HostsTab(QWidget):
         """Delete the selected SSH host entry."""
         current_row = self.table.currentRow()
         if current_row < 0:
-            QMessageBox.information(self, _("Information"), _("Please select a host entry to delete."))
+            QMessageBox.information(
+                self, _("Information"), _("Please select a host entry to delete.")
+            )
             return
 
         entry = self.entries[current_row]
         if not HostManager.can_delete(entry):
-            QMessageBox.warning(self, _("Error"), _("Cannot delete the default host entry."))
+            QMessageBox.warning(
+                self, _("Error"), _("Cannot delete the default host entry.")
+            )
             return
 
-        reply = QMessageBox.question(self, _("Confirm"), _("Are you sure you want to delete this entry?"))
+        reply = QMessageBox.question(
+            self, _("Confirm"), _("Are you sure you want to delete this entry?")
+        )
         if reply == QMessageBox.StandardButton.Yes:
             self.entries.pop(current_row)
             self.table.removeRow(current_row)
@@ -174,7 +190,7 @@ class HostsTab(QWidget):
 
         # Clear cell widget first
         self.table.setCellWidget(row, 0, None)
-        
+
         # Enabled checkbox
         enabled_widget = QWidget()
         enabled_layout = QHBoxLayout(enabled_widget)
@@ -200,10 +216,14 @@ class HostsTab(QWidget):
     def save_config(self) -> None:
         """Save SSH config to ~/.ssh/config file."""
         result = HostManager.save_config(self.entries)
-        
+
         if result == "ok":
-            QMessageBox.information(self, _("Success"), _("SSH config saved successfully."))
+            QMessageBox.information(
+                self, _("Success"), _("SSH config saved successfully.")
+            )
         elif result == "permission_denied":
-            QMessageBox.critical(self, _("Error"), _("Cannot write to SSH config. Check permissions."))
+            QMessageBox.critical(
+                self, _("Error"), _("Cannot write to SSH config. Check permissions.")
+            )
         else:
             QMessageBox.critical(self, _("Error"), _("Failed to save SSH config."))

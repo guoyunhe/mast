@@ -3,4 +3,3 @@
 from . import i18n
 
 i18n.init_i18n()
-

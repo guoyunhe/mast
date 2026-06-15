@@ -7,13 +7,13 @@ Save YaST ♥️ with Python 3 & Qt6 Widgets.
 Available:
 
 - Hosts: manage `/etc/hosts`
+- Repositories: manage software repositories (rpm)
+- SSH Client: manage SSH client settings, keys and hosts (user)
 
 Planned:
 
 - Hostname: manage system hostname
-- Repositories && Mirrors: manage software repositories and mirrors (rpm)
 - Packages: manage installed software packages (rpm)
-- SSH Client: manage SSH client settings, keys and hosts (user)
 - SSH Server: manage SSH server settings (system)
 - Git: manage Git settings
 

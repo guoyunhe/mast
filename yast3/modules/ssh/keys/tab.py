@@ -21,7 +21,7 @@ from PySide6.QtWidgets import (
 )
 
 from yast3.i18n import _
-from yast3.modules.ssh.generate_dialog import GenerateKeyDialog
+from yast3.modules.ssh.keys.generate_dialog import GenerateKeyDialog
 from yast3.modules.ssh.ssh import SSH_CONFIG_DIR
 
 

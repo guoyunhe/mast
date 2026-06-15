@@ -12,7 +12,7 @@ from PySide6.QtWidgets import (
 
 from yast3.i18n import _
 from yast3.modules.ssh.hosts_tab import HostsTab
-from yast3.modules.ssh.keys_tab import KeysTab
+from yast3.modules.ssh.keys import KeysTab
 
 
 class SSHWindow(QMainWindow):

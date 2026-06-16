@@ -112,18 +112,11 @@ def main() -> int:
     )
 
     try:
-        with open(HOSTNAME_FILE, "w") as f:
-            f.write(new_hostname + "\n")
-    except Exception as e:
-        print(f"Error writing {HOSTNAME_FILE}: {e}", file=sys.stderr)
-        return 6
-
-    try:
         with open(HOSTS_FILE, "w") as f:
             f.writelines(updated_hosts_lines)
     except Exception as e:
         print(f"Error writing {HOSTS_FILE}: {e}", file=sys.stderr)
-        return 7
+        return 6
 
     try:
         result = subprocess.run(
@@ -133,10 +126,10 @@ def main() -> int:
         )
         if result.returncode != 0:
             print(f"Error running hostnamectl: {result.stderr}", file=sys.stderr)
-            return 8
+            return 7
     except Exception as e:
         print(f"Error running hostnamectl: {e}", file=sys.stderr)
-        return 9
+        return 8
 
     print("OK")
     return 0

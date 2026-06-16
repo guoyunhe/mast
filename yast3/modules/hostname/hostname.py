@@ -167,7 +167,7 @@ def set_hostname(
         )
         if result.returncode == 0 and result.stdout.strip() == "OK":
             return ("ok", "Hostname updated successfully")
-        elif result.returncode == 6 or result.returncode == 7:
+        elif result.returncode == 6:
             return ("permission_denied", "Permission denied")
         else:
             return ("error", result.stderr.strip() or "Failed to set hostname")
@@ -182,7 +182,7 @@ def set_hostname(
         return ("ok", "Hostname updated successfully")
     elif result.returncode == 126 or result.returncode == 127:
         return ("pkexec_failed", "Authentication failed")
-    elif result.returncode == 6 or result.returncode == 7:
+    elif result.returncode == 6:
         return ("permission_denied", "Permission denied")
     else:
         return ("error", result.stderr.strip() or "Failed to set hostname")

@@ -5,7 +5,7 @@ os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
 from PySide6.QtWidgets import QApplication, QToolButton
 
-from yast3.app import MODULES, MainWindow
+from yast3.qt6.main_window import MainWindow
 
 
 class MainWindowTest(unittest.TestCase):
@@ -18,7 +18,7 @@ class MainWindowTest(unittest.TestCase):
 
         buttons = window.findChildren(QToolButton)
 
-        self.assertEqual(len(buttons), len(MODULES))
+        self.assertEqual(len(buttons), len(window.modules))
         window.close()
 
 

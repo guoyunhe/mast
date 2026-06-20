@@ -26,10 +26,34 @@ classifiers = [
 ]
 
 [project.gui-scripts]
-yast3 = "yast3.app:main"
+yast3 = "yast3.qt6.__main__:main"
 
 [tool.setuptools]
-packages = ["yast3"]
+packages = [
+    "yast3",
+    "yast3.core",
+    "yast3.core.modules",
+    "yast3.core.modules.cron",
+    "yast3.core.modules.git",
+    "yast3.core.modules.hostname",
+    "yast3.core.modules.hosts",
+    "yast3.core.modules.packages",
+    "yast3.core.modules.repositories",
+    "yast3.core.modules.ssh",
+    "yast3.core.modules.ssh.hosts",
+    "yast3.core.modules.ssh.keys",
+    "yast3.qt6",
+    "yast3.qt6.modules",
+    "yast3.qt6.modules.cron",
+    "yast3.qt6.modules.git",
+    "yast3.qt6.modules.hostname",
+    "yast3.qt6.modules.hosts",
+    "yast3.qt6.modules.packages",
+    "yast3.qt6.modules.repositories",
+    "yast3.qt6.modules.ssh",
+    "yast3.qt6.modules.ssh.hosts",
+    "yast3.qt6.modules.ssh.keys",
+]
 include-package-data = true
 
 [tool.setuptools.data-files]

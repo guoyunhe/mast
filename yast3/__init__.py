@@ -1,5 +1,7 @@
-"""YaST3 Qt6 settings application."""
+"""YaST3 - System configuration tool."""
 
-from yast3 import i18n
+# This package now serves as a namespace package that provides access to:
+# - yast3.core: UI-independent core logic
+# - yast3.qt6: Qt6 GUI application
 
-i18n.init_i18n()
+__all__ = ["core", "qt6"]

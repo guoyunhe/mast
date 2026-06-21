@@ -4,7 +4,7 @@ from textual.screen import Screen
 
 from yast3.core.i18n import _
 from yast3.core.module import Module
-from yast3.tui.modules.packages.window import PackagesWindow
+from yast3.tui.packages.window import PackagesWindow
 
 
 class PackagesModule(Module):

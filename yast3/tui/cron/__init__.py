@@ -4,7 +4,7 @@ from textual.screen import Screen
 
 from yast3.core.i18n import _
 from yast3.core.module import Module
-from yast3.tui.modules.cron.window import CronWindow
+from yast3.tui.cron.window import CronWindow
 
 
 class CronModule(Module):

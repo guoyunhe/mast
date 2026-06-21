@@ -1,0 +1,19 @@
+"""Cron module package - TUI."""
+
+from textual.screen import Screen
+
+from yast3.core.i18n import _
+from yast3.core.module import Module
+from yast3.tui.modules.cron.window import CronWindow
+
+
+class CronModule(Module):
+    def __init__(self):
+        super().__init__(_("Cron"), ("clock", "preferences-system-time"))
+
+    def create_window(self) -> Screen:
+        """Create and return the cron configuration window."""
+        return CronWindow()
+
+
+__all__ = ["CronModule"]

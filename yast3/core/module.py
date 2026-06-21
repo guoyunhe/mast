@@ -1,5 +1,7 @@
 """Base module class for YaST3 modules."""
 
+from textual.screen import Screen
+
 
 class Module:
     """Base class for YaST3 modules."""
@@ -12,5 +14,13 @@ class Module:
         self.icon_names = icon_names
 
     def launch(self) -> None:
-        """Launch the module window."""
+        """Launch the module window (deprecated, use create_window)."""
         raise NotImplementedError("Module launch not implemented.")
+
+    def create_window(self) -> Screen | None:
+        """Create and return the module window screen.
+
+        Returns:
+            A Screen instance, or None if the module cannot be launched.
+        """
+        raise NotImplementedError("Module window creation not implemented.")

@@ -4,4 +4,8 @@
 # - yast3.core: UI-independent core logic
 # - yast3.qt6: Qt6 GUI application
 
-__all__ = ["core", "qt6"]
+import core
+import qt6
+import tui
+
+__all__ = ["core", "qt6", "tui"]

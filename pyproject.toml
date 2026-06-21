@@ -30,7 +30,7 @@ classifiers = [
 ]
 
 [project.gui-scripts]
-yast3 = "yast3.qt6.__main__:main"
+yast3-qt6 = "yast3.qt6.__main__:main"
 
 [project.scripts]
 yast3-tui = "yast3.tui.__main__:main"

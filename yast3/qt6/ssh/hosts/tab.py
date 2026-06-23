@@ -17,8 +17,8 @@ from PySide6.QtWidgets import (
 
 from yast3.core.i18n import _
 from yast3.core.modules.ssh import SSHConfigEntry
-from yast3.qt6.modules.ssh.dialogs import SSHEditDialog
-from yast3.qt6.modules.ssh.hosts.manager import HostManager
+from yast3.qt6.ssh.dialogs import SSHEditDialog
+from yast3.qt6.ssh.hosts.manager import HostManager
 
 
 class HostsTab(QWidget):

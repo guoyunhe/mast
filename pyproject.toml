@@ -11,22 +11,27 @@ requires-python = ">=3.12"
 license = "GPL-3.0-or-later"
 license-files = ["LICENSE"]
 dependencies = [
-    "PySide6==6.11.1",
-    "textual>=0.47.0",
-]
-
-[project.optional-dependencies]
-i18n = [
-    "Babel>=2.13.0",
-]
-tui = [
-    "textual>=0.47.0",
+    "python-crontab>=3.0.0",
 ]
 classifiers = [
     "Environment :: X11 Applications :: Qt",
     "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
+]
+
+[project.optional-dependencies]
+i18n = [
+    "Babel>=2.13.0",
+]
+qt6 = [
+    "PySide6==6.11.1",
+]
+gtk4 = [
+    "PyGObject>=3.40.0",
+]
+tui = [
+    "textual>=0.47.0",
 ]
 
 [project.gui-scripts]

@@ -37,6 +37,8 @@ Recommends:     %{name}-qt6
 
 BuildArch:      noarch
 
+%python_subpackages
+
 %description
 YaST3 is a modern desktop settings shell built with Python 3,
 providing Qt6, GTK4 GUI and Textual TUI interfaces for system
@@ -47,7 +49,7 @@ Install %{name}-qt6, %{name}-gtk4, or %{name}-tui for specific interfaces.
 
 %package core
 Summary:        YaST3 core functionality shared by all interfaces
-Requires:       python3-crontab
+Requires:       %python_module python-crontab
 
 %description core
 Core modules and utilities shared by YaST3 Qt6, GTK4 and TUI interfaces.
@@ -55,7 +57,7 @@ Core modules and utilities shared by YaST3 Qt6, GTK4 and TUI interfaces.
 %package gtk4
 Summary:        YaST3 GTK4 GUI interface
 Requires:       %{name}-core = %{version}-%{release}
-Requires:       python3-gobject
+Requires:       %python_module python-gobject
 
 %description gtk4
 GTK4 GUI interface for YaST3 desktop settings shell.
@@ -63,7 +65,7 @@ GTK4 GUI interface for YaST3 desktop settings shell.
 %package qt6
 Summary:        YaST3 Qt6 GUI interface
 Requires:       %{name}-core = %{version}-%{release}
-Requires:       python3-PySide6
+Requires:       %python_module python-PySide6
 
 %description qt6
 Qt6 GUI interface for YaST3 desktop settings shell.
@@ -71,7 +73,7 @@ Qt6 GUI interface for YaST3 desktop settings shell.
 %package tui
 Summary:        YaST3 Textual TUI interface
 Requires:       %{name}-core = %{version}-%{release}
-Requires:       python3-textual
+Requires:       %python_module python-textual
 
 %description tui
 Textual TUI interface for YaST3 desktop settings shell.
@@ -85,26 +87,32 @@ Textual TUI interface for YaST3 desktop settings shell.
 
 %install
 %pyproject_install
+%python_clone %{_bindir}/yast3-gtk4
+%python_clone %{_bindir}/yast3-qt6
+%python_clone %{_bindir}/yast3-tui
 
 %files core
 %license LICENSE
 %doc README.md
-%{python3_sitelib}/yast3/core/
-%{python3_sitelib}/yast3-%{version}*.dist-info/
+%{python_sitelib}/yast3/core/
+%{python_sitelib}/yast3-%{version}*.dist-info/
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/64x64/apps/%{name}.svg
 %{_datadir}/locale/
 
 %files gtk4
-%{python3_sitelib}/yast3/gtk4/
+%{python_sitelib}/yast3/gtk4/
 %{_bindir}/yast3-gtk4
+%{_bindir}/yast3-gtk4-%{python_version}
 
 %files qt6
-%{python3_sitelib}/yast3/qt6/
+%{python_sitelib}/yast3/qt6/
 %{_bindir}/yast3-qt6
+%{_bindir}/yast3-qt6-%{python_version}
 
 %files tui
-%{python3_sitelib}/yast3/tui/
+%{python_sitelib}/yast3/tui/
 %{_bindir}/yast3-tui
+%{_bindir}/yast3-tui-%{python_version}
 
 %changelog

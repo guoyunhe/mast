@@ -31,6 +31,7 @@ classifiers = [
 
 [project.gui-scripts]
 yast3-qt6 = "yast3.qt6.__main__:main"
+yast3-gtk4 = "yast3.gtk4.__main__:main"
 
 [project.scripts]
 yast3-tui = "yast3.tui.__main__:main"
@@ -66,6 +67,16 @@ packages = [
     "yast3.tui.modules.packages",
     "yast3.tui.modules.repositories",
     "yast3.tui.modules.ssh",
+    "yast3.gtk4",
+    "yast3.gtk4.cron",
+    "yast3.gtk4.git",
+    "yast3.gtk4.hostname",
+    "yast3.gtk4.hosts",
+    "yast3.gtk4.packages",
+    "yast3.gtk4.repositories",
+    "yast3.gtk4.ssh",
+    "yast3.gtk4.ssh.hosts",
+    "yast3.gtk4.ssh.keys",
 ]
 include-package-data = true
 

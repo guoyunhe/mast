@@ -96,7 +96,6 @@ Textual TUI interface for YaST3 desktop settings shell.
 %doc README.md
 %{python_sitelib}/yast3/core/
 %{python_sitelib}/yast3-%{version}*.dist-info/
-%{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/64x64/apps/%{name}.svg
 %{_datadir}/locale/
 
@@ -104,11 +103,13 @@ Textual TUI interface for YaST3 desktop settings shell.
 %{python_sitelib}/yast3/gtk4/
 %{_bindir}/yast3-gtk4
 %{_bindir}/yast3-gtk4-%{python_version}
+%{_datadir}/applications/%{name}-gtk4.desktop
 
 %files qt6
 %{python_sitelib}/yast3/qt6/
 %{_bindir}/yast3-qt6
 %{_bindir}/yast3-qt6-%{python_version}
+%{_datadir}/applications/%{name}-qt6.desktop
 
 %files tui
 %{python_sitelib}/yast3/tui/

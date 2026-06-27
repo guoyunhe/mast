@@ -50,5 +50,5 @@ po::
 	pybabel extract -F babel.cfg -o locale/yast3.pot yast3/
 	pybabel update -i locale/yast3.pot -d locale -D yast3
 
-mo:: po
+mo::
 	pybabel compile -d locale -D yast3

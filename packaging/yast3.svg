@@ -88,58 +88,73 @@
   <line x1="44" y1="19" x2="46.75" y2="14.24" stroke="#E85D04" stroke-width="0.8" stroke-linecap="round"/>
   <circle cx="44" cy="19" r="1.2" fill="#E85D04"/>
 
-  <!-- ============ MIDDLE SECTION: 3 Knobs row (y=30-40) ============ -->
   <!-- Separator line -->
-  <line x1="10" y1="31" x2="54" y2="31" stroke="#2D3748" stroke-width="0.5"/>
+  <line x1="10" y1="32" x2="54" y2="32" stroke="#2D3748" stroke-width="0.5"/>
 
-  <!-- Knob 1 (left) -->
-  <circle cx="18" cy="36" r="4" fill="#4A5568" stroke="#718096" stroke-width="0.8"/>
-  <circle cx="18" cy="36" r="2.5" fill="#2D3748"/>
-  <line x1="18" y1="33.5" x2="18" y2="35" stroke="#E85D04" stroke-width="1" stroke-linecap="round"/>
-  <rect x="14" y="41" width="8" height="1" rx="0.3" fill="#2D3748"/>
+  <!-- ============ BOTTOM SECTION: 4-Column Layout (y=35-53) ============ -->
+  <!-- Slider 1 (Column 1: x=14) -->
+  <line x1="14" y1="36" x2="14" y2="50" stroke="#2D3748" stroke-width="0.5"/>
+  <line x1="13" y1="36" x2="13.8" y2="36" stroke="#718096" stroke-width="0.4"/>
+  <line x1="13" y1="38" x2="13.8" y2="38" stroke="#718096" stroke-width="0.4"/>
+  <line x1="13" y1="40" x2="13.8" y2="40" stroke="#718096" stroke-width="0.4"/>
+  <line x1="13" y1="42" x2="13.8" y2="42" stroke="#718096" stroke-width="0.4"/>
+  <line x1="13" y1="44" x2="13.8" y2="44" stroke="#718096" stroke-width="0.4"/>
+  <line x1="13" y1="46" x2="13.8" y2="46" stroke="#718096" stroke-width="0.4"/>
+  <line x1="13" y1="48" x2="13.8" y2="48" stroke="#718096" stroke-width="0.4"/>
+  <line x1="13" y1="50" x2="13.8" y2="50" stroke="#718096" stroke-width="0.4"/>
+  <line x1="14.2" y1="36" x2="15" y2="36" stroke="#718096" stroke-width="0.4"/>
+  <line x1="14.2" y1="38" x2="15" y2="38" stroke="#718096" stroke-width="0.4"/>
+  <line x1="14.2" y1="40" x2="15" y2="40" stroke="#718096" stroke-width="0.4"/>
+  <line x1="14.2" y1="42" x2="15" y2="42" stroke="#718096" stroke-width="0.4"/>
+  <line x1="14.2" y1="44" x2="15" y2="44" stroke="#718096" stroke-width="0.4"/>
+  <line x1="14.2" y1="46" x2="15" y2="46" stroke="#718096" stroke-width="0.4"/>
+  <line x1="14.2" y1="48" x2="15" y2="48" stroke="#718096" stroke-width="0.4"/>
+  <line x1="14.2" y1="50" x2="15" y2="50" stroke="#718096" stroke-width="0.4"/>
+  <rect x="11" y="45" width="6" height="2" fill="#A0AEC0"/>
+  <line x1="12" y1="45.6" x2="16" y2="45.6" stroke="#718096" stroke-width="0.3"/>
+  <line x1="12" y1="46.4" x2="16" y2="46.4" stroke="#718096" stroke-width="0.3"/>
 
-  <!-- Knob 2 (center) -->
-  <circle cx="32" cy="36" r="4" fill="#4A5568" stroke="#718096" stroke-width="0.8"/>
-  <circle cx="32" cy="36" r="2.5" fill="#2D3748"/>
-  <line x1="32" y1="33.5" x2="32" y2="35" stroke="#E85D04" stroke-width="1" stroke-linecap="round"/>
-  <rect x="28" y="41" width="8" height="1" rx="0.3" fill="#2D3748"/>
+  <!-- Slider 2 (Column 2: x=24) -->
+  <line x1="24" y1="36" x2="24" y2="50" stroke="#2D3748" stroke-width="0.5"/>
+  <line x1="23" y1="36" x2="23.8" y2="36" stroke="#718096" stroke-width="0.4"/>
+  <line x1="23" y1="38" x2="23.8" y2="38" stroke="#718096" stroke-width="0.4"/>
+  <line x1="23" y1="40" x2="23.8" y2="40" stroke="#718096" stroke-width="0.4"/>
+  <line x1="23" y1="42" x2="23.8" y2="42" stroke="#718096" stroke-width="0.4"/>
+  <line x1="23" y1="44" x2="23.8" y2="44" stroke="#718096" stroke-width="0.4"/>
+  <line x1="23" y1="46" x2="23.8" y2="46" stroke="#718096" stroke-width="0.4"/>
+  <line x1="23" y1="48" x2="23.8" y2="48" stroke="#718096" stroke-width="0.4"/>
+  <line x1="23" y1="50" x2="23.8" y2="50" stroke="#718096" stroke-width="0.4"/>
+  <line x1="24.2" y1="36" x2="25" y2="36" stroke="#718096" stroke-width="0.4"/>
+  <line x1="24.2" y1="38" x2="25" y2="38" stroke="#718096" stroke-width="0.4"/>
+  <line x1="24.2" y1="40" x2="25" y2="40" stroke="#718096" stroke-width="0.4"/>
+  <line x1="24.2" y1="42" x2="25" y2="42" stroke="#718096" stroke-width="0.4"/>
+  <line x1="24.2" y1="44" x2="25" y2="44" stroke="#718096" stroke-width="0.4"/>
+  <line x1="24.2" y1="46" x2="25" y2="46" stroke="#718096" stroke-width="0.4"/>
+  <line x1="24.2" y1="48" x2="25" y2="48" stroke="#718096" stroke-width="0.4"/>
+  <line x1="24.2" y1="50" x2="25" y2="50" stroke="#718096" stroke-width="0.4"/>
+  <rect x="21" y="41" width="6" height="2" fill="#A0AEC0"/>
+  <line x1="22" y1="41.6" x2="26" y2="41.6" stroke="#718096" stroke-width="0.3"/>
+  <line x1="22" y1="42.4" x2="26" y2="42.4" stroke="#718096" stroke-width="0.3"/>
 
-  <!-- Knob 3 (right) -->
-  <circle cx="46" cy="36" r="4" fill="#4A5568" stroke="#718096" stroke-width="0.8"/>
-  <circle cx="46" cy="36" r="2.5" fill="#2D3748"/>
-  <line x1="46" y1="33.5" x2="46" y2="35" stroke="#E85D04" stroke-width="1" stroke-linecap="round"/>
-  <rect x="42" y="41" width="8" height="1" rx="0.3" fill="#2D3748"/>
+  <!-- Knobs (Column 3: x=39) - Round knobs with one-line handle at different angles -->
+  <!-- Knob 1 - tilted ~45° up-right -->
+  <circle cx="39" cy="38" r="4" fill="#4A5568" stroke="#718096" stroke-width="0.6"/>
+  <circle cx="39" cy="38" r="2.5" fill="#2D3748"/>
+  <line x1="37.2" y1="36.2" x2="40.8" y2="39.8" stroke="#A0AEC0" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="40.4" y1="39.4" x2="40.8" y2="39.8" stroke="#E85D04" stroke-width="0.5" stroke-linecap="round"/>
 
-  <!-- ============ BOTTOM SECTION: Switches + Slider (y=44-56) ============ -->
-  <line x1="10" y1="44" x2="54" y2="44" stroke="#2D3748" stroke-width="0.5"/>
+  <!-- Knob 2 - tilted ~-30° down-left -->
+  <circle cx="39" cy="48" r="4" fill="#4A5568" stroke="#718096" stroke-width="0.6"/>
+  <circle cx="39" cy="48" r="2.5" fill="#2D3748"/>
+  <line x1="36.8" y1="49.2" x2="41.2" y2="46.8" stroke="#A0AEC0" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="40.8" y1="47.0" x2="41.2" y2="46.8" stroke="#E85D04" stroke-width="0.5" stroke-linecap="round"/>
 
-  <!-- 3 Toggle switches (left side, aligned) -->
-  <!-- Switch 1 - ON (green) -->
-  <rect x="12" y="48" width="6" height="4" rx="1" fill="#2D3748"/>
-  <rect x="13" y="46" width="4" height="2" rx="0.5" fill="#48BB78"/>
-  <circle cx="15" cy="47" r="0.6" fill="#1A202C"/>
+  <!-- Buttons (Column 4: x=52) -->
+  <!-- Red button -->
+  <circle cx="52" cy="38" r="3.5" fill="#C53030" stroke="#742A2A" stroke-width="0.6"/>
+  <circle cx="51" cy="37" r="1" fill="#EF5350" opacity="0.6"/>
 
-  <!-- Switch 2 - OFF (orange) -->
-  <rect x="20" y="48" width="6" height="4" rx="1" fill="#2D3748"/>
-  <rect x="21" y="50" width="4" height="2" rx="0.5" fill="#E85D04"/>
-  <circle cx="23" cy="51" r="0.6" fill="#1A202C"/>
-
-  <!-- Switch 3 - ON (green) -->
-  <rect x="28" y="48" width="6" height="4" rx="1" fill="#2D3748"/>
-  <rect x="29" y="46" width="4" height="2" rx="0.5" fill="#48BB78"/>
-  <circle cx="31" cy="47" r="0.6" fill="#1A202C"/>
-
-  <!-- Vertical slider (right side) -->
-  <rect x="44" y="47" width="3" height="10" rx="1.5" fill="#2D3748"/>
-  <rect x="44.5" y="48" width="2" height="3" rx="0.5" fill="#718096"/>
-  <circle cx="45.5" cy="54" r="1.8" fill="#4A5568" stroke="#E85D04" stroke-width="0.8"/>
-
-  <!-- Lever (far right) -->
-  <rect x="50" y="47" width="2" height="10" rx="1" fill="#4A5568"/>
-  <circle cx="51" cy="49" r="2" fill="#E85D04"/>
-
-  <!-- Indicator LED row (very bottom) -->
-  <circle cx="14" cy="56" r="1" fill="#48BB78"/>
-  <circle cx="19" cy="56" r="1" fill="#4299E1"/>
-  <circle cx="24" cy="56" r="1" fill="#E85D04"/>
+  <!-- Green button -->
+  <circle cx="52" cy="48" r="3.5" fill="#38A169" stroke="#276749" stroke-width="0.6"/>
+  <circle cx="51" cy="47" r="1" fill="#48BB78" opacity="0.6"/>
 </svg>

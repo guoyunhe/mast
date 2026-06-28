@@ -10,7 +10,7 @@ def main() -> int:
     # Initialize internationalization
     init_i18n()
 
-    app = QApplication.instance() or QApplication([])
+    app = QApplication([])
     app.setApplicationName("YaST3")
     app.setDesktopFileName("yast3-qt6")
 

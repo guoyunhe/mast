@@ -22,7 +22,7 @@ from yast3.core.repositories import (
     delete_repo_entry,
     load_repos,
     save_repo_entry,
-    switch_mirror,
+    switch_mirror_pkexec,
 )
 from yast3.qt6.repositories.dialogs import RepoEditDialog, SwitchMirrorDialog
 
@@ -181,7 +181,7 @@ class RepositoriesWindow(QMainWindow):
 
             result = save_repo_entry(new_entry)
             if result != "ok":
-                self.handle_save_error(result)
+                QMessageBox.critical(self, _("Error"), _("Failed to save repository: %s") % result)
 
     def edit_repo(self) -> None:
         current_row = self.table.currentRow()
@@ -224,7 +224,7 @@ class RepositoriesWindow(QMainWindow):
 
             result = save_repo_entry(self.repo_entries[current_row])
             if result != "ok":
-                self.handle_save_error(result)
+                QMessageBox.critical(self, _("Error"), _("Failed to save repository: %s") % result)
 
     def delete_repo(self) -> None:
         current_row = self.table.currentRow()
@@ -246,7 +246,7 @@ class RepositoriesWindow(QMainWindow):
                 self.repo_entries.pop(current_row)
                 self.table.removeRow(current_row)
             else:
-                self.handle_save_error(result)
+                QMessageBox.critical(self, _("Error"), _("Failed to delete repository: %s") % result)
 
     def switch_mirror_action(self) -> None:
         dialog = SwitchMirrorDialog(self)
@@ -265,16 +265,16 @@ class RepositoriesWindow(QMainWindow):
             if reply != QMessageBox.StandardButton.Yes:
                 return
 
-            result = switch_mirror(opensuse_url, packman_url)
-            if result == "ok":
+            try:
+                switch_mirror_pkexec(opensuse_url, packman_url)
                 QMessageBox.information(
                     self,
                     _("Success"),
                     _("Mirror switching completed successfully."),
                 )
                 self.load_repos()
-            else:
-                self.handle_save_error(result)
+            except PermissionError as e:
+                QMessageBox.critical(self, _("Error"), _("Permission denied: %s") % e)
 
     def populate_row(self, row: int) -> None:
         entry = self.repo_entries[row]
@@ -289,22 +289,6 @@ class RepositoriesWindow(QMainWindow):
         entry = self.repo_entries[row]
         result = save_repo_entry(entry)
         if result != "ok":
-            self.handle_save_error(result)
+            QMessageBox.critical(self, _("Error"), _("Failed to save repository: %s") % result)
             entry.enabled = not entry.enabled
             self.populate_row(row)
-
-    def handle_save_error(self, result: str) -> None:
-        if result == "permission_denied":
-            QMessageBox.critical(
-                self,
-                _("Error"),
-                _("Cannot write to repository directory. Root permission required."),
-            )
-        elif result == "pkexec_failed":
-            QMessageBox.critical(
-                self, _("Error"), _("Authentication failed or pkexec not available.")
-            )
-        else:
-            QMessageBox.critical(
-                self, _("Error"), _("Failed to save repository configuration.")
-            )

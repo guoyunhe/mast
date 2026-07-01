@@ -15,6 +15,7 @@ from yast3.core.repositories import (
 )
 from yast3.core.repositories.mirrors.opensuse_mirrors import opensuse_mirrors
 from yast3.core.repositories.mirrors.packman_mirrors import packman_mirrors
+from yast3.core.repositories.mirrors.switch_mirror import switch_mirror_pkexec
 
 
 class RepositoriesWindow(Screen):
@@ -162,7 +163,7 @@ class RepositoriesWindow(Screen):
             self.populate_table()
             self.show_message(_("Repository deleted."), success=True)
         else:
-            self.handle_save_error(result)
+            self.show_message(result, error=True)
 
     def action_switch_mirror(self) -> None:
         """Switch mirrors for openSUSE and Packman repositories."""
@@ -170,12 +171,12 @@ class RepositoriesWindow(Screen):
 
     def switch_mirror(self, opensuse_url: str, packman_url: str) -> None:
         """Execute mirror switch operation."""
-        result = switch_mirror(opensuse_url, packman_url)
-        if result == "ok":
+        try:
+            switch_mirror_pkexec(opensuse_url, packman_url)
             self.show_message(_("Mirror switching completed successfully."), success=True)
             self.load_repos()
-        else:
-            self.handle_save_error(result)
+        except PermissionError as e:
+            self.show_message(str(e), error=True)
 
     def add_repo(self, values: dict) -> None:
         """Add a new repository."""
@@ -212,7 +213,7 @@ class RepositoriesWindow(Screen):
             self.populate_table()
             self.show_message(_("Repository added."), success=True)
         else:
-            self.handle_save_error(result)
+            self.show_message(result, error=True)
 
     def update_repo(self, row: int, values: dict) -> None:
         """Update an existing repository."""

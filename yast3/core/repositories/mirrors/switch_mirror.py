@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Literal
+import argparse
+import subprocess
+import sys
 
 from yast3.core.repositories.mirrors.opensuse_mirrors import opensuse_mirrors
 from yast3.core.repositories.mirrors.packman_mirrors import packman_mirrors
@@ -12,7 +14,7 @@ from yast3.core.repositories.repos import RepoEntry, load_repos, save_repo_entry
 def switch_mirror(
     opensuse_mirror_url: str,
     packman_mirror_url: str,
-) -> Literal["ok", "permission_denied", "pkexec_failed", "error"]:
+) -> None:
     """Switch mirrors for openSUSE and Packman repositories.
 
     Args:
@@ -20,15 +22,12 @@ def switch_mirror(
         packman_mirror_url: The new mirror URL for Packman repository (with protocol).
 
     Returns:
-        "ok" if successful, otherwise an error status.
+        None.
     """
     opensuse_repos = ["repo-oss", "repo-non-oss", "repo-update", "repo-debug", "repo-source"]
     packman_repos = ["packman"]
 
-    try:
-        entries = load_repos()
-    except PermissionError:
-        return "permission_denied"
+    entries = load_repos()
 
     modified_entries: list[RepoEntry] = []
 
@@ -45,17 +44,10 @@ def switch_mirror(
                 modified_entries.append(entry)
 
     if not modified_entries:
-        return "ok"
+        return
 
-    success_count = 0
     for entry in modified_entries:
-        result = save_repo_entry(entry)
-        if result == "ok":
-            success_count += 1
-        elif result in ("permission_denied", "pkexec_failed"):
-            return result
-
-    return "ok" if success_count == len(modified_entries) else "error"
+        save_repo_entry(entry)
 
 
 def _replace_opensuse_mirror_prefix(url: str, new_prefix: str) -> str:
@@ -140,3 +132,35 @@ def _replace_packman_mirror_prefix(url: str, new_prefix: str) -> str:
         return new_prefix.rstrip("/") + "/" + path
 
     return url
+
+def switch_mirror_pkexec(
+    opensuse_mirror_url: str,
+    packman_mirror_url: str,
+) -> None:
+    """Switch mirrors for openSUSE and Packman repositories using pkexec.
+
+    Args:
+        opensuse_mirror_url: The new mirror URL for openSUSE repositories (with protocol).
+        packman_mirror_url: The new mirror URL for Packman repository (with protocol).
+
+    Returns:
+        None.
+    """
+    result = subprocess.run(
+        ["pkexec", sys.executable, __file__, '--opensuse', opensuse_mirror_url, '--packman', packman_mirror_url],
+        capture_output=True,
+        text=True,
+    )
+
+    if result.returncode != 0:
+        raise PermissionError("Failed to switch mirrors using pkexec")
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description="Switch mirrors for openSUSE and Packman repositories.")
+    parser.add_argument('--opensuse', type=str, required=True, help="New openSUSE mirror URL (with protocol).")
+    parser.add_argument('--packman', type=str, required=True, help="New Packman mirror URL (with protocol).")
+    args = parser.parse_args()
+
+    switch_mirror(args.opensuse, args.packman)
+    sys.exit(0)

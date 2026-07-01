@@ -34,12 +34,12 @@ def switch_mirror(
 
     for entry in entries:
         if entry.id in opensuse_repos and entry.baseurl:
-            new_baseurl = _replace_mirror_prefix(entry.baseurl, opensuse_mirror_url)
+            new_baseurl = _replace_opensuse_mirror_prefix(entry.baseurl, opensuse_mirror_url)
             if new_baseurl != entry.baseurl:
                 entry.baseurl = new_baseurl
                 modified_entries.append(entry)
         elif entry.id in packman_repos and entry.baseurl:
-            new_baseurl = _replace_mirror_prefix(entry.baseurl, packman_mirror_url)
+            new_baseurl = _replace_packman_mirror_prefix(entry.baseurl, packman_mirror_url)
             if new_baseurl != entry.baseurl:
                 entry.baseurl = new_baseurl
                 modified_entries.append(entry)
@@ -58,12 +58,17 @@ def switch_mirror(
     return "ok" if success_count == len(modified_entries) else "error"
 
 
-def _replace_mirror_prefix(url: str, new_prefix: str) -> str:
-    """Replace the mirror prefix in a URL with a new prefix.
+def _replace_opensuse_mirror_prefix(url: str, new_prefix: str) -> str:
+    """Replace the openSUSE mirror prefix in a URL with a new prefix.
+
+    Three-tier fallback strategy:
+    1. Match known openSUSE mirror patterns
+    2. Search for '/opensuse/' in URL path and replace everything before it
+    3. Fall back to replacing the domain with new prefix
 
     Args:
         url: The original repository URL.
-        new_prefix: The new mirror URL prefix (with protocol).
+        new_prefix: The new openSUSE mirror URL prefix (with protocol).
 
     Returns:
         The URL with the new mirror prefix.
@@ -75,6 +80,44 @@ def _replace_mirror_prefix(url: str, new_prefix: str) -> str:
         for proto in mirror.protocols:
             patterns.append(f"{proto}://{mirror.url}".lower())
 
+    for pattern in patterns:
+        if url_lower.startswith(pattern):
+            remainder = url[len(pattern):]
+            if remainder and not remainder.startswith("/"):
+                remainder = "/" + remainder
+            return new_prefix.rstrip("/") + remainder
+
+    idx = url_lower.find('/opensuse/')
+    if idx != -1:
+        remainder = url[idx + len('/opensuse/'):]
+        return new_prefix.rstrip("/") + "/" + remainder
+
+    parsed = url.split("/", 3)
+    if len(parsed) >= 4:
+        path = parsed[3]
+        return new_prefix.rstrip("/") + "/" + path
+
+    return url
+
+
+def _replace_packman_mirror_prefix(url: str, new_prefix: str) -> str:
+    """Replace the Packman mirror prefix in a URL with a new prefix.
+
+    Three-tier fallback strategy:
+    1. Match known Packman mirror patterns
+    2. Search for '/packman/' in URL path and replace everything before it
+    3. Fall back to replacing the domain with new prefix
+
+    Args:
+        url: The original repository URL.
+        new_prefix: The new Packman mirror URL prefix (with protocol).
+
+    Returns:
+        The URL with the new mirror prefix.
+    """
+    url_lower = url.lower()
+    patterns = []
+
     for mirror in packman_mirrors:
         for proto in mirror.protocols:
             patterns.append(f"{proto}://{mirror.url}".lower())
@@ -85,6 +128,11 @@ def _replace_mirror_prefix(url: str, new_prefix: str) -> str:
             if remainder and not remainder.startswith("/"):
                 remainder = "/" + remainder
             return new_prefix.rstrip("/") + remainder
+
+    idx = url_lower.find('/packman/')
+    if idx != -1:
+        remainder = url[idx + len('/packman/'):]
+        return new_prefix.rstrip("/") + "/" + remainder
 
     parsed = url.split("/", 3)
     if len(parsed) >= 4:

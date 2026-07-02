@@ -3,7 +3,7 @@ import unittest
 
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
-from PySide6.QtWidgets import QApplication, QToolButton
+from PySide6.QtWidgets import QApplication, QLabel, QToolButton
 
 from yast3.qt6.main_window import MainWindow
 
@@ -19,6 +19,15 @@ class MainWindowTest(unittest.TestCase):
         buttons = window.findChildren(QToolButton)
 
         self.assertEqual(len(buttons), len(window.modules))
+        window.close()
+
+    def test_experimental_modules_have_badges(self) -> None:
+        window = MainWindow()
+
+        badges = window.findChildren(QLabel, "experimental-badge")
+        experimental_modules = [module for module in window.modules if module.experimental]
+
+        self.assertEqual(len(badges), len(experimental_modules))
         window.close()
 
 

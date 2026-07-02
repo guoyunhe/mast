@@ -2,19 +2,14 @@
 
 from __future__ import annotations
 
-from PySide6.QtCore import QSize, Qt
-from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import (
     QFrame,
     QGridLayout,
     QMainWindow,
     QScrollArea,
-    QToolButton,
     QWidget,
 )
 
-from yast3.core.i18n import _
-from yast3.core.module import Module
 from yast3.qt6 import (
     CronModule,
     GitModule,
@@ -23,6 +18,7 @@ from yast3.qt6 import (
     RepositoriesModule,
     SSHClientModule,
 )
+from yast3.qt6.module_button import ModuleButton
 
 
 class MainWindow(QMainWindow):
@@ -51,41 +47,9 @@ class MainWindow(QMainWindow):
         grid.setVerticalSpacing(24)
 
         for index, module in enumerate(self.modules):
-            button = self._build_module_button(module)
+            button = ModuleButton(module)
             row, column = divmod(index, 4)
             grid.addWidget(button, row, column)
 
         scroll_area.setWidget(container)
         self.setCentralWidget(scroll_area)
-
-    def _build_module_button(self, module: Module) -> QToolButton:
-        icon = self._resolve_icon(module.icon_names)
-
-        button = QToolButton()
-        button.setText(module.name)
-        if icon is not None:
-            button.setIcon(icon)
-        button.setIconSize(QSize(48, 48))
-        button.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextUnderIcon)
-        button.setMinimumSize(180, 130)
-        button.setAutoRaise(False)
-        button.setStyleSheet("""
-            QToolButton {
-                border: 1px solid palette(midlight);
-                border-radius: 12px;
-                padding: 16px;
-                font-size: 15px;
-                font-weight: 500;
-            }
-            QToolButton:hover {
-                background: palette(alternate-base);
-            }
-            """)
-        button.clicked.connect(module.launch)
-        return button
-
-    def _resolve_icon(self, icon_names: tuple[str, ...]) -> QIcon | None:
-        for name in icon_names:
-            icon = QIcon.fromTheme(name)
-            if not icon.isNull():
-                return icon

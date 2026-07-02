@@ -24,20 +24,9 @@ class ModuleButton(QToolButton):
 
         self.setIconSize(QSize(48, 48))
         self.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextUnderIcon)
-        self.setMinimumSize(180, 130)
+        self.setMinimumSize(160, 120)
         self.setAutoRaise(False)
-        self.setStyleSheet("""
-            QToolButton {
-                border: 1px solid palette(midlight);
-                border-radius: 12px;
-                padding: 16px;
-                font-size: 15px;
-                font-weight: 500;
-            }
-            QToolButton:hover {
-                background: palette(alternate-base);
-            }
-            """)
+
 
         if module.experimental:
             self._experimental_badge = self._create_experimental_badge()
@@ -54,19 +43,13 @@ class ModuleButton(QToolButton):
         badge.setToolTip(_("Experimental"))
         badge.setFixedSize(24, 24)
         badge.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        badge.setStyleSheet("""
-            QLabel#experimental-badge {
-                background: palette(base);
-                border: 1px solid palette(midlight);
-                border-radius: 12px;
-            }
-            """)
+
 
         icon = QIcon.fromTheme("dialog-warning")
         if icon.isNull():
             icon = self.style().standardIcon(QStyle.StandardPixmap.SP_MessageBoxWarning)
 
-        badge.setPixmap(icon.pixmap(QSize(16, 16)))
+        badge.setPixmap(icon.pixmap(QSize(24, 24)))
         badge.raise_()
         self._position_experimental_badge()
         badge.show()

@@ -33,6 +33,7 @@ class ProxyWindow(Gtk.ApplicationWindow):
         self.http_entry = self._build_input_row(_("HTTP Proxy"), "http://host:port")
         self.https_entry = self._build_input_row(_("HTTPS Proxy"), "http://host:port")
         self.ftp_entry = self._build_input_row(_("FTP Proxy"), "http://host:port")
+        self.socks_entry = self._build_input_row(_("SOCKS Proxy"), "socks://host:port")
         self.no_proxy_entry = self._build_input_row(
             _("No Proxy"),
             "localhost,127.0.0.1,.example.com",
@@ -74,6 +75,7 @@ class ProxyWindow(Gtk.ApplicationWindow):
             self.http_entry.set_text(str(self.config.get("HTTP_PROXY", "")))
             self.https_entry.set_text(str(self.config.get("HTTPS_PROXY", "")))
             self.ftp_entry.set_text(str(self.config.get("FTP_PROXY", "")))
+            self.socks_entry.set_text(str(self.config.get("SOCKS_PROXY", "")))
             self.no_proxy_entry.set_text(str(self.config.get("NO_PROXY", "")))
         except FileNotFoundError:
             self._show_message_dialog(
@@ -100,6 +102,7 @@ class ProxyWindow(Gtk.ApplicationWindow):
             "HTTP_PROXY": self.http_entry.get_text().strip(),
             "HTTPS_PROXY": self.https_entry.get_text().strip(),
             "FTP_PROXY": self.ftp_entry.get_text().strip(),
+            "SOCKS_PROXY": self.socks_entry.get_text().strip(),
             "NO_PROXY": self.no_proxy_entry.get_text().strip(),
         })
 

@@ -16,6 +16,7 @@ REQUIRED_PROXY_KEYS: tuple[str, ...] = (
     "HTTP_PROXY",
     "HTTPS_PROXY",
     "FTP_PROXY",
+    "SOCKS_PROXY",
     "NO_PROXY",
 )
 

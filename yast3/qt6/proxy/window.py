@@ -40,6 +40,7 @@ class ProxyWindow(QMainWindow):
         self.http_edit = self._add_input(layout, _("HTTP Proxy"), "http://host:port")
         self.https_edit = self._add_input(layout, _("HTTPS Proxy"), "http://host:port")
         self.ftp_edit = self._add_input(layout, _("FTP Proxy"), "http://host:port")
+        self.socks_edit = self._add_input(layout, _("SOCKS Proxy"), "socks://host:port")
         self.no_proxy_edit = self._add_input(
             layout,
             _("No Proxy"),
@@ -73,6 +74,7 @@ class ProxyWindow(QMainWindow):
             self.http_edit.setText(str(self.config.get("HTTP_PROXY", "")))
             self.https_edit.setText(str(self.config.get("HTTPS_PROXY", "")))
             self.ftp_edit.setText(str(self.config.get("FTP_PROXY", "")))
+            self.socks_edit.setText(str(self.config.get("SOCKS_PROXY", "")))
             self.no_proxy_edit.setText(str(self.config.get("NO_PROXY", "")))
         except FileNotFoundError:
             QMessageBox.warning(self, _("Error"), _("{0} not found.").format(PROXY_FILE))
@@ -95,6 +97,7 @@ class ProxyWindow(QMainWindow):
             "HTTP_PROXY": self.http_edit.text().strip(),
             "HTTPS_PROXY": self.https_edit.text().strip(),
             "FTP_PROXY": self.ftp_edit.text().strip(),
+            "SOCKS_PROXY": self.socks_edit.text().strip(),
             "NO_PROXY": self.no_proxy_edit.text().strip(),
         })
 

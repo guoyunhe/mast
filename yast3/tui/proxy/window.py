@@ -79,6 +79,9 @@ class ProxyWindow(Screen):
                 yield Label(_("FTP Proxy"), classes="input-label")
                 yield Input(placeholder="http://host:port", id="ftp-input")
             with Horizontal():
+                yield Label(_("SOCKS Proxy"), classes="input-label")
+                yield Input(placeholder="socks://host:port", id="socks-input")
+            with Horizontal():
                 yield Label(_("No Proxy"), classes="input-label")
                 yield Input(
                     placeholder="localhost,127.0.0.1,.example.com",
@@ -96,6 +99,7 @@ class ProxyWindow(Screen):
             self.query_one("#http-input", Input).value = str(self.config.get("HTTP_PROXY", ""))
             self.query_one("#https-input", Input).value = str(self.config.get("HTTPS_PROXY", ""))
             self.query_one("#ftp-input", Input).value = str(self.config.get("FTP_PROXY", ""))
+            self.query_one("#socks-input", Input).value = str(self.config.get("SOCKS_PROXY", ""))
             self.query_one("#no-proxy-input", Input).value = str(self.config.get("NO_PROXY", ""))
             self._refresh_enabled_button()
         except FileNotFoundError:
@@ -143,6 +147,7 @@ class ProxyWindow(Screen):
             "HTTP_PROXY": self.query_one("#http-input", Input).value.strip(),
             "HTTPS_PROXY": self.query_one("#https-input", Input).value.strip(),
             "FTP_PROXY": self.query_one("#ftp-input", Input).value.strip(),
+            "SOCKS_PROXY": self.query_one("#socks-input", Input).value.strip(),
             "NO_PROXY": self.query_one("#no-proxy-input", Input).value.strip(),
         })
 

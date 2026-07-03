@@ -666,6 +666,8 @@ msgstr "启用代理"
 msgid "HTTP Proxy"
 msgstr "HTTP 代理"
 
+msgid "SOCKS Proxy"
+msgstr "SOCKS 代理"
 #: yast3/gtk4/proxy/window.py:34 yast3/qt6/proxy/window.py:41
 #: yast3/tui/proxy/window.py:76
 msgid "HTTPS Proxy"

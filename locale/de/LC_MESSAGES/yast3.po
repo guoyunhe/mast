@@ -677,6 +677,11 @@ msgstr "HTTPS-Proxy"
 msgid "FTP Proxy"
 msgstr "FTP-Proxy"
 
+#: yast3/gtk4/proxy/window.py:36 yast3/qt6/proxy/window.py:43
+#: yast3/tui/proxy/window.py:82
+msgid "SOCKS Proxy"
+msgstr "SOCKS-Proxy"
+
 #: yast3/gtk4/proxy/window.py:37 yast3/qt6/proxy/window.py:45
 #: yast3/tui/proxy/window.py:82
 msgid "No Proxy"

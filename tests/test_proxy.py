@@ -5,13 +5,9 @@ import unittest
 from unittest.mock import MagicMock, patch
 
 from yast3.core.proxy import ProxyConfig
-from yast3.core.proxy.proxy import REQUIRED_PROXY_KEYS
 
 
 class TestProxyConfig(unittest.TestCase):
-    def test_required_keys_include_socks_proxy(self) -> None:
-        self.assertIn("SOCKS_PROXY", REQUIRED_PROXY_KEYS)
-
     def test_load_socks_proxy_value(self) -> None:
         content = """PROXY_ENABLED=\"yes\"
 HTTP_PROXY=\"http://127.0.0.1:3128\"
@@ -28,7 +24,7 @@ NO_PROXY=\"localhost,127.0.0.1\"
         with patch("yast3.core.proxy.proxy.PROXY_CONFIG_FILE", path):
             config = ProxyConfig()
 
-        self.assertEqual(str(config.get("SOCKS_PROXY", "")), "socks://127.0.0.1:1080")
+        self.assertEqual(config.SOCKS_PROXY, "socks://127.0.0.1:1080")
 
     def test_save_socks_proxy_value(self) -> None:
         content = """# proxy settings
@@ -45,7 +41,7 @@ NO_PROXY=\"localhost\"
 
         with patch("yast3.core.proxy.proxy.PROXY_CONFIG_FILE", path):
             config = ProxyConfig()
-            config.update({"SOCKS_PROXY": "socks://10.0.0.1:1080"})
+            config.SOCKS_PROXY = "socks://10.0.0.1:1080"
             config.write()
 
         with open(path, "r") as f:

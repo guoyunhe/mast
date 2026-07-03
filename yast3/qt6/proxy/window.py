@@ -70,12 +70,12 @@ class ProxyWindow(QMainWindow):
     def load_proxy(self) -> None:
         try:
             self.config = ProxyConfig()
-            self.enabled_check.setChecked(self.config.get("PROXY_ENABLED") == "yes")
-            self.http_edit.setText(str(self.config.get("HTTP_PROXY", "")))
-            self.https_edit.setText(str(self.config.get("HTTPS_PROXY", "")))
-            self.ftp_edit.setText(str(self.config.get("FTP_PROXY", "")))
-            self.socks_edit.setText(str(self.config.get("SOCKS_PROXY", "")))
-            self.no_proxy_edit.setText(str(self.config.get("NO_PROXY", "")))
+            self.enabled_check.setChecked(self.config.PROXY_ENABLED == "yes")
+            self.http_edit.setText(self.config.HTTP_PROXY)
+            self.https_edit.setText(self.config.HTTPS_PROXY)
+            self.ftp_edit.setText(self.config.FTP_PROXY)
+            self.socks_edit.setText(self.config.SOCKS_PROXY)
+            self.no_proxy_edit.setText(self.config.NO_PROXY)
         except FileNotFoundError:
             QMessageBox.warning(self, _("Error"), _("{0} not found.").format(PROXY_FILE))
         except PermissionError:
@@ -92,14 +92,12 @@ class ProxyWindow(QMainWindow):
             )
 
     def save_proxy(self) -> None:
-        self.config.update({
-            "PROXY_ENABLED": "yes" if self.enabled_check.isChecked() else "no",
-            "HTTP_PROXY": self.http_edit.text().strip(),
-            "HTTPS_PROXY": self.https_edit.text().strip(),
-            "FTP_PROXY": self.ftp_edit.text().strip(),
-            "SOCKS_PROXY": self.socks_edit.text().strip(),
-            "NO_PROXY": self.no_proxy_edit.text().strip(),
-        })
+        self.config.PROXY_ENABLED = "yes" if self.enabled_check.isChecked() else "no"
+        self.config.HTTP_PROXY = self.http_edit.text().strip()
+        self.config.HTTPS_PROXY = self.https_edit.text().strip()
+        self.config.FTP_PROXY = self.ftp_edit.text().strip()
+        self.config.SOCKS_PROXY = self.socks_edit.text().strip()
+        self.config.NO_PROXY = self.no_proxy_edit.text().strip()
 
         try:
             self.config.write_pkexec()

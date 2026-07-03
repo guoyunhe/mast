@@ -95,12 +95,12 @@ class ProxyWindow(Screen):
     def on_mount(self) -> None:
         self._refresh_enabled_button()
         try:
-            self.proxy_enabled = self.config.get("PROXY_ENABLED") == "yes"
-            self.query_one("#http-input", Input).value = str(self.config.get("HTTP_PROXY", ""))
-            self.query_one("#https-input", Input).value = str(self.config.get("HTTPS_PROXY", ""))
-            self.query_one("#ftp-input", Input).value = str(self.config.get("FTP_PROXY", ""))
-            self.query_one("#socks-input", Input).value = str(self.config.get("SOCKS_PROXY", ""))
-            self.query_one("#no-proxy-input", Input).value = str(self.config.get("NO_PROXY", ""))
+            self.proxy_enabled = self.config.PROXY_ENABLED == "yes"
+            self.query_one("#http-input", Input).value = self.config.HTTP_PROXY
+            self.query_one("#https-input", Input).value = self.config.HTTPS_PROXY
+            self.query_one("#ftp-input", Input).value = self.config.FTP_PROXY
+            self.query_one("#socks-input", Input).value = self.config.SOCKS_PROXY
+            self.query_one("#no-proxy-input", Input).value = self.config.NO_PROXY
             self._refresh_enabled_button()
         except FileNotFoundError:
             self.show_message(_("Error: {0} not found.").format(PROXY_FILE), error=True)
@@ -142,14 +142,12 @@ class ProxyWindow(Screen):
         self._refresh_enabled_button()
 
     def action_save(self) -> None:
-        self.config.update({
-            "PROXY_ENABLED": "yes" if self.proxy_enabled else "no",
-            "HTTP_PROXY": self.query_one("#http-input", Input).value.strip(),
-            "HTTPS_PROXY": self.query_one("#https-input", Input).value.strip(),
-            "FTP_PROXY": self.query_one("#ftp-input", Input).value.strip(),
-            "SOCKS_PROXY": self.query_one("#socks-input", Input).value.strip(),
-            "NO_PROXY": self.query_one("#no-proxy-input", Input).value.strip(),
-        })
+        self.config.PROXY_ENABLED = "yes" if self.proxy_enabled else "no"
+        self.config.HTTP_PROXY = self.query_one("#http-input", Input).value.strip()
+        self.config.HTTPS_PROXY = self.query_one("#https-input", Input).value.strip()
+        self.config.FTP_PROXY = self.query_one("#ftp-input", Input).value.strip()
+        self.config.SOCKS_PROXY = self.query_one("#socks-input", Input).value.strip()
+        self.config.NO_PROXY = self.query_one("#no-proxy-input", Input).value.strip()
 
         try:
             self.config.write_pkexec()

@@ -71,12 +71,12 @@ class ProxyWindow(Gtk.ApplicationWindow):
     def _load_config(self) -> None:
         try:
             self.config = ProxyConfig()
-            self.enabled_check.set_active(self.config.get("PROXY_ENABLED") == "yes")
-            self.http_entry.set_text(str(self.config.get("HTTP_PROXY", "")))
-            self.https_entry.set_text(str(self.config.get("HTTPS_PROXY", "")))
-            self.ftp_entry.set_text(str(self.config.get("FTP_PROXY", "")))
-            self.socks_entry.set_text(str(self.config.get("SOCKS_PROXY", "")))
-            self.no_proxy_entry.set_text(str(self.config.get("NO_PROXY", "")))
+            self.enabled_check.set_active(self.config.PROXY_ENABLED == "yes")
+            self.http_entry.set_text(self.config.HTTP_PROXY)
+            self.https_entry.set_text(self.config.HTTPS_PROXY)
+            self.ftp_entry.set_text(self.config.FTP_PROXY)
+            self.socks_entry.set_text(self.config.SOCKS_PROXY)
+            self.no_proxy_entry.set_text(self.config.NO_PROXY)
         except FileNotFoundError:
             self._show_message_dialog(
                 Gtk.MessageType.WARNING,
@@ -97,14 +97,12 @@ class ProxyWindow(Gtk.ApplicationWindow):
             )
 
     def _on_save_clicked(self, button: Gtk.Button) -> None:
-        self.config.update({
-            "PROXY_ENABLED": "yes" if self.enabled_check.get_active() else "no",
-            "HTTP_PROXY": self.http_entry.get_text().strip(),
-            "HTTPS_PROXY": self.https_entry.get_text().strip(),
-            "FTP_PROXY": self.ftp_entry.get_text().strip(),
-            "SOCKS_PROXY": self.socks_entry.get_text().strip(),
-            "NO_PROXY": self.no_proxy_entry.get_text().strip(),
-        })
+        self.config.PROXY_ENABLED = "yes" if self.enabled_check.get_active() else "no"
+        self.config.HTTP_PROXY = self.http_entry.get_text().strip()
+        self.config.HTTPS_PROXY = self.https_entry.get_text().strip()
+        self.config.FTP_PROXY = self.ftp_entry.get_text().strip()
+        self.config.SOCKS_PROXY = self.socks_entry.get_text().strip()
+        self.config.NO_PROXY = self.no_proxy_entry.get_text().strip()
 
         try:
             self.config.write_pkexec()

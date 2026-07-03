@@ -26,7 +26,7 @@ Save YaST ♥️ with Python 3 & Qt6 Widgets.
 ## Run
 
 ```bash
-sudo zypper install python3-pyside6 python3-gobject gtk4-devel python3-Babel python3-crontab python3-configobj python3-pytest
+sudo zypper install python3-pyside6 python3-gobject gtk4-devel python3-Babel python3-crontab python3-configobj python3-python-dotenv python3-pytest
 python3 -m yast3
 ```
 

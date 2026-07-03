@@ -1,11 +1,10 @@
-"""Proxy management core logic."""
+"""Proxy configuration management for /etc/sysconfig/proxy."""
 
-from yast3.core.proxy.proxy import (
-    PROXY_CONFIG_FILE,
-    ProxyConfig,
-)
+from __future__ import annotations
+
+from yast3.core.proxy.proxy_config import ProxyConfig
+
 
 __all__ = [
-    "PROXY_CONFIG_FILE",
     "ProxyConfig",
 ]

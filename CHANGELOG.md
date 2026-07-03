@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.12 - 2026-07-03
+
+### Qt6
+
+- Add SOCKS proxy support
+
 ## 0.0.11 - 2026-07-03
 
 ### Qt6

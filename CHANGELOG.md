@@ -1,5 +1,19 @@
 # Change Log
 
+## 0.0.14 - 2026-07-04
+
+### Core
+
+- Added third-party repository import functionality to the repositories module.
+
+### Qt6
+
+- Added third-party repository import functionality to the repositories module.
+
+### GTK4
+
+- Added third-party repository import functionality to the repositories module.
+
 ## 0.0.13 - 2026-07-03
 
 ### Core

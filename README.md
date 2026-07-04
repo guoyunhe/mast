@@ -12,7 +12,7 @@ Save YaST ♥️ with Python 3 & Qt6 Widgets.
 | Hosts        | ✅   | ✅  | 🚧   | ❌  |
 | Packages     | ❌   | ❌  | ❌   | ❌  |
 | Proxy        | ✅   | ✅  | ✅   | ❌  |
-| Repositories | ✅   | ✅  | 🚧   | ❌  |
+| Repositories | ✅   | ✅  | ✅   | ❌  |
 | SSH Client   | 🚧   | 🚧  | 🚧   | ❌  |
 
 **Planned:** SSH Server (system)

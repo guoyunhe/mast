@@ -1,3 +1,3 @@
-from os_release import read_os_release
+from yast3.core.distro.os_release import read_os_release
 
 __all__ = ["read_os_release"]

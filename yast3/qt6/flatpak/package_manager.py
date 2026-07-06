@@ -71,7 +71,7 @@ class FlatpakPackageManager(QWidget):
 
         if self.mode == self.MODE_SEARCH:
             self.install_action = CommandAction(
-                text=_("Install Package"),
+                text=_("Install"),
                 running_text=_("Installing package..."),
                 dialog_title=_("Install Flatpak Package"),
                 command=["true"],

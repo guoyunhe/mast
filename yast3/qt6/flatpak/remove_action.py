@@ -1,19 +1,20 @@
-"""Remove Flatpak button component."""
+"""Remove Flatpak action component."""
 
 from __future__ import annotations
 
+from PySide6.QtCore import QObject
 from PySide6.QtWidgets import QMessageBox, QWidget
 
 from yast3.core.i18n import _
-from yast3.qt6.command_action_widget import CommandActionWidget
+from yast3.qt6.command.action import CommandAction
 
 
-class RemoveFlatpakWidget(CommandActionWidget):
-    """Standalone widget for triggering Flatpak removal."""
+class RemoveFlatpakAction(CommandAction):
+    """Reusable action for triggering Flatpak removal."""
 
-    def __init__(self, parent: QWidget | None = None):
+    def __init__(self, parent: QObject | None = None):
         super().__init__(
-            button_text=_("Remove Flatpak"),
+            text=_("Remove Flatpak"),
             running_text=_("Removing Flatpak..."),
             dialog_title=_("Remove Flatpak"),
             command=["pkexec", "zypper", "--non-interactive", "remove", "-y", "flatpak"],
@@ -26,8 +27,13 @@ class RemoveFlatpakWidget(CommandActionWidget):
         if self.is_running():
             return
 
+        parent_widget: QWidget | None = None
+        parent = self.parent()
+        if isinstance(parent, QWidget):
+            parent_widget = parent
+
         reply = QMessageBox.question(
-            self,
+            parent_widget,
             _("Confirm"),
             _("Are you sure you want to remove Flatpak?"),
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
@@ -36,3 +42,7 @@ class RemoveFlatpakWidget(CommandActionWidget):
             return
 
         super().start_action()
+
+
+# Backward-compatible alias while call sites migrate from widget naming.
+RemoveFlatpakWidget = RemoveFlatpakAction

@@ -7,14 +7,16 @@ from PySide6.QtWidgets import (
     QHBoxLayout,
     QMainWindow,
     QMessageBox,
+    QPushButton,
     QVBoxLayout,
     QWidget,
 )
 
 from yast3.core.flatpak import is_flatpak_installed
 from yast3.core.i18n import _
-from yast3.qt6.flatpak.install_button import InstallFlatpakWidget
-from yast3.qt6.flatpak.remove_button import RemoveFlatpakWidget
+
+from yast3.qt6.flatpak.install_action import InstallFlatpakAction
+from yast3.qt6.flatpak.remove_action import RemoveFlatpakAction
 from yast3.qt6.flatpak.remote_manager import FlatpakRemoteManager
 
 
@@ -34,9 +36,12 @@ class FlatpakWindow(QMainWindow):
 
         self.install_box = QWidget()
         install_layout = QVBoxLayout(self.install_box)
-        self.install_widget = InstallFlatpakWidget(self.install_box)
-        self.install_widget.action_finished.connect(self._on_install_finished)
-        install_layout.addWidget(self.install_widget)
+        self.install_action = InstallFlatpakAction(self)
+        self.install_action.action_finished.connect(self._on_install_finished)
+        self.install_button = QPushButton(self.install_action.text(), self.install_box)
+        self.install_button.clicked.connect(self.install_action.trigger)
+        self.install_action.changed.connect(self._sync_install_action_state)
+        install_layout.addWidget(self.install_button)
         layout.addWidget(self.install_box)
 
         self.manage_box = QWidget()
@@ -47,14 +52,28 @@ class FlatpakWindow(QMainWindow):
 
         danger_layout = QHBoxLayout()
         danger_layout.addStretch()
-        self.remove_widget = RemoveFlatpakWidget(self.manage_box)
-        self.remove_widget.action_finished.connect(self._on_remove_finished)
-        danger_layout.addWidget(self.remove_widget)
+        self.remove_action = RemoveFlatpakAction(self)
+        self.remove_action.action_finished.connect(self._on_remove_finished)
+        self.remove_button = QPushButton(self.remove_action.text(), self.manage_box)
+        self.remove_button.clicked.connect(self.remove_action.trigger)
+        self.remove_action.changed.connect(self._sync_remove_action_state)
+        danger_layout.addWidget(self.remove_button)
         manage_layout.addLayout(danger_layout)
 
         layout.addWidget(self.manage_box)
 
+        self._sync_install_action_state()
+        self._sync_remove_action_state()
+
         self.refresh_state()
+
+    def _sync_install_action_state(self) -> None:
+        self.install_button.setText(self.install_action.text())
+        self.install_button.setEnabled(self.install_action.isEnabled())
+
+    def _sync_remove_action_state(self) -> None:
+        self.remove_button.setText(self.remove_action.text())
+        self.remove_button.setEnabled(self.remove_action.isEnabled())
 
     def refresh_state(self) -> None:
         installed = is_flatpak_installed()
@@ -89,7 +108,7 @@ class FlatpakWindow(QMainWindow):
             )
 
     def closeEvent(self, event) -> None:
-        if self.install_widget.is_running() or self.remove_widget.is_running():
+        if self.install_action.is_running() or self.remove_action.is_running():
             QMessageBox.warning(
                 self,
                 _("Please wait"),

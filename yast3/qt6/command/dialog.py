@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from PySide6.QtGui import QFontDatabase
 from PySide6.QtWidgets import (
     QDialog,
     QHBoxLayout,
@@ -31,6 +32,7 @@ class CommandOutputDialog(QDialog):
 
         self.output = QPlainTextEdit()
         self.output.setReadOnly(True)
+        self.output.setFont(QFontDatabase.systemFont(QFontDatabase.SystemFont.FixedFont))
         layout.addWidget(self.output)
 
         self.progress = QProgressBar()

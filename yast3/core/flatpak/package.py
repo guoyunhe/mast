@@ -53,6 +53,15 @@ def search_flatpak_packages(query: str, remote: str = "flathub") -> list[str]:
         raise ValueError("Search query is required.")
     if not normalized_remote:
         raise ValueError("Flatpak remote is required.")
+    app_ids = list_remote_flatpak_packages(normalized_remote)
+    return [app_id for app_id in app_ids if normalized_query in app_id.lower()]
+
+
+def list_remote_flatpak_packages(remote: str = "flathub") -> list[str]:
+    """List all application IDs from a Flatpak remote."""
+    normalized_remote = remote.strip()
+    if not normalized_remote:
+        raise ValueError("Flatpak remote is required.")
     if not _is_flatpak_installed():
         return []
 
@@ -62,13 +71,7 @@ def search_flatpak_packages(query: str, remote: str = "flathub") -> list[str]:
     seen: set[str] = set()
     for raw_line in result.stdout.splitlines():
         app_id = raw_line.strip()
-        if not app_id:
-            continue
-
-        if normalized_query not in app_id.lower():
-            continue
-
-        if app_id in seen:
+        if not app_id or app_id in seen:
             continue
 
         seen.add(app_id)

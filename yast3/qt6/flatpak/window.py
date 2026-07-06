@@ -48,11 +48,13 @@ class FlatpakWindow(QMainWindow):
         manage_layout = QVBoxLayout(self.manage_box)
 
         self.tabs = QTabWidget(self.manage_box)
-        self.package_manager = FlatpakPackageManager(self.tabs)
+        self.package_search_manager = FlatpakPackageManager(FlatpakPackageManager.MODE_SEARCH, self.tabs)
+        self.package_installed_manager = FlatpakPackageManager(FlatpakPackageManager.MODE_INSTALLED, self.tabs)
         self.remote_manager = FlatpakRemoteManager(self.tabs)
         self.settings_tab = FlatpakSettingsTab(self.tabs)
         self.settings_tab.remove_action.action_finished.connect(self._on_remove_finished)
-        self.tabs.addTab(self.package_manager, _("Packages"))
+        self.tabs.addTab(self.package_search_manager, _("Search"))
+        self.tabs.addTab(self.package_installed_manager, _("Installed"))
         self.tabs.addTab(self.remote_manager, _("Remotes"))
         self.tabs.addTab(self.settings_tab, _("Settings"))
         manage_layout.addWidget(self.tabs)
@@ -72,7 +74,8 @@ class FlatpakWindow(QMainWindow):
         if installed:
             self.install_box.hide()
             self.manage_box.show()
-            self.package_manager.refresh()
+            self.package_search_manager.refresh()
+            self.package_installed_manager.refresh()
             self.remote_manager.load_remotes()
         else:
             self.manage_box.hide()

@@ -2,14 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Literal, cast
+from typing import Literal
 
 from PySide6.QtWidgets import (
-    QComboBox,
-    QFormLayout,
     QHBoxLayout,
     QHeaderView,
-    QLabel,
     QLineEdit,
     QMessageBox,
     QPushButton,
@@ -22,7 +19,7 @@ from PySide6.QtWidgets import (
 from yast3.core.flatpak import (
     FlatpakPackage,
     list_flatpak_packages,
-    list_flatpak_remotes,
+    search_flatpak_packages,
 )
 from yast3.core.i18n import _
 from yast3.qt6.command.action import CommandAction
@@ -31,29 +28,32 @@ from yast3.qt6.command.action import CommandAction
 class FlatpakPackageManager(QWidget):
     """Manage Flatpak application packages."""
 
+    DEFAULT_REMOTE = "flathub"
+    DEFAULT_SCOPE: Literal["system", "user"] = "system"
+
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)
 
         self.packages: list[FlatpakPackage] = []
+        self.showing_search_results = False
 
         layout = QVBoxLayout(self)
 
-        form = QFormLayout()
-        self.app_id_input = QLineEdit()
-        self.app_id_input.setPlaceholderText("org.example.App")
-        form.addRow(_("App ID"), self.app_id_input)
+        self.search_input = QLineEdit()
+        self.search_input.setPlaceholderText("org.example")
+        self.search_input.returnPressed.connect(self.search)
 
-        self.remote_combo = QComboBox()
-        self.remote_combo.setEditable(True)
-        self.remote_combo.addItem("flathub")
-        form.addRow(_("Remote"), self.remote_combo)
+        self.search_btn = QPushButton(_("Search"))
+        self.search_btn.clicked.connect(self.search)
 
-        self.scope_combo = QComboBox()
-        self.scope_combo.addItem(_("System"), "system")
-        self.scope_combo.addItem(_("User"), "user")
-        form.addRow(_("Scope"), self.scope_combo)
+        self.reset_btn = QPushButton(_("Reset"))
+        self.reset_btn.clicked.connect(self.reset_search)
 
-        layout.addLayout(form)
+        search_row = QHBoxLayout()
+        search_row.addWidget(self.search_input)
+        search_row.addWidget(self.search_btn)
+        search_row.addWidget(self.reset_btn)
+        layout.addLayout(search_row)
 
         btn_layout = QHBoxLayout()
         self.install_action = CommandAction(
@@ -111,31 +111,37 @@ class FlatpakPackageManager(QWidget):
         self.table.itemSelectionChanged.connect(self._on_package_selected)
         layout.addWidget(self.table)
 
-        hint = QLabel(_("Tip: select an installed package row to quickly remove it."))
-        layout.addWidget(hint)
-
         self._sync_action_buttons()
         self.refresh()
 
     def refresh(self) -> None:
-        self.load_remotes()
         self.load_packages()
 
     def _sync_action_buttons(self) -> None:
         self.install_btn.setText(self.install_action.text())
         self.install_btn.setEnabled(self.install_action.isEnabled())
         self.uninstall_btn.setText(self.uninstall_action.text())
-        self.uninstall_btn.setEnabled(self.uninstall_action.isEnabled())
+        can_uninstall = self.uninstall_action.isEnabled() and not self.showing_search_results
+        self.uninstall_btn.setEnabled(can_uninstall)
 
-    def _current_scope(self) -> Literal["system", "user"]:
-        value = str(self.scope_combo.currentData())
-        return cast(Literal["system", "user"], "user" if value == "user" else "system")
+    def _selected_app_id(self) -> str:
+        row = self.table.currentRow()
+        if row < 0 or row >= len(self.packages):
+            return ""
+        return self.packages[row].app_id
 
-    def _current_remote(self) -> str:
-        return self.remote_combo.currentText().strip()
+    def _selected_remote(self) -> str:
+        row = self.table.currentRow()
+        if row < 0 or row >= len(self.packages):
+            return self.DEFAULT_REMOTE
+        remote = self.packages[row].remote.strip()
+        return remote or self.DEFAULT_REMOTE
 
-    def _current_app_id(self) -> str:
-        return self.app_id_input.text().strip()
+    def _selected_scope(self) -> Literal["system", "user"]:
+        row = self.table.currentRow()
+        if row < 0 or row >= len(self.packages):
+            return self.DEFAULT_SCOPE
+        return self.packages[row].scope
 
     def _build_install_command(self, app_id: str, remote: str, scope: Literal["system", "user"]) -> list[str]:
         base = ["flatpak", "install", "-y", f"--{scope}", remote, app_id]
@@ -150,25 +156,30 @@ class FlatpakPackageManager(QWidget):
         return base
 
     def _on_install_triggered(self) -> None:
-        app_id = self._current_app_id()
-        remote = self._current_remote()
-        scope = self._current_scope()
+        app_id = self._selected_app_id()
+        remote = self._selected_remote()
+        scope = self._selected_scope()
 
         if not app_id:
-            QMessageBox.information(self, _("Information"), _("Please input a Flatpak app ID."))
-            return
-        if not remote:
-            QMessageBox.information(self, _("Information"), _("Please input a Flatpak remote."))
+            QMessageBox.information(self, _("Information"), _("Please select a package from the list to install."))
             return
 
         self.install_action.command = self._build_install_command(app_id, remote, scope)
         self.install_action.start_action()
 
     def _on_uninstall_triggered(self) -> None:
-        app_id = self._current_app_id()
-        scope = self._current_scope()
+        if self.showing_search_results:
+            QMessageBox.information(
+                self,
+                _("Information"),
+                _("Uninstall is only available in installed list mode. Click Refresh first."),
+            )
+            return
+
+        app_id = self._selected_app_id()
+        scope = self._selected_scope()
         if not app_id:
-            QMessageBox.information(self, _("Information"), _("Please select or input a Flatpak app ID."))
+            QMessageBox.information(self, _("Information"), _("Please select an installed package from the list."))
             return
 
         reply = QMessageBox.question(
@@ -184,7 +195,7 @@ class FlatpakPackageManager(QWidget):
 
     def _on_install_finished(self, success: bool, error: str) -> None:
         if success:
-            self.load_packages()
+            self.refresh()
             return
 
         if error:
@@ -192,58 +203,41 @@ class FlatpakPackageManager(QWidget):
 
     def _on_uninstall_finished(self, success: bool, error: str) -> None:
         if success:
-            self.load_packages()
+            self.refresh()
             return
 
         if error:
             QMessageBox.critical(self, _("Error"), _("Failed to remove package: {0}").format(error))
 
     def _on_package_selected(self) -> None:
-        row = self.table.currentRow()
-        if row < 0 or row >= len(self.packages):
+        return
+
+    def search(self) -> None:
+        query = self.search_input.text().strip()
+        remote = self.DEFAULT_REMOTE
+        scope = self.DEFAULT_SCOPE
+
+        if not query:
+            QMessageBox.information(self, _("Information"), _("Please input a search keyword."))
             return
 
-        pkg = self.packages[row]
-        self.app_id_input.setText(pkg.app_id)
-
-        remote_index = self.remote_combo.findText(pkg.remote)
-        if remote_index >= 0:
-            self.remote_combo.setCurrentIndex(remote_index)
-        elif pkg.remote:
-            self.remote_combo.addItem(pkg.remote)
-            self.remote_combo.setCurrentIndex(self.remote_combo.count() - 1)
-
-        scope_index = self.scope_combo.findData(pkg.scope)
-        if scope_index >= 0:
-            self.scope_combo.setCurrentIndex(scope_index)
-
-    def load_remotes(self) -> None:
-        current = self._current_remote()
-        self.remote_combo.blockSignals(True)
-        self.remote_combo.clear()
-
-        names = ["flathub"]
         try:
-            remotes = list_flatpak_remotes()
-            for remote in remotes:
-                if remote.name not in names:
-                    names.append(remote.name)
-        except Exception:
-            # Keep a default option even if remote listing fails.
-            pass
+            app_ids = search_flatpak_packages(query, remote)
+        except Exception as e:
+            QMessageBox.critical(self, _("Error"), _("Failed to search packages: {0}").format(str(e)))
+            return
 
-        for name in names:
-            self.remote_combo.addItem(name)
+        self.showing_search_results = True
+        self.packages = [FlatpakPackage(app_id=app_id, remote=remote, scope=scope) for app_id in app_ids]
+        self._populate_table()
+        self._sync_action_buttons()
 
-        if current:
-            idx = self.remote_combo.findText(current)
-            if idx >= 0:
-                self.remote_combo.setCurrentIndex(idx)
-            else:
-                self.remote_combo.addItem(current)
-                self.remote_combo.setCurrentIndex(self.remote_combo.count() - 1)
+        if not app_ids:
+            QMessageBox.information(self, _("Information"), _("No packages found."))
 
-        self.remote_combo.blockSignals(False)
+    def reset_search(self) -> None:
+        self.search_input.clear()
+        self.refresh()
 
     def load_packages(self) -> None:
         try:
@@ -252,6 +246,11 @@ class FlatpakPackageManager(QWidget):
             QMessageBox.critical(self, _("Error"), _("Failed to load Flatpak packages: {0}").format(str(e)))
             self.packages = []
 
+        self.showing_search_results = False
+        self._populate_table()
+        self._sync_action_buttons()
+
+    def _populate_table(self) -> None:
         self.table.setRowCount(len(self.packages))
         for row, package in enumerate(self.packages):
             self.table.setItem(row, 0, QTableWidgetItem(package.app_id))

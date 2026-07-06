@@ -7,6 +7,7 @@ from yast3.core.flatpak.package import (
     FlatpakPackage,
     install_flatpak_package,
     list_flatpak_packages,
+    search_flatpak_packages,
     uninstall_flatpak_package,
 )
 from yast3.core.flatpak.remote import (
@@ -53,5 +54,6 @@ __all__ = [
     "list_flatpak_remotes",
     "modify_flatpak_remote_url",
     "remove_flatpak_pkexec",
+    "search_flatpak_packages",
     "uninstall_flatpak_package",
 ]

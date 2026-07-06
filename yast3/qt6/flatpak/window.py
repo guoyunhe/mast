@@ -8,6 +8,7 @@ from PySide6.QtWidgets import (
     QMainWindow,
     QMessageBox,
     QPushButton,
+    QTabWidget,
     QVBoxLayout,
     QWidget,
 )
@@ -16,6 +17,7 @@ from yast3.core.flatpak import is_flatpak_installed
 from yast3.core.i18n import _
 
 from yast3.qt6.flatpak.install_action import InstallFlatpakAction
+from yast3.qt6.flatpak.package_manager import FlatpakPackageManager
 from yast3.qt6.flatpak.remove_action import RemoveFlatpakAction
 from yast3.qt6.flatpak.remote_manager import FlatpakRemoteManager
 
@@ -47,8 +49,12 @@ class FlatpakWindow(QMainWindow):
         self.manage_box = QWidget()
         manage_layout = QVBoxLayout(self.manage_box)
 
-        self.remote_manager = FlatpakRemoteManager(self)
-        manage_layout.addWidget(self.remote_manager)
+        self.tabs = QTabWidget(self.manage_box)
+        self.package_manager = FlatpakPackageManager(self.tabs)
+        self.remote_manager = FlatpakRemoteManager(self.tabs)
+        self.tabs.addTab(self.package_manager, _("Packages"))
+        self.tabs.addTab(self.remote_manager, _("Remotes"))
+        manage_layout.addWidget(self.tabs)
 
         danger_layout = QHBoxLayout()
         danger_layout.addStretch()
@@ -80,6 +86,7 @@ class FlatpakWindow(QMainWindow):
         if installed:
             self.install_box.hide()
             self.manage_box.show()
+            self.package_manager.refresh()
             self.remote_manager.load_remotes()
         else:
             self.manage_box.hide()

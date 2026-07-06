@@ -14,6 +14,10 @@ class FlatpakPackage:
 
     app_id: str
     remote: str
+    name: str = ""
+    description: str = ""
+    version: str = ""
+    branch: str = ""
     scope: Literal["system", "user"] = "system"
 
 
@@ -22,7 +26,14 @@ def list_flatpak_packages() -> list[FlatpakPackage]:
     if not _is_flatpak_installed():
         return []
 
-    result = _run_command(["flatpak", "list", "--app", "--columns=application,origin,installation"])
+    result = _run_command(
+        [
+            "flatpak",
+            "list",
+            "--app",
+            "--columns=application,name,description,version,branch,origin,installation",
+        ]
+    )
 
     packages: list[FlatpakPackage] = []
     for raw_line in result.stdout.splitlines():
@@ -35,12 +46,26 @@ def list_flatpak_packages() -> list[FlatpakPackage]:
             continue
 
         app_id = parts[0].strip()
-        remote = parts[1].strip() if len(parts) > 1 else ""
-        installation = parts[2].strip().lower() if len(parts) > 2 else "system"
+        name = parts[1].strip() if len(parts) > 1 else ""
+        description = parts[2].strip() if len(parts) > 2 else ""
+        version = parts[3].strip() if len(parts) > 3 else ""
+        branch = parts[4].strip() if len(parts) > 4 else ""
+        remote = parts[5].strip() if len(parts) > 5 else ""
+        installation = parts[6].strip().lower() if len(parts) > 6 else "system"
         scope: Literal["system", "user"] = "user" if "user" in installation else "system"
 
         if app_id:
-            packages.append(FlatpakPackage(app_id=app_id, remote=remote, scope=scope))
+            packages.append(
+                FlatpakPackage(
+                    app_id=app_id,
+                    remote=remote,
+                    name=name,
+                    description=description,
+                    version=version,
+                    branch=branch,
+                    scope=scope,
+                )
+            )
 
     return packages
 
@@ -53,31 +78,59 @@ def search_flatpak_packages(query: str, remote: str = "flathub") -> list[str]:
         raise ValueError("Search query is required.")
     if not normalized_remote:
         raise ValueError("Flatpak remote is required.")
-    app_ids = list_remote_flatpak_packages(normalized_remote)
-    return [app_id for app_id in app_ids if normalized_query in app_id.lower()]
+    packages = list_remote_flatpak_packages(normalized_remote)
+    return [pkg.app_id for pkg in packages if normalized_query in pkg.app_id.lower()]
 
 
-def list_remote_flatpak_packages(remote: str = "flathub") -> list[str]:
-    """List all application IDs from a Flatpak remote."""
+def list_remote_flatpak_packages(remote: str = "flathub") -> list[FlatpakPackage]:
+    """List all application metadata from a Flatpak remote."""
     normalized_remote = remote.strip()
     if not normalized_remote:
         raise ValueError("Flatpak remote is required.")
     if not _is_flatpak_installed():
         return []
 
-    result = _run_command(["flatpak", "remote-ls", "--app", "--columns=application", normalized_remote])
+    result = _run_command(
+        [
+            "flatpak",
+            "remote-ls",
+            "--app",
+            "--columns=application,name,description,version,branch",
+            normalized_remote,
+        ]
+    )
 
-    app_ids: list[str] = []
+    packages: list[FlatpakPackage] = []
     seen: set[str] = set()
     for raw_line in result.stdout.splitlines():
-        app_id = raw_line.strip()
+        line = raw_line.strip()
+        if not line:
+            continue
+
+        parts = line.split("\t")
+        app_id = parts[0].strip() if len(parts) > 0 else ""
         if not app_id or app_id in seen:
             continue
 
-        seen.add(app_id)
-        app_ids.append(app_id)
+        name = parts[1].strip() if len(parts) > 1 else ""
+        description = parts[2].strip() if len(parts) > 2 else ""
+        version = parts[3].strip() if len(parts) > 3 else ""
+        branch = parts[4].strip() if len(parts) > 4 else ""
 
-    return app_ids
+        seen.add(app_id)
+        packages.append(
+            FlatpakPackage(
+                app_id=app_id,
+                remote=normalized_remote,
+                name=name,
+                description=description,
+                version=version,
+                branch=branch,
+                scope="system",
+            )
+        )
+
+    return packages
 
 
 def install_flatpak_package(

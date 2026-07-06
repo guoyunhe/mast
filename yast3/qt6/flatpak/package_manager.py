@@ -8,6 +8,7 @@ from PySide6.QtCore import QObject, QThread, Signal
 from PySide6.QtWidgets import (
     QHBoxLayout,
     QHeaderView,
+    QLabel,
     QLineEdit,
     QMessageBox,
     QPushButton,
@@ -38,12 +39,12 @@ class _RemoteCatalogWorker(QObject):
 
     def run(self) -> None:
         try:
-            app_ids = list_remote_flatpak_packages(self.remote)
+            packages = list_remote_flatpak_packages(self.remote)
         except Exception as e:
             self.failed.emit(str(e))
             return
 
-        self.loaded.emit(app_ids)
+        self.loaded.emit(packages)
 
 
 class FlatpakPackageManager(QWidget):
@@ -51,6 +52,7 @@ class FlatpakPackageManager(QWidget):
 
     DEFAULT_REMOTE = "flathub"
     DEFAULT_SCOPE: Literal["system", "user"] = "system"
+    PAGE_SIZE = 100
     MODE_SEARCH: Literal["search"] = "search"
     MODE_INSTALLED: Literal["installed"] = "installed"
 
@@ -63,6 +65,8 @@ class FlatpakPackageManager(QWidget):
         self.installed_packages: list[FlatpakPackage] = []
         self.filtered_installed_packages: list[FlatpakPackage] = []
         self.installed_app_ids: set[str] = set()
+        self.search_page = 0
+        self.installed_page = 0
         self.remote_loading = False
         self.remote_loader_thread: QThread | None = None
         self.remote_loader: _RemoteCatalogWorker | None = None
@@ -134,17 +138,47 @@ class FlatpakPackageManager(QWidget):
         layout.addLayout(btn_layout)
 
         self.search_table = QTableWidget(self)
-        self.search_table.setColumnCount(4)
-        self.search_table.setHorizontalHeaderLabels([_("App ID"), _("Remote"), _("Scope"), _("Installed")])
+        self.search_table.setColumnCount(8)
+        self.search_table.setHorizontalHeaderLabels(
+            [
+                _("App ID"),
+                _("Name"),
+                _("Description"),
+                _("Version"),
+                _("Branch"),
+                _("Remote"),
+                _("Scope"),
+                _("Installed"),
+            ]
+        )
         self.search_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.search_table.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
-        self.search_table.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
-        self.search_table.horizontalHeader().setSectionResizeMode(3, QHeaderView.ResizeMode.Fixed)
-        self.search_table.setColumnWidth(2, 90)
-        self.search_table.setColumnWidth(3, 90)
+        self.search_table.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.Stretch)
+        self.search_table.horizontalHeader().setSectionResizeMode(3, QHeaderView.ResizeMode.ResizeToContents)
+        self.search_table.horizontalHeader().setSectionResizeMode(4, QHeaderView.ResizeMode.ResizeToContents)
+        self.search_table.horizontalHeader().setSectionResizeMode(5, QHeaderView.ResizeMode.ResizeToContents)
+        self.search_table.horizontalHeader().setSectionResizeMode(6, QHeaderView.ResizeMode.Fixed)
+        self.search_table.horizontalHeader().setSectionResizeMode(7, QHeaderView.ResizeMode.Fixed)
+        self.search_table.setColumnWidth(6, 90)
+        self.search_table.setColumnWidth(7, 90)
         self.search_table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.search_table.setSelectionMode(QTableWidget.SelectionMode.SingleSelection)
         layout.addWidget(self.search_table)
+
+        pager_row = QHBoxLayout()
+        self.search_prev_btn = QPushButton(_("Prev"), self)
+        self.search_prev_btn.clicked.connect(self.prev_search_page)
+        pager_row.addWidget(self.search_prev_btn)
+
+        self.search_page_label = QLabel(self)
+        self.search_page_label.setText("1/1")
+        pager_row.addWidget(self.search_page_label)
+
+        self.search_next_btn = QPushButton(_("Next"), self)
+        self.search_next_btn.clicked.connect(self.next_search_page)
+        pager_row.addWidget(self.search_next_btn)
+        pager_row.addStretch()
+        layout.addLayout(pager_row)
 
     def _build_installed_layout(self, layout: QVBoxLayout) -> None:
 
@@ -179,15 +213,36 @@ class FlatpakPackageManager(QWidget):
         layout.addLayout(btn_layout)
 
         self.installed_table = QTableWidget(self)
-        self.installed_table.setColumnCount(3)
-        self.installed_table.setHorizontalHeaderLabels([_("App ID"), _("Remote"), _("Scope")])
+        self.installed_table.setColumnCount(7)
+        self.installed_table.setHorizontalHeaderLabels(
+            [_("App ID"), _("Name"), _("Description"), _("Version"), _("Branch"), _("Remote"), _("Scope")]
+        )
         self.installed_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.installed_table.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
-        self.installed_table.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
-        self.installed_table.setColumnWidth(2, 90)
+        self.installed_table.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.Stretch)
+        self.installed_table.horizontalHeader().setSectionResizeMode(3, QHeaderView.ResizeMode.ResizeToContents)
+        self.installed_table.horizontalHeader().setSectionResizeMode(4, QHeaderView.ResizeMode.ResizeToContents)
+        self.installed_table.horizontalHeader().setSectionResizeMode(5, QHeaderView.ResizeMode.ResizeToContents)
+        self.installed_table.horizontalHeader().setSectionResizeMode(6, QHeaderView.ResizeMode.Fixed)
+        self.installed_table.setColumnWidth(6, 90)
         self.installed_table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.installed_table.setSelectionMode(QTableWidget.SelectionMode.SingleSelection)
         layout.addWidget(self.installed_table)
+
+        pager_row = QHBoxLayout()
+        self.installed_prev_btn = QPushButton(_("Prev"), self)
+        self.installed_prev_btn.clicked.connect(self.prev_installed_page)
+        pager_row.addWidget(self.installed_prev_btn)
+
+        self.installed_page_label = QLabel(self)
+        self.installed_page_label.setText("1/1")
+        pager_row.addWidget(self.installed_page_label)
+
+        self.installed_next_btn = QPushButton(_("Next"), self)
+        self.installed_next_btn.clicked.connect(self.next_installed_page)
+        pager_row.addWidget(self.installed_next_btn)
+        pager_row.addStretch()
+        layout.addLayout(pager_row)
 
     def refresh(self) -> None:
         if self.mode == self.MODE_SEARCH:
@@ -223,42 +278,47 @@ class FlatpakPackageManager(QWidget):
         if self.mode != self.MODE_SEARCH:
             return ""
         row = self.search_table.currentRow()
-        if row < 0 or row >= len(self.filtered_remote_packages):
+        page_items = self._search_page_items()
+        if row < 0 or row >= len(page_items):
             return ""
-        return self.filtered_remote_packages[row].app_id
+        return page_items[row].app_id
 
     def _selected_remote(self) -> str:
         if self.mode != self.MODE_SEARCH:
             return self.DEFAULT_REMOTE
         row = self.search_table.currentRow()
-        if row < 0 or row >= len(self.filtered_remote_packages):
+        page_items = self._search_page_items()
+        if row < 0 or row >= len(page_items):
             return self.DEFAULT_REMOTE
-        remote = self.filtered_remote_packages[row].remote.strip()
+        remote = page_items[row].remote.strip()
         return remote or self.DEFAULT_REMOTE
 
     def _selected_scope(self) -> Literal["system", "user"]:
         if self.mode != self.MODE_SEARCH:
             return self.DEFAULT_SCOPE
         row = self.search_table.currentRow()
-        if row < 0 or row >= len(self.filtered_remote_packages):
+        page_items = self._search_page_items()
+        if row < 0 or row >= len(page_items):
             return self.DEFAULT_SCOPE
-        return self.filtered_remote_packages[row].scope
+        return page_items[row].scope
 
     def _selected_installed_app_id(self) -> str:
         if self.mode != self.MODE_INSTALLED:
             return ""
         row = self.installed_table.currentRow()
-        if row < 0 or row >= len(self.filtered_installed_packages):
+        page_items = self._installed_page_items()
+        if row < 0 or row >= len(page_items):
             return ""
-        return self.filtered_installed_packages[row].app_id
+        return page_items[row].app_id
 
     def _selected_installed_scope(self) -> Literal["system", "user"]:
         if self.mode != self.MODE_INSTALLED:
             return self.DEFAULT_SCOPE
         row = self.installed_table.currentRow()
-        if row < 0 or row >= len(self.filtered_installed_packages):
+        page_items = self._installed_page_items()
+        if row < 0 or row >= len(page_items):
             return self.DEFAULT_SCOPE
-        return self.filtered_installed_packages[row].scope
+        return page_items[row].scope
 
     def _build_install_command(self, app_id: str, remote: str, scope: Literal["system", "user"]) -> list[str]:
         base = ["flatpak", "install", "-y", f"--{scope}", remote, app_id]
@@ -340,6 +400,7 @@ class FlatpakPackageManager(QWidget):
 
         query = self.search_input.text().strip()
         self.filtered_remote_packages = self._filter_packages(self.remote_packages, query)
+        self.search_page = 0
         self._populate_search_table()
 
     def reset_remote_search(self) -> None:
@@ -348,6 +409,7 @@ class FlatpakPackageManager(QWidget):
 
         self.search_input.clear()
         self.filtered_remote_packages = list(self.remote_packages)
+        self.search_page = 0
         self._populate_search_table()
 
     def search_installed(self) -> None:
@@ -356,6 +418,7 @@ class FlatpakPackageManager(QWidget):
 
         query = self.installed_search_input.text().strip()
         self.filtered_installed_packages = self._filter_packages(self.installed_packages, query)
+        self.installed_page = 0
         self._populate_installed_table()
 
     def reset_installed_search(self) -> None:
@@ -364,6 +427,7 @@ class FlatpakPackageManager(QWidget):
 
         self.installed_search_input.clear()
         self.filtered_installed_packages = list(self.installed_packages)
+        self.installed_page = 0
         self._populate_installed_table()
 
     def load_remote_packages(self) -> None:
@@ -392,15 +456,13 @@ class FlatpakPackageManager(QWidget):
 
         self.remote_loader_thread.start()
 
-    def _on_remote_packages_loaded(self, app_ids: list[str]) -> None:
+    def _on_remote_packages_loaded(self, packages: list[FlatpakPackage]) -> None:
         if self.mode != self.MODE_SEARCH:
             return
 
-        self.remote_packages = [
-            FlatpakPackage(app_id=app_id, remote=self.DEFAULT_REMOTE, scope=self.DEFAULT_SCOPE)
-            for app_id in app_ids
-        ]
+        self.remote_packages = packages
         self.filtered_remote_packages = self._filter_packages(self.remote_packages, self.search_input.text().strip())
+        self.search_page = 0
         self._populate_search_table()
 
     def _on_remote_packages_failed(self, error: str) -> None:
@@ -410,6 +472,7 @@ class FlatpakPackageManager(QWidget):
         QMessageBox.critical(self, _("Error"), _("Failed to load package catalog: {0}").format(error))
         self.remote_packages = []
         self.filtered_remote_packages = []
+        self.search_page = 0
         self._populate_search_table()
 
     def _on_remote_loader_finished(self) -> None:
@@ -431,6 +494,7 @@ class FlatpakPackageManager(QWidget):
                 self.installed_packages,
                 self.installed_search_input.text().strip(),
             )
+            self.installed_page = 0
             self._populate_installed_table()
             return
 
@@ -441,23 +505,94 @@ class FlatpakPackageManager(QWidget):
         if self.mode != self.MODE_SEARCH:
             return
 
-        self.search_table.setRowCount(len(self.filtered_remote_packages))
-        for row, package in enumerate(self.filtered_remote_packages):
+        page_items = self._search_page_items()
+        self.search_table.setRowCount(len(page_items))
+        for row, package in enumerate(page_items):
             self.search_table.setItem(row, 0, QTableWidgetItem(package.app_id))
-            self.search_table.setItem(row, 1, QTableWidgetItem(package.remote))
-            self.search_table.setItem(row, 2, QTableWidgetItem(package.scope))
+            self.search_table.setItem(row, 1, QTableWidgetItem(package.name))
+            self.search_table.setItem(row, 2, QTableWidgetItem(package.description))
+            self.search_table.setItem(row, 3, QTableWidgetItem(package.version))
+            self.search_table.setItem(row, 4, QTableWidgetItem(package.branch))
+            self.search_table.setItem(row, 5, QTableWidgetItem(package.remote))
+            self.search_table.setItem(row, 6, QTableWidgetItem(package.scope))
             installed_text = _("Yes") if package.app_id in self.installed_app_ids else _("No")
-            self.search_table.setItem(row, 3, QTableWidgetItem(installed_text))
+            self.search_table.setItem(row, 7, QTableWidgetItem(installed_text))
+
+        self._update_search_pager()
 
     def _populate_installed_table(self) -> None:
         if self.mode != self.MODE_INSTALLED:
             return
 
-        self.installed_table.setRowCount(len(self.filtered_installed_packages))
-        for row, package in enumerate(self.filtered_installed_packages):
+        page_items = self._installed_page_items()
+        self.installed_table.setRowCount(len(page_items))
+        for row, package in enumerate(page_items):
             self.installed_table.setItem(row, 0, QTableWidgetItem(package.app_id))
-            self.installed_table.setItem(row, 1, QTableWidgetItem(package.remote))
-            self.installed_table.setItem(row, 2, QTableWidgetItem(package.scope))
+            self.installed_table.setItem(row, 1, QTableWidgetItem(package.name))
+            self.installed_table.setItem(row, 2, QTableWidgetItem(package.description))
+            self.installed_table.setItem(row, 3, QTableWidgetItem(package.version))
+            self.installed_table.setItem(row, 4, QTableWidgetItem(package.branch))
+            self.installed_table.setItem(row, 5, QTableWidgetItem(package.remote))
+            self.installed_table.setItem(row, 6, QTableWidgetItem(package.scope))
+
+        self._update_installed_pager()
+
+    def prev_search_page(self) -> None:
+        if self.search_page <= 0:
+            return
+        self.search_page -= 1
+        self._populate_search_table()
+
+    def next_search_page(self) -> None:
+        total_pages = self._total_pages(len(self.filtered_remote_packages))
+        if self.search_page + 1 >= total_pages:
+            return
+        self.search_page += 1
+        self._populate_search_table()
+
+    def prev_installed_page(self) -> None:
+        if self.installed_page <= 0:
+            return
+        self.installed_page -= 1
+        self._populate_installed_table()
+
+    def next_installed_page(self) -> None:
+        total_pages = self._total_pages(len(self.filtered_installed_packages))
+        if self.installed_page + 1 >= total_pages:
+            return
+        self.installed_page += 1
+        self._populate_installed_table()
+
+    def _search_page_items(self) -> list[FlatpakPackage]:
+        start = self.search_page * self.PAGE_SIZE
+        end = start + self.PAGE_SIZE
+        return self.filtered_remote_packages[start:end]
+
+    def _installed_page_items(self) -> list[FlatpakPackage]:
+        start = self.installed_page * self.PAGE_SIZE
+        end = start + self.PAGE_SIZE
+        return self.filtered_installed_packages[start:end]
+
+    def _update_search_pager(self) -> None:
+        total = len(self.filtered_remote_packages)
+        total_pages = self._total_pages(total)
+        self.search_page = min(self.search_page, total_pages - 1)
+        self.search_page_label.setText(f"{self.search_page + 1}/{total_pages}")
+        self.search_prev_btn.setEnabled(self.search_page > 0)
+        self.search_next_btn.setEnabled(self.search_page + 1 < total_pages)
+
+    def _update_installed_pager(self) -> None:
+        total = len(self.filtered_installed_packages)
+        total_pages = self._total_pages(total)
+        self.installed_page = min(self.installed_page, total_pages - 1)
+        self.installed_page_label.setText(f"{self.installed_page + 1}/{total_pages}")
+        self.installed_prev_btn.setEnabled(self.installed_page > 0)
+        self.installed_next_btn.setEnabled(self.installed_page + 1 < total_pages)
+
+    def _total_pages(self, total_rows: int) -> int:
+        if total_rows <= 0:
+            return 1
+        return (total_rows + self.PAGE_SIZE - 1) // self.PAGE_SIZE
 
     def _filter_packages(self, packages: list[FlatpakPackage], query: str) -> list[FlatpakPackage]:
         normalized_query = query.strip().lower()
@@ -467,5 +602,10 @@ class FlatpakPackageManager(QWidget):
         return [
             package
             for package in packages
-            if normalized_query in package.app_id.lower() or normalized_query in package.remote.lower()
+            if normalized_query in package.app_id.lower()
+            or normalized_query in package.name.lower()
+            or normalized_query in package.description.lower()
+            or normalized_query in package.version.lower()
+            or normalized_query in package.branch.lower()
+            or normalized_query in package.remote.lower()
         ]

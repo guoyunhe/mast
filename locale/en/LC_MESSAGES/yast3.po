@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  yast3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-06 04:05+0000\n"
+"POT-Creation-Date: 2026-07-07 03:01+0000\n"
 "PO-Revision-Date: 2024-01-01 00:00+0000\n"
 "Last-Translator: \n"
 "Language: en\n"
@@ -250,15 +250,17 @@ msgstr ""
 #: yast3/gtk4/ssh/hosts/tab.py:228 yast3/gtk4/ssh/keys/generate_dialog.py:110
 #: yast3/gtk4/ssh/keys/tab.py:196 yast3/gtk4/ssh/keys/tab.py:242
 #: yast3/qt6/cron/cron_tab.py:96 yast3/qt6/cron/cron_tab.py:204
-#: yast3/qt6/cron/cron_tab.py:207 yast3/qt6/flatpak/package_manager.py:202
-#: yast3/qt6/flatpak/package_manager.py:210
-#: yast3/qt6/flatpak/package_manager.py:227
-#: yast3/qt6/flatpak/package_manager.py:246
+#: yast3/qt6/cron/cron_tab.py:207 yast3/qt6/flatpak/package_manager.py:384
+#: yast3/qt6/flatpak/package_manager.py:395
+#: yast3/qt6/flatpak/package_manager.py:472
+#: yast3/qt6/flatpak/package_manager.py:488
 #: yast3/qt6/flatpak/remote_manager.py:74
 #: yast3/qt6/flatpak/remote_manager.py:97
 #: yast3/qt6/flatpak/remote_manager.py:116
-#: yast3/qt6/flatpak/remote_manager.py:138 yast3/qt6/flatpak/window.py:88
-#: yast3/qt6/flatpak/window.py:99 yast3/qt6/git/window.py:249
+#: yast3/qt6/flatpak/remote_manager.py:138
+#: yast3/qt6/flatpak/runtime_manager.py:166
+#: yast3/qt6/flatpak/runtime_manager.py:172 yast3/qt6/flatpak/window.py:95
+#: yast3/qt6/flatpak/window.py:106 yast3/qt6/git/window.py:249
 #: yast3/qt6/git/window.py:275 yast3/qt6/hostname/window.py:66
 #: yast3/qt6/hostname/window.py:70 yast3/qt6/hostname/window.py:75
 #: yast3/qt6/hostname/window.py:83 yast3/qt6/hostname/window.py:89
@@ -295,13 +297,12 @@ msgstr "Error"
 #: yast3/gtk4/repositories/window.py:257 yast3/gtk4/repositories/window.py:311
 #: yast3/gtk4/ssh/hosts/tab.py:159 yast3/gtk4/ssh/hosts/tab.py:187
 #: yast3/qt6/cron/cron_tab.py:147 yast3/qt6/cron/cron_tab.py:160
-#: yast3/qt6/flatpak/package_manager.py:164
-#: yast3/qt6/flatpak/package_manager.py:174
-#: yast3/qt6/flatpak/package_manager.py:182
-#: yast3/qt6/flatpak/package_manager.py:221
-#: yast3/qt6/flatpak/package_manager.py:236
+#: yast3/qt6/flatpak/package_manager.py:344
+#: yast3/qt6/flatpak/package_manager.py:348
+#: yast3/qt6/flatpak/package_manager.py:361
 #: yast3/qt6/flatpak/remote_manager.py:102
-#: yast3/qt6/flatpak/remote_manager.py:121 yast3/qt6/hosts/window.py:187
+#: yast3/qt6/flatpak/remote_manager.py:121
+#: yast3/qt6/flatpak/runtime_manager.py:146 yast3/qt6/hosts/window.py:187
 #: yast3/qt6/hosts/window.py:224 yast3/qt6/repositories/window.py:106
 #: yast3/qt6/repositories/window.py:219 yast3/qt6/repositories/window.py:262
 #: yast3/qt6/ssh/hosts/tab.py:148 yast3/qt6/ssh/hosts/tab.py:169
@@ -322,9 +323,10 @@ msgstr ""
 #: yast3/gtk4/flatpak/window.py:85 yast3/gtk4/hostname/window.py:99
 #: yast3/gtk4/hosts/window.py:229 yast3/gtk4/repositories/window.py:324
 #: yast3/gtk4/repositories/window.py:363 yast3/gtk4/ssh/hosts/tab.py:204
-#: yast3/qt6/cron/cron_tab.py:164 yast3/qt6/flatpak/package_manager.py:187
+#: yast3/qt6/cron/cron_tab.py:164 yast3/qt6/flatpak/package_manager.py:366
 #: yast3/qt6/flatpak/remote_manager.py:127
-#: yast3/qt6/flatpak/remove_action.py:37 yast3/qt6/hostname/window.py:109
+#: yast3/qt6/flatpak/remove_action.py:37
+#: yast3/qt6/flatpak/runtime_manager.py:151 yast3/qt6/hostname/window.py:109
 #: yast3/qt6/hosts/window.py:229 yast3/qt6/repositories/window.py:269
 #: yast3/qt6/repositories/window.py:289 yast3/qt6/ssh/hosts/tab.py:181
 #: yast3/qt6/ssh/keys/generate_dialog.py:184
@@ -346,8 +348,8 @@ msgstr ""
 #: yast3/gtk4/ssh/keys/tab.py:246 yast3/qt6/cron/cron_tab.py:201
 #: yast3/qt6/flatpak/remote_manager.py:94
 #: yast3/qt6/flatpak/remote_manager.py:113
-#: yast3/qt6/flatpak/remote_manager.py:135 yast3/qt6/flatpak/window.py:83
-#: yast3/qt6/flatpak/window.py:94 yast3/qt6/git/window.py:270
+#: yast3/qt6/flatpak/remote_manager.py:135 yast3/qt6/flatpak/window.py:90
+#: yast3/qt6/flatpak/window.py:101 yast3/qt6/git/window.py:270
 #: yast3/qt6/hostname/window.py:124 yast3/qt6/hosts/window.py:264
 #: yast3/qt6/proxy/window.py:110 yast3/qt6/repositories/window.py:120
 #: yast3/qt6/repositories/window.py:301 yast3/qt6/ssh/__init__.py:77
@@ -392,7 +394,6 @@ msgid "Flatpak"
 msgstr ""
 
 #: yast3/gtk4/flatpak/remote_manager.py:40 yast3/gtk4/ssh/keys/tab.py:47
-#: yast3/qt6/flatpak/package_manager.py:95
 #: yast3/qt6/flatpak/remote_manager.py:49 yast3/qt6/ssh/keys/tab.py:50
 msgid "Refresh"
 msgstr ""
@@ -402,8 +403,11 @@ msgstr ""
 #: yast3/gtk4/flatpak/remote_manager.py:257
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:36
 #: yast3/gtk4/repositories/window.py:81 yast3/gtk4/ssh/keys/tab.py:68
+#: yast3/qt6/flatpak/package_manager.py:145
+#: yast3/qt6/flatpak/package_manager.py:218
 #: yast3/qt6/flatpak/remote_dialog.py:42 yast3/qt6/flatpak/remote_dialog.py:45
 #: yast3/qt6/flatpak/remote_manager.py:58
+#: yast3/qt6/flatpak/runtime_manager.py:86
 #: yast3/qt6/repositories/repo_edit_dialog.py:37
 #: yast3/qt6/repositories/window.py:70 yast3/qt6/ssh/keys/tab.py:61
 #: yast3/tui/repositories/window.py:80 yast3/tui/repositories/window.py:328
@@ -426,9 +430,11 @@ msgstr ""
 #: yast3/gtk4/flatpak/remote_manager.py:54
 #: yast3/gtk4/flatpak/remote_manager.py:196
 #: yast3/gtk4/flatpak/remote_manager.py:261
-#: yast3/qt6/flatpak/package_manager.py:104
+#: yast3/qt6/flatpak/package_manager.py:150
+#: yast3/qt6/flatpak/package_manager.py:218
 #: yast3/qt6/flatpak/remote_dialog.py:53 yast3/qt6/flatpak/remote_dialog.py:59
 #: yast3/qt6/flatpak/remote_manager.py:58
+#: yast3/qt6/flatpak/runtime_manager.py:86
 #, fuzzy
 msgid "Scope"
 msgstr "Core"
@@ -463,7 +469,7 @@ msgstr "Saved successfully"
 
 #: yast3/gtk4/flatpak/remote_manager.py:163
 #: yast3/qt6/flatpak/remote_manager.py:138
-#, fuzzy, python-brace-format, python-format
+#, fuzzy, python-brace-format
 msgid "Failed to delete remote: {0}"
 msgstr "Failed to delete repository: %s"
 
@@ -507,7 +513,7 @@ msgstr "Saved successfully"
 msgid "Failed to update remote URL: {0}"
 msgstr "Failed to save Git configuration."
 
-#: yast3/gtk4/flatpak/window.py:23 yast3/qt6/flatpak/window.py:30
+#: yast3/gtk4/flatpak/window.py:23 yast3/qt6/flatpak/window.py:31
 #, fuzzy
 msgid "Flatpak Configuration — YaST3"
 msgstr "Git Configuration — YaST3"
@@ -528,12 +534,12 @@ msgid "Remove Flatpak"
 msgstr ""
 
 #: yast3/gtk4/flatpak/window.py:70 yast3/qt6/flatpak/install_action.py:20
-#: yast3/qt6/flatpak/window.py:83
+#: yast3/qt6/flatpak/window.py:90
 #, fuzzy
 msgid "Flatpak installed successfully."
 msgstr "Saved successfully"
 
-#: yast3/gtk4/flatpak/window.py:76 yast3/qt6/flatpak/window.py:89
+#: yast3/gtk4/flatpak/window.py:76 yast3/qt6/flatpak/window.py:96
 #, fuzzy, python-brace-format
 msgid "Failed to install Flatpak: {0}"
 msgstr "Failed to save Git configuration."
@@ -543,12 +549,12 @@ msgid "Are you sure you want to remove Flatpak?"
 msgstr ""
 
 #: yast3/gtk4/flatpak/window.py:98 yast3/qt6/flatpak/remove_action.py:21
-#: yast3/qt6/flatpak/window.py:94
+#: yast3/qt6/flatpak/window.py:101
 #, fuzzy
 msgid "Flatpak removed successfully."
 msgstr "Saved successfully"
 
-#: yast3/gtk4/flatpak/window.py:104 yast3/qt6/flatpak/window.py:100
+#: yast3/gtk4/flatpak/window.py:104 yast3/qt6/flatpak/window.py:107
 #, fuzzy, python-brace-format
 msgid "Failed to remove Flatpak: {0}"
 msgstr "Failed to save Git configuration."
@@ -586,8 +592,10 @@ msgstr "Merge"
 msgid "Other"
 msgstr "Other"
 
-#: yast3/gtk4/git/window.py:76 yast3/qt6/flatpak/package_manager.py:49
-#: yast3/qt6/git/window.py:83 yast3/tui/git/window.py:82
+#: yast3/gtk4/git/window.py:76 yast3/qt6/flatpak/package_manager.py:117
+#: yast3/qt6/flatpak/package_manager.py:192
+#: yast3/qt6/flatpak/runtime_manager.py:60 yast3/qt6/git/window.py:83
+#: yast3/tui/git/window.py:82
 msgid "Reset"
 msgstr "Reset"
 
@@ -857,9 +865,9 @@ msgstr ""
 msgid "Comment:"
 msgstr "Commit"
 
-#: yast3/gtk4/packages/__init__.py:18 yast3/qt6/flatpak/window.py:55
-#: yast3/qt6/packages/__init__.py:12 yast3/qt6/packages/window.py:13
-#: yast3/qt6/packages/window.py:18 yast3/tui/packages/__init__.py:12
+#: yast3/gtk4/packages/__init__.py:18 yast3/qt6/packages/__init__.py:12
+#: yast3/qt6/packages/window.py:13 yast3/qt6/packages/window.py:18
+#: yast3/tui/packages/__init__.py:12
 msgid "Packages"
 msgstr ""
 
@@ -1044,6 +1052,7 @@ msgid "Edit Repository"
 msgstr ""
 
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:34
+#: yast3/qt6/flatpak/runtime_manager.py:86
 #: yast3/qt6/repositories/repo_edit_dialog.py:31
 msgid "ID"
 msgstr ""
@@ -1286,16 +1295,16 @@ msgid "Private"
 msgstr ""
 
 #: yast3/gtk4/ssh/keys/tab.py:147 yast3/gtk4/ssh/keys/tab.py:148
-#: yast3/gtk4/ssh/keys/tab.py:149 yast3/qt6/ssh/keys/tab.py:137
-#: yast3/qt6/ssh/keys/tab.py:140 yast3/qt6/ssh/keys/tab.py:143
-#: yast3/tui/ssh/window.py:336
+#: yast3/gtk4/ssh/keys/tab.py:149 yast3/qt6/flatpak/package_manager.py:518
+#: yast3/qt6/ssh/keys/tab.py:137 yast3/qt6/ssh/keys/tab.py:140
+#: yast3/qt6/ssh/keys/tab.py:143 yast3/tui/ssh/window.py:336
 msgid "Yes"
 msgstr ""
 
 #: yast3/gtk4/ssh/keys/tab.py:147 yast3/gtk4/ssh/keys/tab.py:148
-#: yast3/gtk4/ssh/keys/tab.py:149 yast3/qt6/ssh/keys/tab.py:137
-#: yast3/qt6/ssh/keys/tab.py:140 yast3/qt6/ssh/keys/tab.py:143
-#: yast3/tui/ssh/window.py:336
+#: yast3/gtk4/ssh/keys/tab.py:149 yast3/qt6/flatpak/package_manager.py:518
+#: yast3/qt6/ssh/keys/tab.py:137 yast3/qt6/ssh/keys/tab.py:140
+#: yast3/qt6/ssh/keys/tab.py:143 yast3/tui/ssh/window.py:336
 msgid "No"
 msgstr ""
 
@@ -1350,8 +1359,8 @@ msgstr "Saved successfully"
 msgid "Command failed. See output for details."
 msgstr ""
 
-#: yast3/qt6/command/worker.py:50 yast3/qt6/flatpak/window.py:89
-#: yast3/qt6/flatpak/window.py:100
+#: yast3/qt6/command/worker.py:50 yast3/qt6/flatpak/window.py:96
+#: yast3/qt6/flatpak/window.py:107
 msgid "Unknown error"
 msgstr ""
 
@@ -1359,94 +1368,139 @@ msgstr ""
 msgid "Installing Flatpak..."
 msgstr ""
 
-#: yast3/qt6/flatpak/package_manager.py:46
-#, fuzzy
-msgid "Search"
-msgstr "User"
-
-#: yast3/qt6/flatpak/package_manager.py:60
-msgid "Install Package"
+#: yast3/qt6/flatpak/package_manager.py:78
+msgid "Install"
 msgstr ""
 
-#: yast3/qt6/flatpak/package_manager.py:61
+#: yast3/qt6/flatpak/package_manager.py:79
 msgid "Installing package..."
 msgstr ""
 
-#: yast3/qt6/flatpak/package_manager.py:62
+#: yast3/qt6/flatpak/package_manager.py:80
 msgid "Install Flatpak Package"
 msgstr ""
 
-#: yast3/qt6/flatpak/package_manager.py:64
+#: yast3/qt6/flatpak/package_manager.py:82
 #, fuzzy
 msgid "Package installed successfully."
 msgstr "Saved successfully"
 
-#: yast3/qt6/flatpak/package_manager.py:73
+#: yast3/qt6/flatpak/package_manager.py:92
 msgid "Remove Package"
 msgstr ""
 
-#: yast3/qt6/flatpak/package_manager.py:74
+#: yast3/qt6/flatpak/package_manager.py:93
 msgid "Removing package..."
 msgstr ""
 
-#: yast3/qt6/flatpak/package_manager.py:75
+#: yast3/qt6/flatpak/package_manager.py:94
 msgid "Remove Flatpak Package"
 msgstr ""
 
-#: yast3/qt6/flatpak/package_manager.py:77
+#: yast3/qt6/flatpak/package_manager.py:96
 #, fuzzy
 msgid "Package removed successfully."
 msgstr "Saved successfully"
 
-#: yast3/qt6/flatpak/package_manager.py:104
+#: yast3/qt6/flatpak/package_manager.py:114
+#: yast3/qt6/flatpak/package_manager.py:189
+#: yast3/qt6/flatpak/runtime_manager.py:57 yast3/qt6/flatpak/window.py:58
+#, fuzzy
+msgid "Search"
+msgstr "User"
+
+#: yast3/qt6/flatpak/package_manager.py:133
+#: yast3/qt6/flatpak/package_manager.py:274
+msgid "Refresh Catalog"
+msgstr ""
+
+#: yast3/qt6/flatpak/package_manager.py:144
+#: yast3/qt6/flatpak/package_manager.py:218
 msgid "App ID"
 msgstr ""
 
-#: yast3/qt6/flatpak/package_manager.py:104
+#: yast3/qt6/flatpak/package_manager.py:146
+#: yast3/qt6/flatpak/package_manager.py:218
+#: yast3/qt6/flatpak/runtime_manager.py:86
+msgid "Description"
+msgstr ""
+
+#: yast3/qt6/flatpak/package_manager.py:147
+#: yast3/qt6/flatpak/package_manager.py:218
+#: yast3/qt6/flatpak/runtime_manager.py:86
+msgid "Version"
+msgstr ""
+
+#: yast3/qt6/flatpak/package_manager.py:148
+#: yast3/qt6/flatpak/package_manager.py:218
+#: yast3/qt6/flatpak/runtime_manager.py:86
+msgid "Branch"
+msgstr ""
+
+#: yast3/qt6/flatpak/package_manager.py:149
+#: yast3/qt6/flatpak/package_manager.py:218
+#: yast3/qt6/flatpak/runtime_manager.py:86
 msgid "Remote"
 msgstr ""
 
-#: yast3/qt6/flatpak/package_manager.py:164
+#: yast3/qt6/flatpak/package_manager.py:151 yast3/qt6/flatpak/window.py:59
+#, fuzzy
+msgid "Installed"
+msgstr "Disabled"
+
+#: yast3/qt6/flatpak/package_manager.py:169
+#: yast3/qt6/flatpak/package_manager.py:233
+#: yast3/qt6/flatpak/runtime_manager.py:101
+msgid "Prev"
+msgstr ""
+
+#: yast3/qt6/flatpak/package_manager.py:177
+#: yast3/qt6/flatpak/package_manager.py:241
+#: yast3/qt6/flatpak/runtime_manager.py:109
+msgid "Next"
+msgstr ""
+
+#: yast3/qt6/flatpak/package_manager.py:208
+msgid "Refresh Installed"
+msgstr ""
+
+#: yast3/qt6/flatpak/package_manager.py:272
+msgid "Loading..."
+msgstr ""
+
+#: yast3/qt6/flatpak/package_manager.py:344
 msgid "Please select a package from the list to install."
 msgstr ""
 
-#: yast3/qt6/flatpak/package_manager.py:175
-msgid "Uninstall is only available in installed list mode. Click Refresh first."
+#: yast3/qt6/flatpak/package_manager.py:348
+msgid "The selected package is already installed."
 msgstr ""
 
-#: yast3/qt6/flatpak/package_manager.py:182
+#: yast3/qt6/flatpak/package_manager.py:361
 msgid "Please select an installed package from the list."
 msgstr ""
 
-#: yast3/qt6/flatpak/package_manager.py:188
+#: yast3/qt6/flatpak/package_manager.py:367
 #, python-brace-format
 msgid "Are you sure you want to remove package '{0}'?"
 msgstr ""
 
-#: yast3/qt6/flatpak/package_manager.py:202
+#: yast3/qt6/flatpak/package_manager.py:384
 #, fuzzy, python-brace-format
 msgid "Failed to install package: {0}"
 msgstr "Failed to read public key: {0}"
 
-#: yast3/qt6/flatpak/package_manager.py:210
+#: yast3/qt6/flatpak/package_manager.py:395
 #, fuzzy, python-brace-format
 msgid "Failed to remove package: {0}"
 msgstr "Failed to read public key: {0}"
 
-#: yast3/qt6/flatpak/package_manager.py:221
-msgid "Please input a search keyword."
-msgstr ""
-
-#: yast3/qt6/flatpak/package_manager.py:227
+#: yast3/qt6/flatpak/package_manager.py:472
 #, fuzzy, python-brace-format
-msgid "Failed to search packages: {0}"
+msgid "Failed to load package catalog: {0}"
 msgstr "Failed to read public key: {0}"
 
-#: yast3/qt6/flatpak/package_manager.py:236
-msgid "No packages found."
-msgstr ""
-
-#: yast3/qt6/flatpak/package_manager.py:246
+#: yast3/qt6/flatpak/package_manager.py:488
 #, fuzzy, python-brace-format
 msgid "Failed to load Flatpak packages: {0}"
 msgstr "Failed to read public key: {0}"
@@ -1455,19 +1509,63 @@ msgstr "Failed to read public key: {0}"
 msgid "Removing Flatpak..."
 msgstr ""
 
-#: yast3/qt6/flatpak/window.py:56
+#: yast3/qt6/flatpak/runtime_manager.py:39
+msgid "Remove Runtime"
+msgstr ""
+
+#: yast3/qt6/flatpak/runtime_manager.py:40
+msgid "Removing runtime..."
+msgstr ""
+
+#: yast3/qt6/flatpak/runtime_manager.py:41
+msgid "Remove Flatpak Runtime"
+msgstr ""
+
+#: yast3/qt6/flatpak/runtime_manager.py:43
+#, fuzzy
+msgid "Runtime removed successfully."
+msgstr "Saved successfully"
+
+#: yast3/qt6/flatpak/runtime_manager.py:76
+msgid "Refresh Runtimes"
+msgstr ""
+
+#: yast3/qt6/flatpak/runtime_manager.py:146
+msgid "Please select an installed runtime from the list."
+msgstr ""
+
+#: yast3/qt6/flatpak/runtime_manager.py:152
+#, python-brace-format
+msgid "Are you sure you want to remove runtime '{0}'?"
+msgstr ""
+
+#: yast3/qt6/flatpak/runtime_manager.py:166
+#, fuzzy, python-brace-format
+msgid "Failed to remove runtime: {0}"
+msgstr "Failed to read public key: {0}"
+
+#: yast3/qt6/flatpak/runtime_manager.py:172
+#, fuzzy, python-brace-format
+msgid "Failed to load Flatpak runtimes: {0}"
+msgstr "Failed to save Git configuration."
+
+#: yast3/qt6/flatpak/window.py:60
+msgid "Runtimes"
+msgstr ""
+
+#: yast3/qt6/flatpak/window.py:61
 msgid "Remotes"
 msgstr ""
 
-#: yast3/qt6/flatpak/window.py:57
+#: yast3/qt6/flatpak/window.py:62
 msgid "Settings"
 msgstr ""
 
-#: yast3/qt6/flatpak/window.py:107
+#: yast3/qt6/flatpak/window.py:114
 msgid "Please wait"
 msgstr ""
 
-#: yast3/qt6/flatpak/window.py:108
+#: yast3/qt6/flatpak/window.py:115
 msgid "A Flatpak operation is still running. Please wait for it to finish."
 msgstr ""
 
@@ -1938,4 +2036,21 @@ msgstr ""
 #: yast3/tui/ssh/window.py:620
 msgid "Key bits"
 msgstr ""
+
+#~ msgid "Install Package"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Uninstall is only available in installed"
+#~ " list mode. Click Refresh first."
+#~ msgstr ""
+
+#~ msgid "Please input a search keyword."
+#~ msgstr ""
+
+#~ msgid "Failed to search packages: {0}"
+#~ msgstr "Failed to read public key: {0}"
+
+#~ msgid "No packages found."
+#~ msgstr ""
 

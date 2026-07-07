@@ -18,6 +18,7 @@ from yast3.core.i18n import _
 from yast3.qt6.flatpak.install_action import InstallFlatpakAction
 from yast3.qt6.flatpak.package_manager import FlatpakPackageManager
 from yast3.qt6.flatpak.remote_manager import FlatpakRemoteManager
+from yast3.qt6.flatpak.runtime_manager import FlatpakRuntimeManager
 from yast3.qt6.flatpak.settings import FlatpakSettingsTab
 
 
@@ -26,7 +27,7 @@ class FlatpakWindow(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.resize(760, 480)
+        self.resize(960, 480)
         self.setWindowTitle(_("Flatpak Configuration — YaST3"))
 
         central_widget = QWidget()
@@ -50,11 +51,13 @@ class FlatpakWindow(QMainWindow):
         self.tabs = QTabWidget(self.manage_box)
         self.package_search_manager = FlatpakPackageManager(FlatpakPackageManager.MODE_SEARCH, self.tabs)
         self.package_installed_manager = FlatpakPackageManager(FlatpakPackageManager.MODE_INSTALLED, self.tabs)
+        self.runtime_manager = FlatpakRuntimeManager(self.tabs)
         self.remote_manager = FlatpakRemoteManager(self.tabs)
         self.settings_tab = FlatpakSettingsTab(self.tabs)
         self.settings_tab.remove_action.action_finished.connect(self._on_remove_finished)
         self.tabs.addTab(self.package_search_manager, _("Search"))
         self.tabs.addTab(self.package_installed_manager, _("Installed"))
+        self.tabs.addTab(self.runtime_manager, _("Runtimes"))
         self.tabs.addTab(self.remote_manager, _("Remotes"))
         self.tabs.addTab(self.settings_tab, _("Settings"))
         manage_layout.addWidget(self.tabs)
@@ -76,6 +79,7 @@ class FlatpakWindow(QMainWindow):
             self.manage_box.show()
             self.package_search_manager.refresh()
             self.package_installed_manager.refresh()
+            self.runtime_manager.load_runtimes()
             self.remote_manager.load_remotes()
         else:
             self.manage_box.hide()

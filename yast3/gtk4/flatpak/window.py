@@ -9,17 +9,19 @@ from gi.repository import Gtk
 from yast3.core.flatpak import (
     install_flatpak_pkexec,
     is_flatpak_installed,
-    remove_flatpak_pkexec,
 )
 from yast3.core.i18n import _
+from yast3.gtk4.flatpak.package_manager import FlatpakPackageManager
 from yast3.gtk4.flatpak.remote_manager import FlatpakRemoteManager
+from yast3.gtk4.flatpak.runtime_manager import FlatpakRuntimeManager
+from yast3.gtk4.flatpak.settings import FlatpakSettingsTab
 
 
 class FlatpakWindow(Gtk.ApplicationWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        self.set_default_size(760, 520)
+        self.set_default_size(960, 520)
         self.set_title(_("{} — YaST3").format(_("Flatpak")))
 
         self.main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
@@ -39,15 +41,20 @@ class FlatpakWindow(Gtk.ApplicationWindow):
         self.main_box.append(self.install_box)
 
         self.manage_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
+        self.notebook = Gtk.Notebook()
+        self.package_search_manager = FlatpakPackageManager(FlatpakPackageManager.MODE_SEARCH, self)
+        self.package_installed_manager = FlatpakPackageManager(FlatpakPackageManager.MODE_INSTALLED, self)
+        self.runtime_manager = FlatpakRuntimeManager(self)
         self.remote_manager = FlatpakRemoteManager(self)
-        self.manage_box.append(self.remote_manager)
+        self.settings_tab = FlatpakSettingsTab(self)
 
-        remove_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        remove_box.set_halign(Gtk.Align.END)
-        self.remove_flatpak_btn = Gtk.Button(label=_("Remove Flatpak"))
-        self.remove_flatpak_btn.connect("clicked", self._on_remove_flatpak_clicked)
-        remove_box.append(self.remove_flatpak_btn)
-        self.manage_box.append(remove_box)
+        self.notebook.append_page(self.package_search_manager, Gtk.Label(label=_("Search")))
+        self.notebook.append_page(self.package_installed_manager, Gtk.Label(label=_("Installed")))
+        self.notebook.append_page(self.runtime_manager, Gtk.Label(label=_("Runtimes")))
+        self.notebook.append_page(self.remote_manager, Gtk.Label(label=_("Remotes")))
+        self.notebook.append_page(self.settings_tab, Gtk.Label(label=_("Settings")))
+
+        self.manage_box.append(self.notebook)
 
         self.main_box.append(self.manage_box)
         self.set_child(self.main_box)
@@ -59,6 +66,9 @@ class FlatpakWindow(Gtk.ApplicationWindow):
         if installed:
             self.install_box.set_visible(False)
             self.manage_box.set_visible(True)
+            self.package_search_manager.refresh()
+            self.package_installed_manager.refresh()
+            self.runtime_manager.load_runtimes()
             self.remote_manager.load_remotes()
         else:
             self.manage_box.set_visible(False)
@@ -74,34 +84,6 @@ class FlatpakWindow(Gtk.ApplicationWindow):
                 Gtk.MessageType.ERROR,
                 _("Error"),
                 _("Failed to install Flatpak: {0}").format(str(e)),
-            )
-
-    def _on_remove_flatpak_clicked(self, _button: Gtk.Button) -> None:
-        dialog = Gtk.MessageDialog(
-            transient_for=self,
-            modal=True,
-            message_type=Gtk.MessageType.QUESTION,
-            buttons=Gtk.ButtonsType.YES_NO,
-            text=_("Confirm"),
-        )
-        dialog.set_property("secondary-text", _("Are you sure you want to remove Flatpak?"))
-        dialog.connect("response", self._on_remove_flatpak_confirm)
-        dialog.present()
-
-    def _on_remove_flatpak_confirm(self, dialog: Gtk.MessageDialog, response_id: Gtk.ResponseType) -> None:
-        dialog.destroy()
-        if response_id != Gtk.ResponseType.YES:
-            return
-
-        try:
-            remove_flatpak_pkexec()
-            self._show_message_dialog(Gtk.MessageType.INFO, _("Success"), _("Flatpak removed successfully."))
-            self._refresh_state()
-        except Exception as e:
-            self._show_message_dialog(
-                Gtk.MessageType.ERROR,
-                _("Error"),
-                _("Failed to remove Flatpak: {0}").format(str(e)),
             )
 
     def _show_message_dialog(self, msg_type: Gtk.MessageType, title: str, message: str) -> None:

@@ -7,10 +7,10 @@ gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk
 
 from yast3.core.flatpak import (
-    install_flatpak_pkexec,
     is_flatpak_installed,
 )
 from yast3.core.i18n import _
+from yast3.gtk4.flatpak.install_action import InstallFlatpakAction
 from yast3.gtk4.flatpak.package_manager import FlatpakPackageManager
 from yast3.gtk4.flatpak.remote_manager import FlatpakRemoteManager
 from yast3.gtk4.flatpak.runtime_manager import FlatpakRuntimeManager
@@ -33,9 +33,12 @@ class FlatpakWindow(Gtk.ApplicationWindow):
         self.install_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
         install_title = Gtk.Label(label=_("Flatpak is not installed"))
         install_title.set_halign(Gtk.Align.START)
-        self.install_btn = Gtk.Button(label=_("Install Flatpak"))
+        self.install_action = InstallFlatpakAction(self)
+        self.install_action.connect_changed(self._sync_install_action_state)
+        self.install_action.connect_finished(self._on_install_finished)
+        self.install_btn = Gtk.Button(label=self.install_action.text())
         self.install_btn.add_css_class("suggested-action")
-        self.install_btn.connect("clicked", self._on_install_clicked)
+        self.install_btn.connect("clicked", self.install_action.trigger)
         self.install_box.append(install_title)
         self.install_box.append(self.install_btn)
         self.main_box.append(self.install_box)
@@ -59,7 +62,12 @@ class FlatpakWindow(Gtk.ApplicationWindow):
         self.main_box.append(self.manage_box)
         self.set_child(self.main_box)
 
+        self._sync_install_action_state()
         self._refresh_state()
+
+    def _sync_install_action_state(self) -> None:
+        self.install_btn.set_label(self.install_action.text())
+        self.install_btn.set_sensitive(self.install_action.is_enabled())
 
     def _refresh_state(self) -> None:
         installed = is_flatpak_installed()
@@ -74,16 +82,15 @@ class FlatpakWindow(Gtk.ApplicationWindow):
             self.manage_box.set_visible(False)
             self.install_box.set_visible(True)
 
-    def _on_install_clicked(self, _button: Gtk.Button) -> None:
-        try:
-            install_flatpak_pkexec()
+    def _on_install_finished(self, success: bool, error: str) -> None:
+        if success:
             self._show_message_dialog(Gtk.MessageType.INFO, _("Success"), _("Flatpak installed successfully."))
             self._refresh_state()
-        except Exception as e:
+        else:
             self._show_message_dialog(
                 Gtk.MessageType.ERROR,
                 _("Error"),
-                _("Failed to install Flatpak: {0}").format(str(e)),
+                _("Failed to install Flatpak: {0}").format(error or _("Unknown error")),
             )
 
     def _show_message_dialog(self, msg_type: Gtk.MessageType, title: str, message: str) -> None:

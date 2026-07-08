@@ -8,8 +8,8 @@ gi.require_version("Gtk", "4.0")
 
 from gi.repository import Gtk
 
-from yast3.core.flatpak import remove_flatpak_pkexec
 from yast3.core.i18n import _
+from yast3.gtk4.flatpak.remove_action import RemoveFlatpakAction
 
 
 class FlatpakSettingsTab(Gtk.Box):
@@ -24,39 +24,31 @@ class FlatpakSettingsTab(Gtk.Box):
         bottom_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
         bottom_row.set_halign(Gtk.Align.END)
 
-        self.remove_btn = Gtk.Button(label=_("Remove Flatpak"))
-        self.remove_btn.connect("clicked", self._on_remove_flatpak_clicked)
+        self.remove_action = RemoveFlatpakAction(parent_window)
+        self.remove_action.connect_changed(self._sync_remove_action_state)
+        self.remove_action.connect_finished(self._on_remove_finished)
+
+        self.remove_btn = Gtk.Button(label=self.remove_action.text())
+        self.remove_btn.connect("clicked", self.remove_action.trigger)
         bottom_row.append(self.remove_btn)
 
         self.append(bottom_row)
+        self._sync_remove_action_state()
 
-    def _on_remove_flatpak_clicked(self, _button: Gtk.Button) -> None:
-        confirm_dialog = Gtk.MessageDialog(
-            transient_for=self.parent_window,
-            modal=True,
-            message_type=Gtk.MessageType.QUESTION,
-            buttons=Gtk.ButtonsType.YES_NO,
-            text=_("Confirm"),
-        )
-        confirm_dialog.set_property("secondary-text", _("Are you sure you want to remove Flatpak?"))
-        confirm_dialog.connect("response", self._on_remove_confirm)
-        confirm_dialog.present()
+    def _sync_remove_action_state(self) -> None:
+        self.remove_btn.set_label(self.remove_action.text())
+        self.remove_btn.set_sensitive(self.remove_action.is_enabled())
 
-    def _on_remove_confirm(self, dialog: Gtk.MessageDialog, response_id: Gtk.ResponseType) -> None:
-        dialog.destroy()
-        if response_id != Gtk.ResponseType.YES:
-            return
-
-        try:
-            remove_flatpak_pkexec()
+    def _on_remove_finished(self, success: bool, error: str) -> None:
+        if success:
             self._show_message_dialog(Gtk.MessageType.INFO, _("Success"), _("Flatpak removed successfully."))
             if hasattr(self.parent_window, "_refresh_state"):
                 self.parent_window._refresh_state()
-        except Exception as e:
+        else:
             self._show_message_dialog(
                 Gtk.MessageType.ERROR,
                 _("Error"),
-                _("Failed to remove Flatpak: {0}").format(str(e)),
+                _("Failed to remove Flatpak: {0}").format(error or _("Unknown error")),
             )
 
     def _show_message_dialog(self, msg_type: Gtk.MessageType, title: str, message: str) -> None:

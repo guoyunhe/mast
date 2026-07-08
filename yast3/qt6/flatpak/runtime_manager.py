@@ -84,8 +84,8 @@ class FlatpakRuntimeManager(QWidget):
                 _("Description"),
                 _("Version"),
                 _("Branch"),
-                _("Remote"),
                 _("Installed Size"),
+                _("Remote"),
                 _("Scope"),
             ]
         )
@@ -181,8 +181,8 @@ class FlatpakRuntimeManager(QWidget):
             self.table.setItem(row, 2, QTableWidgetItem(runtime.description))
             self.table.setItem(row, 3, QTableWidgetItem(runtime.version))
             self.table.setItem(row, 4, QTableWidgetItem(runtime.branch))
-            self.table.setItem(row, 5, QTableWidgetItem(runtime.remote))
-            self.table.setItem(row, 6, QTableWidgetItem(runtime.installed_size))
+            self.table.setItem(row, 5, QTableWidgetItem(runtime.installed_size))
+            self.table.setItem(row, 6, QTableWidgetItem(runtime.remote))
             self.table.setItem(row, 7, QTableWidgetItem(runtime.scope))
 
     def _filter_runtimes(self, runtimes: list[FlatpakRuntime], query: str) -> list[FlatpakRuntime]:

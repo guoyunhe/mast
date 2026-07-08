@@ -67,8 +67,8 @@ class FlatpakRuntimeManager(Gtk.Box):
             (_("Description"), 2),
             (_("Version"), 3),
             (_("Branch"), 4),
-            (_("Remote"), 5),
-            (_("Installed Size"), 6),
+            (_("Installed Size"), 5),
+            (_("Remote"), 6),
             (_("Scope"), 7),
         ]:
             renderer = Gtk.CellRendererText()
@@ -168,8 +168,8 @@ class FlatpakRuntimeManager(Gtk.Box):
                     runtime.description,
                     runtime.version,
                     runtime.branch,
-                    runtime.remote,
                     runtime.installed_size,
+                    runtime.remote,
                     runtime.scope,
                 ]
             )

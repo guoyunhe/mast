@@ -24,8 +24,6 @@ from yast3.qt6.command.action import CommandAction
 
 class FlatpakRuntimeManager(QWidget):
     """Manage installed Flatpak runtimes."""
-
-    PAGE_SIZE = 100
     DEFAULT_SCOPE: Literal["system", "user"] = "system"
 
     def __init__(self, parent: QWidget | None = None) -> None:
@@ -33,10 +31,9 @@ class FlatpakRuntimeManager(QWidget):
 
         self.runtimes: list[FlatpakRuntime] = []
         self.filtered_runtimes: list[FlatpakRuntime] = []
-        self.page = 0
 
         self.uninstall_action = CommandAction(
-            text=_("Remove Runtime"),
+            text=_("Remove"),
             running_text=_("Removing runtime..."),
             dialog_title=_("Remove Flatpak Runtime"),
             command=["true"],
@@ -97,21 +94,6 @@ class FlatpakRuntimeManager(QWidget):
         self.table.setSelectionMode(QTableWidget.SelectionMode.SingleSelection)
         layout.addWidget(self.table)
 
-        pager_row = QHBoxLayout()
-        self.prev_btn = QPushButton(_("Prev"), self)
-        self.prev_btn.clicked.connect(self.prev_page)
-        pager_row.addWidget(self.prev_btn)
-
-        self.page_label = QLabel(self)
-        self.page_label.setText("1/1")
-        pager_row.addWidget(self.page_label)
-
-        self.next_btn = QPushButton(_("Next"), self)
-        self.next_btn.clicked.connect(self.next_page)
-        pager_row.addWidget(self.next_btn)
-        pager_row.addStretch()
-        layout.addLayout(pager_row)
-
         self._sync_action_buttons()
         self.load_runtimes()
 
@@ -121,17 +103,15 @@ class FlatpakRuntimeManager(QWidget):
 
     def _selected_runtime_id(self) -> str:
         row = self.table.currentRow()
-        page_items = self._page_items()
-        if row < 0 or row >= len(page_items):
+        if row < 0 or row >= len(self.filtered_runtimes):
             return ""
-        return page_items[row].runtime_id
+        return self.filtered_runtimes[row].runtime_id
 
     def _selected_runtime_scope(self) -> Literal["system", "user"]:
         row = self.table.currentRow()
-        page_items = self._page_items()
-        if row < 0 or row >= len(page_items):
+        if row < 0 or row >= len(self.filtered_runtimes):
             return self.DEFAULT_SCOPE
-        return page_items[row].scope
+        return self.filtered_runtimes[row].scope
 
     def _build_uninstall_command(self, runtime_id: str, scope: Literal["system", "user"]) -> list[str]:
         base = ["flatpak", "uninstall", "-y", f"--{scope}", runtime_id]
@@ -173,25 +153,21 @@ class FlatpakRuntimeManager(QWidget):
             self.runtimes = []
 
         self.filtered_runtimes = self._filter_runtimes(self.runtimes, self.search_input.text().strip())
-        self.page = 0
         self._populate_table()
 
     def search_runtimes(self) -> None:
         query = self.search_input.text().strip()
         self.filtered_runtimes = self._filter_runtimes(self.runtimes, query)
-        self.page = 0
         self._populate_table()
 
     def reset_search(self) -> None:
         self.search_input.clear()
         self.filtered_runtimes = list(self.runtimes)
-        self.page = 0
         self._populate_table()
 
     def _populate_table(self) -> None:
-        page_items = self._page_items()
-        self.table.setRowCount(len(page_items))
-        for row, runtime in enumerate(page_items):
+        self.table.setRowCount(len(self.filtered_runtimes))
+        for row, runtime in enumerate(self.filtered_runtimes):
             self.table.setItem(row, 0, QTableWidgetItem(runtime.runtime_id))
             self.table.setItem(row, 1, QTableWidgetItem(runtime.name))
             self.table.setItem(row, 2, QTableWidgetItem(runtime.description))
@@ -199,38 +175,6 @@ class FlatpakRuntimeManager(QWidget):
             self.table.setItem(row, 4, QTableWidgetItem(runtime.branch))
             self.table.setItem(row, 5, QTableWidgetItem(runtime.remote))
             self.table.setItem(row, 6, QTableWidgetItem(runtime.scope))
-
-        self._update_pager()
-
-    def prev_page(self) -> None:
-        if self.page <= 0:
-            return
-        self.page -= 1
-        self._populate_table()
-
-    def next_page(self) -> None:
-        total_pages = self._total_pages(len(self.filtered_runtimes))
-        if self.page + 1 >= total_pages:
-            return
-        self.page += 1
-        self._populate_table()
-
-    def _page_items(self) -> list[FlatpakRuntime]:
-        start = self.page * self.PAGE_SIZE
-        end = start + self.PAGE_SIZE
-        return self.filtered_runtimes[start:end]
-
-    def _update_pager(self) -> None:
-        total_pages = self._total_pages(len(self.filtered_runtimes))
-        self.page = min(self.page, total_pages - 1)
-        self.page_label.setText(f"{self.page + 1}/{total_pages}")
-        self.prev_btn.setEnabled(self.page > 0)
-        self.next_btn.setEnabled(self.page + 1 < total_pages)
-
-    def _total_pages(self, total_rows: int) -> int:
-        if total_rows <= 0:
-            return 1
-        return (total_rows + self.PAGE_SIZE - 1) // self.PAGE_SIZE
 
     def _filter_runtimes(self, runtimes: list[FlatpakRuntime], query: str) -> list[FlatpakRuntime]:
         normalized_query = query.strip().lower()

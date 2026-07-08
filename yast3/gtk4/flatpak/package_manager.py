@@ -92,12 +92,12 @@ class FlatpakPackageManager(Gtk.Box):
         if self.mode == self.MODE_SEARCH:
             self.primary_btn = Gtk.Button(label=_("Install"))
             self.primary_btn.connect("clicked", self._on_install_clicked)
-            self.refresh_btn = Gtk.Button(label=_("Refresh Catalog"))
+            self.refresh_btn = Gtk.Button(label=_("Refresh"))
             self.refresh_btn.connect("clicked", self._on_refresh_clicked)
         else:
-            self.primary_btn = Gtk.Button(label=_("Remove Package"))
+            self.primary_btn = Gtk.Button(label=_("Remove"))
             self.primary_btn.connect("clicked", self._on_uninstall_clicked)
-            self.refresh_btn = Gtk.Button(label=_("Refresh Installed"))
+            self.refresh_btn = Gtk.Button(label=_("Refresh"))
             self.refresh_btn.connect("clicked", self._on_refresh_clicked)
 
         action_row.append(self.primary_btn)
@@ -125,7 +125,7 @@ class FlatpakPackageManager(Gtk.Box):
         if self.mode == self.MODE_SEARCH:
             self.list_store = Gtk.ListStore(str, str, str, str, str, str, str, str)
             columns = [
-                (_("App ID"), 0),
+                (_("ID"), 0),
                 (_("Name"), 1),
                 (_("Description"), 2),
                 (_("Version"), 3),
@@ -137,7 +137,7 @@ class FlatpakPackageManager(Gtk.Box):
         else:
             self.list_store = Gtk.ListStore(str, str, str, str, str, str, str)
             columns = [
-                (_("App ID"), 0),
+                (_("ID"), 0),
                 (_("Name"), 1),
                 (_("Description"), 2),
                 (_("Version"), 3),
@@ -175,7 +175,7 @@ class FlatpakPackageManager(Gtk.Box):
             return
 
         self.remote_loading = loading
-        self.refresh_btn.set_label(_("Loading...") if loading else _("Refresh Catalog"))
+        self.refresh_btn.set_label(_("Loading...") if loading else _("Refresh"))
         self.primary_btn.set_sensitive(not loading)
         self.search_btn.set_sensitive(not loading)
         self.reset_btn.set_sensitive(not loading)

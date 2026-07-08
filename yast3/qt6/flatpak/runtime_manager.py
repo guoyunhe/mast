@@ -70,7 +70,7 @@ class FlatpakRuntimeManager(QWidget):
         self.uninstall_action.changed.connect(self._sync_action_buttons)
         btn_layout.addWidget(self.uninstall_btn)
 
-        self.refresh_btn = QPushButton(_("Refresh Runtimes"), self)
+        self.refresh_btn = QPushButton(_("Refresh"), self)
         self.refresh_btn.clicked.connect(self.load_runtimes)
         btn_layout.addWidget(self.refresh_btn)
 

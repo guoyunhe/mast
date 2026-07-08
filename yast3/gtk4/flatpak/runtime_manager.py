@@ -46,7 +46,7 @@ class FlatpakRuntimeManager(Gtk.Box):
         self.remove_btn.connect("clicked", self._on_remove_clicked)
         action_row.append(self.remove_btn)
 
-        self.refresh_btn = Gtk.Button(label=_("Refresh Runtimes"))
+        self.refresh_btn = Gtk.Button(label=_("Refresh"))
         self.refresh_btn.connect("clicked", self._on_refresh_clicked)
         action_row.append(self.refresh_btn)
         action_row.append(Gtk.Box(hexpand=True))
@@ -60,7 +60,7 @@ class FlatpakRuntimeManager(Gtk.Box):
         self.selection.set_mode(Gtk.SelectionMode.SINGLE)
 
         for title, index in [
-            (_("Runtime ID"), 0),
+            (_("ID"), 0),
             (_("Name"), 1),
             (_("Description"), 2),
             (_("Version"), 3),

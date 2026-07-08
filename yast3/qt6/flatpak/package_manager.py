@@ -130,7 +130,7 @@ class FlatpakPackageManager(QWidget):
         self.install_action.changed.connect(self._sync_action_buttons)
         btn_layout.addWidget(self.install_btn)
 
-        self.refresh_catalog_btn = QPushButton(_("Refresh Catalog"), self)
+        self.refresh_catalog_btn = QPushButton(_("Refresh"), self)
         self.refresh_catalog_btn.clicked.connect(self.load_remote_packages)
         btn_layout.addWidget(self.refresh_catalog_btn)
 
@@ -268,7 +268,7 @@ class FlatpakPackageManager(QWidget):
         if loading:
             self.refresh_catalog_btn.setText(_("Loading..."))
         else:
-            self.refresh_catalog_btn.setText(_("Refresh Catalog"))
+            self.refresh_catalog_btn.setText(_("Refresh"))
         self._sync_action_buttons()
 
     def _selected_app_id(self) -> str:

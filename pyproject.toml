@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "yast3"
-version = "0.0.15"
+version = "0.0.16"
 description = "YaST3 desktop settings shell built with Python 3 and Qt6 Widgets."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -58,6 +58,7 @@ packages = [
     "yast3.core.ssh.hosts",
     "yast3.core.ssh.keys",
     "yast3.gtk4",
+    "yast3.gtk4.command",
     "yast3.gtk4.cron",
     "yast3.gtk4.flatpak",
     "yast3.gtk4.git",
@@ -70,6 +71,7 @@ packages = [
     "yast3.gtk4.ssh.hosts",
     "yast3.gtk4.ssh.keys",
     "yast3.qt6",
+    "yast3.qt6.command",
     "yast3.qt6.cron",
     "yast3.qt6.flatpak",
     "yast3.qt6.git",

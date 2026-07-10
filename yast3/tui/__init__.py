@@ -7,6 +7,7 @@ from yast3.tui.hosts import HostsModule
 from yast3.tui.packages import PackagesModule
 from yast3.tui.proxy import ProxyModule
 from yast3.tui.repositories import RepositoriesModule
+from yast3.tui.services import ServicesModule
 from yast3.tui.ssh import SSHClientModule
 
 __all__ = [
@@ -17,5 +18,6 @@ __all__ = [
     "PackagesModule",
     "ProxyModule",
     "RepositoriesModule",
+    "ServicesModule",
     "SSHClientModule",
 ]

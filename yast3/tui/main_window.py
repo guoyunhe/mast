@@ -14,6 +14,7 @@ from yast3.tui import (
     PackagesModule,
     ProxyModule,
     RepositoriesModule,
+    ServicesModule,
     SSHClientModule,
 )
 
@@ -73,6 +74,7 @@ class MainWindow(App):
             CronModule(),
             RepositoriesModule(),
             ProxyModule(),
+            ServicesModule(),
             SSHClientModule(),
             PackagesModule(),
         ]

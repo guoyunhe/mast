@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.17 - 2026-07-10
+
+- feat(services): added service module to manage systemd services.
+
 ## 0.0.16 - 2026-07-09
 
 - feat(flatpak): added package download and installed sizes.

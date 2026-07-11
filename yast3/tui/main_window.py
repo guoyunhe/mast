@@ -4,6 +4,7 @@ from textual.app import App, ComposeResult
 from textual.containers import Grid, ScrollableContainer
 from textual.widgets import Button, Footer, Header, Static
 
+from yast3.core import GITHUB_URL, __version__
 from yast3.core.i18n import _
 from yast3.core.module import Module
 from yast3.tui import (
@@ -83,7 +84,10 @@ class MainWindow(App):
 
     def compose(self) -> ComposeResult:
         yield Header()
-        yield Footer()
+        yield Footer(
+            show_clock=False,
+            message=f"v{__version__} | GitHub: {GITHUB_URL}",
+        )
         with ScrollableContainer():
             yield Static("YaST3", classes="title")
             with Grid(classes="module-grid"):

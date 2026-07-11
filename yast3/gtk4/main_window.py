@@ -1,7 +1,10 @@
 """Main application window showing module buttons."""
 
-from gi.repository import Gtk
+import webbrowser
 
+from gi.repository import Gdk, Gtk
+
+from yast3.core import GITHUB_URL, __version__
 from yast3.gtk4 import (
     CronModule,
     FlatpakModule,
@@ -65,4 +68,24 @@ class MainWindow(Gtk.ApplicationWindow):
             self.grid.attach(button, column, row, 1, 1)
 
         self.main_box.append(self.grid)
+
+        footer = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        footer.set_margin_start(16)
+        footer.set_margin_end(16)
+        footer.set_margin_bottom(8)
+        footer.set_spacing(12)
+
+        version_label = Gtk.Label(label=f"v{__version__}")
+        version_label.set_xalign(0)
+
+        github_label = Gtk.Label(label="GitHub")
+        github_label.set_xalign(1)
+        github_label.set_markup('<a href="{}">GitHub</a>'.format(GITHUB_URL))
+        github_label.set_cursor(Gdk.Cursor.new_from_name("pointer"))
+        github_label.connect("activate-link", lambda _, uri: webbrowser.open(uri) or True)
+
+        footer.append(version_label)
+        footer.append(github_label)
+
+        self.main_box.append(footer)
         self.set_child(scrolled)

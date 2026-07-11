@@ -11,6 +11,7 @@ from yast3.gtk4 import (
     ProxyModule,
     RepositoriesModule,
     ServicesModule,
+    SnapshotsModule,
     SSHClientModule,
 )
 from yast3.gtk4.module_button import ModuleButton
@@ -29,6 +30,7 @@ class MainWindow(Gtk.ApplicationWindow):
             ProxyModule(),
             RepositoriesModule(),
             ServicesModule(),
+            SnapshotsModule(),
             SSHClientModule(),
         )
 

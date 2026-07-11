@@ -9,6 +9,7 @@ from yast3.qt6.packages import PackagesModule
 from yast3.qt6.proxy import ProxyModule
 from yast3.qt6.repositories import RepositoriesModule
 from yast3.qt6.services import ServicesModule
+from yast3.qt6.snapshots import SnapshotsModule
 from yast3.qt6.ssh import SSHClientModule
 
 __all__ = [
@@ -21,5 +22,6 @@ __all__ = [
     "ProxyModule",
     "RepositoriesModule",
     "ServicesModule",
+    "SnapshotsModule",
     "SSHClientModule",
 ]

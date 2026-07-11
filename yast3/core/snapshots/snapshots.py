@@ -1,0 +1,79 @@
+"""Snapper snapshot listing and command helpers."""
+
+from __future__ import annotations
+
+import json
+import subprocess
+from dataclasses import dataclass
+
+
+@dataclass(slots=True)
+class SnapshotEntry:
+    """Represents one snapper snapshot row."""
+
+    number: int
+    snapshot_type: str
+    date: str
+    user: str
+    description: str
+    cleanup: str
+
+
+def _to_int(value: object, default: int = -1) -> int:
+    try:
+        return int(str(value))
+    except (TypeError, ValueError):
+        return default
+
+
+def _run_snapper_json(command: list[str]) -> list[dict[str, object]]:
+    result = subprocess.run(command, capture_output=True, text=True, check=True)
+    payload = result.stdout.strip()
+    if not payload:
+        return []
+
+    data = json.loads(payload)
+    if isinstance(data, list):
+        return [item for item in data if isinstance(item, dict)]
+    if isinstance(data, dict):
+        rows = data.get("snapshots") or data.get("data") or []
+        if isinstance(rows, list):
+            return [item for item in rows if isinstance(item, dict)]
+    return []
+
+
+def _parse_snapshot_entry(item: dict[str, object]) -> SnapshotEntry:
+    return SnapshotEntry(
+        number=_to_int(item.get("number", item.get("id", item.get("#", -1)))),
+        snapshot_type=str(item.get("type", "")),
+        date=str(item.get("date", item.get("timestamp", ""))),
+        user=str(item.get("user", "")),
+        description=str(item.get("description", "")),
+        cleanup=str(item.get("cleanup", "")),
+    )
+
+
+def list_snapshots(config: str = "root") -> list[SnapshotEntry]:
+    """List snapshots for the selected snapper config."""
+
+    rows = _run_snapper_json(["snapper", "-c", config, "--jsonout", "list"])
+    snapshots = [_parse_snapshot_entry(item) for item in rows]
+    snapshots.sort(key=lambda entry: entry.number, reverse=True)
+    return snapshots
+
+
+def build_snapshot_create_command(description: str, config: str = "root") -> list[str]:
+    """Build a command that creates a new snapshot using snapper."""
+
+    clean_description = description.strip()
+    if not clean_description:
+        raise ValueError("Snapshot description cannot be empty")
+    return ["pkexec", "snapper", "-c", config, "create", "--description", clean_description]
+
+
+def build_snapshot_delete_command(snapshot_number: int, config: str = "root") -> list[str]:
+    """Build a command that deletes a snapshot by number."""
+
+    if snapshot_number <= 0:
+        raise ValueError("Snapshot number must be a positive integer")
+    return ["pkexec", "snapper", "-c", config, "delete", str(snapshot_number)]

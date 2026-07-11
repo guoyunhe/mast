@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.18 - 2026-07-11
+
+- feat(snapshots): added snapshots module to list, create, and delete snapper snapshots.
+
 ## 0.0.17 - 2026-07-10
 
 - feat(services): added service module to manage systemd services.

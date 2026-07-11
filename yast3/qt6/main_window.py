@@ -19,6 +19,7 @@ from yast3.qt6 import (
     ProxyModule,
     RepositoriesModule,
     ServicesModule,
+    SnapshotsModule,
     SSHClientModule,
 )
 from yast3.qt6.module_button import ModuleButton
@@ -36,6 +37,7 @@ class MainWindow(QMainWindow):
             ProxyModule(),
             RepositoriesModule(),
             ServicesModule(),
+            SnapshotsModule(),
             SSHClientModule(),
         )
 

@@ -147,19 +147,13 @@ def switch_mirror_pkexec(
     Returns:
         None.
     """
-    print(os.getcwd())
-    print(sys.executable)
     env = os.environ.copy()
     env["PYTHONPATH"] = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", '..')) + os.pathsep + env.get("PYTHONPATH", "")
-    print(env["PYTHONPATH"])
     result = subprocess.run(
         ["pkexec", '--keep-cwd', sys.executable, '-m', 'yast3.core.repositories.switch_mirror', '--opensuse', opensuse_mirror_url, '--packman', packman_mirror_url],
         capture_output=True,
         text=True,
     )
-
-    print(result.stdout)
-    print(result.stderr)
 
     if result.returncode != 0:
         raise PermissionError("Failed to switch mirrors using pkexec")

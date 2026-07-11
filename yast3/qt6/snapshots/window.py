@@ -115,7 +115,6 @@ class SnapshotsWindow(QMainWindow):
         if success:
             try:
                 self.snapshots = parse_snapshots_from_json(stdout)
-                print(self.snapshots)
                 self.populate_table()
             except Exception as parse_error:
                 QMessageBox.critical(

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  yast3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-11 09:09+0000\n"
+"POT-Creation-Date: 2026-07-11 12:20+0000\n"
 "PO-Revision-Date: 2024-01-01 00:00+0000\n"
 "Last-Translator: \n"
 "Language: en\n"
@@ -23,37 +23,35 @@ msgstr "Experimental"
 
 #: yast3/gtk4/command/dialog.py:30 yast3/qt6/command/dialog.py:30
 msgid "Running command, please wait..."
-msgstr ""
+msgstr "Running command, please wait..."
 
 #: yast3/gtk4/command/dialog.py:53 yast3/qt6/command/dialog.py:44
 #: yast3/tui/packages/window.py:42 yast3/tui/services/window.py:362
-#, fuzzy
 msgid "Close"
 msgstr "Core"
 
 #: yast3/gtk4/command/dialog.py:80 yast3/qt6/command/dialog.py:60
-#, fuzzy
 msgid "Command completed successfully."
 msgstr "Saved successfully"
 
 #: yast3/gtk4/command/dialog.py:82 yast3/qt6/command/dialog.py:62
 msgid "Command failed. See output for details."
-msgstr ""
+msgstr "Command failed. See output for details."
 
 #: yast3/gtk4/command/worker.py:55 yast3/gtk4/flatpak/settings.py:51
-#: yast3/gtk4/flatpak/window.py:93 yast3/gtk4/snapshots/window.py:205
+#: yast3/gtk4/flatpak/window.py:93 yast3/gtk4/snapshots/window.py:210
 #: yast3/qt6/command/worker.py:51 yast3/qt6/flatpak/window.py:96
-#: yast3/qt6/flatpak/window.py:107 yast3/qt6/snapshots/window.py:129
-#: yast3/tui/services/window.py:284 yast3/tui/snapshots/window.py:117
-#: yast3/tui/snapshots/window.py:207 yast3/tui/snapshots/window.py:234
+#: yast3/qt6/flatpak/window.py:107 yast3/qt6/snapshots/window.py:134
+#: yast3/tui/services/window.py:284 yast3/tui/snapshots/window.py:120
+#: yast3/tui/snapshots/window.py:212 yast3/tui/snapshots/window.py:239
 msgid "Unknown error"
-msgstr ""
+msgstr "Unknown error"
 
 #: yast3/gtk4/cron/__init__.py:18 yast3/gtk4/cron/window.py:18
 #: yast3/qt6/cron/__init__.py:12 yast3/qt6/cron/window.py:24
 #: yast3/tui/cron/__init__.py:12
 msgid "Cron"
-msgstr ""
+msgstr "Cron"
 
 #: yast3/gtk4/cron/__init__.py:24 yast3/gtk4/flatpak/__init__.py:24
 #: yast3/gtk4/git/__init__.py:24 yast3/gtk4/hostname/__init__.py:24
@@ -72,101 +70,103 @@ msgstr "YaST3"
 #: yast3/gtk4/cron/cron_edit_dialog.py:18 yast3/qt6/cron/cron_edit_dialog.py:31
 #: yast3/tui/cron/window.py:172
 msgid "Edit Cron Job"
-msgstr ""
+msgstr "Edit Cron Job"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:18 yast3/qt6/cron/cron_edit_dialog.py:31
 #: yast3/tui/cron/window.py:158
 msgid "Add Cron Job"
-msgstr ""
+msgstr "Add Cron Job"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:28
 #: yast3/gtk4/flatpak/remote_manager.py:172
 #: yast3/gtk4/flatpak/remote_manager.py:237 yast3/gtk4/hosts/window.py:283
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:24
 #: yast3/gtk4/repositories/dialogs/switch_mirror.py:24
-#: yast3/gtk4/snapshots/window.py:145 yast3/gtk4/ssh/dialogs.py:27
-#: yast3/gtk4/ssh/dialogs.py:145 yast3/gtk4/ssh/keys/generate_dialog.py:26
-#: yast3/tui/cron/window.py:296 yast3/tui/hostname/window.py:70
-#: yast3/tui/hosts/window.py:273 yast3/tui/proxy/window.py:92
-#: yast3/tui/repositories/window.py:355 yast3/tui/repositories/window.py:484
-#: yast3/tui/ssh/window.py:526 yast3/tui/ssh/window.py:626
+#: yast3/gtk4/snapshots/config_dialog.py:185 yast3/gtk4/snapshots/window.py:150
+#: yast3/gtk4/ssh/dialogs.py:27 yast3/gtk4/ssh/dialogs.py:145
+#: yast3/gtk4/ssh/keys/generate_dialog.py:26 yast3/tui/cron/window.py:296
+#: yast3/tui/hostname/window.py:70 yast3/tui/hosts/window.py:273
+#: yast3/tui/proxy/window.py:92 yast3/tui/repositories/window.py:355
+#: yast3/tui/repositories/window.py:484
+#: yast3/tui/snapshots/config_screen.py:110 yast3/tui/ssh/window.py:526
+#: yast3/tui/ssh/window.py:626
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:29
 #: yast3/gtk4/flatpak/remote_manager.py:173
 #: yast3/gtk4/flatpak/remote_manager.py:238 yast3/gtk4/hosts/window.py:284
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:25
 #: yast3/gtk4/repositories/dialogs/switch_mirror.py:25
-#: yast3/gtk4/ssh/dialogs.py:28 yast3/gtk4/ssh/dialogs.py:146
-#: yast3/tui/cron/window.py:295 yast3/tui/hosts/window.py:272
-#: yast3/tui/repositories/window.py:354 yast3/tui/repositories/window.py:483
-#: yast3/tui/ssh/window.py:525 yast3/tui/ssh/window.py:625
+#: yast3/gtk4/snapshots/config_dialog.py:186 yast3/gtk4/ssh/dialogs.py:28
+#: yast3/gtk4/ssh/dialogs.py:146 yast3/tui/cron/window.py:295
+#: yast3/tui/hosts/window.py:272 yast3/tui/repositories/window.py:354
+#: yast3/tui/repositories/window.py:483
+#: yast3/tui/snapshots/config_screen.py:111 yast3/tui/ssh/window.py:525
+#: yast3/tui/ssh/window.py:625
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:45 yast3/gtk4/cron/cron_tab.py:81
 #: yast3/qt6/cron/cron_edit_dialog.py:40 yast3/qt6/cron/cron_tab.py:61
 #: yast3/tui/cron/window.py:92 yast3/tui/cron/window.py:274
 msgid "Minute"
-msgstr ""
+msgstr "Minute"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:45 yast3/qt6/cron/cron_edit_dialog.py:39
 msgid "0-59 or *"
-msgstr ""
+msgstr "0-59 or *"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:48 yast3/gtk4/cron/cron_tab.py:88
 #: yast3/qt6/cron/cron_edit_dialog.py:44 yast3/qt6/cron/cron_tab.py:62
 #: yast3/tui/cron/window.py:92 yast3/tui/cron/window.py:277
 msgid "Hour"
-msgstr ""
+msgstr "Hour"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:48 yast3/qt6/cron/cron_edit_dialog.py:43
 msgid "0-23 or *"
-msgstr ""
+msgstr "0-23 or *"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:51 yast3/gtk4/cron/cron_tab.py:95
 #: yast3/qt6/cron/cron_edit_dialog.py:48 yast3/qt6/cron/cron_tab.py:63
 #: yast3/tui/cron/window.py:92 yast3/tui/cron/window.py:280
 msgid "Day"
-msgstr ""
+msgstr "Day"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:51 yast3/qt6/cron/cron_edit_dialog.py:47
 msgid "1-31 or *"
-msgstr ""
+msgstr "1-31 or *"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:54 yast3/gtk4/cron/cron_tab.py:102
 #: yast3/qt6/cron/cron_edit_dialog.py:52 yast3/qt6/cron/cron_tab.py:64
 #: yast3/tui/cron/window.py:92 yast3/tui/cron/window.py:283
-#, fuzzy
 msgid "Month"
 msgstr "Other"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:54 yast3/qt6/cron/cron_edit_dialog.py:51
 msgid "1-12 or *"
-msgstr ""
+msgstr "1-12 or *"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:57 yast3/gtk4/cron/cron_tab.py:109
 #: yast3/qt6/cron/cron_edit_dialog.py:56 yast3/qt6/cron/cron_tab.py:65
 #: yast3/tui/cron/window.py:92 yast3/tui/cron/window.py:286
 msgid "Weekday"
-msgstr ""
+msgstr "Weekday"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:57 yast3/qt6/cron/cron_edit_dialog.py:55
 msgid "0-7 or *"
-msgstr ""
+msgstr "0-7 or *"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:60 yast3/gtk4/cron/cron_tab.py:116
 #: yast3/qt6/cron/cron_edit_dialog.py:60 yast3/qt6/cron/cron_tab.py:66
 #: yast3/tui/cron/window.py:92 yast3/tui/cron/window.py:289
-#, fuzzy
 msgid "Command"
 msgstr "Commit"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:64 yast3/qt6/cron/cron_edit_dialog.py:59
 #: yast3/tui/cron/window.py:290
 msgid "Command to execute"
-msgstr ""
+msgstr "Command to execute"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:69 yast3/gtk4/hosts/window.py:98
 #: yast3/gtk4/ssh/keys/generate_dialog.py:65 yast3/gtk4/ssh/keys/tab.py:96
@@ -174,13 +174,11 @@ msgstr ""
 #: yast3/qt6/ssh/keys/tab.py:65 yast3/tui/cron/window.py:292
 #: yast3/tui/hosts/window.py:79 yast3/tui/hosts/window.py:269
 #: yast3/tui/ssh/window.py:293 yast3/tui/ssh/window.py:622
-#, fuzzy
 msgid "Comment"
 msgstr "Commit"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:73 yast3/qt6/cron/cron_edit_dialog.py:64
 #: yast3/tui/cron/window.py:293 yast3/tui/ssh/window.py:623
-#, fuzzy
 msgid "Optional comment"
 msgstr "Commit"
 
@@ -188,12 +186,12 @@ msgstr "Commit"
 #: yast3/gtk4/cron/cron_edit_dialog.py:120
 #: yast3/qt6/cron/cron_edit_dialog.py:91 yast3/qt6/cron/cron_edit_dialog.py:97
 msgid "Suggestions"
-msgstr ""
+msgstr "Suggestions"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:146
 #: yast3/qt6/cron/cron_edit_dialog.py:113
 msgid "Validation Error"
-msgstr ""
+msgstr "Validation Error"
 
 #: yast3/gtk4/cron/cron_tab.py:33 yast3/gtk4/flatpak/remote_manager.py:28
 #: yast3/gtk4/hosts/window.py:34 yast3/gtk4/repositories/window.py:40
@@ -205,7 +203,7 @@ msgstr ""
 #: yast3/tui/cron/window.py:77 yast3/tui/hosts/window.py:69
 #: yast3/tui/repositories/window.py:70 yast3/tui/ssh/window.py:259
 msgid "Add"
-msgstr ""
+msgstr "Add"
 
 #: yast3/gtk4/cron/cron_tab.py:37 yast3/gtk4/flatpak/remote_manager.py:32
 #: yast3/gtk4/flatpak/remote_manager.py:233 yast3/gtk4/hosts/window.py:38
@@ -216,22 +214,22 @@ msgstr ""
 #: yast3/tui/cron/window.py:78 yast3/tui/hosts/window.py:70
 #: yast3/tui/repositories/window.py:71 yast3/tui/ssh/window.py:260
 msgid "Edit"
-msgstr ""
+msgstr "Edit"
 
 #: yast3/gtk4/cron/cron_tab.py:41 yast3/gtk4/flatpak/remote_manager.py:36
 #: yast3/gtk4/hosts/window.py:42 yast3/gtk4/repositories/window.py:51
-#: yast3/gtk4/snapshots/window.py:66 yast3/gtk4/snapshots/window.py:146
-#: yast3/gtk4/snapshots/window.py:274 yast3/gtk4/ssh/hosts/tab.py:41
+#: yast3/gtk4/snapshots/window.py:67 yast3/gtk4/snapshots/window.py:151
+#: yast3/gtk4/snapshots/window.py:279 yast3/gtk4/ssh/hosts/tab.py:41
 #: yast3/gtk4/ssh/keys/tab.py:42 yast3/qt6/cron/cron_tab.py:45
 #: yast3/qt6/flatpak/remote_manager.py:45 yast3/qt6/hosts/window.py:48
-#: yast3/qt6/repositories/window.py:57 yast3/qt6/snapshots/window.py:63
-#: yast3/qt6/snapshots/window.py:199 yast3/qt6/ssh/hosts/tab.py:46
+#: yast3/qt6/repositories/window.py:57 yast3/qt6/snapshots/window.py:64
+#: yast3/qt6/snapshots/window.py:204 yast3/qt6/ssh/hosts/tab.py:46
 #: yast3/qt6/ssh/keys/tab.py:45 yast3/tui/cron/window.py:79
 #: yast3/tui/hosts/window.py:71 yast3/tui/repositories/window.py:72
-#: yast3/tui/snapshots/window.py:70 yast3/tui/ssh/window.py:261
+#: yast3/tui/snapshots/window.py:72 yast3/tui/ssh/window.py:261
 #: yast3/tui/ssh/window.py:269
 msgid "Delete"
-msgstr ""
+msgstr "Delete"
 
 #: yast3/gtk4/cron/cron_tab.py:48 yast3/gtk4/git/window.py:71
 #: yast3/gtk4/hostname/window.py:49 yast3/gtk4/hosts/window.py:49
@@ -255,7 +253,7 @@ msgstr "Save"
 #: yast3/tui/repositories/window.py:349 yast3/tui/services/window.py:126
 #: yast3/tui/ssh/window.py:288
 msgid "Enabled"
-msgstr ""
+msgstr "Enabled"
 
 #: yast3/gtk4/cron/cron_tab.py:137 yast3/gtk4/cron/cron_tab.py:242
 #: yast3/gtk4/cron/cron_tab.py:244 yast3/gtk4/flatpak/package_manager.py:220
@@ -285,15 +283,16 @@ msgstr ""
 #: yast3/gtk4/repositories/window.py:276 yast3/gtk4/repositories/window.py:280
 #: yast3/gtk4/repositories/window.py:388 yast3/gtk4/repositories/window.py:390
 #: yast3/gtk4/repositories/window.py:392 yast3/gtk4/services/window.py:184
-#: yast3/gtk4/snapshots/window.py:198 yast3/gtk4/snapshots/window.py:204
-#: yast3/gtk4/ssh/__init__.py:82 yast3/gtk4/ssh/dialogs.py:120
-#: yast3/gtk4/ssh/hosts/tab.py:109 yast3/gtk4/ssh/hosts/tab.py:152
-#: yast3/gtk4/ssh/hosts/tab.py:180 yast3/gtk4/ssh/hosts/tab.py:195
-#: yast3/gtk4/ssh/hosts/tab.py:226 yast3/gtk4/ssh/hosts/tab.py:228
-#: yast3/gtk4/ssh/keys/generate_dialog.py:110 yast3/gtk4/ssh/keys/tab.py:196
-#: yast3/gtk4/ssh/keys/tab.py:242 yast3/qt6/cron/cron_tab.py:96
-#: yast3/qt6/cron/cron_tab.py:204 yast3/qt6/cron/cron_tab.py:207
-#: yast3/qt6/flatpak/package_manager.py:387
+#: yast3/gtk4/snapshots/config_dialog.py:46
+#: yast3/gtk4/snapshots/config_dialog.py:227 yast3/gtk4/snapshots/window.py:203
+#: yast3/gtk4/snapshots/window.py:209 yast3/gtk4/ssh/__init__.py:82
+#: yast3/gtk4/ssh/dialogs.py:120 yast3/gtk4/ssh/hosts/tab.py:109
+#: yast3/gtk4/ssh/hosts/tab.py:152 yast3/gtk4/ssh/hosts/tab.py:180
+#: yast3/gtk4/ssh/hosts/tab.py:195 yast3/gtk4/ssh/hosts/tab.py:226
+#: yast3/gtk4/ssh/hosts/tab.py:228 yast3/gtk4/ssh/keys/generate_dialog.py:110
+#: yast3/gtk4/ssh/keys/tab.py:196 yast3/gtk4/ssh/keys/tab.py:242
+#: yast3/qt6/cron/cron_tab.py:96 yast3/qt6/cron/cron_tab.py:204
+#: yast3/qt6/cron/cron_tab.py:207 yast3/qt6/flatpak/package_manager.py:387
 #: yast3/qt6/flatpak/package_manager.py:398
 #: yast3/qt6/flatpak/package_manager.py:475
 #: yast3/qt6/flatpak/package_manager.py:491
@@ -321,12 +320,14 @@ msgstr ""
 #: yast3/qt6/repositories/window.py:235 yast3/qt6/repositories/window.py:257
 #: yast3/qt6/repositories/window.py:279 yast3/qt6/repositories/window.py:307
 #: yast3/qt6/repositories/window.py:322 yast3/qt6/services/window.py:141
-#: yast3/qt6/snapshots/window.py:122 yast3/qt6/snapshots/window.py:128
-#: yast3/qt6/ssh/__init__.py:69 yast3/qt6/ssh/dialogs.py:86
-#: yast3/qt6/ssh/dialogs.py:92 yast3/qt6/ssh/hosts/tab.py:90
-#: yast3/qt6/ssh/hosts/tab.py:141 yast3/qt6/ssh/hosts/tab.py:162
-#: yast3/qt6/ssh/hosts/tab.py:176 yast3/qt6/ssh/hosts/tab.py:226
-#: yast3/qt6/ssh/hosts/tab.py:229 yast3/qt6/ssh/keys/generate_dialog.py:177
+#: yast3/qt6/snapshots/config_dialog.py:38
+#: yast3/qt6/snapshots/config_dialog.py:171 yast3/qt6/snapshots/window.py:127
+#: yast3/qt6/snapshots/window.py:133 yast3/qt6/ssh/__init__.py:69
+#: yast3/qt6/ssh/dialogs.py:86 yast3/qt6/ssh/dialogs.py:92
+#: yast3/qt6/ssh/hosts/tab.py:90 yast3/qt6/ssh/hosts/tab.py:141
+#: yast3/qt6/ssh/hosts/tab.py:162 yast3/qt6/ssh/hosts/tab.py:176
+#: yast3/qt6/ssh/hosts/tab.py:226 yast3/qt6/ssh/hosts/tab.py:229
+#: yast3/qt6/ssh/keys/generate_dialog.py:177
 #: yast3/qt6/ssh/keys/generate_dialog.py:195
 #: yast3/qt6/ssh/keys/generate_dialog.py:237
 #: yast3/qt6/ssh/keys/generate_dialog.py:242 yast3/qt6/ssh/keys/tab.py:177
@@ -344,7 +345,7 @@ msgstr "Error"
 #: yast3/gtk4/hosts/window.py:220 yast3/gtk4/repositories/window.py:232
 #: yast3/gtk4/repositories/window.py:257 yast3/gtk4/repositories/window.py:311
 #: yast3/gtk4/services/window.py:272 yast3/gtk4/services/window.py:305
-#: yast3/gtk4/snapshots/window.py:245 yast3/gtk4/snapshots/window.py:265
+#: yast3/gtk4/snapshots/window.py:250 yast3/gtk4/snapshots/window.py:270
 #: yast3/gtk4/ssh/hosts/tab.py:159 yast3/gtk4/ssh/hosts/tab.py:187
 #: yast3/qt6/cron/cron_tab.py:147 yast3/qt6/cron/cron_tab.py:160
 #: yast3/qt6/flatpak/package_manager.py:347
@@ -356,20 +357,20 @@ msgstr "Error"
 #: yast3/qt6/hosts/window.py:225 yast3/qt6/repositories/window.py:107
 #: yast3/qt6/repositories/window.py:220 yast3/qt6/repositories/window.py:263
 #: yast3/qt6/services/window.py:228 yast3/qt6/services/window.py:257
-#: yast3/qt6/snapshots/window.py:171 yast3/qt6/snapshots/window.py:187
+#: yast3/qt6/snapshots/window.py:176 yast3/qt6/snapshots/window.py:192
 #: yast3/qt6/ssh/hosts/tab.py:148 yast3/qt6/ssh/hosts/tab.py:169
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 #: yast3/gtk4/cron/cron_tab.py:187 yast3/qt6/cron/cron_tab.py:147
 #: yast3/tui/cron/window.py:165
 msgid "Please select a cron job to edit."
-msgstr ""
+msgstr "Please select a cron job to edit."
 
 #: yast3/gtk4/cron/cron_tab.py:211 yast3/qt6/cron/cron_tab.py:160
 #: yast3/tui/cron/window.py:184
 msgid "Please select a cron job to delete."
-msgstr ""
+msgstr "Please select a cron job to delete."
 
 #: yast3/gtk4/cron/cron_tab.py:220 yast3/gtk4/flatpak/package_manager.py:338
 #: yast3/gtk4/flatpak/remote_manager.py:132
@@ -385,11 +386,11 @@ msgstr ""
 #: yast3/qt6/repositories/window.py:290 yast3/qt6/ssh/hosts/tab.py:181
 #: yast3/qt6/ssh/keys/generate_dialog.py:184
 msgid "Confirm"
-msgstr ""
+msgstr "Confirm"
 
 #: yast3/gtk4/cron/cron_tab.py:222 yast3/qt6/cron/cron_tab.py:164
 msgid "Are you sure you want to delete this cron job?"
-msgstr ""
+msgstr "Are you sure you want to delete this cron job?"
 
 #: yast3/gtk4/cron/cron_tab.py:240 yast3/gtk4/flatpak/package_manager.py:314
 #: yast3/gtk4/flatpak/package_manager.py:354
@@ -400,7 +401,8 @@ msgstr ""
 #: yast3/gtk4/flatpak/window.py:87 yast3/gtk4/git/window.py:276
 #: yast3/gtk4/hostname/window.py:106 yast3/gtk4/hosts/window.py:249
 #: yast3/gtk4/proxy/window.py:111 yast3/gtk4/repositories/window.py:248
-#: yast3/gtk4/repositories/window.py:379 yast3/gtk4/ssh/__init__.py:97
+#: yast3/gtk4/repositories/window.py:379
+#: yast3/gtk4/snapshots/config_dialog.py:220 yast3/gtk4/ssh/__init__.py:97
 #: yast3/gtk4/ssh/hosts/tab.py:224 yast3/gtk4/ssh/keys/tab.py:194
 #: yast3/gtk4/ssh/keys/tab.py:246 yast3/qt6/cron/cron_tab.py:201
 #: yast3/qt6/flatpak/remote_manager.py:94
@@ -409,14 +411,14 @@ msgstr ""
 #: yast3/qt6/flatpak/window.py:101 yast3/qt6/git/window.py:270
 #: yast3/qt6/hostname/window.py:126 yast3/qt6/hosts/window.py:265
 #: yast3/qt6/proxy/window.py:110 yast3/qt6/repositories/window.py:121
-#: yast3/qt6/repositories/window.py:302 yast3/qt6/ssh/__init__.py:77
+#: yast3/qt6/repositories/window.py:302
+#: yast3/qt6/snapshots/config_dialog.py:168 yast3/qt6/ssh/__init__.py:77
 #: yast3/qt6/ssh/hosts/tab.py:222 yast3/qt6/ssh/keys/generate_dialog.py:232
 #: yast3/qt6/ssh/keys/tab.py:174 yast3/qt6/ssh/keys/tab.py:221
 msgid "Success"
 msgstr "Success"
 
 #: yast3/gtk4/cron/cron_tab.py:240 yast3/qt6/cron/cron_tab.py:201
-#, fuzzy
 msgid "Cron jobs saved successfully."
 msgstr "Git configuration saved successfully."
 
@@ -424,10 +426,9 @@ msgstr "Git configuration saved successfully."
 #: yast3/gtk4/proxy/window.py:119 yast3/qt6/cron/cron_tab.py:204
 #: yast3/qt6/hostname/window.py:132 yast3/qt6/proxy/window.py:118
 msgid "Permission denied. Root permission required."
-msgstr ""
+msgstr "Permission denied. Root permission required."
 
 #: yast3/gtk4/cron/cron_tab.py:244 yast3/qt6/cron/cron_tab.py:207
-#, fuzzy
 msgid "Failed to save cron jobs."
 msgstr "Failed to save Git configuration."
 
@@ -435,13 +436,13 @@ msgstr "Failed to save Git configuration."
 #: yast3/gtk4/git/window.py:24 yast3/gtk4/hostname/window.py:21
 #: yast3/gtk4/hosts/window.py:22 yast3/gtk4/packages/window.py:17
 #: yast3/gtk4/proxy/window.py:22 yast3/gtk4/repositories/window.py:28
-#: yast3/gtk4/services/window.py:35 yast3/gtk4/snapshots/window.py:35
+#: yast3/gtk4/services/window.py:35 yast3/gtk4/snapshots/window.py:36
 #: yast3/gtk4/ssh/window.py:19 yast3/qt6/cron/window.py:24
 #: yast3/qt6/flatpak/window.py:31 yast3/qt6/git/window.py:33
 #: yast3/qt6/hostname/window.py:30 yast3/qt6/hosts/window.py:32
 #: yast3/qt6/packages/window.py:13 yast3/qt6/proxy/window.py:31
 #: yast3/qt6/repositories/window.py:37 yast3/qt6/services/window.py:41
-#: yast3/qt6/snapshots/window.py:39
+#: yast3/qt6/snapshots/window.py:40
 #, fuzzy, python-brace-format
 msgid "{} — YaST3"
 msgstr "YaST3"
@@ -449,46 +450,45 @@ msgstr "YaST3"
 #: yast3/gtk4/cron/window.py:32 yast3/qt6/cron/window.py:34
 #: yast3/tui/cron/window.py:68
 msgid "User Cron Jobs"
-msgstr ""
+msgstr "User Cron Jobs"
 
 #: yast3/gtk4/cron/window.py:36 yast3/qt6/cron/window.py:37
 #: yast3/tui/cron/window.py:70
 msgid "Root Cron Jobs"
-msgstr ""
+msgstr "Root Cron Jobs"
 
 #: yast3/gtk4/flatpak/__init__.py:18 yast3/gtk4/flatpak/window.py:25
 #: yast3/qt6/flatpak/__init__.py:12 yast3/qt6/flatpak/window.py:31
 msgid "Flatpak"
-msgstr ""
+msgstr "Flatpak"
 
 #: yast3/gtk4/flatpak/install_action.py:20
 #: yast3/gtk4/flatpak/install_action.py:22
 #: yast3/qt6/flatpak/install_action.py:16
 #: yast3/qt6/flatpak/install_action.py:18
 msgid "Install Flatpak"
-msgstr ""
+msgstr "Install Flatpak"
 
 #: yast3/gtk4/flatpak/install_action.py:21
 #: yast3/qt6/flatpak/install_action.py:17
 msgid "Installing Flatpak..."
-msgstr ""
+msgstr "Installing Flatpak..."
 
 #: yast3/gtk4/flatpak/install_action.py:24 yast3/gtk4/flatpak/window.py:87
 #: yast3/qt6/flatpak/install_action.py:20 yast3/qt6/flatpak/window.py:90
-#, fuzzy
 msgid "Flatpak installed successfully."
 msgstr "Saved successfully"
 
 #: yast3/gtk4/flatpak/package_manager.py:79
 #: yast3/qt6/flatpak/package_manager.py:78
 msgid "Install"
-msgstr ""
+msgstr "Install"
 
 #: yast3/gtk4/flatpak/package_manager.py:82
 #: yast3/gtk4/flatpak/runtime_manager.py:31
 #: yast3/qt6/flatpak/runtime_manager.py:36
 msgid "Remove"
-msgstr ""
+msgstr "Remove"
 
 #: yast3/gtk4/flatpak/package_manager.py:94
 #: yast3/gtk4/flatpak/runtime_manager.py:43 yast3/gtk4/flatpak/window.py:54
@@ -496,7 +496,6 @@ msgstr ""
 #: yast3/qt6/flatpak/package_manager.py:195
 #: yast3/qt6/flatpak/runtime_manager.py:64 yast3/qt6/flatpak/window.py:58
 #: yast3/qt6/services/window.py:76 yast3/tui/services/window.py:100
-#, fuzzy
 msgid "Search"
 msgstr "User"
 
@@ -513,43 +512,43 @@ msgstr "Reset"
 #: yast3/gtk4/flatpak/package_manager.py:180
 #: yast3/gtk4/flatpak/remote_manager.py:40
 #: yast3/gtk4/flatpak/runtime_manager.py:51 yast3/gtk4/services/window.py:81
-#: yast3/gtk4/snapshots/window.py:58 yast3/gtk4/snapshots/window.py:174
-#: yast3/gtk4/snapshots/window.py:189 yast3/gtk4/ssh/keys/tab.py:47
+#: yast3/gtk4/snapshots/window.py:59 yast3/gtk4/snapshots/window.py:179
+#: yast3/gtk4/snapshots/window.py:194 yast3/gtk4/ssh/keys/tab.py:47
 #: yast3/qt6/flatpak/package_manager.py:131
 #: yast3/qt6/flatpak/package_manager.py:203
 #: yast3/qt6/flatpak/package_manager.py:277
 #: yast3/qt6/flatpak/remote_manager.py:49
 #: yast3/qt6/flatpak/runtime_manager.py:72 yast3/qt6/services/window.py:82
-#: yast3/qt6/snapshots/window.py:55 yast3/qt6/snapshots/window.py:98
-#: yast3/qt6/snapshots/window.py:113 yast3/qt6/ssh/keys/tab.py:50
-#: yast3/tui/services/window.py:102 yast3/tui/snapshots/window.py:71
-#: yast3/tui/snapshots/window.py:132
+#: yast3/qt6/snapshots/window.py:56 yast3/qt6/snapshots/window.py:103
+#: yast3/qt6/snapshots/window.py:118 yast3/qt6/ssh/keys/tab.py:50
+#: yast3/tui/services/window.py:102 yast3/tui/snapshots/window.py:73
+#: yast3/tui/snapshots/window.py:135
 msgid "Refresh"
-msgstr ""
+msgstr "Refresh"
 
 #: yast3/gtk4/flatpak/package_manager.py:111
 #: yast3/qt6/flatpak/package_manager.py:166
 #: yast3/qt6/flatpak/package_manager.py:236
 msgid "Prev"
-msgstr ""
+msgstr "Prev"
 
 #: yast3/gtk4/flatpak/package_manager.py:118
 #: yast3/qt6/flatpak/package_manager.py:174
 #: yast3/qt6/flatpak/package_manager.py:244
 msgid "Next"
-msgstr ""
+msgstr "Next"
 
 #: yast3/gtk4/flatpak/package_manager.py:128
 #: yast3/gtk4/flatpak/package_manager.py:141
 #: yast3/gtk4/flatpak/runtime_manager.py:65
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:34
-#: yast3/gtk4/snapshots/window.py:80 yast3/qt6/flatpak/package_manager.py:141
+#: yast3/gtk4/snapshots/window.py:85 yast3/qt6/flatpak/package_manager.py:141
 #: yast3/qt6/flatpak/package_manager.py:213
 #: yast3/qt6/flatpak/runtime_manager.py:82
 #: yast3/qt6/repositories/repo_edit_dialog.py:31
-#: yast3/qt6/snapshots/window.py:73 yast3/tui/snapshots/window.py:80
+#: yast3/qt6/snapshots/window.py:78 yast3/tui/snapshots/window.py:83
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: yast3/gtk4/flatpak/package_manager.py:129
 #: yast3/gtk4/flatpak/package_manager.py:142
@@ -569,22 +568,21 @@ msgstr ""
 #: yast3/qt6/ssh/keys/tab.py:61 yast3/tui/repositories/window.py:80
 #: yast3/tui/repositories/window.py:328 yast3/tui/services/window.py:123
 #: yast3/tui/ssh/window.py:293 yast3/tui/ssh/window.py:613
-#, fuzzy
 msgid "Name"
 msgstr "User Name"
 
 #: yast3/gtk4/flatpak/package_manager.py:130
 #: yast3/gtk4/flatpak/package_manager.py:143
 #: yast3/gtk4/flatpak/runtime_manager.py:67 yast3/gtk4/services/window.py:146
-#: yast3/gtk4/snapshots/window.py:54 yast3/gtk4/snapshots/window.py:100
+#: yast3/gtk4/snapshots/window.py:55 yast3/gtk4/snapshots/window.py:105
 #: yast3/qt6/flatpak/package_manager.py:143
 #: yast3/qt6/flatpak/package_manager.py:215
 #: yast3/qt6/flatpak/runtime_manager.py:84 yast3/qt6/services/window.py:117
-#: yast3/qt6/snapshots/window.py:73 yast3/qt6/snapshots/window.py:164
-#: yast3/tui/services/window.py:127 yast3/tui/snapshots/window.py:68
-#: yast3/tui/snapshots/window.py:84
+#: yast3/qt6/snapshots/window.py:78 yast3/qt6/snapshots/window.py:169
+#: yast3/tui/services/window.py:127 yast3/tui/snapshots/window.py:70
+#: yast3/tui/snapshots/window.py:87
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #: yast3/gtk4/flatpak/package_manager.py:131
 #: yast3/gtk4/flatpak/package_manager.py:144
@@ -593,12 +591,12 @@ msgstr ""
 #: yast3/qt6/flatpak/package_manager.py:216
 #: yast3/qt6/flatpak/runtime_manager.py:85
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #: yast3/gtk4/flatpak/package_manager.py:132
 #: yast3/qt6/flatpak/package_manager.py:145
 msgid "Download Size"
-msgstr ""
+msgstr "Download Size"
 
 #: yast3/gtk4/flatpak/package_manager.py:133
 #: yast3/gtk4/flatpak/package_manager.py:146
@@ -607,7 +605,7 @@ msgstr ""
 #: yast3/qt6/flatpak/package_manager.py:218
 #: yast3/qt6/flatpak/runtime_manager.py:86
 msgid "Branch"
-msgstr ""
+msgstr "Branch"
 
 #: yast3/gtk4/flatpak/package_manager.py:134
 #: yast3/gtk4/flatpak/package_manager.py:147
@@ -616,7 +614,7 @@ msgstr ""
 #: yast3/qt6/flatpak/package_manager.py:219
 #: yast3/qt6/flatpak/runtime_manager.py:88
 msgid "Remote"
-msgstr ""
+msgstr "Remote"
 
 #: yast3/gtk4/flatpak/package_manager.py:135
 #: yast3/gtk4/flatpak/package_manager.py:148
@@ -631,13 +629,11 @@ msgstr ""
 #: yast3/qt6/flatpak/runtime_manager.py:89 yast3/qt6/services/window.py:68
 #: yast3/qt6/services/window.py:117 yast3/tui/services/window.py:90
 #: yast3/tui/services/window.py:124
-#, fuzzy
 msgid "Scope"
 msgstr "Core"
 
 #: yast3/gtk4/flatpak/package_manager.py:136 yast3/gtk4/flatpak/window.py:55
 #: yast3/qt6/flatpak/package_manager.py:149 yast3/qt6/flatpak/window.py:59
-#, fuzzy
 msgid "Installed"
 msgstr "Disabled"
 
@@ -645,16 +641,15 @@ msgstr "Disabled"
 #: yast3/gtk4/flatpak/runtime_manager.py:70
 #: yast3/qt6/flatpak/package_manager.py:217
 #: yast3/qt6/flatpak/runtime_manager.py:87
-#, fuzzy
 msgid "Installed Size"
 msgstr "Disabled"
 
-#: yast3/gtk4/flatpak/package_manager.py:180 yast3/gtk4/snapshots/window.py:171
-#: yast3/gtk4/snapshots/window.py:175 yast3/qt6/flatpak/package_manager.py:275
-#: yast3/qt6/snapshots/window.py:95 yast3/qt6/snapshots/window.py:99
-#: yast3/tui/snapshots/window.py:106
+#: yast3/gtk4/flatpak/package_manager.py:180 yast3/gtk4/snapshots/window.py:176
+#: yast3/gtk4/snapshots/window.py:180 yast3/qt6/flatpak/package_manager.py:275
+#: yast3/qt6/snapshots/window.py:100 yast3/qt6/snapshots/window.py:104
+#: yast3/tui/snapshots/window.py:109
 msgid "Loading..."
-msgstr ""
+msgstr "Loading..."
 
 #: yast3/gtk4/flatpak/package_manager.py:221
 #: yast3/qt6/flatpak/package_manager.py:475
@@ -671,16 +666,15 @@ msgstr "Failed to read public key: {0}"
 #: yast3/gtk4/flatpak/package_manager.py:300
 #: yast3/qt6/flatpak/package_manager.py:347
 msgid "Please select a package from the list to install."
-msgstr ""
+msgstr "Please select a package from the list to install."
 
 #: yast3/gtk4/flatpak/package_manager.py:308
 #: yast3/qt6/flatpak/package_manager.py:351
 msgid "The selected package is already installed."
-msgstr ""
+msgstr "The selected package is already installed."
 
 #: yast3/gtk4/flatpak/package_manager.py:314
 #: yast3/qt6/flatpak/package_manager.py:82
-#, fuzzy
 msgid "Package installed successfully."
 msgstr "Saved successfully"
 
@@ -693,17 +687,16 @@ msgstr "Failed to read public key: {0}"
 #: yast3/gtk4/flatpak/package_manager.py:329
 #: yast3/qt6/flatpak/package_manager.py:364
 msgid "Please select an installed package from the list."
-msgstr ""
+msgstr "Please select an installed package from the list."
 
 #: yast3/gtk4/flatpak/package_manager.py:342
 #: yast3/qt6/flatpak/package_manager.py:370
 #, python-brace-format
 msgid "Are you sure you want to remove package '{0}'?"
-msgstr ""
+msgstr "Are you sure you want to remove package '{0}'?"
 
 #: yast3/gtk4/flatpak/package_manager.py:354
 #: yast3/qt6/flatpak/package_manager.py:96
-#, fuzzy
 msgid "Package removed successfully."
 msgstr "Saved successfully"
 
@@ -719,7 +712,7 @@ msgstr "Failed to read public key: {0}"
 #: yast3/qt6/ssh/keys/tab.py:140 yast3/qt6/ssh/keys/tab.py:143
 #: yast3/tui/ssh/window.py:336
 msgid "Yes"
-msgstr ""
+msgstr "Yes"
 
 #: yast3/gtk4/flatpak/package_manager.py:401 yast3/gtk4/ssh/keys/tab.py:147
 #: yast3/gtk4/ssh/keys/tab.py:148 yast3/gtk4/ssh/keys/tab.py:149
@@ -727,7 +720,7 @@ msgstr ""
 #: yast3/qt6/ssh/keys/tab.py:140 yast3/qt6/ssh/keys/tab.py:143
 #: yast3/tui/ssh/window.py:336
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: yast3/gtk4/flatpak/remote_manager.py:53
 #: yast3/gtk4/flatpak/remote_manager.py:194
@@ -738,7 +731,7 @@ msgstr ""
 #: yast3/qt6/repositories/repo_edit_dialog.py:58
 #: yast3/qt6/repositories/window.py:71 yast3/tui/repositories/window.py:80
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: yast3/gtk4/flatpak/remote_manager.py:81
 #: yast3/qt6/flatpak/remote_manager.py:74
@@ -749,22 +742,21 @@ msgstr "Failed to save Git configuration."
 #: yast3/gtk4/flatpak/remote_manager.py:112
 #: yast3/qt6/flatpak/remote_manager.py:102
 msgid "Please select a remote to edit."
-msgstr ""
+msgstr "Please select a remote to edit."
 
 #: yast3/gtk4/flatpak/remote_manager.py:123
 #: yast3/qt6/flatpak/remote_manager.py:121
 msgid "Please select a remote to delete."
-msgstr ""
+msgstr "Please select a remote to delete."
 
 #: yast3/gtk4/flatpak/remote_manager.py:136
 #: yast3/qt6/flatpak/remote_manager.py:128
 #, python-brace-format
 msgid "Are you sure you want to delete remote '{0}'?"
-msgstr ""
+msgstr "Are you sure you want to delete remote '{0}'?"
 
 #: yast3/gtk4/flatpak/remote_manager.py:156
 #: yast3/qt6/flatpak/remote_manager.py:135
-#, fuzzy
 msgid "Remote deleted successfully."
 msgstr "Saved successfully"
 
@@ -777,29 +769,28 @@ msgstr "Failed to delete repository: %s"
 #: yast3/gtk4/flatpak/remote_manager.py:168
 #: yast3/qt6/flatpak/remote_manager.py:87
 msgid "Add Remote"
-msgstr ""
+msgstr "Add Remote"
 
 #: yast3/gtk4/flatpak/remote_manager.py:188 yast3/gtk4/services/window.py:68
 #: yast3/gtk4/services/window.py:226 yast3/qt6/flatpak/remote_dialog.py:57
 #: yast3/qt6/services/window.py:71 yast3/qt6/services/window.py:189
 #: yast3/tui/services/window.py:94 yast3/tui/services/window.py:188
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #: yast3/gtk4/flatpak/remote_manager.py:189 yast3/gtk4/git/window.py:47
 #: yast3/gtk4/services/window.py:69 yast3/gtk4/services/window.py:226
-#: yast3/gtk4/snapshots/window.py:95 yast3/qt6/flatpak/remote_dialog.py:58
+#: yast3/gtk4/snapshots/window.py:100 yast3/qt6/flatpak/remote_dialog.py:58
 #: yast3/qt6/git/window.py:51 yast3/qt6/services/window.py:72
-#: yast3/qt6/services/window.py:189 yast3/qt6/snapshots/window.py:73
+#: yast3/qt6/services/window.py:189 yast3/qt6/snapshots/window.py:78
 #: yast3/tui/git/window.py:70 yast3/tui/services/window.py:95
-#: yast3/tui/services/window.py:188 yast3/tui/snapshots/window.py:83
+#: yast3/tui/services/window.py:188 yast3/tui/snapshots/window.py:86
 #: yast3/tui/ssh/window.py:519
 msgid "User"
 msgstr "User"
 
 #: yast3/gtk4/flatpak/remote_manager.py:220
 #: yast3/qt6/flatpak/remote_manager.py:94
-#, fuzzy
 msgid "Remote added successfully."
 msgstr "Saved successfully"
 
@@ -811,7 +802,6 @@ msgstr "Failed to save Git configuration."
 
 #: yast3/gtk4/flatpak/remote_manager.py:282
 #: yast3/qt6/flatpak/remote_manager.py:113
-#, fuzzy
 msgid "Remote URL updated successfully."
 msgstr "Saved successfully"
 
@@ -825,21 +815,20 @@ msgstr "Failed to save Git configuration."
 #: yast3/gtk4/flatpak/remove_action.py:22 yast3/qt6/flatpak/remove_action.py:17
 #: yast3/qt6/flatpak/remove_action.py:19
 msgid "Remove Flatpak"
-msgstr ""
+msgstr "Remove Flatpak"
 
 #: yast3/gtk4/flatpak/remove_action.py:21 yast3/qt6/flatpak/remove_action.py:18
 msgid "Removing Flatpak..."
-msgstr ""
+msgstr "Removing Flatpak..."
 
 #: yast3/gtk4/flatpak/remove_action.py:24 yast3/gtk4/flatpak/settings.py:44
 #: yast3/qt6/flatpak/remove_action.py:21 yast3/qt6/flatpak/window.py:101
-#, fuzzy
 msgid "Flatpak removed successfully."
 msgstr "Saved successfully"
 
 #: yast3/gtk4/flatpak/remove_action.py:40 yast3/qt6/flatpak/remove_action.py:38
 msgid "Are you sure you want to remove Flatpak?"
-msgstr ""
+msgstr "Are you sure you want to remove Flatpak?"
 
 #: yast3/gtk4/flatpak/runtime_manager.py:91
 #: yast3/qt6/flatpak/runtime_manager.py:160
@@ -850,17 +839,16 @@ msgstr "Failed to save Git configuration."
 #: yast3/gtk4/flatpak/runtime_manager.py:115
 #: yast3/qt6/flatpak/runtime_manager.py:134
 msgid "Please select an installed runtime from the list."
-msgstr ""
+msgstr "Please select an installed runtime from the list."
 
 #: yast3/gtk4/flatpak/runtime_manager.py:128
 #: yast3/qt6/flatpak/runtime_manager.py:140
 #, python-brace-format
 msgid "Are you sure you want to remove runtime '{0}'?"
-msgstr ""
+msgstr "Are you sure you want to remove runtime '{0}'?"
 
 #: yast3/gtk4/flatpak/runtime_manager.py:140
 #: yast3/qt6/flatpak/runtime_manager.py:40
-#, fuzzy
 msgid "Runtime removed successfully."
 msgstr "Saved successfully"
 
@@ -876,21 +864,20 @@ msgid "Failed to remove Flatpak: {0}"
 msgstr "Failed to save Git configuration."
 
 #: yast3/gtk4/flatpak/window.py:34
-#, fuzzy
 msgid "Flatpak is not installed"
 msgstr "Git is not installed on this system."
 
 #: yast3/gtk4/flatpak/window.py:56 yast3/qt6/flatpak/window.py:60
 msgid "Runtimes"
-msgstr ""
+msgstr "Runtimes"
 
 #: yast3/gtk4/flatpak/window.py:57 yast3/qt6/flatpak/window.py:61
 msgid "Remotes"
-msgstr ""
+msgstr "Remotes"
 
 #: yast3/gtk4/flatpak/window.py:58 yast3/qt6/flatpak/window.py:62
 msgid "Settings"
-msgstr ""
+msgstr "Settings"
 
 #: yast3/gtk4/flatpak/window.py:93 yast3/qt6/flatpak/window.py:96
 #, fuzzy, python-brace-format
@@ -983,7 +970,6 @@ msgid "Commit Template"
 msgstr "Commit Template"
 
 #: yast3/gtk4/git/window.py:139 yast3/tui/git/window.py:121
-#, fuzzy
 msgid "Path to commit template"
 msgstr "Commit Template"
 
@@ -1049,21 +1035,20 @@ msgstr "Failed to save Git configuration."
 #: yast3/tui/hostname/__init__.py:12 yast3/tui/hostname/window.py:66
 #: yast3/tui/hosts/window.py:79 yast3/tui/hosts/window.py:266
 msgid "Hostname"
-msgstr ""
+msgstr "Hostname"
 
 #: yast3/gtk4/hostname/window.py:39 yast3/qt6/hostname/window.py:44
 #: yast3/tui/hostname/window.py:67
-#, fuzzy
 msgid "Enter hostname"
 msgstr "User Name"
 
 #: yast3/gtk4/hostname/window.py:67 yast3/qt6/hostname/window.py:68
 msgid "/etc/hostname not found."
-msgstr ""
+msgstr "/etc/hostname not found."
 
 #: yast3/gtk4/hostname/window.py:69 yast3/qt6/hostname/window.py:73
 msgid "Cannot read /etc/hostname. Root permission required."
-msgstr ""
+msgstr "Cannot read /etc/hostname. Root permission required."
 
 #: yast3/gtk4/hostname/window.py:71 yast3/qt6/hostname/window.py:77
 #, fuzzy, python-brace-format
@@ -1072,20 +1057,20 @@ msgstr "Failed to save Git configuration."
 
 #: yast3/gtk4/hostname/window.py:78 yast3/qt6/hostname/window.py:85
 msgid "Hostname cannot be empty."
-msgstr ""
+msgstr "Hostname cannot be empty."
 
 #: yast3/gtk4/hostname/window.py:83 yast3/qt6/hostname/window.py:91
 msgid "Hostname is too long (maximum 253 characters)."
-msgstr ""
+msgstr "Hostname is too long (maximum 253 characters)."
 
 #: yast3/gtk4/hostname/window.py:89 yast3/qt6/hostname/window.py:99
 msgid "Hostname contains invalid characters."
-msgstr ""
+msgstr "Hostname contains invalid characters."
 
 #: yast3/gtk4/hostname/window.py:99 yast3/qt6/hostname/window.py:113
 #, python-brace-format
 msgid "Are you sure you want to change the hostname from '{0}' to '{1}'?"
-msgstr ""
+msgstr "Are you sure you want to change the hostname from '{0}' to '{1}'?"
 
 #: yast3/gtk4/hostname/window.py:106 yast3/qt6/hostname/window.py:127
 #, fuzzy, python-brace-format
@@ -1096,7 +1081,7 @@ msgstr "Saved successfully"
 #: yast3/gtk4/repositories/window.py:390 yast3/qt6/hostname/window.py:136
 #: yast3/qt6/hosts/window.py:276
 msgid "Authentication failed or pkexec not available."
-msgstr ""
+msgstr "Authentication failed or pkexec not available."
 
 #: yast3/gtk4/hostname/window.py:113 yast3/qt6/hostname/window.py:140
 #, fuzzy, python-brace-format
@@ -1108,11 +1093,10 @@ msgstr "Failed to save Git configuration."
 #: yast3/qt6/hosts/window.py:32 yast3/qt6/ssh/window.py:36
 #: yast3/tui/hosts/__init__.py:12 yast3/tui/ssh/window.py:250
 msgid "Hosts"
-msgstr ""
+msgstr "Hosts"
 
 #: yast3/gtk4/hosts/window.py:84 yast3/qt6/hosts/window.py:64
 #: yast3/tui/hosts/window.py:79 yast3/tui/hosts/window.py:263
-#, fuzzy
 msgid "IP Address"
 msgstr "Email Address"
 
@@ -1120,17 +1104,16 @@ msgstr "Email Address"
 #: yast3/qt6/hosts/window.py:105 yast3/qt6/proxy/window.py:89
 #, python-brace-format
 msgid "Cannot read {0}. Root permission required."
-msgstr ""
+msgstr "Cannot read {0}. Root permission required."
 
 #: yast3/gtk4/hosts/window.py:123 yast3/gtk4/proxy/window.py:84
 #: yast3/qt6/hosts/window.py:110 yast3/qt6/proxy/window.py:84
 #, python-brace-format
 msgid "{0} not found."
-msgstr ""
+msgstr "{0} not found."
 
 #: yast3/gtk4/hosts/window.py:177 yast3/gtk4/hosts/window.py:213
 #: yast3/qt6/hosts/window.py:180 yast3/qt6/hosts/window.py:217
-#, fuzzy
 msgid "IP address and hostname are required."
 msgstr "User name and email are required."
 
@@ -1138,50 +1121,46 @@ msgstr "User name and email are required."
 #: yast3/qt6/hosts/window.py:188 yast3/qt6/ssh/hosts/tab.py:148
 #: yast3/tui/hosts/window.py:130
 msgid "Please select a host entry to edit."
-msgstr ""
+msgstr "Please select a host entry to edit."
 
 #: yast3/gtk4/hosts/window.py:220 yast3/gtk4/ssh/hosts/tab.py:187
 #: yast3/qt6/hosts/window.py:225 yast3/qt6/ssh/hosts/tab.py:169
 #: yast3/tui/hosts/window.py:149
 msgid "Please select a host entry to delete."
-msgstr ""
+msgstr "Please select a host entry to delete."
 
 #: yast3/gtk4/hosts/window.py:231 yast3/gtk4/ssh/hosts/tab.py:206
 #: yast3/qt6/hosts/window.py:230 yast3/qt6/ssh/hosts/tab.py:181
 msgid "Are you sure you want to delete this entry?"
-msgstr ""
+msgstr "Are you sure you want to delete this entry?"
 
 #: yast3/gtk4/hosts/window.py:249 yast3/qt6/hosts/window.py:265
-#, fuzzy
 msgid "Hosts file saved successfully."
 msgstr "Saved successfully"
 
 #: yast3/gtk4/hosts/window.py:251 yast3/qt6/hosts/window.py:272
 #, python-brace-format
 msgid "Cannot write to {0}. Root permission required."
-msgstr ""
+msgstr "Cannot write to {0}. Root permission required."
 
 #: yast3/gtk4/hosts/window.py:255 yast3/qt6/hosts/window.py:279
-#, fuzzy
 msgid "Failed to save hosts file."
 msgstr "Failed to save Git configuration."
 
 #: yast3/gtk4/hosts/window.py:276 yast3/qt6/hosts/dialogs.py:29
 msgid "Add/Edit Host Entry"
-msgstr ""
+msgstr "Add/Edit Host Entry"
 
 #: yast3/gtk4/hosts/window.py:296 yast3/qt6/hosts/dialogs.py:36
-#, fuzzy
 msgid "IP Address:"
 msgstr "Email Address"
 
 #: yast3/gtk4/hosts/window.py:308 yast3/qt6/hosts/dialogs.py:45
 msgid "Hostname:"
-msgstr ""
+msgstr "Hostname:"
 
 #: yast3/gtk4/hosts/window.py:320 yast3/qt6/hosts/dialogs.py:52
 #: yast3/qt6/ssh/keys/generate_dialog.py:123
-#, fuzzy
 msgid "Comment:"
 msgstr "Commit"
 
@@ -1189,11 +1168,11 @@ msgstr "Commit"
 #: yast3/qt6/packages/__init__.py:12 yast3/qt6/packages/window.py:13
 #: yast3/qt6/packages/window.py:18 yast3/tui/packages/__init__.py:12
 msgid "Packages"
-msgstr ""
+msgstr "Packages"
 
 #: yast3/gtk4/packages/window.py:27
 msgid "Packages module is not yet implemented."
-msgstr ""
+msgstr "Packages module is not yet implemented."
 
 #: yast3/gtk4/proxy/__init__.py:18 yast3/gtk4/proxy/window.py:22
 #: yast3/qt6/proxy/__init__.py:12 yast3/qt6/proxy/window.py:31
@@ -1248,12 +1227,12 @@ msgstr "Failed to save proxy configuration: {0}"
 #: yast3/qt6/repositories/__init__.py:13 yast3/qt6/repositories/window.py:37
 #: yast3/tui/repositories/__init__.py:12
 msgid "Repositories"
-msgstr ""
+msgstr "Repositories"
 
 #: yast3/gtk4/repositories/import_repo_button.py:22
 #: yast3/qt6/repositories/import_repo_button.py:21
 msgid "Import"
-msgstr ""
+msgstr "Import"
 
 #: yast3/gtk4/repositories/dialogs/switch_mirror.py:17
 #: yast3/gtk4/repositories/window.py:55
@@ -1261,7 +1240,7 @@ msgstr ""
 #: yast3/qt6/repositories/window.py:61 yast3/tui/repositories/window.py:73
 #: yast3/tui/repositories/window.py:473
 msgid "Switch Mirror"
-msgstr ""
+msgstr "Switch Mirror"
 
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:88
 #: yast3/gtk4/repositories/window.py:94
@@ -1269,35 +1248,34 @@ msgstr ""
 #: yast3/qt6/repositories/window.py:71 yast3/tui/repositories/window.py:80
 #: yast3/tui/repositories/window.py:337
 msgid "Priority"
-msgstr ""
+msgstr "Priority"
 
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:42
 #: yast3/gtk4/repositories/window.py:110
 #: yast3/qt6/repositories/repo_edit_dialog.py:46
 #: yast3/qt6/repositories/window.py:71 yast3/tui/repositories/window.py:80
 #: yast3/tui/repositories/window.py:350
-#, fuzzy
 msgid "Auto Refresh"
 msgstr "Auto CRLF"
 
 #: yast3/gtk4/repositories/window.py:133 yast3/qt6/repositories/window.py:136
 msgid "Cannot read repository directory. Root permission required."
-msgstr ""
+msgstr "Cannot read repository directory. Root permission required."
 
 #: yast3/gtk4/repositories/window.py:195 yast3/gtk4/repositories/window.py:276
 #: yast3/qt6/repositories/window.py:185 yast3/qt6/repositories/window.py:232
 msgid "Repository ID is required."
-msgstr ""
+msgstr "Repository ID is required."
 
 #: yast3/gtk4/repositories/window.py:199 yast3/gtk4/repositories/window.py:280
 #: yast3/qt6/repositories/window.py:188 yast3/qt6/repositories/window.py:235
 msgid "URL is required."
-msgstr ""
+msgstr "URL is required."
 
 #: yast3/gtk4/repositories/window.py:233 yast3/qt6/repositories/window.py:108
 #, python-brace-format
 msgid "Repository '{}' already exists."
-msgstr ""
+msgstr "Repository '{}' already exists."
 
 #: yast3/gtk4/repositories/window.py:242 yast3/qt6/repositories/window.py:115
 #, fuzzy, python-format
@@ -1312,17 +1290,17 @@ msgstr "Saved successfully"
 #: yast3/gtk4/repositories/window.py:257 yast3/qt6/repositories/window.py:220
 #: yast3/tui/repositories/window.py:139
 msgid "Please select a repository to edit."
-msgstr ""
+msgstr "Please select a repository to edit."
 
 #: yast3/gtk4/repositories/window.py:311 yast3/qt6/repositories/window.py:263
 #: yast3/tui/repositories/window.py:156
 msgid "Please select a repository to delete."
-msgstr ""
+msgstr "Please select a repository to delete."
 
 #: yast3/gtk4/repositories/window.py:327 yast3/qt6/repositories/window.py:271
 #, python-brace-format
 msgid "Are you sure you want to delete repository '{}'?"
-msgstr ""
+msgstr "Are you sure you want to delete repository '{}'?"
 
 #: yast3/gtk4/repositories/window.py:366 yast3/qt6/repositories/window.py:291
 #, python-brace-format
@@ -1332,19 +1310,21 @@ msgid ""
 "openSUSE mirror: {}\n"
 "Packman mirror: {}"
 msgstr ""
+"Are you sure you want to switch mirrors?\n"
+"\n"
+"openSUSE mirror: {}\n"
+"Packman mirror: {}"
 
 #: yast3/gtk4/repositories/window.py:379 yast3/qt6/repositories/window.py:303
 #: yast3/tui/repositories/window.py:176
-#, fuzzy
 msgid "Mirror switching completed successfully."
 msgstr "Saved successfully"
 
 #: yast3/gtk4/repositories/window.py:388
 msgid "Cannot write to repository directory. Root permission required."
-msgstr ""
+msgstr "Cannot write to repository directory. Root permission required."
 
 #: yast3/gtk4/repositories/window.py:392
-#, fuzzy
 msgid "Failed to save repository configuration."
 msgstr "Failed to save Git configuration."
 
@@ -1352,147 +1332,142 @@ msgstr "Failed to save Git configuration."
 #: yast3/qt6/repositories/repo_edit_dialog.py:24
 #: yast3/tui/repositories/window.py:133
 msgid "Add Repository"
-msgstr ""
+msgstr "Add Repository"
 
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:16
 #: yast3/qt6/repositories/repo_edit_dialog.py:24
 #: yast3/tui/repositories/window.py:146
 msgid "Edit Repository"
-msgstr ""
+msgstr "Edit Repository"
 
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:47
 #: yast3/qt6/repositories/repo_edit_dialog.py:51
 msgid "URL Type"
-msgstr ""
+msgstr "URL Type"
 
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:52
 #: yast3/qt6/repositories/repo_edit_dialog.py:53
 #: yast3/tui/repositories/window.py:331 yast3/tui/repositories/window.py:332
 msgid "Base URL"
-msgstr ""
+msgstr "Base URL"
 
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:53
 #: yast3/qt6/repositories/repo_edit_dialog.py:53
 #: yast3/tui/repositories/window.py:334
 msgid "Mirror List"
-msgstr ""
+msgstr "Mirror List"
 
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:61
 #: yast3/qt6/repositories/repo_edit_dialog.py:68
 msgid "Path"
-msgstr ""
+msgstr "Path"
 
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:64
-#: yast3/gtk4/snapshots/window.py:85
+#: yast3/gtk4/snapshots/window.py:90
 #: yast3/qt6/repositories/repo_edit_dialog.py:74
-#: yast3/qt6/snapshots/window.py:73 yast3/tui/repositories/window.py:340
-#: yast3/tui/snapshots/window.py:81 yast3/tui/ssh/window.py:293
+#: yast3/qt6/snapshots/window.py:78 yast3/tui/repositories/window.py:340
+#: yast3/tui/snapshots/window.py:84 yast3/tui/ssh/window.py:293
 #: yast3/tui/ssh/window.py:616
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:81
 #: yast3/qt6/repositories/repo_edit_dialog.py:83
 msgid "Check GPG signature"
-msgstr ""
+msgstr "Check GPG signature"
 
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:85
 #: yast3/qt6/repositories/repo_edit_dialog.py:88
 msgid "GPG Key URL"
-msgstr ""
+msgstr "GPG Key URL"
 
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:99
 #: yast3/qt6/repositories/repo_edit_dialog.py:101
 msgid "Keep packages"
-msgstr ""
+msgstr "Keep packages"
 
 #: yast3/gtk4/repositories/dialogs/switch_mirror.py:35
 #: yast3/qt6/repositories/switch_mirror_dialog.py:28
 #: yast3/tui/repositories/window.py:475
 msgid "openSUSE"
-msgstr ""
+msgstr "openSUSE"
 
 #: yast3/gtk4/repositories/dialogs/switch_mirror.py:58
 #: yast3/qt6/repositories/switch_mirror_dialog.py:48
 #: yast3/tui/repositories/window.py:479
 msgid "Packman"
-msgstr ""
+msgstr "Packman"
 
 #: yast3/gtk4/services/__init__.py:18 yast3/gtk4/services/window.py:35
 #: yast3/qt6/services/__init__.py:12 yast3/qt6/services/window.py:41
 #: yast3/tui/services/__init__.py:12
 msgid "Services"
-msgstr ""
+msgstr "Services"
 
 #: yast3/gtk4/services/window.py:54 yast3/gtk4/services/window.py:134
 #: yast3/qt6/services/window.py:58 yast3/qt6/services/window.py:117
 #: yast3/tui/services/window.py:78 yast3/tui/services/window.py:125
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: yast3/gtk4/services/window.py:56 yast3/gtk4/services/window.py:67
 #: yast3/qt6/services/window.py:60 yast3/qt6/services/window.py:70
 #: yast3/tui/services/window.py:81 yast3/tui/services/window.py:93
 msgid "All"
-msgstr ""
+msgstr "All"
 
 #: yast3/gtk4/services/window.py:57 yast3/qt6/services/window.py:61
 #: yast3/tui/services/window.py:82
-#, fuzzy
 msgid "Active"
 msgstr "Save"
 
 #: yast3/gtk4/services/window.py:58 yast3/qt6/services/window.py:62
 #: yast3/tui/services/window.py:83
 msgid "Inactive"
-msgstr ""
+msgstr "Inactive"
 
 #: yast3/gtk4/services/window.py:59 yast3/qt6/services/window.py:63
 #: yast3/tui/services/window.py:84
 msgid "Failed"
-msgstr ""
+msgstr "Failed"
 
 #: yast3/gtk4/services/window.py:60 yast3/qt6/services/window.py:64
 #: yast3/tui/services/window.py:85
 msgid "Activating"
-msgstr ""
+msgstr "Activating"
 
 #: yast3/gtk4/services/window.py:76 yast3/qt6/services/window.py:78
 #: yast3/tui/services/window.py:101
 msgid "Service name or description"
-msgstr ""
+msgstr "Service name or description"
 
 #: yast3/gtk4/services/window.py:90 yast3/gtk4/services/window.py:278
 #: yast3/qt6/services/window.py:91 yast3/qt6/services/window.py:232
 #: yast3/tui/services/window.py:105
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #: yast3/gtk4/services/window.py:94 yast3/gtk4/services/window.py:279
 #: yast3/qt6/services/window.py:95 yast3/qt6/services/window.py:233
 #: yast3/tui/services/window.py:106
-#, fuzzy
 msgid "Stop"
 msgstr "Core"
 
 #: yast3/gtk4/services/window.py:98 yast3/gtk4/services/window.py:280
 #: yast3/qt6/services/window.py:99 yast3/qt6/services/window.py:234
 #: yast3/tui/services/window.py:107
-#, fuzzy
 msgid "Enable"
 msgstr "Enable Proxy"
 
 #: yast3/gtk4/services/window.py:102 yast3/gtk4/services/window.py:281
 #: yast3/qt6/services/window.py:103 yast3/qt6/services/window.py:235
 #: yast3/tui/services/window.py:108
-#, fuzzy
 msgid "Disable"
 msgstr "Disabled"
 
 #: yast3/gtk4/services/window.py:106 yast3/gtk4/services/window.py:311
 #: yast3/qt6/services/window.py:107 yast3/qt6/services/window.py:261
 #: yast3/tui/services/window.py:109
-#, fuzzy
 msgid "Logs"
 msgstr "Core"
 
@@ -1505,40 +1480,36 @@ msgstr "Failed to save Git configuration."
 #: yast3/qt6/services/window.py:228 yast3/qt6/services/window.py:257
 #: yast3/tui/services/window.py:263 yast3/tui/services/window.py:302
 msgid "Please select a service."
-msgstr ""
+msgstr "Please select a service."
 
 #: yast3/gtk4/services/window.py:284 yast3/qt6/services/window.py:238
 #: yast3/tui/services/window.py:288
-#, fuzzy
 msgid "started"
 msgstr "Disabled"
 
 #: yast3/gtk4/services/window.py:285 yast3/qt6/services/window.py:239
 #: yast3/tui/services/window.py:291
-#, fuzzy
 msgid "stopped"
 msgstr "Core"
 
 #: yast3/gtk4/services/window.py:286 yast3/qt6/services/window.py:240
 #: yast3/tui/services/window.py:294
-#, fuzzy
 msgid "enabled"
 msgstr "Disabled"
 
 #: yast3/gtk4/services/window.py:287 yast3/qt6/services/window.py:241
 #: yast3/tui/services/window.py:297
-#, fuzzy
 msgid "disabled"
 msgstr "Disabled"
 
 #: yast3/gtk4/services/window.py:292 yast3/qt6/services/window.py:246
 msgid "Working..."
-msgstr ""
+msgstr "Working..."
 
 #: yast3/gtk4/services/window.py:293 yast3/qt6/services/window.py:247
 #, python-brace-format
 msgid "{0} Service"
-msgstr ""
+msgstr "{0} Service"
 
 #: yast3/gtk4/services/window.py:295 yast3/qt6/services/window.py:249
 #, fuzzy, python-brace-format
@@ -1547,102 +1518,225 @@ msgstr "Saved successfully"
 
 #: yast3/gtk4/services/window.py:312 yast3/qt6/services/window.py:262
 msgid "Loading logs..."
-msgstr ""
+msgstr "Loading logs..."
 
 #: yast3/gtk4/services/window.py:313 yast3/qt6/services/window.py:263
 #: yast3/tui/services/window.py:358
 #, python-brace-format
 msgid "Journal Logs: {0}"
-msgstr ""
+msgstr "Journal Logs: {0}"
 
 #: yast3/gtk4/services/window.py:315 yast3/qt6/services/window.py:265
 msgid "End of journal output."
-msgstr ""
+msgstr "End of journal output."
 
-#: yast3/gtk4/snapshots/__init__.py:18 yast3/gtk4/snapshots/window.py:35
-#: yast3/qt6/snapshots/__init__.py:12 yast3/qt6/snapshots/window.py:39
+#: yast3/gtk4/snapshots/__init__.py:18 yast3/gtk4/snapshots/window.py:36
+#: yast3/qt6/snapshots/__init__.py:12 yast3/qt6/snapshots/window.py:40
 #: yast3/tui/snapshots/__init__.py:12
 msgid "Snapshots"
-msgstr ""
+msgstr "Snapshots"
 
-#: yast3/gtk4/snapshots/window.py:62 yast3/gtk4/snapshots/window.py:251
-#: yast3/qt6/snapshots/window.py:59 yast3/qt6/snapshots/window.py:175
-#: yast3/tui/snapshots/window.py:69
-#, fuzzy
+#: yast3/gtk4/snapshots/config_dialog.py:20
+#: yast3/qt6/snapshots/config_dialog.py:24
+#: yast3/tui/snapshots/config_screen.py:22
+msgid "Snapper Configuration"
+msgstr "Git Configuration — YaST3"
+
+#: yast3/gtk4/snapshots/config_dialog.py:47
+#: yast3/qt6/snapshots/config_dialog.py:38
+#, fuzzy, python-brace-format
+msgid "Failed to read config: {0}"
+msgstr "Failed to read public key: {0}"
+
+#: yast3/gtk4/snapshots/config_dialog.py:53
+#: yast3/qt6/snapshots/config_dialog.py:44
+msgid "Space Limit (fraction or absolute size)"
+msgstr "Space Limit (fraction or absolute size)"
+
+#: yast3/gtk4/snapshots/config_dialog.py:61
+#: yast3/qt6/snapshots/config_dialog.py:49
+msgid "Free Limit (fraction or absolute size)"
+msgstr "Free Limit (fraction or absolute size)"
+
+#: yast3/gtk4/snapshots/config_dialog.py:69
+#: yast3/qt6/snapshots/config_dialog.py:54
+#: yast3/tui/snapshots/config_screen.py:34
+msgid "Allow Users"
+msgstr "Allow Users"
+
+#: yast3/gtk4/snapshots/config_dialog.py:77
+#: yast3/qt6/snapshots/config_dialog.py:59
+#: yast3/tui/snapshots/config_screen.py:39
+msgid "Allow Groups"
+msgstr "Allow Groups"
+
+#: yast3/gtk4/snapshots/config_dialog.py:85
+#: yast3/qt6/snapshots/config_dialog.py:64
+#: yast3/tui/snapshots/config_screen.py:44
+msgid "Sync ACL"
+msgstr "Sync ACL"
+
+#: yast3/gtk4/snapshots/config_dialog.py:90
+#: yast3/qt6/snapshots/config_dialog.py:69
+#: yast3/tui/snapshots/config_screen.py:48
+msgid "Background Comparison"
+msgstr "Background Comparison"
+
+#: yast3/gtk4/snapshots/config_dialog.py:95
+#: yast3/qt6/snapshots/config_dialog.py:74
+#: yast3/tui/snapshots/config_screen.py:52
+msgid "Number Cleanup"
+msgstr "Number Cleanup"
+
+#: yast3/gtk4/snapshots/config_dialog.py:100
+#: yast3/qt6/snapshots/config_dialog.py:79
+msgid "Number Min Age (seconds)"
+msgstr "Number Min Age (seconds)"
+
+#: yast3/gtk4/snapshots/config_dialog.py:108
+#: yast3/qt6/snapshots/config_dialog.py:84
+#: yast3/tui/snapshots/config_screen.py:61
+msgid "Number Limit"
+msgstr "Number Limit"
+
+#: yast3/gtk4/snapshots/config_dialog.py:116
+#: yast3/qt6/snapshots/config_dialog.py:89
+#: yast3/tui/snapshots/config_screen.py:66
+msgid "Number Limit Important"
+msgstr "Number Limit Important"
+
+#: yast3/gtk4/snapshots/config_dialog.py:124
+#: yast3/qt6/snapshots/config_dialog.py:94
+#: yast3/tui/snapshots/config_screen.py:71
+msgid "Timeline Create"
+msgstr "Timeline Create"
+
+#: yast3/gtk4/snapshots/config_dialog.py:129
+#: yast3/qt6/snapshots/config_dialog.py:99
+#: yast3/tui/snapshots/config_screen.py:75
+msgid "Timeline Cleanup"
+msgstr "Timeline Cleanup"
+
+#: yast3/gtk4/snapshots/config_dialog.py:134
+#: yast3/qt6/snapshots/config_dialog.py:104
+msgid "Timeline Min Age (seconds)"
+msgstr "Timeline Min Age (seconds)"
+
+#: yast3/gtk4/snapshots/config_dialog.py:142
+#: yast3/qt6/snapshots/config_dialog.py:109
+msgid "Timeline Limit Hourly"
+msgstr "Timeline Limit Hourly"
+
+#: yast3/gtk4/snapshots/config_dialog.py:150
+#: yast3/qt6/snapshots/config_dialog.py:114
+msgid "Timeline Limit Daily"
+msgstr "Timeline Limit Daily"
+
+#: yast3/gtk4/snapshots/config_dialog.py:158
+#: yast3/qt6/snapshots/config_dialog.py:119
+msgid "Timeline Limit Weekly"
+msgstr "Timeline Limit Weekly"
+
+#: yast3/gtk4/snapshots/config_dialog.py:166
+#: yast3/qt6/snapshots/config_dialog.py:124
+msgid "Timeline Limit Monthly"
+msgstr "Timeline Limit Monthly"
+
+#: yast3/gtk4/snapshots/config_dialog.py:174
+#: yast3/qt6/snapshots/config_dialog.py:129
+msgid "Timeline Limit Yearly"
+msgstr "Timeline Limit Yearly"
+
+#: yast3/gtk4/snapshots/config_dialog.py:221
+#: yast3/qt6/snapshots/config_dialog.py:168 yast3/tui/snapshots/window.py:245
+msgid "Configuration saved successfully."
+msgstr "Git configuration saved successfully."
+
+#: yast3/gtk4/snapshots/config_dialog.py:228
+#: yast3/qt6/snapshots/config_dialog.py:171
+#, fuzzy, python-brace-format
+msgid "Failed to write config: {0}"
+msgstr "Failed to read public key: {0}"
+
+#: yast3/gtk4/snapshots/window.py:63 yast3/gtk4/snapshots/window.py:256
+#: yast3/qt6/snapshots/window.py:60 yast3/qt6/snapshots/window.py:180
+#: yast3/tui/snapshots/window.py:71
 msgid "Create"
 msgstr "Core"
 
-#: yast3/gtk4/snapshots/window.py:90 yast3/qt6/snapshots/window.py:73
-#: yast3/tui/snapshots/window.py:82
-#, fuzzy
+#: yast3/gtk4/snapshots/window.py:71 yast3/qt6/snapshots/window.py:68
+#: yast3/tui/snapshots/window.py:74
+msgid "Configure"
+msgstr "Core"
+
+#: yast3/gtk4/snapshots/window.py:95 yast3/qt6/snapshots/window.py:78
+#: yast3/tui/snapshots/window.py:85
 msgid "Date"
 msgstr "Save"
 
-#: yast3/gtk4/snapshots/window.py:104 yast3/qt6/snapshots/window.py:73
-#: yast3/tui/snapshots/window.py:85
+#: yast3/gtk4/snapshots/window.py:109 yast3/qt6/snapshots/window.py:78
+#: yast3/tui/snapshots/window.py:88
 msgid "Cleanup"
-msgstr ""
+msgstr "Cleanup"
 
-#: yast3/gtk4/snapshots/window.py:139 yast3/gtk4/snapshots/window.py:276
-#: yast3/qt6/snapshots/window.py:192 yast3/qt6/snapshots/window.py:201
+#: yast3/gtk4/snapshots/window.py:144 yast3/gtk4/snapshots/window.py:281
+#: yast3/qt6/snapshots/window.py:197 yast3/qt6/snapshots/window.py:206
 msgid "Delete Snapshot"
-msgstr ""
+msgstr "Delete Snapshot"
 
-#: yast3/gtk4/snapshots/window.py:143 yast3/qt6/snapshots/window.py:193
+#: yast3/gtk4/snapshots/window.py:148 yast3/qt6/snapshots/window.py:198
 #, python-brace-format
 msgid "Delete snapshot #{0}? This action cannot be undone."
-msgstr ""
+msgstr "Delete snapshot #{0}? This action cannot be undone."
 
-#: yast3/gtk4/snapshots/window.py:176 yast3/qt6/snapshots/window.py:100
+#: yast3/gtk4/snapshots/window.py:181 yast3/qt6/snapshots/window.py:105
 msgid "Load Snapshots"
-msgstr ""
+msgstr "Load Snapshots"
 
-#: yast3/gtk4/snapshots/window.py:178 yast3/qt6/snapshots/window.py:102
-#, fuzzy
+#: yast3/gtk4/snapshots/window.py:183 yast3/qt6/snapshots/window.py:107
 msgid "Snapshots loaded successfully."
 msgstr "Saved successfully"
 
-#: yast3/gtk4/snapshots/window.py:199 yast3/qt6/snapshots/window.py:123
+#: yast3/gtk4/snapshots/window.py:204 yast3/qt6/snapshots/window.py:128
 #, fuzzy, python-brace-format
 msgid "Failed to parse snapshot data: {0}"
 msgstr "Failed to save Git configuration."
 
-#: yast3/gtk4/snapshots/window.py:205 yast3/qt6/snapshots/window.py:129
+#: yast3/gtk4/snapshots/window.py:210 yast3/qt6/snapshots/window.py:134
 #, fuzzy, python-brace-format
 msgid "Failed to load snapshots: {0}"
 msgstr "Failed to save Git configuration."
 
-#: yast3/gtk4/snapshots/window.py:246 yast3/qt6/snapshots/window.py:171
-#: yast3/tui/snapshots/window.py:188
+#: yast3/gtk4/snapshots/window.py:251 yast3/qt6/snapshots/window.py:176
+#: yast3/tui/snapshots/window.py:193
 msgid "Description cannot be empty."
-msgstr ""
+msgstr "Description cannot be empty."
 
-#: yast3/gtk4/snapshots/window.py:252 yast3/qt6/snapshots/window.py:176
+#: yast3/gtk4/snapshots/window.py:257 yast3/qt6/snapshots/window.py:181
 msgid "Creating..."
-msgstr ""
+msgstr "Creating..."
 
-#: yast3/gtk4/snapshots/window.py:253 yast3/qt6/snapshots/window.py:163
-#: yast3/qt6/snapshots/window.py:177
+#: yast3/gtk4/snapshots/window.py:258 yast3/qt6/snapshots/window.py:168
+#: yast3/qt6/snapshots/window.py:182
 msgid "Create Snapshot"
-msgstr ""
+msgstr "Create Snapshot"
 
-#: yast3/gtk4/snapshots/window.py:255 yast3/qt6/snapshots/window.py:179
-#: yast3/tui/snapshots/window.py:203
-#, fuzzy
+#: yast3/gtk4/snapshots/window.py:260 yast3/qt6/snapshots/window.py:184
+#: yast3/tui/snapshots/window.py:208
 msgid "Snapshot created successfully."
 msgstr "SSH key generated successfully."
 
-#: yast3/gtk4/snapshots/window.py:266 yast3/qt6/snapshots/window.py:187
-#: yast3/tui/snapshots/window.py:213
+#: yast3/gtk4/snapshots/window.py:271 yast3/qt6/snapshots/window.py:192
+#: yast3/tui/snapshots/window.py:218
 msgid "Please select a snapshot."
-msgstr ""
+msgstr "Please select a snapshot."
 
-#: yast3/gtk4/snapshots/window.py:275 yast3/qt6/snapshots/window.py:200
+#: yast3/gtk4/snapshots/window.py:280 yast3/qt6/snapshots/window.py:205
 msgid "Deleting..."
-msgstr ""
+msgstr "Deleting..."
 
-#: yast3/gtk4/snapshots/window.py:278 yast3/qt6/snapshots/window.py:203
-#: yast3/tui/snapshots/window.py:228
+#: yast3/gtk4/snapshots/window.py:283 yast3/qt6/snapshots/window.py:208
+#: yast3/tui/snapshots/window.py:233
 #, fuzzy, python-brace-format
 msgid "Snapshot #{0} deleted successfully."
 msgstr "Saved successfully"
@@ -1650,11 +1744,11 @@ msgstr "Saved successfully"
 #: yast3/gtk4/ssh/__init__.py:22 yast3/qt6/ssh/__init__.py:18
 #: yast3/tui/ssh/__init__.py:12
 msgid "SSH Client"
-msgstr ""
+msgstr "SSH Client"
 
 #: yast3/gtk4/ssh/__init__.py:57 yast3/qt6/ssh/__init__.py:51
 msgid "SSH Permission Warning"
-msgstr ""
+msgstr "SSH Permission Warning"
 
 #: yast3/gtk4/ssh/__init__.py:61 yast3/qt6/ssh/__init__.py:53
 #, python-brace-format
@@ -1665,6 +1759,11 @@ msgid ""
 "\n"
 "Would you like to fix them now?"
 msgstr ""
+"The following SSH items have insecure permissions:\n"
+"\n"
+"{0}\n"
+"\n"
+"Would you like to fix them now?"
 
 #: yast3/gtk4/ssh/__init__.py:86 yast3/qt6/ssh/__init__.py:71
 #, python-brace-format
@@ -1673,134 +1772,133 @@ msgid ""
 "\n"
 "{0}"
 msgstr ""
+"Failed to fix permissions for the following items:\n"
+"\n"
+"{0}"
 
 #: yast3/gtk4/ssh/__init__.py:99 yast3/qt6/ssh/__init__.py:78
 msgid "SSH permissions have been fixed successfully."
-msgstr ""
+msgstr "SSH permissions have been fixed successfully."
 
 #: yast3/gtk4/ssh/dialogs.py:18 yast3/qt6/ssh/dialogs.py:26
 msgid "Edit SSH Options"
-msgstr ""
+msgstr "Edit SSH Options"
 
 #: yast3/gtk4/ssh/dialogs.py:57 yast3/qt6/ssh/dialogs.py:55
 msgid "Option name"
-msgstr ""
+msgstr "Option name"
 
 #: yast3/gtk4/ssh/dialogs.py:59 yast3/qt6/ssh/dialogs.py:57
 msgid "Option value"
-msgstr ""
+msgstr "Option value"
 
 #: yast3/gtk4/ssh/dialogs.py:99 yast3/qt6/ssh/dialogs.py:86
 msgid "Option name is required."
-msgstr ""
+msgstr "Option name is required."
 
 #: yast3/gtk4/ssh/dialogs.py:105 yast3/qt6/ssh/dialogs.py:92
 msgid "Option already exists."
-msgstr ""
+msgstr "Option already exists."
 
 #: yast3/gtk4/ssh/dialogs.py:136 yast3/qt6/ssh/dialogs.py:119
 msgid "Add/Edit SSH Host"
-msgstr ""
+msgstr "Add/Edit SSH Host"
 
 #: yast3/gtk4/ssh/dialogs.py:158 yast3/qt6/ssh/dialogs.py:128
 msgid "Host Pattern:"
-msgstr ""
+msgstr "Host Pattern:"
 
 #: yast3/gtk4/ssh/dialogs.py:169 yast3/qt6/ssh/dialogs.py:134
 msgid "Edit Options"
-msgstr ""
+msgstr "Edit Options"
 
 #: yast3/gtk4/ssh/dialogs.py:195 yast3/qt6/ssh/dialogs.py:162
 #, python-brace-format
 msgid "Options: {0}"
-msgstr ""
+msgstr "Options: {0}"
 
 #: yast3/gtk4/ssh/dialogs.py:197 yast3/qt6/ssh/dialogs.py:164
 msgid "No options set"
-msgstr ""
+msgstr "No options set"
 
 #: yast3/gtk4/ssh/window.py:19
 msgid "SSH"
-msgstr ""
+msgstr "SSH"
 
 #: yast3/gtk4/ssh/window.py:37 yast3/qt6/ssh/window.py:40
 #: yast3/tui/ssh/window.py:252
 msgid "Keys"
-msgstr ""
+msgstr "Keys"
 
 #: yast3/gtk4/ssh/hosts/tab.py:81 yast3/qt6/ssh/hosts/tab.py:61
 #: yast3/tui/ssh/window.py:288
 msgid "Host Pattern"
-msgstr ""
+msgstr "Host Pattern"
 
 #: yast3/gtk4/ssh/hosts/tab.py:88 yast3/qt6/ssh/hosts/tab.py:61
 #: yast3/tui/ssh/window.py:288
 msgid "Options"
-msgstr ""
+msgstr "Options"
 
 #: yast3/gtk4/ssh/hosts/tab.py:122 yast3/qt6/ssh/hosts/tab.py:122
 #: yast3/qt6/ssh/hosts/tab.py:213 yast3/tui/ssh/window.py:327
 #, python-brace-format
 msgid " and {0} more"
-msgstr ""
+msgstr " and {0} more"
 
 #: yast3/gtk4/ssh/hosts/tab.py:152 yast3/gtk4/ssh/hosts/tab.py:180
 #: yast3/qt6/ssh/hosts/tab.py:141 yast3/qt6/ssh/hosts/tab.py:162
 msgid "Host pattern is required."
-msgstr ""
+msgstr "Host pattern is required."
 
 #: yast3/gtk4/ssh/hosts/tab.py:195 yast3/qt6/ssh/hosts/tab.py:176
 #: yast3/tui/ssh/window.py:383
 msgid "Cannot delete the default host entry."
-msgstr ""
+msgstr "Cannot delete the default host entry."
 
 #: yast3/gtk4/ssh/hosts/tab.py:224 yast3/qt6/ssh/hosts/tab.py:222
-#, fuzzy
 msgid "SSH config saved successfully."
 msgstr "Git configuration saved successfully."
 
 #: yast3/gtk4/ssh/hosts/tab.py:226 yast3/qt6/ssh/hosts/tab.py:226
 msgid "Cannot write to SSH config. Check permissions."
-msgstr ""
+msgstr "Cannot write to SSH config. Check permissions."
 
 #: yast3/gtk4/ssh/hosts/tab.py:228 yast3/qt6/ssh/hosts/tab.py:229
-#, fuzzy
 msgid "Failed to save SSH config."
 msgstr "Failed to save Git configuration."
 
 #: yast3/gtk4/ssh/keys/generate_dialog.py:18
 #: yast3/qt6/ssh/keys/generate_dialog.py:80 yast3/tui/ssh/window.py:611
 msgid "Generate SSH Key"
-msgstr ""
+msgstr "Generate SSH Key"
 
 #: yast3/gtk4/ssh/keys/generate_dialog.py:27
 #: yast3/qt6/ssh/keys/generate_dialog.py:159 yast3/tui/ssh/window.py:268
 msgid "Generate"
-msgstr ""
+msgstr "Generate"
 
 #: yast3/gtk4/ssh/keys/generate_dialog.py:39 yast3/gtk4/ssh/keys/tab.py:75
 #: yast3/qt6/ssh/keys/tab.py:62
 msgid "Algorithm"
-msgstr ""
+msgstr "Algorithm"
 
 #: yast3/gtk4/ssh/keys/generate_dialog.py:52
-#, fuzzy
 msgid "Key Size"
 msgstr "User Name"
 
 #: yast3/gtk4/ssh/keys/generate_dialog.py:70
-#, fuzzy
 msgid "Optional comment (e.g., user@host)"
 msgstr "Commit"
 
 #: yast3/gtk4/ssh/keys/generate_dialog.py:77 yast3/gtk4/ssh/keys/tab.py:102
 #: yast3/qt6/ssh/keys/tab.py:66 yast3/tui/ssh/window.py:293
 msgid "Passphrase"
-msgstr ""
+msgstr "Passphrase"
 
 #: yast3/gtk4/ssh/keys/generate_dialog.py:82
 msgid "Optional passphrase"
-msgstr ""
+msgstr "Optional passphrase"
 
 #: yast3/gtk4/ssh/keys/generate_dialog.py:112
 #, fuzzy, python-brace-format
@@ -1809,35 +1907,35 @@ msgstr "Failed to save Git configuration."
 
 #: yast3/gtk4/ssh/keys/tab.py:37 yast3/qt6/ssh/keys/tab.py:40
 msgid "Copy Public Key"
-msgstr ""
+msgstr "Copy Public Key"
 
 #: yast3/gtk4/ssh/keys/tab.py:82 yast3/qt6/ssh/keys/tab.py:63
 msgid "Size"
-msgstr ""
+msgstr "Size"
 
 #: yast3/gtk4/ssh/keys/tab.py:89 yast3/qt6/ssh/keys/tab.py:64
 msgid "Fingerprint"
-msgstr ""
+msgstr "Fingerprint"
 
 #: yast3/gtk4/ssh/keys/tab.py:109 yast3/qt6/ssh/keys/tab.py:67
 msgid "Public"
-msgstr ""
+msgstr "Public"
 
 #: yast3/gtk4/ssh/keys/tab.py:116 yast3/qt6/ssh/keys/tab.py:68
 msgid "Private"
-msgstr ""
+msgstr "Private"
 
 #: yast3/gtk4/ssh/keys/tab.py:194 yast3/qt6/ssh/keys/tab.py:174
 msgid "Public key copied to clipboard."
-msgstr ""
+msgstr "Public key copied to clipboard."
 
 #: yast3/gtk4/ssh/keys/tab.py:196 yast3/qt6/ssh/keys/tab.py:177
 msgid "Cannot read public key file."
-msgstr ""
+msgstr "Cannot read public key file."
 
 #: yast3/gtk4/ssh/keys/tab.py:223 yast3/qt6/ssh/keys/tab.py:200
 msgid "Confirm Delete"
-msgstr ""
+msgstr "Confirm Delete"
 
 #: yast3/gtk4/ssh/keys/tab.py:226 yast3/qt6/ssh/keys/tab.py:201
 #, python-brace-format
@@ -1846,6 +1944,9 @@ msgid ""
 "\n"
 "{0}"
 msgstr ""
+"Are you sure you want to delete the following keys?\n"
+"\n"
+"{0}"
 
 #: yast3/gtk4/ssh/keys/tab.py:243 yast3/qt6/ssh/keys/tab.py:218
 #, python-brace-format
@@ -1854,47 +1955,49 @@ msgid ""
 "\n"
 "{0}"
 msgstr ""
+"Failed to delete some files:\n"
+"\n"
+"{0}"
 
 #: yast3/gtk4/ssh/keys/tab.py:246 yast3/qt6/ssh/keys/tab.py:221
-#, fuzzy
 msgid "Key deleted successfully."
-msgstr "Saved successfully"
+msgstr "Key deleted successfully."
 
 #: yast3/qt6/flatpak/package_manager.py:79
 msgid "Installing package..."
-msgstr ""
+msgstr "Installing package..."
 
 #: yast3/qt6/flatpak/package_manager.py:80
 msgid "Install Flatpak Package"
-msgstr ""
+msgstr "Install Flatpak Package"
 
 #: yast3/qt6/flatpak/package_manager.py:92
 msgid "Remove Package"
-msgstr ""
+msgstr "Remove Package"
 
 #: yast3/qt6/flatpak/package_manager.py:93
 msgid "Removing package..."
-msgstr ""
+msgstr "Removing package..."
 
 #: yast3/qt6/flatpak/package_manager.py:94
 msgid "Remove Flatpak Package"
-msgstr ""
+msgstr "Remove Flatpak Package"
 
 #: yast3/qt6/flatpak/runtime_manager.py:37
 msgid "Removing runtime..."
-msgstr ""
+msgstr "Removing runtime..."
 
 #: yast3/qt6/flatpak/runtime_manager.py:38
 msgid "Remove Flatpak Runtime"
-msgstr ""
+msgstr "Remove Flatpak Runtime"
 
 #: yast3/qt6/flatpak/window.py:114
 msgid "Please wait"
-msgstr ""
+msgstr "Please wait"
 
 #: yast3/qt6/flatpak/window.py:115
 msgid "A Flatpak operation is still running. Please wait for it to finish."
-msgstr ""
+msgstr "A Flatpak operation is still running. Please wait for it to finish."
 
 #: yast3/qt6/git/window.py:234
 msgid "All Files (*)"
@@ -1986,19 +2089,18 @@ msgstr "Failed to generate SSH key: {0}"
 #: yast3/tui/cron/window.py:100
 #, python-brace-format
 msgid "User cron error: {0}"
-msgstr ""
+msgstr "User cron error: {0}"
 
 #: yast3/tui/cron/window.py:102
 #, python-brace-format
 msgid "Root cron error: {0}"
-msgstr ""
+msgstr "Root cron error: {0}"
 
 #: yast3/tui/cron/window.py:189
 msgid "Cron job deleted."
-msgstr ""
+msgstr "Cron job deleted."
 
 #: yast3/tui/cron/window.py:198
-#, fuzzy
 msgid "Success: Cron jobs saved successfully."
 msgstr "Git configuration saved successfully."
 
@@ -2008,55 +2110,48 @@ msgid "Error: Permission denied. Root permission required."
 msgstr "Error: Permission denied. Root permission required."
 
 #: yast3/tui/cron/window.py:202
-#, fuzzy
 msgid "Error: Failed to save cron jobs."
 msgstr "Failed to save Git configuration."
 
 #: yast3/tui/cron/window.py:209
 msgid "Cron job added."
-msgstr ""
+msgstr "Cron job added."
 
 #: yast3/tui/cron/window.py:216
 msgid "Cron job updated."
-msgstr ""
+msgstr "Cron job updated."
 
 #: yast3/tui/cron/window.py:316
-#, fuzzy
 msgid "Error: Command is required."
 msgstr "User name and email are required."
 
 #: yast3/tui/git/window.py:158
-#, fuzzy
 msgid "Error: Git is not installed on this system."
 msgstr "Git is not installed on this system."
 
 #: yast3/tui/git/window.py:239
-#, fuzzy
 msgid "Error: User name and email are required."
 msgstr "User name and email are required."
 
 #: yast3/tui/git/window.py:258
-#, fuzzy
 msgid "Success: Git configuration saved successfully."
 msgstr "Git configuration saved successfully."
 
 #: yast3/tui/git/window.py:260
-#, fuzzy
 msgid "Error: Failed to save Git configuration."
 msgstr "Failed to save Git configuration."
 
 #: yast3/tui/hostname/window.py:64
-#, fuzzy
 msgid "Hostname Configuration"
 msgstr "Git Configuration — YaST3"
 
 #: yast3/tui/hostname/window.py:79
 msgid "Error: /etc/hostname not found."
-msgstr ""
+msgstr "Error: /etc/hostname not found."
 
 #: yast3/tui/hostname/window.py:82
 msgid "Error: Cannot read /etc/hostname. Root permission required."
-msgstr ""
+msgstr "Error: Cannot read /etc/hostname. Root permission required."
 
 #: yast3/tui/hostname/window.py:86 yast3/tui/hostname/window.py:144
 #: yast3/tui/ssh/window.py:415 yast3/tui/ssh/window.py:451
@@ -2066,15 +2161,15 @@ msgstr "Error"
 
 #: yast3/tui/hostname/window.py:110
 msgid "Error: Hostname cannot be empty."
-msgstr ""
+msgstr "Error: Hostname cannot be empty."
 
 #: yast3/tui/hostname/window.py:115
 msgid "Error: Hostname is too long (maximum 253 characters)."
-msgstr ""
+msgstr "Error: Hostname is too long (maximum 253 characters)."
 
 #: yast3/tui/hostname/window.py:122
 msgid "Error: Hostname contains invalid characters."
-msgstr ""
+msgstr "Error: Hostname contains invalid characters."
 
 #: yast3/tui/hostname/window.py:129
 #, fuzzy, python-brace-format
@@ -2084,7 +2179,7 @@ msgstr "Saved successfully"
 #: yast3/tui/hostname/window.py:140 yast3/tui/hosts/window.py:169
 #: yast3/tui/repositories/window.py:264
 msgid "Error: Authentication failed or pkexec not available."
-msgstr ""
+msgstr "Error: Authentication failed or pkexec not available."
 
 #: yast3/tui/hosts/window.py:92 yast3/tui/proxy/window.py:109
 #, python-brace-format
@@ -2098,55 +2193,52 @@ msgstr "Error: {0} not found."
 
 #: yast3/tui/hosts/window.py:124 yast3/tui/ssh/window.py:508
 msgid "Add Host Entry"
-msgstr ""
+msgstr "Add Host Entry"
 
 #: yast3/tui/hosts/window.py:137 yast3/tui/ssh/window.py:508
 msgid "Edit Host Entry"
-msgstr ""
+msgstr "Edit Host Entry"
 
 #: yast3/tui/hosts/window.py:154
 msgid "Entry deleted."
-msgstr ""
+msgstr "Entry deleted."
 
 #: yast3/tui/hosts/window.py:161
-#, fuzzy
 msgid "Success: Hosts file saved successfully."
 msgstr "Saved successfully"
 
 #: yast3/tui/hosts/window.py:164
 #, python-brace-format
 msgid "Error: Cannot write to {0}. Root permission required."
-msgstr ""
+msgstr "Error: Cannot write to {0}. Root permission required."
 
 #: yast3/tui/hosts/window.py:173
-#, fuzzy
 msgid "Error: Failed to save hosts file."
 msgstr "Failed to save Git configuration."
 
 #: yast3/tui/hosts/window.py:191
 msgid "Entry added."
-msgstr ""
+msgstr "Entry added."
 
 #: yast3/tui/hosts/window.py:193 yast3/tui/hosts/window.py:212
-#, fuzzy
 msgid "Error: IP address and hostname are required."
 msgstr "User name and email are required."
 
 #: yast3/tui/hosts/window.py:210
 msgid "Entry updated."
-msgstr ""
+msgstr "Entry updated."
 
 #: yast3/tui/packages/window.py:39
 msgid "Packages Management"
-msgstr ""
+msgstr "Packages Management"
 
 #: yast3/tui/packages/window.py:40
 msgid "Package management functionality is not yet implemented in TUI mode."
-msgstr ""
+msgstr "Package management functionality is not yet implemented in TUI mode."
 
 #: yast3/tui/packages/window.py:41
 msgid "Please use the Qt6 GUI version for full package management features."
-msgstr ""
+msgstr "Please use the Qt6 GUI version for full package management features."
 
 #: yast3/tui/proxy/window.py:69
 msgid "Proxy Configuration"
@@ -2177,82 +2269,79 @@ msgstr "Error: Failed to save proxy configuration: {0}"
 
 #: yast3/tui/repositories/window.py:93
 msgid "Error: Cannot read repository directory. Root permission required."
-msgstr ""
+msgstr "Error: Cannot read repository directory. Root permission required."
 
 #: yast3/tui/repositories/window.py:164
 msgid "Repository deleted."
-msgstr ""
+msgstr "Repository deleted."
 
 #: yast3/tui/repositories/window.py:187 yast3/tui/repositories/window.py:225
 msgid "Error: Repository ID is required."
-msgstr ""
+msgstr "Error: Repository ID is required."
 
 #: yast3/tui/repositories/window.py:190 yast3/tui/repositories/window.py:228
-#, fuzzy
 msgid "Error: URL is required."
 msgstr "User name and email are required."
 
 #: yast3/tui/repositories/window.py:214
 msgid "Repository added."
-msgstr ""
+msgstr "Repository added."
 
 #: yast3/tui/repositories/window.py:251
 msgid "Repository updated."
-msgstr ""
+msgstr "Repository updated."
 
 #: yast3/tui/repositories/window.py:259
 msgid "Error: Cannot write to repository directory. Root permission required."
-msgstr ""
+msgstr "Error: Cannot write to repository directory. Root permission required."
 
 #: yast3/tui/repositories/window.py:268
-#, fuzzy
 msgid "Error: Failed to save repository configuration."
 msgstr "Failed to save Git configuration."
 
 #: yast3/tui/repositories/window.py:325
 msgid "Repository ID"
-msgstr ""
+msgstr "Repository ID"
 
 #: yast3/tui/repositories/window.py:326
 msgid "Unique repository ID"
-msgstr ""
+msgstr "Unique repository ID"
 
 #: yast3/tui/repositories/window.py:329
 msgid "Display name"
-msgstr ""
+msgstr "Display name"
 
 #: yast3/tui/repositories/window.py:335
 msgid "Mirror list URL"
-msgstr ""
+msgstr "Mirror list URL"
 
 #: yast3/tui/repositories/window.py:338
 msgid "Priority (default 99)"
-msgstr ""
+msgstr "Priority (default 99)"
 
 #: yast3/tui/repositories/window.py:347
-#, fuzzy
 msgid "GPG Key"
 msgstr "GPG Signing Key"
 
 #: yast3/tui/repositories/window.py:348
 msgid "GPG key URL"
-msgstr ""
+msgstr "GPG key URL"
 
 #: yast3/tui/repositories/window.py:351
 msgid "GPG Check"
-msgstr ""
+msgstr "GPG Check"
 
 #: yast3/tui/repositories/window.py:352
 msgid "Keep Packages"
-msgstr ""
+msgstr "Keep Packages"
 
 #: yast3/tui/services/window.py:157
 #, fuzzy, python-brace-format
 msgid "Error: Failed to load services: {0}"
 msgstr "Failed to save Git configuration."
 
-#: yast3/tui/services/window.py:271 yast3/tui/snapshots/window.py:196
-#: yast3/tui/snapshots/window.py:221
+#: yast3/tui/services/window.py:271 yast3/tui/snapshots/window.py:201
+#: yast3/tui/snapshots/window.py:226
 #, fuzzy, python-brace-format
 msgid "Error: Failed to execute command: {0}"
 msgstr "Error: Failed to save proxy configuration: {0}"
@@ -2269,134 +2358,170 @@ msgstr "Error: Failed to load proxy configuration: {0}"
 
 #: yast3/tui/services/window.py:315
 msgid "No logs available."
-msgstr ""
+msgstr "No logs available."
 
-#: yast3/tui/snapshots/window.py:120
+#: yast3/tui/snapshots/config_screen.py:24
+msgid "Space Limit"
+msgstr "Space Limit"
+
+#: yast3/tui/snapshots/config_screen.py:29
+msgid "Free Limit"
+msgstr "Free Limit"
+
+#: yast3/tui/snapshots/config_screen.py:56
+msgid "Number Min Age"
+msgstr "User Name"
+
+#: yast3/tui/snapshots/config_screen.py:79
+msgid "Timeline Min Age"
+msgstr "Timeline Min Age"
+
+#: yast3/tui/snapshots/config_screen.py:84
+msgid "Timeline Hourly"
+msgstr "Timeline Hourly"
+
+#: yast3/tui/snapshots/config_screen.py:89
+msgid "Timeline Daily"
+msgstr "Timeline Daily"
+
+#: yast3/tui/snapshots/config_screen.py:94
+msgid "Timeline Weekly"
+msgstr "Timeline Weekly"
+
+#: yast3/tui/snapshots/config_screen.py:99
+msgid "Timeline Monthly"
+msgstr "Timeline Monthly"
+
+#: yast3/tui/snapshots/config_screen.py:104
+msgid "Timeline Yearly"
+msgstr "Timeline Yearly"
+
+#: yast3/tui/snapshots/config_screen.py:135
+#, fuzzy, python-brace-format
+msgid "Error: Failed to read config: {0}"
+msgstr "Error: Failed to load proxy configuration: {0}"
+
+#: yast3/tui/snapshots/config_screen.py:164
+#, fuzzy, python-brace-format
+msgid "Error: Failed to write config: {0}"
+msgstr "Error: Failed to save proxy configuration: {0}"
+
+#: yast3/tui/snapshots/window.py:123
 msgid "Timeout waiting for snapshots"
-msgstr ""
+msgstr "Timeout waiting for snapshots"
 
-#: yast3/tui/snapshots/window.py:139
+#: yast3/tui/snapshots/window.py:142
 #, fuzzy, python-brace-format
 msgid "Error: Failed to load snapshots: {0}"
 msgstr "Error: Failed to load proxy configuration: {0}"
 
 #: yast3/tui/ssh/window.py:283
 msgid "Warning: Some SSH files have insecure permissions."
-msgstr ""
+msgstr "Warning: Some SSH files have insecure permissions."
 
 #: yast3/tui/ssh/window.py:293 yast3/tui/ssh/window.py:619
 msgid "Bits"
-msgstr ""
+msgstr "Bits"
 
 #: yast3/tui/ssh/window.py:307
 msgid "Error: Cannot read SSH config."
-msgstr ""
+msgstr "Error: Cannot read SSH config."
 
 #: yast3/tui/ssh/window.py:368
 msgid "Please select a host to edit."
-msgstr ""
+msgstr "Please select a host to edit."
 
 #: yast3/tui/ssh/window.py:378
 msgid "Please select a host to delete."
-msgstr ""
+msgstr "Please select a host to delete."
 
 #: yast3/tui/ssh/window.py:388
 msgid "Host entry deleted."
-msgstr ""
+msgstr "Host entry deleted."
 
 #: yast3/tui/ssh/window.py:395
-#, fuzzy
 msgid "Success: SSH config saved successfully."
 msgstr "Git configuration saved successfully."
 
 #: yast3/tui/ssh/window.py:397
-#, fuzzy
 msgid "Error: Cannot write to SSH config."
 msgstr "Failed to save Git configuration."
 
 #: yast3/tui/ssh/window.py:399
-#, fuzzy
 msgid "Error: Failed to save SSH config."
 msgstr "Failed to save Git configuration."
 
 #: yast3/tui/ssh/window.py:405
 msgid "Please select a key to delete."
-msgstr ""
+msgstr "Please select a key to delete."
 
 #: yast3/tui/ssh/window.py:413
-#, fuzzy
 msgid "Key deleted."
 msgstr "Saved successfully"
 
 #: yast3/tui/ssh/window.py:420 yast3/tui/ssh/window.py:431
-#, fuzzy
 msgid "Error: Host pattern is required."
 msgstr "User name and email are required."
 
 #: yast3/tui/ssh/window.py:426
 msgid "Host entry added."
-msgstr ""
+msgstr "Host entry added."
 
 #: yast3/tui/ssh/window.py:442
 msgid "Host entry updated."
-msgstr ""
+msgstr "Host entry updated."
 
 #: yast3/tui/ssh/window.py:449
-#, fuzzy
 msgid "Key generated successfully."
 msgstr "Saved successfully"
 
 #: yast3/tui/ssh/window.py:510
 msgid "Host"
-msgstr ""
+msgstr "Host"
 
 #: yast3/tui/ssh/window.py:511
 msgid "Host pattern"
-msgstr ""
+msgstr "Host pattern"
 
 #: yast3/tui/ssh/window.py:513
-#, fuzzy
 msgid "HostName"
 msgstr "User Name"
 
 #: yast3/tui/ssh/window.py:514
-#, fuzzy
 msgid "Real hostname"
 msgstr "User Name"
 
 #: yast3/tui/ssh/window.py:516
 msgid "Port"
-msgstr ""
+msgstr "Port"
 
 #: yast3/tui/ssh/window.py:517
 msgid "Port number"
-msgstr ""
+msgstr "Port number"
 
 #: yast3/tui/ssh/window.py:520
-#, fuzzy
 msgid "Username"
 msgstr "User Name"
 
 #: yast3/tui/ssh/window.py:522
 msgid "IdentityFile"
-msgstr ""
+msgstr "IdentityFile"
 
 #: yast3/tui/ssh/window.py:523
 msgid "Key file path"
-msgstr ""
+msgstr "Key file path"
 
 #: yast3/tui/ssh/window.py:614
-#, fuzzy
 msgid "Key filename"
 msgstr "User Name"
 
 #: yast3/tui/ssh/window.py:617
 msgid "rsa, ed25519, ecdsa"
-msgstr ""
+msgstr "rsa, ed25519, ecdsa"
 
 #: yast3/tui/ssh/window.py:620
 msgid "Key bits"
-msgstr ""
+msgstr "Key bits"
 
 #~ msgid "Snapshot description"
 #~ msgstr ""

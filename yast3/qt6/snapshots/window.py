@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import Qt, QTimer, Signal
 from PySide6.QtWidgets import (
     QHeaderView,
     QHBoxLayout,
@@ -70,7 +70,7 @@ class SnapshotsWindow(QMainWindow):
         self.table = QTableWidget()
         self.table.setColumnCount(6)
         self.table.setHorizontalHeaderLabels(
-            [_("Number"), _("Type"), _("Date"), _("User"), _("Description"), _("Cleanup")]
+            [_("ID"), _("Type"), _("Date"), _("User"), _("Description"), _("Cleanup")]
         )
         self.table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.table.setSelectionMode(QTableWidget.SelectionMode.SingleSelection)
@@ -232,7 +232,7 @@ class SnapshotsWindow(QMainWindow):
 
     def showEvent(self, _event) -> None:
         super().showEvent(_event)
-        self.load_snapshots()
+        QTimer.singleShot(1000, self.load_snapshots)
 
     def closeEvent(self, _event) -> None:
         self.closed.emit()

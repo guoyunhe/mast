@@ -51,7 +51,7 @@ class SnapshotsWindow(Gtk.ApplicationWindow):
         action_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
 
         self.description_entry = Gtk.Entry()
-        self.description_entry.set_placeholder_text(_("Snapshot description"))
+        self.description_entry.set_placeholder_text(_("Description"))
         self.description_entry.set_hexpand(True)
         action_box.append(self.description_entry)
 
@@ -77,7 +77,7 @@ class SnapshotsWindow(Gtk.ApplicationWindow):
         self.tree_view.set_hexpand(True)
         self.tree_view.set_vexpand(True)
 
-        number_column = Gtk.TreeViewColumn(_("Number"), Gtk.CellRendererText(), text=0)
+        number_column = Gtk.TreeViewColumn(_("ID"), Gtk.CellRendererText(), text=0)
         number_column.set_resizable(True)
         number_column.set_min_width(80)
         self.tree_view.append_column(number_column)

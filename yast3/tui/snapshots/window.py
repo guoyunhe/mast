@@ -65,7 +65,7 @@ class SnapshotsWindow(Screen):
     def compose(self) -> ComposeResult:
         yield Header()
         with Horizontal(classes="action-row"):
-            yield Input(placeholder=_("Snapshot description"), id="description-input")
+            yield Input(placeholder=_("Description"), id="description-input")
             yield Button(_("Create"), id="create-btn")
             yield Button(_("Delete"), id="delete-btn")
             yield Button(_("Refresh"), id="refresh-btn")
@@ -77,7 +77,7 @@ class SnapshotsWindow(Screen):
         table = self.query_one("#snapshots-table", DataTable)
         table.cursor_type = "row"
         table.add_columns(
-            _("Number"),
+            _("ID"),
             _("Type"),
             _("Date"),
             _("User"),

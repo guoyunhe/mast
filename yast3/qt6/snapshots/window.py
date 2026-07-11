@@ -26,6 +26,7 @@ from yast3.core.snapshots import (
     build_snapshot_list_command,
     parse_snapshots_from_json,
 )
+from yast3.qt6.snapshots.config_dialog import SnapperConfigDialog
 from yast3.qt6.command.action import CommandAction
 
 
@@ -63,6 +64,10 @@ class SnapshotsWindow(QMainWindow):
         self.delete_btn = QPushButton(_("Delete"))
         self.delete_btn.clicked.connect(self.delete_snapshot)
         actions_layout.addWidget(self.delete_btn)
+
+        self.config_btn = QPushButton(_("Configure"))
+        self.config_btn.clicked.connect(self.show_config_dialog)
+        actions_layout.addWidget(self.config_btn)
 
         actions_layout.addStretch()
         layout.addLayout(actions_layout)
@@ -229,6 +234,10 @@ class SnapshotsWindow(QMainWindow):
         if on_finished is not None:
             action.action_finished.connect(on_finished)
         return action
+
+    def show_config_dialog(self) -> None:
+        dialog = SnapperConfigDialog(self)
+        dialog.exec()
 
     def showEvent(self, _event) -> None:
         super().showEvent(_event)

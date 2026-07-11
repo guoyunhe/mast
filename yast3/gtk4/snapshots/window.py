@@ -19,6 +19,7 @@ from yast3.core.snapshots import (
     parse_snapshots_from_json,
 )
 from yast3.gtk4.command.action import CommandAction
+from yast3.gtk4.snapshots.config_dialog import SnapperConfigDialog
 
 
 class SnapshotsWindow(Gtk.ApplicationWindow):
@@ -66,6 +67,10 @@ class SnapshotsWindow(Gtk.ApplicationWindow):
         self.delete_btn = Gtk.Button(label=_("Delete"))
         self.delete_btn.connect("clicked", lambda _button: self.delete_snapshot())
         action_box.append(self.delete_btn)
+
+        self.config_btn = Gtk.Button(label=_("Configure"))
+        self.config_btn.connect("clicked", lambda _button: self.show_config_dialog())
+        action_box.append(self.config_btn)
 
         action_box.append(Gtk.Box(hexpand=True))
         self.main_box.append(action_box)
@@ -284,6 +289,10 @@ class SnapshotsWindow(Gtk.ApplicationWindow):
         if success:
             self.description_entry.set_text("")
             self.load_snapshots()
+
+    def show_config_dialog(self) -> None:
+        dialog = SnapperConfigDialog(self)
+        dialog.show()
 
     def _create_action(
         self,

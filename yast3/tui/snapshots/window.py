@@ -17,6 +17,7 @@ from yast3.core.snapshots import (
     build_snapshot_list_command,
     parse_snapshots_from_json,
 )
+from yast3.tui.snapshots.config_screen import SnapperConfigScreen
 
 
 class SnapshotsWindow(Screen):
@@ -55,6 +56,7 @@ class SnapshotsWindow(Screen):
         ("r", "reload", "Refresh"),
         ("c", "create_snapshot", "Create"),
         ("d", "delete_snapshot", "Delete"),
+        ("g", "configure", "Configure"),
     ]
 
     def __init__(self) -> None:
@@ -69,6 +71,7 @@ class SnapshotsWindow(Screen):
             yield Button(_("Create"), id="create-btn")
             yield Button(_("Delete"), id="delete-btn")
             yield Button(_("Refresh"), id="refresh-btn")
+            yield Button(_("Configure"), id="config-btn")
 
         yield DataTable(id="snapshots-table")
         yield Static("", id="message", classes="message")
@@ -177,6 +180,8 @@ class SnapshotsWindow(Screen):
             self.action_delete_snapshot()
         elif button_id == "refresh-btn":
             self.action_reload()
+        elif button_id == "config-btn":
+            self.action_configure()
 
     def action_reload(self) -> None:
         self.load_snapshots()
@@ -233,3 +238,10 @@ class SnapshotsWindow(Screen):
 
         error_text = (result.stdout or result.stderr or _("Unknown error")).strip()
         self.show_message(error_text, error=True)
+
+    def action_configure(self) -> None:
+        def on_config_result(result: bool) -> None:
+            if result:
+                self.show_message(_("Configuration saved successfully."), success=True)
+
+        self.app.push_screen(SnapperConfigScreen(on_config_result))

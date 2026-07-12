@@ -111,11 +111,8 @@ class CronEditDialog(QDialog):
             QMessageBox.warning(self, _("Error"), _("Command cannot be empty"))
             return
 
-        job = CronItem(command=command, comment=comment)
-        job.setall(minute, hour, day, month, weekday)
-
-        self.job = job
+        self._job_data = (minute, hour, day, month, weekday, command, comment)
         self.accept()
 
-    def get_job(self) -> CronItem | None:
-        return self.job
+    def get_job_data(self) -> tuple | None:
+        return getattr(self, "_job_data", None)

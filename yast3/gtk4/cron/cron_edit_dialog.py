@@ -132,12 +132,9 @@ class CronEditDialog(Gtk.Dialog):
             dialog.present()
             return
 
-        job = CronItem(command=command, comment=comment)
-        job.setall(minute, hour, day, month, weekday)
-
-        self.result_job = job
+        self._job_data = (minute, hour, day, month, weekday, command, comment)
         self.response(Gtk.ResponseType.OK)
 
-    def get_job(self) -> CronItem | None:
-        """Get the resulting cron job."""
-        return self.result_job
+    def get_job_data(self) -> tuple | None:
+        """Get the resulting cron job data."""
+        return getattr(self, "_job_data", None)

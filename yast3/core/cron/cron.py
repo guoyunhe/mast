@@ -1,19 +1,10 @@
-"""Cron job parsing and management logic."""
+"""Cron job management logic."""
 
 from __future__ import annotations
 
-import os
 import subprocess
-from typing import Literal
 
-from crontab import CronTab, CronItem
-
-USER_CRON_DIR = "/var/spool/cron/tabs"
-
-
-def _get_user_cron_path(username: str) -> str:
-    """Get the cron file path for a user."""
-    return os.path.join(USER_CRON_DIR, username)
+from crontab import CronTab
 
 
 def load_root_cron() -> CronTab:
@@ -33,60 +24,21 @@ def load_root_cron() -> CronTab:
     return CronTab(user='root', tab=result.stdout)
 
 
-def save_cron_jobs(jobs: list[CronItem], user_mode: bool = True) -> Literal["ok", "permission_denied", "error"]:
-    """Save cron jobs to file.
+def save_root_cron(cron: CronTab) -> bool:
+    """Save root cron jobs using pkexec.
 
     Args:
-        jobs: List of CronItem objects to save.
-        user_mode: True for user cron, False for root cron.
+        cron: CronTab object to save.
 
     Returns:
-        "ok" on success,
-        "permission_denied" if cannot write to file,
-        "error" for other errors.
+        True on success, False on failure.
     """
-    if user_mode:
-        username = os.getlogin()
-        cron_path = _get_user_cron_path(username)
-    else:
-        cron_path = _get_user_cron_path("root")
-
-    header_lines = []
     result = subprocess.run(
-        ["pkexec", "cat", cron_path],
+        ["pkexec", "crontab", "-"],
+        input=str(cron).encode(),
         capture_output=True,
-        text=True,
     )
-    if result.returncode == 0:
-        content = result.stdout
-        existing_lines = content.splitlines() if content else []
-        header_lines = existing_lines[:3]
-
-    lines = []
-    for job in jobs:
-        if job.comment:
-            lines.append(job.comment)
-        if job.is_enabled():
-            lines.append(f"{job.minute} {job.hour} {job.day} {job.month} {job.dow} {job.command}")
-        else:
-            lines.append(f"# {job.minute} {job.hour} {job.day} {job.month} {job.dow} {job.command}")
-
-    content = "\n".join(header_lines + lines) + "\n"
-
-    try:
-        result = subprocess.run(
-            ["pkexec", "tee", cron_path],
-            input=content.encode(),
-            capture_output=True,
-        )
-        if result.returncode != 0:
-            return "permission_denied"
-
-        return "ok"
-    except PermissionError:
-        return "permission_denied"
-    except Exception:
-        return "error"
+    return result.returncode == 0
 
 
 def get_suggestions(field_type: str) -> list[str]:

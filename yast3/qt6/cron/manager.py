@@ -1,4 +1,4 @@
-"""Cron tab UI component for managing cron jobs."""
+"""Cron job manager widget."""
 
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ from PySide6.QtWidgets import (
 from crontab import CronItem, CronTab
 
 from yast3.core.i18n import _
-from yast3.core.cron import save_cron_jobs, load_root_cron
+from yast3.core.cron import load_root_cron, save_root_cron
 from yast3.qt6.cron.cron_edit_dialog import CronEditDialog
 
 
@@ -29,7 +29,6 @@ class Manager(QWidget):
         super().__init__(parent)
         self.user_mode = user_mode
         self.crontab: CronTab = CronTab(user=True) if user_mode else load_root_cron()
-        self.jobs: list[CronItem] = self.crontab.crons or []
         self._setup_ui()
         self.populate_table()
 
@@ -99,10 +98,15 @@ class Manager(QWidget):
         self.edit_btn.setEnabled(selected)
         self.delete_btn.setEnabled(selected)
 
-    def populate_table(self) -> None:
-        self.table.setRowCount(len(self.jobs))
+    def _get_jobs(self) -> list[CronItem]:
+        return list(self.crontab.crons)
 
-        for row, job in enumerate(self.jobs):
+    def populate_table(self) -> None:
+        self.table.setRowCount(0)
+        jobs = self._get_jobs()
+        self.table.setRowCount(len(jobs))
+
+        for row, job in enumerate(jobs):
             enabled_widget = QWidget()
             enabled_layout = QHBoxLayout(enabled_widget)
             enabled_layout.setContentsMargins(0, 0, 0, 0)
@@ -130,19 +134,21 @@ class Manager(QWidget):
             self.table.setItem(row, 7, comment_item)
 
     def toggle_enabled(self, row: int, state: int) -> None:
-        if 0 <= row < len(self.jobs):
-            self.jobs[row].enable(state == Qt.CheckState.Checked.value)
+        jobs = self._get_jobs()
+        if 0 <= row < len(jobs):
+            jobs[row].enable(state == Qt.CheckState.Checked.value)
             self.populate_row(row)
 
     def add_job(self) -> None:
         dialog = CronEditDialog(self)
         if dialog.exec():
-            job = dialog.get_job()
-            if job:
-                self.jobs.append(job)
-                row = self.table.rowCount()
-                self.table.insertRow(row)
-                self.populate_row(row)
+            job_data = dialog.get_job_data()
+            if job_data:
+                minute, hour, day, month, weekday, command, comment = job_data
+                new_job = self.crontab.new(command=command, comment=comment)
+                new_job.setall(minute, hour, day, month, weekday)
+                new_job.enable(True)
+                self.populate_table()
 
     def edit_job(self) -> None:
         current_row = self.table.currentRow()
@@ -150,12 +156,16 @@ class Manager(QWidget):
             QMessageBox.information(self, _("Information"), _("Please select a cron job to edit."))
             return
 
-        job = self.jobs[current_row]
+        jobs = self._get_jobs()
+        job = jobs[current_row]
         dialog = CronEditDialog(self, job)
         if dialog.exec():
-            new_job = dialog.get_job()
-            if new_job:
-                self.jobs[current_row] = new_job
+            job_data = dialog.get_job_data()
+            if job_data:
+                minute, hour, day, month, weekday, command, comment = job_data
+                job.setall(minute, hour, day, month, weekday)
+                job.command = command
+                job.comment = comment
                 self.populate_row(current_row)
 
     def delete_job(self) -> None:
@@ -168,46 +178,51 @@ class Manager(QWidget):
             self, _("Confirm"), _("Are you sure you want to delete this cron job?")
         )
         if reply == QMessageBox.StandardButton.Yes:
-            self.jobs.pop(current_row)
+            jobs = self._get_jobs()
+            job_to_delete = jobs[current_row]
+            self.crontab.remove(job_to_delete)
             self.table.removeRow(current_row)
 
     def populate_row(self, row: int) -> None:
-        job = self.jobs[row]
+        jobs = self._get_jobs()
+        if 0 <= row < len(jobs):
+            job = jobs[row]
 
-        enabled_widget = QWidget()
-        enabled_layout = QHBoxLayout(enabled_widget)
-        enabled_layout.setContentsMargins(0, 0, 0, 0)
-        enabled_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        checkbox = QCheckBox()
-        checkbox.setChecked(job.is_enabled())
-        checkbox.stateChanged.connect(lambda s, r=row: self.toggle_enabled(r, s))
-        enabled_layout.addWidget(checkbox)
-        self.table.setCellWidget(row, 0, enabled_widget)
+            enabled_widget = QWidget()
+            enabled_layout = QHBoxLayout(enabled_widget)
+            enabled_layout.setContentsMargins(0, 0, 0, 0)
+            enabled_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            checkbox = QCheckBox()
+            checkbox.setChecked(job.is_enabled())
+            checkbox.stateChanged.connect(lambda s, r=row: self.toggle_enabled(r, s))
+            enabled_layout.addWidget(checkbox)
+            self.table.setCellWidget(row, 0, enabled_widget)
 
-        self.table.setItem(row, 1, QTableWidgetItem(str(job.minute)))
-        self.table.setItem(row, 2, QTableWidgetItem(str(job.hour)))
-        self.table.setItem(row, 3, QTableWidgetItem(str(job.day)))
-        self.table.setItem(row, 4, QTableWidgetItem(str(job.month)))
-        self.table.setItem(row, 5, QTableWidgetItem(str(job.dow)))
+            self.table.setItem(row, 1, QTableWidgetItem(str(job.minute)))
+            self.table.setItem(row, 2, QTableWidgetItem(str(job.hour)))
+            self.table.setItem(row, 3, QTableWidgetItem(str(job.day)))
+            self.table.setItem(row, 4, QTableWidgetItem(str(job.month)))
+            self.table.setItem(row, 5, QTableWidgetItem(str(job.dow)))
 
-        cmd_item = QTableWidgetItem(job.command or "")
-        if not job.is_enabled():
-            cmd_item.setForeground(Qt.GlobalColor.gray)
-        self.table.setItem(row, 6, cmd_item)
+            cmd_item = QTableWidgetItem(job.command or "")
+            if not job.is_enabled():
+                cmd_item.setForeground(Qt.GlobalColor.gray)
+            self.table.setItem(row, 6, cmd_item)
 
-        comment_item = QTableWidgetItem(job.comment or "")
-        if not job.is_enabled():
-            comment_item.setForeground(Qt.GlobalColor.gray)
-        self.table.setItem(row, 7, comment_item)
+            comment_item = QTableWidgetItem(job.comment or "")
+            if not job.is_enabled():
+                comment_item.setForeground(Qt.GlobalColor.gray)
+            self.table.setItem(row, 7, comment_item)
 
     def save_jobs(self) -> None:
-        result = save_cron_jobs(self.jobs, self.user_mode)
-
-        if result == "ok":
+        try:
+            if self.user_mode:
+                self.crontab.write()
+            else:
+                if not save_root_cron(self.crontab):
+                    raise Exception("Failed to save")
             QMessageBox.information(self, _("Success"), _("Cron jobs saved successfully."))
-        elif result == "permission_denied":
+        except Exception:
             QMessageBox.critical(
                 self, _("Error"), _("Permission denied. Root permission required.")
             )
-        else:
-            QMessageBox.critical(self, _("Error"), _("Failed to save cron jobs."))

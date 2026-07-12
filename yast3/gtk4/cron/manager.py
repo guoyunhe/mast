@@ -1,4 +1,4 @@
-"""Cron tab UI component for managing cron jobs (GTK4)."""
+"""Cron job manager widget (GTK4)."""
 
 import gi
 
@@ -9,7 +9,7 @@ from gi.repository import Gtk
 from crontab import CronItem, CronTab
 
 from yast3.core.i18n import _
-from yast3.core.cron import load_root_cron, save_cron_jobs
+from yast3.core.cron import load_root_cron, save_root_cron
 from yast3.gtk4.cron.cron_edit_dialog import CronEditDialog
 
 
@@ -20,7 +20,6 @@ class Manager(Gtk.Box):
         super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=8)
         self.user_mode = user_mode
         self.cron = CronTab(user=True) if user_mode else load_root_cron()
-        self.jobs: list[CronItem] = list(self.cron.crons)
         self._setup_ui()
 
     def _setup_ui(self) -> None:
@@ -30,7 +29,6 @@ class Manager(Gtk.Box):
         self.set_margin_start(8)
         self.set_margin_end(8)
 
-        # Button bar
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
 
         self.add_btn = Gtk.Button(label=_("Add"))
@@ -57,7 +55,6 @@ class Manager(Gtk.Box):
 
         self.append(button_box)
 
-        # Create list view
         self._create_list_view()
 
     def _create_list_view(self) -> None:
@@ -133,10 +130,13 @@ class Manager(Gtk.Box):
         self.edit_btn.set_sensitive(selected)
         self.delete_btn.set_sensitive(selected)
 
+    def _get_jobs(self) -> list[CronItem]:
+        return list(self.cron.crons)
+
     def _populate_list(self) -> None:
         """Populate the list with cron jobs."""
         self.list_store.clear()
-        for job in self.jobs:
+        for job in self._get_jobs():
             self.list_store.append([
                 job.is_enabled(),
                 str(job.minute),
@@ -151,9 +151,10 @@ class Manager(Gtk.Box):
     def _on_enabled_toggled(self, renderer, path) -> None:
         """Handle enabled toggle."""
         index = int(path)
-        if 0 <= index < len(self.jobs):
-            current_state = self.jobs[index].is_enabled()
-            self.jobs[index].enable(not current_state)
+        jobs = self._get_jobs()
+        if 0 <= index < len(jobs):
+            current_state = jobs[index].is_enabled()
+            jobs[index].enable(not current_state)
             tree_iter = self.list_store.get_iter(path)
             self.list_store.set_value(tree_iter, 0, not current_state)
 
@@ -166,9 +167,12 @@ class Manager(Gtk.Box):
     def _on_add_dialog_response(self, dialog, response_id) -> None:
         """Handle add dialog response."""
         if response_id == Gtk.ResponseType.OK:
-            job = dialog.get_job()
-            if job:
-                self.jobs.append(job)
+            job_data = dialog.get_job_data()
+            if job_data:
+                minute, hour, day, month, weekday, command, comment = job_data
+                new_job = self.cron.new(command=command, comment=comment)
+                new_job.setall(minute, hour, day, month, weekday)
+                new_job.enable(True)
                 self._populate_list()
         dialog.destroy()
 
@@ -181,7 +185,8 @@ class Manager(Gtk.Box):
 
         path = model.get_path(tree_iter)
         index = int(path.to_string())
-        job = self.jobs[index]
+        jobs = self._get_jobs()
+        job = jobs[index]
 
         dialog = CronEditDialog(self.get_root(), job)
         dialog.connect("response", self._on_edit_dialog_response, index)
@@ -190,9 +195,14 @@ class Manager(Gtk.Box):
     def _on_edit_dialog_response(self, dialog, response_id, index: int) -> None:
         """Handle edit dialog response."""
         if response_id == Gtk.ResponseType.OK:
-            new_job = dialog.get_job()
-            if new_job:
-                self.jobs[index] = new_job
+            job_data = dialog.get_job_data()
+            if job_data:
+                minute, hour, day, month, weekday, command, comment = job_data
+                jobs = self._get_jobs()
+                job = jobs[index]
+                job.setall(minute, hour, day, month, weekday)
+                job.command = command
+                job.comment = comment
                 self._populate_list()
         dialog.destroy()
 
@@ -219,20 +229,22 @@ class Manager(Gtk.Box):
         if response_id == Gtk.ResponseType.YES:
             path = self.list_store.get_path(tree_iter)
             index = int(path.to_string())
-            self.jobs.pop(index)
+            jobs = self._get_jobs()
+            self.cron.remove(jobs[index])
             self.list_store.remove(tree_iter)
         dialog.destroy()
 
     def _on_save_clicked(self, button: Gtk.Button) -> None:
         """Save cron jobs to file."""
-        result = save_cron_jobs(self.jobs, self.user_mode)
-
-        if result == "ok":
+        try:
+            if self.user_mode:
+                self.cron.write()
+            else:
+                if not save_root_cron(self.cron):
+                    raise Exception("Failed to save")
             self._show_message_dialog(Gtk.MessageType.INFO, _("Success"), _("Cron jobs saved successfully."))
-        elif result == "permission_denied":
+        except Exception:
             self._show_message_dialog(Gtk.MessageType.ERROR, _("Error"), _("Permission denied. Root permission required."))
-        else:
-            self._show_message_dialog(Gtk.MessageType.ERROR, _("Error"), _("Failed to save cron jobs."))
 
     def _show_message_dialog(self, msg_type: Gtk.MessageType, title: str, message: str) -> None:
         """Show a message dialog."""

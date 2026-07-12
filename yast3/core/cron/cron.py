@@ -114,18 +114,18 @@ def load_cron_jobs(user_mode: bool = True) -> tuple[list[CronJob], str | None]:
     else:
         cron_path = _get_user_cron_path("root")
 
-    print(cron_path)
-
-    if not os.path.exists(cron_path):
+    result = subprocess.run(
+        ["pkexec", "cat", cron_path],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
         return jobs, None
 
-    try:
-        with open(cron_path, "r") as f:
-            lines = f.readlines()
-    except PermissionError:
-        return jobs, "Permission denied. Cannot read cron file."
-    except Exception as e:
-        return jobs, f"Failed to read cron file: {str(e)}"
+    content = result.stdout
+    lines = content.splitlines() if content else []
+
+    lines = lines[3:]
 
     pending_comment = ""
 
@@ -167,26 +167,33 @@ def save_cron_jobs(jobs: list[CronJob], user_mode: bool = True) -> Literal["ok",
     else:
         cron_path = _get_user_cron_path("root")
 
+    header_lines = []
+    result = subprocess.run(
+        ["pkexec", "cat", cron_path],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode == 0:
+        content = result.stdout
+        existing_lines = content.splitlines() if content else []
+        header_lines = existing_lines[:3]
+
     lines = []
     for job in jobs:
         if job.comment:
             lines.append(job.comment)
         lines.append(str(job))
 
-    content = "\n".join(lines) + "\n"
+    content = "\n".join(header_lines + lines) + "\n"
 
     try:
-        if user_mode:
-            with open(cron_path, "w") as f:
-                f.write(content)
-        else:
-            result = subprocess.run(
-                ["pkexec", "tee", cron_path],
-                input=content.encode(),
-                capture_output=True,
-            )
-            if result.returncode != 0:
-                return "permission_denied"
+        result = subprocess.run(
+            ["pkexec", "tee", cron_path],
+            input=content.encode(),
+            capture_output=True,
+        )
+        if result.returncode != 0:
+            return "permission_denied"
 
         return "ok"
     except PermissionError:

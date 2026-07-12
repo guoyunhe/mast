@@ -7,7 +7,7 @@ gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk
 
 from yast3.core.i18n import _
-from yast3.gtk4.cron.cron_tab import CronTab
+from yast3.gtk4.cron.manager import Manager
 
 
 class CronWindow(Gtk.ApplicationWindow):
@@ -28,12 +28,12 @@ class CronWindow(Gtk.ApplicationWindow):
         self.notebook = Gtk.Notebook()
 
         # User cron tab
-        self.user_tab = CronTab(user_mode=True)
-        self.notebook.append_page(self.user_tab, Gtk.Label(label=_("User Cron Jobs")))
+        self.user_tab = Manager(user_mode=True)
+        self.notebook.append_page(self.user_tab, Gtk.Label(label=_("User")))
 
-        # Root cron tab
-        self.root_tab = CronTab(user_mode=False)
-        self.notebook.append_page(self.root_tab, Gtk.Label(label=_("Root Cron Jobs")))
+        # System cron tab
+        self.root_tab = Manager(user_mode=False)
+        self.notebook.append_page(self.root_tab, Gtk.Label(label=_("System")))
 
         self.main_box.append(self.notebook)
 

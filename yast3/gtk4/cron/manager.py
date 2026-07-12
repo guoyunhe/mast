@@ -13,13 +13,13 @@ from yast3.core.cron import load_root_cron, save_cron_jobs
 from yast3.gtk4.cron.cron_edit_dialog import CronEditDialog
 
 
-class CronTab(Gtk.Box):
-    """Tab for managing cron jobs."""
+class Manager(Gtk.Box):
+    """Cron job manager widget."""
 
     def __init__(self, user_mode: bool):
         super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=8)
         self.user_mode = user_mode
-        self.cron: CronTab = CronTab(user=True) if user_mode else load_root_cron()
+        self.cron = CronTab(user=True) if user_mode else load_root_cron()
         self.jobs: list[CronItem] = list(self.cron.crons)
         self._setup_ui()
 

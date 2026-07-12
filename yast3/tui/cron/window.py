@@ -67,13 +67,13 @@ class CronWindow(Screen):
         yield Header()
         with Vertical(classes="container"):
             with TabbedContent(id="tabs"):
-                with TabPane(_("User Cron Jobs"), id="user-tab"):
-                    yield from self._compose_cron_tab("user")
-                with TabPane(_("Root Cron Jobs"), id="root-tab"):
-                    yield from self._compose_cron_tab("root")
+                with TabPane(_("User"), id="user-tab"):
+                    yield from self._compose_manager("user")
+                with TabPane(_("System"), id="root-tab"):
+                    yield from self._compose_manager("root")
             yield Static("", id="message", classes="message")
 
-    def _compose_cron_tab(self, mode: str) -> ComposeResult:
+    def _compose_manager(self, mode: str) -> ComposeResult:
         with Vertical():
             with Horizontal(classes="button-row"):
                 yield Button(_("Add"), id=f"add-{mode}-btn")

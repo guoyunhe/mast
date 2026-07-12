@@ -22,8 +22,8 @@ from yast3.core.cron import save_cron_jobs, load_root_cron
 from yast3.qt6.cron.cron_edit_dialog import CronEditDialog
 
 
-class CronTabTab(QWidget):
-    """Tab for managing cron jobs."""
+class Manager(QWidget):
+    """Cron job manager widget."""
 
     def __init__(self, user_mode: bool, parent: QWidget | None = None):
         super().__init__(parent)

@@ -5,10 +5,22 @@ from textual.containers import Horizontal, Vertical
 from textual.screen import Screen
 from textual.widgets import Button, DataTable, Header, Input, Label, Static, Select, TabbedContent, TabPane
 
+from yast3.core.i18n import _
+from yast3.core.languages import (
+    get_current_language,
+    get_use_utf8,
+    save_language_settings,
+    get_locales_with_status,
+    install_locale,
+    uninstall_locale,
+    LocaleItem,
+)
+
 
 class LanguageSettingsPane(TabPane):
-    def __init__(self):
-        super().__init__("Language", id="language-tab")
+    def __init__(self, locales: list[LocaleItem]):
+        super().__init__("System Language", id="system-language-tab")
+        self._all_locales = locales
 
     def compose(self) -> ComposeResult:
         with Vertical():
@@ -24,19 +36,13 @@ class LanguageSettingsPane(TabPane):
             yield Static("", id="message", classes="message")
 
     def on_mount(self) -> None:
-        from yast3.core.i18n import _
-        from yast3.core.languages import get_current_language, get_use_utf8, build_languages_map, LanguageInfo
-
         try:
-            languages_map = build_languages_map()
-            self._language_info: dict[str, LanguageInfo] = languages_map
-
-            sorted_languages = sorted(
-                languages_map.items(),
-                key=lambda x: x[1].name_english
+            sorted_locales = sorted(
+                self._all_locales,
+                key=lambda x: x.name
             )
 
-            options = [(info.name, code) for code, info in sorted_languages]
+            options = [(loc.name, loc.code) for loc in sorted_locales]
             select = self.query_one("#language-select", Select)
             select.set_options(options)
 
@@ -57,6 +63,9 @@ class LanguageSettingsPane(TabPane):
         elif success:
             msg_widget.add_class("success")
 
+    def _is_locale_installed(self, locale_code: str) -> bool:
+        return any(loc.code == locale_code and loc.installed for loc in self._all_locales)
+
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "save-btn":
             self.save_language()
@@ -64,20 +73,43 @@ class LanguageSettingsPane(TabPane):
             self.app.pop_screen()
 
     def save_language(self) -> None:
-        from yast3.core.i18n import _
-        from yast3.core.languages import save_language_settings
-
         lang_code = self.query_one("#language-select", Select).value
 
         if not lang_code:
             self.show_message(_("Error: Please select a language."), error=True)
             return
 
+        if not self._is_locale_installed(lang_code):
+            locale = next((loc for loc in self._all_locales if loc.code == lang_code), None)
+            if locale:
+                self._install_language_and_save(locale, lang_code)
+            else:
+                self.show_message(_("Error: Language '{0}' not found.").format(lang_code), error=True)
+            return
+
+        self._save_language_settings(lang_code)
+
+    def _install_language_and_save(self, locale: LocaleItem, lang_code: str) -> None:
+        status, message = install_locale(lang_code)
+
+        if status == "ok":
+            for loc in self._all_locales:
+                if loc.code == lang_code:
+                    loc.installed = True
+                    break
+            self.show_message(f"Success: {message}", success=True)
+            self._save_language_settings(lang_code)
+        elif status == "pkexec_failed":
+            self.show_message("Error: Authentication failed.", error=True)
+        else:
+            self.show_message(f"Error: {message}", error=True)
+
+    def _save_language_settings(self, lang_code: str) -> None:
         status, message = save_language_settings(lang_code, use_utf8=True)
 
         if status == "ok":
-            info = self._language_info.get(lang_code)
-            lang_name = info.name if info else lang_code
+            locale = next((loc for loc in self._all_locales if loc.code == lang_code), None)
+            lang_name = locale.name if locale else lang_code
             self.show_message(
                 _("Success: Language changed to '{0}'. Changes take effect after logout.").format(lang_name),
                 success=True,
@@ -97,24 +129,22 @@ class LanguageSettingsPane(TabPane):
             self.show_message(_("Error: {0}").format(message), error=True)
 
 
-class LocaleManagementPane(TabPane):
-    def __init__(self):
-        super().__init__("Locale Management", id="locale-tab")
+class LanguageManagementPane(TabPane):
+    def __init__(self, locales: list[LocaleItem]):
+        super().__init__("Language Management", id="language-tab")
+        self._all_locales = locales
 
     def compose(self) -> ComposeResult:
         with Vertical():
-            with Horizontal():
-                yield Label("Search:", classes="input-label")
-                yield Input(placeholder="Search by code or name...", id="search-input")
+            yield Input(placeholder="Search", id="search-input")
             with Horizontal(classes="button-row"):
                 yield Button("Install", id="install-btn", variant="primary")
                 yield Button("Uninstall", id="uninstall-btn", variant="error")
-                yield Button("Refresh", id="refresh-btn")
             yield DataTable(id="locale-table")
             yield Static("", id="message", classes="message")
 
     def on_mount(self) -> None:
-        self.refresh_locales()
+        self._filter_locales("")
 
     def _filter_locales(self, search_text: str) -> None:
         search_text = search_text.lower().strip()
@@ -143,9 +173,9 @@ class LocaleManagementPane(TabPane):
             self._filter_locales(event.value)
 
     def refresh_locales(self) -> None:
-        from yast3.core.languages import get_locales_with_status
-
         try:
+            from yast3.core.languages import refresh_locale_cache
+            refresh_locale_cache()
             self._all_locales = get_locales_with_status()
             search_input = self.query_one("#search-input", Input)
             self._filter_locales(search_input.value)
@@ -166,8 +196,6 @@ class LocaleManagementPane(TabPane):
             self.install_selected()
         elif event.button.id == "uninstall-btn":
             self.uninstall_selected()
-        elif event.button.id == "refresh-btn":
-            self.refresh_locales()
 
     def install_selected(self) -> None:
         table = self.query_one("#locale-table", DataTable)
@@ -179,7 +207,7 @@ class LocaleManagementPane(TabPane):
 
         loc = self._locales[selected_rows]
         if loc.installed:
-            self.show_message("Error: Locale is already installed.", error=True)
+            self.show_message("Error: Language is already installed.", error=True)
             return
 
         self._perform_install(loc)
@@ -194,32 +222,36 @@ class LocaleManagementPane(TabPane):
 
         loc = self._locales[selected_rows]
         if not loc.installed:
-            self.show_message("Error: Locale is not installed.", error=True)
+            self.show_message("Error: Language is not installed.", error=True)
             return
 
         self._perform_uninstall(loc)
 
     def _perform_install(self, loc) -> None:
-        from yast3.core.languages import install_locale
-
         status, message = install_locale(loc.code)
 
         if status == "ok":
+            for locale in self._all_locales:
+                if locale.code == loc.code:
+                    locale.installed = True
+                    break
             self.show_message(f"Success: {message}", success=True)
-            self.refresh_locales()
+            self._filter_locales(self.query_one("#search-input", Input).value)
         elif status == "pkexec_failed":
             self.show_message("Error: Authentication failed.", error=True)
         else:
             self.show_message(f"Error: {message}", error=True)
 
     def _perform_uninstall(self, loc) -> None:
-        from yast3.core.languages import uninstall_locale
-
         status, message = uninstall_locale(loc.code)
 
         if status == "ok":
+            for locale in self._all_locales:
+                if locale.code == loc.code:
+                    locale.installed = False
+                    break
             self.show_message(f"Success: {message}", success=True)
-            self.refresh_locales()
+            self._filter_locales(self.query_one("#search-input", Input).value)
         elif status == "pkexec_failed":
             self.show_message("Error: Authentication failed.", error=True)
         else:
@@ -289,9 +321,10 @@ class LanguagesWindow(Screen):
 
     def compose(self) -> ComposeResult:
         yield Header()
+        locales = get_locales_with_status()
         with Vertical(classes="container"):
             yield Label("Language Configuration", classes="title")
             yield TabbedContent(
-                LanguageSettingsPane(),
-                LocaleManagementPane(),
+                LanguageSettingsPane(locales),
+                LanguageManagementPane(locales),
             )

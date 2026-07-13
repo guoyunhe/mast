@@ -7,32 +7,25 @@ gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk
 
 from yast3.core.i18n import _
-from yast3.core.languages import LocaleItem, get_locales_with_status, build_locale_install_command, build_locale_remove_command, refresh_locale_cache
+from yast3.core.languages import LocaleItem, build_locale_install_command, build_locale_remove_command, refresh_locale_cache, get_locales_with_status
 from yast3.gtk4.command.action import CommandAction
 
 
 class LocaleManager(Gtk.Box):
-    def __init__(self):
+    def __init__(self, locales: list[LocaleItem]):
         super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=8)
+        self._all_locales = locales
         self.set_margin_top(8)
         self.set_margin_bottom(8)
         self.set_margin_start(8)
         self.set_margin_end(8)
-        self._all_locales: list[LocaleItem] = []
         self._setup_ui()
 
     def _setup_ui(self) -> None:
-        search_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
-
-        search_label = Gtk.Label(label=_("Search:"))
-        search_box.append(search_label)
-
         self.search_entry = Gtk.Entry()
-        self.search_entry.set_placeholder_text(_("Search by code or name..."))
+        self.search_entry.set_placeholder_text(_("Search"))
         self.search_entry.connect("changed", self._on_search_changed)
-        search_box.append(self.search_entry)
-
-        self.append(search_box)
+        self.append(self.search_entry)
 
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
 
@@ -48,10 +41,6 @@ class LocaleManager(Gtk.Box):
 
         button_box.append(Gtk.Box())
         button_box.set_hexpand(True)
-
-        self.refresh_btn = Gtk.Button(label=_("Refresh"))
-        self.refresh_btn.connect("clicked", self._on_refresh_clicked)
-        button_box.append(self.refresh_btn)
 
         self.append(button_box)
 
@@ -91,7 +80,7 @@ class LocaleManager(Gtk.Box):
         scrolled.set_child(self.tree_view)
         self.append(scrolled)
 
-        self._refresh_locales()
+        self._filter_locales("")
 
     def _on_selection_changed(self, selection) -> None:
         model, tree_iter = selection.get_selected()
@@ -132,21 +121,18 @@ class LocaleManager(Gtk.Box):
             self.list_store.append([loc.code, loc.name, status_text, loc.installed])
         self.tree_view.columns_autosize()
 
-    def _refresh_locales(self) -> None:
+    def refresh_locales(self) -> None:
         try:
+            refresh_locale_cache()
             self._all_locales = get_locales_with_status()
             search_text = self.search_entry.get_text()
             self._filter_locales(search_text)
         except Exception as e:
             self._show_message_dialog(Gtk.MessageType.WARNING, _("Error"), _("Failed to load locales: {0}").format(str(e)))
 
-    def _on_refresh_clicked(self, button: Gtk.Button) -> None:
-        self._refresh_locales()
-
     def _reload_after_action(self, success: bool, _error: str, _stdout: str) -> None:
         if success:
-            refresh_locale_cache()
-            self._refresh_locales()
+            self.refresh_locales()
 
     def _get_parent_window(self) -> Gtk.Window | None:
         widget = self.get_parent()
@@ -172,7 +158,7 @@ class LocaleManager(Gtk.Box):
             buttons=Gtk.ButtonsType.YES_NO,
             text=_("Confirm"),
         )
-        confirm_dialog.set_property("secondary-text", _("Are you sure you want to install locale '{0}' ({1})?").format(locale_name, locale_code))
+        confirm_dialog.set_property("secondary-text", _("Are you sure you want to install language '{0}' ({1})?").format(locale_name, locale_code))
         confirm_dialog.connect("response", self._on_install_confirm_response, locale_code, locale_name)
         confirm_dialog.present()
 
@@ -181,9 +167,9 @@ class LocaleManager(Gtk.Box):
             self.current_action = CommandAction(
                 text=_("Install"),
                 running_text=_("Installing..."),
-                dialog_title=_("Install Locale"),
+                dialog_title=_("Install Language"),
                 command=build_locale_install_command(locale_code),
-                success_output=_("Locale '{0}' installed successfully.").format(locale_name),
+                success_output=_("Language '{0}' installed successfully.").format(locale_name),
                 parent_window=self._get_parent_window(),
             )
             self.current_action.connect_finished(self._reload_after_action)
@@ -193,7 +179,7 @@ class LocaleManager(Gtk.Box):
     def _on_uninstall_clicked(self, button: Gtk.Button) -> None:
         model, tree_iter = self.selection.get_selected()
         if tree_iter is None:
-            self._show_message_dialog(Gtk.MessageType.INFO, _("Information"), _("Please select a locale to uninstall."))
+            self._show_message_dialog(Gtk.MessageType.INFO, _("Information"), _("Please select a language to uninstall."))
             return
 
         locale_code = model.get_value(tree_iter, 0)
@@ -206,7 +192,7 @@ class LocaleManager(Gtk.Box):
             buttons=Gtk.ButtonsType.YES_NO,
             text=_("Confirm"),
         )
-        confirm_dialog.set_property("secondary-text", _("Are you sure you want to uninstall locale '{0}' ({1})?").format(locale_name, locale_code))
+        confirm_dialog.set_property("secondary-text", _("Are you sure you want to uninstall language '{0}' ({1})?").format(locale_name, locale_code))
         confirm_dialog.connect("response", self._on_uninstall_confirm_response, locale_code, locale_name)
         confirm_dialog.present()
 
@@ -215,9 +201,9 @@ class LocaleManager(Gtk.Box):
             self.current_action = CommandAction(
                 text=_("Uninstall"),
                 running_text=_("Uninstalling..."),
-                dialog_title=_("Uninstall Locale"),
+                dialog_title=_("Uninstall Language"),
                 command=build_locale_remove_command(locale_code),
-                success_output=_("Locale '{0}' uninstalled successfully.").format(locale_name),
+                success_output=_("Language '{0}' uninstalled successfully.").format(locale_name),
                 parent_window=self._get_parent_window(),
             )
             self.current_action.connect_finished(self._reload_after_action)

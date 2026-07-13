@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  yast3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-13 09:34+0000\n"
+"POT-Creation-Date: 2026-07-13 10:59+0000\n"
 "PO-Revision-Date: 2024-01-01 00:00+0000\n"
 "Last-Translator: \n"
 "Language: en\n"
@@ -202,18 +202,18 @@ msgstr "제안"
 #: yast3/gtk4/hosts/window.py:119 yast3/gtk4/hosts/window.py:122
 #: yast3/gtk4/hosts/window.py:176 yast3/gtk4/hosts/window.py:212
 #: yast3/gtk4/hosts/window.py:250 yast3/gtk4/hosts/window.py:252
-#: yast3/gtk4/hosts/window.py:254 yast3/gtk4/languages/locale_manager.py:141
-#: yast3/gtk4/languages/window.py:84 yast3/gtk4/languages/window.py:91
-#: yast3/gtk4/languages/window.py:104 yast3/gtk4/languages/window.py:106
-#: yast3/gtk4/languages/window.py:108 yast3/gtk4/proxy/window.py:82
-#: yast3/gtk4/proxy/window.py:88 yast3/gtk4/proxy/window.py:94
-#: yast3/gtk4/proxy/window.py:117 yast3/gtk4/proxy/window.py:123
-#: yast3/gtk4/repositories/window.py:132 yast3/gtk4/repositories/window.py:194
-#: yast3/gtk4/repositories/window.py:198 yast3/gtk4/repositories/window.py:240
-#: yast3/gtk4/repositories/window.py:275 yast3/gtk4/repositories/window.py:279
-#: yast3/gtk4/repositories/window.py:387 yast3/gtk4/repositories/window.py:389
-#: yast3/gtk4/repositories/window.py:391 yast3/gtk4/services/window.py:183
-#: yast3/gtk4/snapshots/config_dialog.py:46
+#: yast3/gtk4/hosts/window.py:254 yast3/gtk4/languages/manager.py:131
+#: yast3/gtk4/languages/settings.py:88 yast3/gtk4/languages/settings.py:98
+#: yast3/gtk4/languages/settings.py:106 yast3/gtk4/languages/settings.py:145
+#: yast3/gtk4/languages/settings.py:147 yast3/gtk4/languages/settings.py:149
+#: yast3/gtk4/proxy/window.py:82 yast3/gtk4/proxy/window.py:88
+#: yast3/gtk4/proxy/window.py:94 yast3/gtk4/proxy/window.py:117
+#: yast3/gtk4/proxy/window.py:123 yast3/gtk4/repositories/window.py:132
+#: yast3/gtk4/repositories/window.py:194 yast3/gtk4/repositories/window.py:198
+#: yast3/gtk4/repositories/window.py:240 yast3/gtk4/repositories/window.py:275
+#: yast3/gtk4/repositories/window.py:279 yast3/gtk4/repositories/window.py:387
+#: yast3/gtk4/repositories/window.py:389 yast3/gtk4/repositories/window.py:391
+#: yast3/gtk4/services/window.py:183 yast3/gtk4/snapshots/config_dialog.py:46
 #: yast3/gtk4/snapshots/config_dialog.py:227 yast3/gtk4/snapshots/window.py:202
 #: yast3/gtk4/snapshots/window.py:208 yast3/gtk4/ssh/__init__.py:72
 #: yast3/gtk4/ssh/dialogs.py:120 yast3/gtk4/ssh/hosts/tab.py:109
@@ -244,19 +244,19 @@ msgstr "제안"
 #: yast3/qt6/hosts/window.py:103 yast3/qt6/hosts/window.py:109
 #: yast3/qt6/hosts/window.py:179 yast3/qt6/hosts/window.py:216
 #: yast3/qt6/hosts/window.py:270 yast3/qt6/hosts/window.py:275
-#: yast3/qt6/hosts/window.py:278 yast3/qt6/languages/locale_manager.py:122
-#: yast3/qt6/languages/window.py:84 yast3/qt6/languages/window.py:91
-#: yast3/qt6/languages/window.py:109 yast3/qt6/languages/window.py:113
-#: yast3/qt6/languages/window.py:117 yast3/qt6/proxy/window.py:83
-#: yast3/qt6/proxy/window.py:87 yast3/qt6/proxy/window.py:93
-#: yast3/qt6/proxy/window.py:116 yast3/qt6/proxy/window.py:122
-#: yast3/qt6/repositories/window.py:114 yast3/qt6/repositories/window.py:134
-#: yast3/qt6/repositories/window.py:184 yast3/qt6/repositories/window.py:187
-#: yast3/qt6/repositories/window.py:213 yast3/qt6/repositories/window.py:231
-#: yast3/qt6/repositories/window.py:234 yast3/qt6/repositories/window.py:256
-#: yast3/qt6/repositories/window.py:278 yast3/qt6/repositories/window.py:306
-#: yast3/qt6/repositories/window.py:321 yast3/qt6/services/window.py:140
-#: yast3/qt6/snapshots/config_dialog.py:38
+#: yast3/qt6/hosts/window.py:278 yast3/qt6/languages/manager.py:123
+#: yast3/qt6/languages/settings.py:82 yast3/qt6/languages/settings.py:92
+#: yast3/qt6/languages/settings.py:100 yast3/qt6/languages/settings.py:144
+#: yast3/qt6/languages/settings.py:148 yast3/qt6/languages/settings.py:152
+#: yast3/qt6/proxy/window.py:83 yast3/qt6/proxy/window.py:87
+#: yast3/qt6/proxy/window.py:93 yast3/qt6/proxy/window.py:116
+#: yast3/qt6/proxy/window.py:122 yast3/qt6/repositories/window.py:114
+#: yast3/qt6/repositories/window.py:134 yast3/qt6/repositories/window.py:184
+#: yast3/qt6/repositories/window.py:187 yast3/qt6/repositories/window.py:213
+#: yast3/qt6/repositories/window.py:231 yast3/qt6/repositories/window.py:234
+#: yast3/qt6/repositories/window.py:256 yast3/qt6/repositories/window.py:278
+#: yast3/qt6/repositories/window.py:306 yast3/qt6/repositories/window.py:321
+#: yast3/qt6/services/window.py:140 yast3/qt6/snapshots/config_dialog.py:38
 #: yast3/qt6/snapshots/config_dialog.py:171 yast3/qt6/snapshots/window.py:126
 #: yast3/qt6/snapshots/window.py:132 yast3/qt6/ssh/__init__.py:59
 #: yast3/qt6/ssh/dialogs.py:86 yast3/qt6/ssh/dialogs.py:92
@@ -317,11 +317,11 @@ msgstr "삭제"
 
 #: yast3/gtk4/cron/manager.py:57 yast3/gtk4/datetime/window.py:157
 #: yast3/gtk4/git/window.py:70 yast3/gtk4/hostname/window.py:48
-#: yast3/gtk4/hosts/window.py:48 yast3/gtk4/languages/window.py:56
+#: yast3/gtk4/hosts/window.py:48 yast3/gtk4/languages/settings.py:65
 #: yast3/gtk4/proxy/window.py:44 yast3/gtk4/ssh/hosts/tab.py:48
 #: yast3/qt6/cron/manager.py:61 yast3/qt6/datetime/window.py:134
 #: yast3/qt6/git/window.py:78 yast3/qt6/hostname/window.py:51
-#: yast3/qt6/hosts/window.py:53 yast3/qt6/languages/window.py:56
+#: yast3/qt6/hosts/window.py:53 yast3/qt6/languages/settings.py:57
 #: yast3/qt6/proxy/window.py:55 yast3/qt6/ssh/hosts/tab.py:52
 #: yast3/tui/cron/window.py:82 yast3/tui/datetime/window.py:116
 #: yast3/tui/git/window.py:81 yast3/tui/hostname/window.py:69
@@ -349,26 +349,25 @@ msgstr "사용 중"
 #: yast3/gtk4/flatpak/remote_manager.py:111
 #: yast3/gtk4/flatpak/remote_manager.py:122
 #: yast3/gtk4/flatpak/runtime_manager.py:114 yast3/gtk4/hosts/window.py:183
-#: yast3/gtk4/hosts/window.py:219 yast3/gtk4/languages/locale_manager.py:162
-#: yast3/gtk4/languages/locale_manager.py:196
-#: yast3/gtk4/repositories/window.py:231 yast3/gtk4/repositories/window.py:256
-#: yast3/gtk4/repositories/window.py:310 yast3/gtk4/services/window.py:271
-#: yast3/gtk4/services/window.py:304 yast3/gtk4/snapshots/window.py:249
-#: yast3/gtk4/snapshots/window.py:269 yast3/gtk4/ssh/hosts/tab.py:159
-#: yast3/gtk4/ssh/hosts/tab.py:187 yast3/qt6/cron/manager.py:161
-#: yast3/qt6/cron/manager.py:179 yast3/qt6/flatpak/package_manager.py:347
+#: yast3/gtk4/hosts/window.py:219 yast3/gtk4/languages/manager.py:148
+#: yast3/gtk4/languages/manager.py:182 yast3/gtk4/repositories/window.py:231
+#: yast3/gtk4/repositories/window.py:256 yast3/gtk4/repositories/window.py:310
+#: yast3/gtk4/services/window.py:271 yast3/gtk4/services/window.py:304
+#: yast3/gtk4/snapshots/window.py:249 yast3/gtk4/snapshots/window.py:269
+#: yast3/gtk4/ssh/hosts/tab.py:159 yast3/gtk4/ssh/hosts/tab.py:187
+#: yast3/qt6/cron/manager.py:161 yast3/qt6/cron/manager.py:179
+#: yast3/qt6/flatpak/package_manager.py:347
 #: yast3/qt6/flatpak/package_manager.py:351
 #: yast3/qt6/flatpak/package_manager.py:364
 #: yast3/qt6/flatpak/remote_manager.py:102
 #: yast3/qt6/flatpak/remote_manager.py:121
 #: yast3/qt6/flatpak/runtime_manager.py:134 yast3/qt6/hosts/window.py:187
-#: yast3/qt6/hosts/window.py:224 yast3/qt6/languages/locale_manager.py:132
-#: yast3/qt6/languages/locale_manager.py:160
-#: yast3/qt6/repositories/window.py:106 yast3/qt6/repositories/window.py:219
-#: yast3/qt6/repositories/window.py:262 yast3/qt6/services/window.py:227
-#: yast3/qt6/services/window.py:256 yast3/qt6/snapshots/window.py:175
-#: yast3/qt6/snapshots/window.py:191 yast3/qt6/ssh/hosts/tab.py:148
-#: yast3/qt6/ssh/hosts/tab.py:169
+#: yast3/qt6/hosts/window.py:224 yast3/qt6/languages/manager.py:132
+#: yast3/qt6/languages/manager.py:160 yast3/qt6/repositories/window.py:106
+#: yast3/qt6/repositories/window.py:219 yast3/qt6/repositories/window.py:262
+#: yast3/qt6/services/window.py:227 yast3/qt6/services/window.py:256
+#: yast3/qt6/snapshots/window.py:175 yast3/qt6/snapshots/window.py:191
+#: yast3/qt6/ssh/hosts/tab.py:148 yast3/qt6/ssh/hosts/tab.py:169
 msgid "Information"
 msgstr "정보"
 
@@ -386,18 +385,17 @@ msgstr "삭제할 cron 작업을 선택하십시오."
 #: yast3/gtk4/flatpak/remote_manager.py:132
 #: yast3/gtk4/flatpak/remove_action.py:38
 #: yast3/gtk4/flatpak/runtime_manager.py:124 yast3/gtk4/hostname/window.py:98
-#: yast3/gtk4/hosts/window.py:228 yast3/gtk4/languages/locale_manager.py:173
-#: yast3/gtk4/languages/locale_manager.py:207
-#: yast3/gtk4/repositories/window.py:323 yast3/gtk4/repositories/window.py:362
-#: yast3/gtk4/ssh/hosts/tab.py:204 yast3/qt6/cron/manager.py:183
-#: yast3/qt6/flatpak/package_manager.py:369
+#: yast3/gtk4/hosts/window.py:228 yast3/gtk4/languages/manager.py:159
+#: yast3/gtk4/languages/manager.py:193 yast3/gtk4/repositories/window.py:323
+#: yast3/gtk4/repositories/window.py:362 yast3/gtk4/ssh/hosts/tab.py:204
+#: yast3/qt6/cron/manager.py:183 yast3/qt6/flatpak/package_manager.py:369
 #: yast3/qt6/flatpak/remote_manager.py:127
 #: yast3/qt6/flatpak/remove_action.py:37
 #: yast3/qt6/flatpak/runtime_manager.py:139 yast3/qt6/hostname/window.py:109
-#: yast3/qt6/hosts/window.py:229 yast3/qt6/languages/locale_manager.py:140
-#: yast3/qt6/languages/locale_manager.py:168
-#: yast3/qt6/repositories/window.py:269 yast3/qt6/repositories/window.py:289
-#: yast3/qt6/ssh/hosts/tab.py:181 yast3/qt6/ssh/keys/generate_dialog.py:184
+#: yast3/qt6/hosts/window.py:229 yast3/qt6/languages/manager.py:140
+#: yast3/qt6/languages/manager.py:168 yast3/qt6/repositories/window.py:269
+#: yast3/qt6/repositories/window.py:289 yast3/qt6/ssh/hosts/tab.py:181
+#: yast3/qt6/ssh/keys/generate_dialog.py:184
 msgid "Confirm"
 msgstr "확인"
 
@@ -414,7 +412,7 @@ msgstr "이 cron 작업을 삭제하시겠습니까?"
 #: yast3/gtk4/flatpak/runtime_manager.py:140 yast3/gtk4/flatpak/settings.py:44
 #: yast3/gtk4/flatpak/window.py:86 yast3/gtk4/git/window.py:275
 #: yast3/gtk4/hostname/window.py:105 yast3/gtk4/hosts/window.py:248
-#: yast3/gtk4/languages/window.py:99 yast3/gtk4/proxy/window.py:110
+#: yast3/gtk4/languages/settings.py:140 yast3/gtk4/proxy/window.py:110
 #: yast3/gtk4/repositories/window.py:247 yast3/gtk4/repositories/window.py:378
 #: yast3/gtk4/snapshots/config_dialog.py:220 yast3/gtk4/ssh/__init__.py:87
 #: yast3/gtk4/ssh/hosts/tab.py:224 yast3/gtk4/ssh/keys/tab.py:194
@@ -425,7 +423,7 @@ msgstr "이 cron 작업을 삭제하시겠습니까?"
 #: yast3/qt6/flatpak/remote_manager.py:135 yast3/qt6/flatpak/window.py:89
 #: yast3/qt6/flatpak/window.py:100 yast3/qt6/git/window.py:269
 #: yast3/qt6/hostname/window.py:124 yast3/qt6/hosts/window.py:264
-#: yast3/qt6/languages/window.py:101 yast3/qt6/proxy/window.py:109
+#: yast3/qt6/languages/settings.py:136 yast3/qt6/proxy/window.py:109
 #: yast3/qt6/repositories/window.py:120 yast3/qt6/repositories/window.py:301
 #: yast3/qt6/snapshots/config_dialog.py:168 yast3/qt6/ssh/__init__.py:67
 #: yast3/qt6/ssh/hosts/tab.py:222 yast3/qt6/ssh/keys/generate_dialog.py:232
@@ -438,10 +436,10 @@ msgid "Cron jobs saved successfully."
 msgstr "cron 작업이 성공적으로 저장되었습니다."
 
 #: yast3/gtk4/cron/manager.py:251 yast3/gtk4/datetime/window.py:238
-#: yast3/gtk4/hostname/window.py:108 yast3/gtk4/languages/window.py:104
+#: yast3/gtk4/hostname/window.py:108 yast3/gtk4/languages/settings.py:145
 #: yast3/gtk4/proxy/window.py:118 yast3/qt6/cron/manager.py:232
 #: yast3/qt6/datetime/window.py:211 yast3/qt6/hostname/window.py:130
-#: yast3/qt6/languages/window.py:109 yast3/qt6/proxy/window.py:117
+#: yast3/qt6/languages/settings.py:144 yast3/qt6/proxy/window.py:117
 msgid "Permission denied. Root permission required."
 msgstr "권한이 거부되었습니다. root 권한이 필요합니다."
 
@@ -545,10 +543,10 @@ msgid "All settings saved successfully."
 msgstr "NTP 설정이 성공적으로 업데이트되었습니다"
 
 #: yast3/gtk4/datetime/window.py:240 yast3/gtk4/hostname/window.py:110
-#: yast3/gtk4/hosts/window.py:252 yast3/gtk4/languages/window.py:106
+#: yast3/gtk4/hosts/window.py:252 yast3/gtk4/languages/settings.py:147
 #: yast3/gtk4/repositories/window.py:389 yast3/qt6/datetime/window.py:213
 #: yast3/qt6/hostname/window.py:134 yast3/qt6/hosts/window.py:275
-#: yast3/qt6/languages/window.py:113
+#: yast3/qt6/languages/settings.py:148
 msgid "Authentication failed or pkexec not available."
 msgstr "인증에 실패했거나 pkexec을 사용할 수 없습니다."
 
@@ -573,12 +571,10 @@ msgstr "Flatpak 설치 중..."
 msgid "Flatpak installed successfully."
 msgstr "Flatpak이 성공적으로 설치되었습니다."
 
-#: yast3/gtk4/flatpak/package_manager.py:79
-#: yast3/gtk4/languages/locale_manager.py:39
-#: yast3/gtk4/languages/locale_manager.py:182
-#: yast3/qt6/flatpak/package_manager.py:78
-#: yast3/qt6/languages/locale_manager.py:41
-#: yast3/qt6/languages/locale_manager.py:147
+#: yast3/gtk4/flatpak/package_manager.py:79 yast3/gtk4/languages/manager.py:32
+#: yast3/gtk4/languages/manager.py:168 yast3/gtk4/languages/settings.py:113
+#: yast3/qt6/flatpak/package_manager.py:78 yast3/qt6/languages/manager.py:41
+#: yast3/qt6/languages/manager.py:147 yast3/qt6/languages/settings.py:107
 msgid "Install"
 msgstr "설치"
 
@@ -590,10 +586,12 @@ msgstr "제거"
 
 #: yast3/gtk4/flatpak/package_manager.py:94
 #: yast3/gtk4/flatpak/runtime_manager.py:43 yast3/gtk4/flatpak/window.py:53
-#: yast3/gtk4/services/window.py:73 yast3/qt6/flatpak/package_manager.py:123
+#: yast3/gtk4/languages/manager.py:26 yast3/gtk4/services/window.py:73
+#: yast3/qt6/flatpak/package_manager.py:123
 #: yast3/qt6/flatpak/package_manager.py:195
 #: yast3/qt6/flatpak/runtime_manager.py:64 yast3/qt6/flatpak/window.py:57
-#: yast3/qt6/services/window.py:75 yast3/tui/services/window.py:100
+#: yast3/qt6/languages/manager.py:34 yast3/qt6/services/window.py:75
+#: yast3/tui/services/window.py:100
 msgid "Search"
 msgstr "검색"
 
@@ -609,8 +607,7 @@ msgstr "재설정"
 #: yast3/gtk4/flatpak/package_manager.py:102
 #: yast3/gtk4/flatpak/package_manager.py:180
 #: yast3/gtk4/flatpak/remote_manager.py:40
-#: yast3/gtk4/flatpak/runtime_manager.py:51
-#: yast3/gtk4/languages/locale_manager.py:52 yast3/gtk4/services/window.py:80
+#: yast3/gtk4/flatpak/runtime_manager.py:51 yast3/gtk4/services/window.py:80
 #: yast3/gtk4/snapshots/window.py:58 yast3/gtk4/snapshots/window.py:178
 #: yast3/gtk4/snapshots/window.py:193 yast3/gtk4/ssh/keys/tab.py:47
 #: yast3/qt6/flatpak/package_manager.py:131
@@ -654,16 +651,14 @@ msgstr "ID"
 #: yast3/gtk4/flatpak/remote_manager.py:52
 #: yast3/gtk4/flatpak/remote_manager.py:192
 #: yast3/gtk4/flatpak/remote_manager.py:257
-#: yast3/gtk4/flatpak/runtime_manager.py:66
-#: yast3/gtk4/languages/locale_manager.py:73
+#: yast3/gtk4/flatpak/runtime_manager.py:66 yast3/gtk4/languages/manager.py:62
 #: yast3/gtk4/repositories/dialogs/repo_edit.py:36
 #: yast3/gtk4/repositories/window.py:80 yast3/gtk4/services/window.py:121
 #: yast3/gtk4/ssh/keys/tab.py:68 yast3/qt6/flatpak/package_manager.py:142
 #: yast3/qt6/flatpak/package_manager.py:214
 #: yast3/qt6/flatpak/remote_dialog.py:42 yast3/qt6/flatpak/remote_dialog.py:45
 #: yast3/qt6/flatpak/remote_manager.py:58
-#: yast3/qt6/flatpak/runtime_manager.py:83
-#: yast3/qt6/languages/locale_manager.py:57
+#: yast3/qt6/flatpak/runtime_manager.py:83 yast3/qt6/languages/manager.py:57
 #: yast3/qt6/repositories/repo_edit_dialog.py:37
 #: yast3/qt6/repositories/window.py:70 yast3/qt6/services/window.py:116
 #: yast3/qt6/ssh/keys/tab.py:61 yast3/tui/repositories/window.py:80
@@ -734,11 +729,9 @@ msgid "Scope"
 msgstr "범위"
 
 #: yast3/gtk4/flatpak/package_manager.py:136 yast3/gtk4/flatpak/window.py:54
-#: yast3/gtk4/languages/locale_manager.py:100
-#: yast3/gtk4/languages/locale_manager.py:131
+#: yast3/gtk4/languages/manager.py:89 yast3/gtk4/languages/manager.py:120
 #: yast3/qt6/flatpak/package_manager.py:149 yast3/qt6/flatpak/window.py:58
-#: yast3/qt6/languages/locale_manager.py:78
-#: yast3/qt6/languages/locale_manager.py:105
+#: yast3/qt6/languages/manager.py:78 yast3/qt6/languages/manager.py:105
 msgid "Installed"
 msgstr "설치됨"
 
@@ -815,7 +808,7 @@ msgstr "Failed to remove package: {0}"
 #: yast3/gtk4/ssh/keys/tab.py:148 yast3/gtk4/ssh/keys/tab.py:149
 #: yast3/qt6/flatpak/package_manager.py:522 yast3/qt6/ssh/keys/tab.py:137
 #: yast3/qt6/ssh/keys/tab.py:140 yast3/qt6/ssh/keys/tab.py:143
-#: yast3/tui/languages/window.py:47 yast3/tui/ssh/window.py:336
+#: yast3/tui/languages/window.py:53 yast3/tui/ssh/window.py:336
 msgid "Yes"
 msgstr "예"
 
@@ -823,7 +816,7 @@ msgstr "예"
 #: yast3/gtk4/ssh/keys/tab.py:148 yast3/gtk4/ssh/keys/tab.py:149
 #: yast3/qt6/flatpak/package_manager.py:522 yast3/qt6/ssh/keys/tab.py:137
 #: yast3/qt6/ssh/keys/tab.py:140 yast3/qt6/ssh/keys/tab.py:143
-#: yast3/tui/languages/window.py:47 yast3/tui/ssh/window.py:336
+#: yast3/tui/languages/window.py:53 yast3/tui/ssh/window.py:336
 msgid "No"
 msgstr "아니오"
 
@@ -1247,143 +1240,119 @@ msgstr "주석:"
 msgid "Languages"
 msgstr "언어"
 
-#: yast3/gtk4/languages/locale_manager.py:27
-#, fuzzy
-msgid "Search:"
-msgstr "검색"
-
-#: yast3/gtk4/languages/locale_manager.py:31
-msgid "Search by code or name..."
-msgstr ""
-
-#: yast3/gtk4/languages/locale_manager.py:44
-#: yast3/gtk4/languages/locale_manager.py:216
-#: yast3/qt6/languages/locale_manager.py:46
-#: yast3/qt6/languages/locale_manager.py:175
-#, fuzzy
+#: yast3/gtk4/languages/manager.py:37 yast3/gtk4/languages/manager.py:202
+#: yast3/qt6/languages/manager.py:46 yast3/qt6/languages/manager.py:175
 msgid "Uninstall"
-msgstr "설치"
+msgstr "제거"
 
-#: yast3/gtk4/languages/locale_manager.py:68
-#: yast3/qt6/languages/locale_manager.py:56
-#, fuzzy
+#: yast3/gtk4/languages/manager.py:57 yast3/qt6/languages/manager.py:56
 msgid "Code"
-msgstr "코어"
+msgstr "코드"
 
-#: yast3/gtk4/languages/locale_manager.py:79 yast3/gtk4/services/window.py:53
-#: yast3/gtk4/services/window.py:133 yast3/qt6/languages/locale_manager.py:58
+#: yast3/gtk4/languages/manager.py:68 yast3/gtk4/services/window.py:53
+#: yast3/gtk4/services/window.py:133 yast3/qt6/languages/manager.py:58
 #: yast3/qt6/services/window.py:57 yast3/qt6/services/window.py:116
 #: yast3/tui/services/window.py:78 yast3/tui/services/window.py:125
 msgid "Status"
 msgstr "상태"
 
-#: yast3/gtk4/languages/locale_manager.py:131
-#: yast3/qt6/languages/locale_manager.py:105
-#, fuzzy
+#: yast3/gtk4/languages/manager.py:120 yast3/qt6/languages/manager.py:105
 msgid "Not Installed"
-msgstr "설치됨"
+msgstr "미설치"
 
-#: yast3/gtk4/languages/locale_manager.py:141
-#: yast3/qt6/languages/locale_manager.py:122
-#, fuzzy, python-brace-format
+#: yast3/gtk4/languages/manager.py:131 yast3/qt6/languages/manager.py:123
+#, python-brace-format
 msgid "Failed to load locales: {0}"
-msgstr "Failed to load services: {0}"
+msgstr "로케일 로드에 실패했습니다: {0}"
 
-#: yast3/gtk4/languages/locale_manager.py:162
-#: yast3/qt6/languages/locale_manager.py:132
-#, fuzzy
+#: yast3/gtk4/languages/manager.py:148 yast3/qt6/languages/manager.py:132
 msgid "Please select a locale to install."
-msgstr "Please select a remote to edit."
+msgstr "설치할 언어를 선택하십시오."
 
-#: yast3/gtk4/languages/locale_manager.py:175
-#: yast3/qt6/languages/locale_manager.py:141
-#, fuzzy, python-brace-format
-msgid "Are you sure you want to install locale '{0}' ({1})?"
-msgstr "원격 '{0}'을 삭제하시겠습니까?"
+#: yast3/gtk4/languages/manager.py:161
+#, python-brace-format
+msgid "Are you sure you want to install language '{0}' ({1})?"
+msgstr "언어 '{0}' ({1})을 설치하시겠습니까?"
 
-#: yast3/gtk4/languages/locale_manager.py:183
-#: yast3/qt6/languages/locale_manager.py:148
-#, fuzzy
+#: yast3/gtk4/languages/manager.py:169 yast3/gtk4/languages/settings.py:114
+#: yast3/qt6/languages/manager.py:148 yast3/qt6/languages/settings.py:108
 msgid "Installing..."
-msgstr "패키지 설치 중..."
+msgstr "설치 중..."
 
-#: yast3/gtk4/languages/locale_manager.py:184
-#: yast3/qt6/languages/locale_manager.py:149
-#, fuzzy
-msgid "Install Locale"
-msgstr "설치됨"
+#: yast3/gtk4/languages/manager.py:170 yast3/gtk4/languages/settings.py:115
+#: yast3/qt6/languages/manager.py:149 yast3/qt6/languages/settings.py:109
+msgid "Install Language"
+msgstr "언어 설치"
 
-#: yast3/gtk4/languages/locale_manager.py:186
-#: yast3/qt6/languages/locale_manager.py:151
-#, fuzzy, python-brace-format
-msgid "Locale '{0}' installed successfully."
-msgstr "패키지가 성공적으로 설치되었습니다."
+#: yast3/gtk4/languages/manager.py:172 yast3/gtk4/languages/settings.py:117
+#: yast3/qt6/languages/manager.py:151 yast3/qt6/languages/settings.py:111
+#, python-brace-format
+msgid "Language '{0}' installed successfully."
+msgstr "언어 '{0}'이(가) 성공적으로 설치되었습니다."
 
-#: yast3/gtk4/languages/locale_manager.py:196
-#: yast3/qt6/languages/locale_manager.py:160
-#, fuzzy
-msgid "Please select a locale to uninstall."
-msgstr "Please select a remote to edit."
+#: yast3/gtk4/languages/manager.py:182 yast3/qt6/languages/manager.py:160
+msgid "Please select a language to uninstall."
+msgstr "제거할 언어를 선택하십시오."
 
-#: yast3/gtk4/languages/locale_manager.py:209
-#: yast3/qt6/languages/locale_manager.py:169
-#, fuzzy, python-brace-format
-msgid "Are you sure you want to uninstall locale '{0}' ({1})?"
-msgstr "원격 '{0}'을 삭제하시겠습니까?"
+#: yast3/gtk4/languages/manager.py:195 yast3/qt6/languages/manager.py:169
+#, python-brace-format
+msgid "Are you sure you want to uninstall language '{0}' ({1})?"
+msgstr "언어 '{0}' ({1})을 제거하시겠습니까?"
 
-#: yast3/gtk4/languages/locale_manager.py:217
-#: yast3/qt6/languages/locale_manager.py:176
-#, fuzzy
+#: yast3/gtk4/languages/manager.py:203 yast3/qt6/languages/manager.py:176
 msgid "Uninstalling..."
-msgstr "패키지 설치 중..."
+msgstr "제거 중..."
 
-#: yast3/gtk4/languages/locale_manager.py:218
-#: yast3/qt6/languages/locale_manager.py:177
-#, fuzzy
-msgid "Uninstall Locale"
-msgstr "Flatpak 설치"
+#: yast3/gtk4/languages/manager.py:204 yast3/qt6/languages/manager.py:177
+msgid "Uninstall Language"
+msgstr "언어 제거"
 
-#: yast3/gtk4/languages/locale_manager.py:220
-#: yast3/qt6/languages/locale_manager.py:179
-#, fuzzy, python-brace-format
-msgid "Locale '{0}' uninstalled successfully."
-msgstr "패키지가 성공적으로 설치되었습니다."
+#: yast3/gtk4/languages/manager.py:206 yast3/qt6/languages/manager.py:179
+#, python-brace-format
+msgid "Language '{0}' uninstalled successfully."
+msgstr "언어 '{0}'이(가) 성공적으로 제거되었습니다."
 
-#: yast3/gtk4/languages/window.py:30 yast3/gtk4/languages/window.py:138
-#: yast3/qt6/languages/window.py:37 yast3/qt6/languages/window.py:137
+#: yast3/gtk4/languages/settings.py:39 yast3/qt6/languages/settings.py:47
 msgid "Language"
-msgstr ""
+msgstr "언어"
 
-#: yast3/gtk4/languages/window.py:43 yast3/qt6/languages/window.py:46
+#: yast3/gtk4/languages/settings.py:52 yast3/qt6/languages/settings.py:50
 msgid "Use UTF-8"
-msgstr ""
+msgstr "UTF-8 사용"
 
-#: yast3/gtk4/languages/window.py:84 yast3/qt6/languages/window.py:84
-#, fuzzy, python-brace-format
+#: yast3/gtk4/languages/settings.py:88 yast3/qt6/languages/settings.py:82
+#, python-brace-format
 msgid "Failed to load languages: {0}"
-msgstr "Failed to load Flatpak packages: {0}"
+msgstr "언어 로드에 실패했습니다: {0}"
 
-#: yast3/gtk4/languages/window.py:91 yast3/qt6/languages/window.py:91
-#, fuzzy
+#: yast3/gtk4/languages/settings.py:98 yast3/qt6/languages/settings.py:92
 msgid "Please select a language."
-msgstr "스냅샷을 선택하십시오."
+msgstr "언어를 선택하십시오."
 
-#: yast3/gtk4/languages/window.py:99 yast3/qt6/languages/window.py:102
+#: yast3/gtk4/languages/settings.py:106 yast3/qt6/languages/settings.py:100
+#, python-brace-format
+msgid "Language '{0}' not found."
+msgstr "언어 '{0}'을(를) 찾을 수 없습니다."
+
+#: yast3/gtk4/languages/settings.py:140 yast3/qt6/languages/settings.py:137
 #, python-brace-format
 msgid ""
 "Language changed successfully to '{0}'. Changes will take effect after "
 "logout."
-msgstr ""
+msgstr "언어가 '{0}'으로 성공적으로 변경되었습니다. 변경사항은 로그아웃 후 적용됩니다."
 
-#: yast3/gtk4/languages/window.py:108 yast3/qt6/languages/window.py:117
-#, fuzzy, python-brace-format
+#: yast3/gtk4/languages/settings.py:149 yast3/qt6/languages/settings.py:152
+#, python-brace-format
 msgid "Failed to set language: {0}"
-msgstr "Failed to set hostname: {0}"
+msgstr "언어 설정에 실패했습니다: {0}"
 
-#: yast3/gtk4/languages/window.py:141 yast3/qt6/languages/window.py:140
-#, fuzzy
-msgid "Locale Management"
-msgstr "Packages Management"
+#: yast3/gtk4/languages/window.py:33 yast3/qt6/languages/window.py:38
+msgid "System Language"
+msgstr "시스템 언어"
+
+#: yast3/gtk4/languages/window.py:36 yast3/qt6/languages/window.py:41
+msgid "Language Management"
+msgstr "언어 관리"
 
 #: yast3/gtk4/packages/__init__.py:16 yast3/qt6/packages/__init__.py:10
 #: yast3/qt6/packages/window.py:17 yast3/tui/packages/__init__.py:12
@@ -2235,6 +2204,11 @@ msgstr "Saved successfully"
 msgid "Reset to original values"
 msgstr "Reset to original values"
 
+#: yast3/qt6/languages/manager.py:141
+#, fuzzy, python-brace-format
+msgid "Are you sure you want to install locale '{0}' ({1})?"
+msgstr "원격 '{0}'을 삭제하시겠습니까?"
+
 #: yast3/qt6/repositories/window.py:213 yast3/qt6/repositories/window.py:256
 #: yast3/qt6/repositories/window.py:321
 #, python-format
@@ -2319,7 +2293,7 @@ msgid "Success: Cron jobs saved successfully."
 msgstr "Success: Cron jobs saved successfully."
 
 #: yast3/tui/cron/window.py:224 yast3/tui/datetime/window.py:262
-#: yast3/tui/hostname/window.py:135 yast3/tui/languages/window.py:88
+#: yast3/tui/hostname/window.py:135 yast3/tui/languages/window.py:120
 #: yast3/tui/proxy/window.py:158
 msgid "Error: Permission denied. Root permission required."
 msgstr "Error: Permission denied. Root permission required."
@@ -2366,13 +2340,13 @@ msgid "Error loading NTP status: {0}"
 msgstr "NTP 상태 로드 실패"
 
 #: yast3/tui/datetime/window.py:264 yast3/tui/hostname/window.py:140
-#: yast3/tui/hosts/window.py:169 yast3/tui/languages/window.py:93
+#: yast3/tui/hosts/window.py:169 yast3/tui/languages/window.py:125
 #: yast3/tui/repositories/window.py:264
 msgid "Error: Authentication failed or pkexec not available."
 msgstr "Error: Authentication failed or pkexec not available."
 
 #: yast3/tui/datetime/window.py:266 yast3/tui/hostname/window.py:86
-#: yast3/tui/hostname/window.py:144 yast3/tui/languages/window.py:97
+#: yast3/tui/hostname/window.py:144 yast3/tui/languages/window.py:129
 #: yast3/tui/ssh/window.py:415 yast3/tui/ssh/window.py:451
 #, fuzzy, python-brace-format
 msgid "Error: {0}"
@@ -2470,12 +2444,17 @@ msgstr "Error: IP address and hostname are required."
 msgid "Entry updated."
 msgstr "Entry updated."
 
-#: yast3/tui/languages/window.py:73
+#: yast3/tui/languages/window.py:79
 #, fuzzy
 msgid "Error: Please select a language."
 msgstr "스냅샷을 선택하십시오."
 
-#: yast3/tui/languages/window.py:82
+#: yast3/tui/languages/window.py:87
+#, fuzzy, python-brace-format
+msgid "Error: Language '{0}' not found."
+msgstr "Error: {0} not found."
+
+#: yast3/tui/languages/window.py:114
 #, python-brace-format
 msgid "Success: Language changed to '{0}'. Changes take effect after logout."
 msgstr ""
@@ -2837,4 +2816,13 @@ msgstr "Key bits"
 
 #~ msgid "Error: Invalid timezone selected."
 #~ msgstr "잘못된 시간대가 선택되었습니다"
+
+#~ msgid "Locale Management"
+#~ msgstr "Packages Management"
+
+#~ msgid "Search:"
+#~ msgstr "검색"
+
+#~ msgid "Search by code or name..."
+#~ msgstr ""
 

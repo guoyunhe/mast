@@ -16,14 +16,14 @@ from PySide6.QtWidgets import (
 )
 
 from yast3.core.i18n import _
-from yast3.core.languages import LocaleItem, get_locales_with_status, build_locale_install_command, build_locale_remove_command, refresh_locale_cache
+from yast3.core.languages import LocaleItem, build_locale_install_command, build_locale_remove_command, refresh_locale_cache, get_locales_with_status
 from yast3.qt6.command.action import CommandAction
 
 
 class LocaleManager(QWidget):
-    def __init__(self, parent: QWidget | None = None):
+    def __init__(self, locales: list[LocaleItem], parent: QWidget | None = None):
         super().__init__(parent)
-        self._all_locales: list[LocaleItem] = []
+        self._all_locales = locales
         self._setup_ui()
 
     def _setup_ui(self) -> None:
@@ -31,7 +31,7 @@ class LocaleManager(QWidget):
         layout.setSpacing(8)
 
         self.search_edit = QLineEdit()
-        self.search_edit.setPlaceholderText("Search")
+        self.search_edit.setPlaceholderText(_("Search"))
         self.search_edit.setClearButtonEnabled(True)
         self.search_edit.textChanged.connect(self._on_search_changed)
         layout.addWidget(self.search_edit)
@@ -69,7 +69,7 @@ class LocaleManager(QWidget):
 
         layout.addWidget(self.table)
 
-        self.refresh_locales()
+        self._filter_locales("")
 
     def _on_selection_changed(self) -> None:
         selected = self.table.currentRow() >= 0
@@ -116,6 +116,7 @@ class LocaleManager(QWidget):
 
     def refresh_locales(self) -> None:
         try:
+            refresh_locale_cache()
             self._all_locales = get_locales_with_status()
             self._filter_locales(self.search_edit.text())
         except Exception as e:
@@ -123,7 +124,6 @@ class LocaleManager(QWidget):
 
     def _reload_after_action(self, success: bool, _error: str, _stdout: str) -> None:
         if success:
-            refresh_locale_cache()
             self.refresh_locales()
 
     def install_selected(self) -> None:
@@ -146,9 +146,9 @@ class LocaleManager(QWidget):
         self.current_action = CommandAction(
             text=_("Install"),
             running_text=_("Installing..."),
-            dialog_title=_("Install Locale"),
+            dialog_title=_("Install Language"),
             command=build_locale_install_command(locale_code),
-            success_output=_("Locale '{0}' installed successfully.").format(locale_name),
+            success_output=_("Language '{0}' installed successfully.").format(locale_name),
             parent=self,
         )
         self.current_action.action_finished.connect(self._reload_after_action)
@@ -157,7 +157,7 @@ class LocaleManager(QWidget):
     def uninstall_selected(self) -> None:
         current_row = self.table.currentRow()
         if current_row < 0:
-            QMessageBox.information(self, _("Information"), _("Please select a locale to uninstall."))
+            QMessageBox.information(self, _("Information"), _("Please select a language to uninstall."))
             return
 
         locale_code = self.table.item(current_row, 0).text()
@@ -166,7 +166,7 @@ class LocaleManager(QWidget):
         reply = QMessageBox.question(
             self,
             _("Confirm"),
-            _("Are you sure you want to uninstall locale '{0}' ({1})?").format(locale_name, locale_code),
+            _("Are you sure you want to uninstall language '{0}' ({1})?").format(locale_name, locale_code),
         )
         if reply != QMessageBox.StandardButton.Yes:
             return
@@ -174,9 +174,9 @@ class LocaleManager(QWidget):
         self.current_action = CommandAction(
             text=_("Uninstall"),
             running_text=_("Uninstalling..."),
-            dialog_title=_("Uninstall Locale"),
+            dialog_title=_("Uninstall Language"),
             command=build_locale_remove_command(locale_code),
-            success_output=_("Locale '{0}' uninstalled successfully.").format(locale_name),
+            success_output=_("Language '{0}' uninstalled successfully.").format(locale_name),
             parent=self,
         )
         self.current_action.action_finished.connect(self._reload_after_action)

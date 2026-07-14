@@ -6,15 +6,19 @@ Save YaST ♥️ with Python 3 & Qt6 Widgets.
 
 | Name         | Core | Qt6 | GTK4 | TUI |
 |--------------|:----:|:---:|:----:|:---:|
-| Cron         | 🚧   | 🚧  | 🚧   | ❌  |
-| Git          | ✅   | ✅  | 🚧   | ❌  |
-| Hostname     | ✅   | ✅  | 🚧   | ❌  |
-| Hosts        | ✅   | ✅  | 🚧   | ❌  |
-| Packages     | ❌   | ❌  | ❌   | ❌  |
-| Proxy        | ✅   | ✅  | ✅   | ❌  |
-| Repositories | ✅   | ✅  | ✅   | ❌  |
+| Cron         | 🚧   | 🚧  | 🚧   | 🚧  |
+| DateTime     | ✅   | ✅  | ✅   | ✅  |
+| Flatpak      | ✅   | ✅  | ✅   | ❌  |
+| Git          | ✅   | ✅  | ✅   | ✅  |
+| Hostname     | ✅   | ✅  | ✅   | ✅  |
+| Hosts        | ✅   | ✅  | ✅   | ✅  |
+| Languages    | ✅   | ✅  | ✅   | ✅  |
+| Packages     | 🚧   | 🚧  | 🚧   | 🚧  |
+| Proxy        | ✅   | ✅  | ✅   | ✅  |
+| Repositories | ✅   | ✅  | ✅   | ✅  |
 | Services     | ✅   | ✅  | ✅   | ✅  |
-| SSH Client   | 🚧   | 🚧  | 🚧   | ❌  |
+| Snapshots    | ✅   | ✅  | ✅   | ✅  |
+| SSH Client   | ✅   | ✅  | ✅   | ✅  |
 
 **Planned:** SSH Server (system)
 

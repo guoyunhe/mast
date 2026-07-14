@@ -1,10 +1,11 @@
 """Main application window showing module buttons."""
 
 from textual.app import App, ComposeResult
-from textual.containers import Grid, ScrollableContainer
+from textual.containers import Grid, Horizontal, ScrollableContainer, Vertical
+from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
 
-from yast3.core import GITHUB_URL, __version__
+from yast3.core import GITHUB_URL, LICENSE_NAME, __version__, get_license_text
 from yast3.core.i18n import _
 from yast3.tui.module import Module
 from yast3.tui import (
@@ -21,6 +22,60 @@ from yast3.tui import (
     SnapshotsModule,
     SSHClientModule,
 )
+
+
+class AboutScreen(Screen):
+    CSS = """
+    Vertical {
+        height: 100%;
+        width: 100%;
+        align: center middle;
+        padding: 2;
+    }
+
+    .title {
+        text-align: center;
+        text-style: bold;
+        margin-bottom: 2;
+    }
+
+    .info {
+        text-align: center;
+        margin-bottom: 1;
+    }
+
+    .license-text {
+        width: 100%;
+        height: 40;
+        overflow: auto;
+        border: solid green;
+        padding: 1;
+    }
+
+    Button {
+        width: 20;
+        margin-top: 2;
+    }
+    """
+
+    def compose(self) -> ComposeResult:
+        license_text = get_license_text()
+        license_content = license_text if license_text else _("License file not found.")
+
+        yield Header(title=_("About YaST3"))
+        with Vertical():
+            yield Static("YaST3", classes="title")
+            yield Static(_("Version: {}").format(__version__), classes="info")
+            yield Static(_("License: {}").format(LICENSE_NAME), classes="info")
+            yield Static(GITHUB_URL, classes="info")
+            yield Static(_("License Text:"))
+            yield Static(license_content, classes="license-text")
+            with Horizontal():
+                yield Button(_("OK"), id="ok-btn")
+
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        if event.button.id == "ok-btn":
+            self.app.pop_screen()
 
 
 class ModuleButton(Button):
@@ -67,6 +122,7 @@ class MainWindow(App):
     BINDINGS = [
         ("q", "quit", "Quit"),
         ("escape", "quit", "Quit"),
+        ("a", "about", _("About")),
     ]
 
     def __init__(self) -> None:
@@ -104,3 +160,7 @@ class MainWindow(App):
             screen = event.button.module.create_window()
             if screen:
                 self.push_screen(screen)
+
+    def action_about(self) -> None:
+        """Show about screen."""
+        self.push_screen(AboutScreen())

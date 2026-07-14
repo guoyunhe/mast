@@ -2,9 +2,10 @@
 
 import webbrowser
 
-from gi.repository import Gdk, Gtk
+from gi.repository import Gio, Gdk, Gtk
 
 from yast3.core import GITHUB_URL, __version__
+from yast3.core.i18n import _
 from yast3.gtk4 import (
     CronModule,
     DateTimeModule,
@@ -19,6 +20,7 @@ from yast3.gtk4 import (
     SnapshotsModule,
     SSHClientModule,
 )
+from yast3.gtk4.about_dialog import show_about_dialog
 from yast3.gtk4.module_button import ModuleButton
 
 
@@ -45,6 +47,8 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.set_title("YaST3")
         self.set_default_size(960, 640)
+
+        self._setup_header_bar()
 
         # Create scrolled window
         scrolled = Gtk.ScrolledWindow()
@@ -93,3 +97,22 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.main_box.append(footer)
         self.set_child(scrolled)
+
+    def _setup_header_bar(self) -> None:
+        header_bar = Gtk.HeaderBar()
+        self.set_titlebar(header_bar)
+
+        about_action = Gio.SimpleAction(name="about")
+        about_action.connect("activate", self._show_about)
+        self.add_action(about_action)
+
+        menu = Gio.Menu()
+        menu.append(_("About"), "win.about")
+
+        menu_button = Gtk.MenuButton()
+        menu_button.set_icon_name("open-menu-symbolic")
+        menu_button.set_menu_model(menu)
+        header_bar.pack_end(menu_button)
+
+    def _show_about(self, action, param) -> None:
+        show_about_dialog(self)

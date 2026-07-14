@@ -7,12 +7,14 @@ from PySide6.QtWidgets import (
     QGridLayout,
     QLabel,
     QMainWindow,
+    QMenu,
     QScrollArea,
     QStatusBar,
     QWidget,
 )
 
 from yast3.core import GITHUB_URL, __version__
+from yast3.core.i18n import _
 from yast3.qt6 import (
     CronModule,
     DateTimeModule,
@@ -27,6 +29,7 @@ from yast3.qt6 import (
     SnapshotsModule,
     SSHClientModule,
 )
+from yast3.qt6.about_dialog import show_about_dialog
 from yast3.qt6.module_button import ModuleButton
 
 
@@ -50,6 +53,12 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("YaST3")  # DO NOT TRANSLATE
         self.resize(960, 640)
+
+        menubar = self.menuBar()
+        help_menu = QMenu(_("Help"), self)
+        about_action = help_menu.addAction(_("About"))
+        about_action.triggered.connect(self._show_about)
+        menubar.addMenu(help_menu)
 
         scroll_area = QScrollArea(self)
         scroll_area.setWidgetResizable(True)
@@ -76,3 +85,6 @@ class MainWindow(QMainWindow):
         status_bar.addWidget(version_label)
         status_bar.addPermanentWidget(github_label)
         self.setStatusBar(status_bar)
+
+    def _show_about(self) -> None:
+        show_about_dialog(self)

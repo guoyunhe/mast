@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  yast3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-13 10:59+0000\n"
+"POT-Creation-Date: 2026-07-14 04:10+0000\n"
 "PO-Revision-Date: 2024-01-01 00:00+0000\n"
 "Last-Translator: \n"
 "Language: en\n"
@@ -70,11 +70,11 @@ msgstr "Cron 작업 추가"
 #: yast3/gtk4/cron/cron_edit_dialog.py:29
 #: yast3/gtk4/flatpak/remote_manager.py:172
 #: yast3/gtk4/flatpak/remote_manager.py:237 yast3/gtk4/hosts/window.py:282
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:24
-#: yast3/gtk4/repositories/dialogs/switch_mirror.py:24
+#: yast3/gtk4/repositories/repo_edit_dialog.py:24
+#: yast3/gtk4/repositories/switch_mirror_dialog.py:24
 #: yast3/gtk4/snapshots/config_dialog.py:185 yast3/gtk4/snapshots/window.py:149
 #: yast3/gtk4/ssh/dialogs.py:27 yast3/gtk4/ssh/dialogs.py:145
-#: yast3/gtk4/ssh/keys/generate_dialog.py:26 yast3/tui/cron/window.py:324
+#: yast3/gtk4/ssh/keys_generate_dialog.py:26 yast3/tui/cron/window.py:324
 #: yast3/tui/hostname/window.py:70 yast3/tui/hosts/window.py:273
 #: yast3/tui/proxy/window.py:92 yast3/tui/repositories/window.py:355
 #: yast3/tui/repositories/window.py:484
@@ -86,8 +86,8 @@ msgstr "취소"
 #: yast3/gtk4/cron/cron_edit_dialog.py:30
 #: yast3/gtk4/flatpak/remote_manager.py:173
 #: yast3/gtk4/flatpak/remote_manager.py:238 yast3/gtk4/hosts/window.py:283
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:25
-#: yast3/gtk4/repositories/dialogs/switch_mirror.py:25
+#: yast3/gtk4/repositories/repo_edit_dialog.py:25
+#: yast3/gtk4/repositories/switch_mirror_dialog.py:25
 #: yast3/gtk4/snapshots/config_dialog.py:186 yast3/gtk4/ssh/dialogs.py:28
 #: yast3/gtk4/ssh/dialogs.py:146 yast3/tui/cron/window.py:323
 #: yast3/tui/hosts/window.py:272 yast3/tui/repositories/window.py:354
@@ -159,10 +159,10 @@ msgid "Command to execute"
 msgstr "실행할 명령"
 
 #: yast3/gtk4/cron/cron_edit_dialog.py:57 yast3/gtk4/cron/manager.py:117
-#: yast3/gtk4/hosts/window.py:97 yast3/gtk4/ssh/keys/generate_dialog.py:65
-#: yast3/gtk4/ssh/keys/tab.py:96 yast3/qt6/cron/cron_edit_dialog.py:67
+#: yast3/gtk4/hosts/window.py:97 yast3/gtk4/ssh/keys_generate_dialog.py:65
+#: yast3/gtk4/ssh/keys_tab.py:96 yast3/qt6/cron/cron_edit_dialog.py:67
 #: yast3/qt6/cron/manager.py:77 yast3/qt6/hosts/window.py:63
-#: yast3/qt6/ssh/keys/tab.py:65 yast3/tui/cron/window.py:117
+#: yast3/qt6/ssh/keys_tab.py:65 yast3/tui/cron/window.py:117
 #: yast3/tui/cron/window.py:319 yast3/tui/hosts/window.py:79
 #: yast3/tui/hosts/window.py:269 yast3/tui/ssh/window.py:293
 #: yast3/tui/ssh/window.py:622
@@ -208,19 +208,19 @@ msgstr "제안"
 #: yast3/gtk4/languages/settings.py:147 yast3/gtk4/languages/settings.py:149
 #: yast3/gtk4/proxy/window.py:82 yast3/gtk4/proxy/window.py:88
 #: yast3/gtk4/proxy/window.py:94 yast3/gtk4/proxy/window.py:117
-#: yast3/gtk4/proxy/window.py:123 yast3/gtk4/repositories/window.py:132
-#: yast3/gtk4/repositories/window.py:194 yast3/gtk4/repositories/window.py:198
-#: yast3/gtk4/repositories/window.py:240 yast3/gtk4/repositories/window.py:275
-#: yast3/gtk4/repositories/window.py:279 yast3/gtk4/repositories/window.py:387
-#: yast3/gtk4/repositories/window.py:389 yast3/gtk4/repositories/window.py:391
+#: yast3/gtk4/proxy/window.py:123 yast3/gtk4/repositories/window.py:133
+#: yast3/gtk4/repositories/window.py:195 yast3/gtk4/repositories/window.py:199
+#: yast3/gtk4/repositories/window.py:241 yast3/gtk4/repositories/window.py:276
+#: yast3/gtk4/repositories/window.py:280 yast3/gtk4/repositories/window.py:388
+#: yast3/gtk4/repositories/window.py:390 yast3/gtk4/repositories/window.py:392
 #: yast3/gtk4/services/window.py:183 yast3/gtk4/snapshots/config_dialog.py:46
 #: yast3/gtk4/snapshots/config_dialog.py:227 yast3/gtk4/snapshots/window.py:202
 #: yast3/gtk4/snapshots/window.py:208 yast3/gtk4/ssh/__init__.py:72
-#: yast3/gtk4/ssh/dialogs.py:120 yast3/gtk4/ssh/hosts/tab.py:109
-#: yast3/gtk4/ssh/hosts/tab.py:152 yast3/gtk4/ssh/hosts/tab.py:180
-#: yast3/gtk4/ssh/hosts/tab.py:195 yast3/gtk4/ssh/hosts/tab.py:226
-#: yast3/gtk4/ssh/hosts/tab.py:228 yast3/gtk4/ssh/keys/generate_dialog.py:110
-#: yast3/gtk4/ssh/keys/tab.py:196 yast3/gtk4/ssh/keys/tab.py:242
+#: yast3/gtk4/ssh/dialogs.py:120 yast3/gtk4/ssh/hosts_tab.py:109
+#: yast3/gtk4/ssh/hosts_tab.py:152 yast3/gtk4/ssh/hosts_tab.py:180
+#: yast3/gtk4/ssh/hosts_tab.py:195 yast3/gtk4/ssh/hosts_tab.py:226
+#: yast3/gtk4/ssh/hosts_tab.py:228 yast3/gtk4/ssh/keys_generate_dialog.py:110
+#: yast3/gtk4/ssh/keys_tab.py:196 yast3/gtk4/ssh/keys_tab.py:242
 #: yast3/qt6/cron/cron_edit_dialog.py:111 yast3/qt6/cron/manager.py:232
 #: yast3/qt6/datetime/window.py:148 yast3/qt6/datetime/window.py:154
 #: yast3/qt6/datetime/window.py:166 yast3/qt6/datetime/window.py:200
@@ -260,14 +260,14 @@ msgstr "제안"
 #: yast3/qt6/snapshots/config_dialog.py:171 yast3/qt6/snapshots/window.py:126
 #: yast3/qt6/snapshots/window.py:132 yast3/qt6/ssh/__init__.py:59
 #: yast3/qt6/ssh/dialogs.py:86 yast3/qt6/ssh/dialogs.py:92
-#: yast3/qt6/ssh/hosts/tab.py:90 yast3/qt6/ssh/hosts/tab.py:141
-#: yast3/qt6/ssh/hosts/tab.py:162 yast3/qt6/ssh/hosts/tab.py:176
-#: yast3/qt6/ssh/hosts/tab.py:226 yast3/qt6/ssh/hosts/tab.py:229
-#: yast3/qt6/ssh/keys/generate_dialog.py:177
-#: yast3/qt6/ssh/keys/generate_dialog.py:195
-#: yast3/qt6/ssh/keys/generate_dialog.py:237
-#: yast3/qt6/ssh/keys/generate_dialog.py:242 yast3/qt6/ssh/keys/tab.py:177
-#: yast3/qt6/ssh/keys/tab.py:217
+#: yast3/qt6/ssh/hosts_tab.py:90 yast3/qt6/ssh/hosts_tab.py:141
+#: yast3/qt6/ssh/hosts_tab.py:162 yast3/qt6/ssh/hosts_tab.py:176
+#: yast3/qt6/ssh/hosts_tab.py:226 yast3/qt6/ssh/hosts_tab.py:229
+#: yast3/qt6/ssh/keys_generate_dialog.py:177
+#: yast3/qt6/ssh/keys_generate_dialog.py:195
+#: yast3/qt6/ssh/keys_generate_dialog.py:237
+#: yast3/qt6/ssh/keys_generate_dialog.py:242 yast3/qt6/ssh/keys_tab.py:177
+#: yast3/qt6/ssh/keys_tab.py:217
 msgid "Error"
 msgstr "오류"
 
@@ -278,12 +278,12 @@ msgid "Command cannot be empty"
 msgstr "Hostname cannot be empty."
 
 #: yast3/gtk4/cron/manager.py:40 yast3/gtk4/flatpak/remote_manager.py:28
-#: yast3/gtk4/hosts/window.py:33 yast3/gtk4/repositories/window.py:39
-#: yast3/gtk4/ssh/dialogs.py:60 yast3/gtk4/ssh/hosts/tab.py:33
-#: yast3/gtk4/ssh/keys/tab.py:33 yast3/qt6/cron/manager.py:45
+#: yast3/gtk4/hosts/window.py:33 yast3/gtk4/repositories/window.py:40
+#: yast3/gtk4/ssh/dialogs.py:60 yast3/gtk4/ssh/hosts_tab.py:33
+#: yast3/gtk4/ssh/keys_tab.py:33 yast3/qt6/cron/manager.py:45
 #: yast3/qt6/flatpak/remote_manager.py:37 yast3/qt6/hosts/window.py:40
 #: yast3/qt6/repositories/window.py:44 yast3/qt6/ssh/dialogs.py:58
-#: yast3/qt6/ssh/hosts/tab.py:38 yast3/qt6/ssh/keys/tab.py:36
+#: yast3/qt6/ssh/hosts_tab.py:38 yast3/qt6/ssh/keys_tab.py:36
 #: yast3/tui/cron/window.py:79 yast3/tui/hosts/window.py:69
 #: yast3/tui/repositories/window.py:70 yast3/tui/ssh/window.py:259
 msgid "Add"
@@ -291,24 +291,24 @@ msgstr "추가"
 
 #: yast3/gtk4/cron/manager.py:44 yast3/gtk4/flatpak/remote_manager.py:32
 #: yast3/gtk4/flatpak/remote_manager.py:233 yast3/gtk4/hosts/window.py:37
-#: yast3/gtk4/repositories/window.py:46 yast3/gtk4/ssh/hosts/tab.py:37
+#: yast3/gtk4/repositories/window.py:47 yast3/gtk4/ssh/hosts_tab.py:37
 #: yast3/qt6/cron/manager.py:49 yast3/qt6/flatpak/remote_manager.py:41
 #: yast3/qt6/flatpak/remote_manager.py:106 yast3/qt6/hosts/window.py:43
-#: yast3/qt6/repositories/window.py:52 yast3/qt6/ssh/hosts/tab.py:42
+#: yast3/qt6/repositories/window.py:52 yast3/qt6/ssh/hosts_tab.py:42
 #: yast3/tui/cron/window.py:80 yast3/tui/hosts/window.py:70
 #: yast3/tui/repositories/window.py:71 yast3/tui/ssh/window.py:260
 msgid "Edit"
 msgstr "편집"
 
 #: yast3/gtk4/cron/manager.py:49 yast3/gtk4/flatpak/remote_manager.py:36
-#: yast3/gtk4/hosts/window.py:41 yast3/gtk4/repositories/window.py:50
+#: yast3/gtk4/hosts/window.py:41 yast3/gtk4/repositories/window.py:51
 #: yast3/gtk4/snapshots/window.py:66 yast3/gtk4/snapshots/window.py:150
-#: yast3/gtk4/snapshots/window.py:278 yast3/gtk4/ssh/hosts/tab.py:41
-#: yast3/gtk4/ssh/keys/tab.py:42 yast3/qt6/cron/manager.py:54
+#: yast3/gtk4/snapshots/window.py:278 yast3/gtk4/ssh/hosts_tab.py:41
+#: yast3/gtk4/ssh/keys_tab.py:42 yast3/qt6/cron/manager.py:54
 #: yast3/qt6/flatpak/remote_manager.py:45 yast3/qt6/hosts/window.py:47
 #: yast3/qt6/repositories/window.py:56 yast3/qt6/snapshots/window.py:63
-#: yast3/qt6/snapshots/window.py:203 yast3/qt6/ssh/hosts/tab.py:46
-#: yast3/qt6/ssh/keys/tab.py:45 yast3/tui/cron/window.py:81
+#: yast3/qt6/snapshots/window.py:203 yast3/qt6/ssh/hosts_tab.py:46
+#: yast3/qt6/ssh/keys_tab.py:45 yast3/tui/cron/window.py:81
 #: yast3/tui/hosts/window.py:71 yast3/tui/repositories/window.py:72
 #: yast3/tui/snapshots/window.py:72 yast3/tui/ssh/window.py:261
 #: yast3/tui/ssh/window.py:269
@@ -318,11 +318,11 @@ msgstr "삭제"
 #: yast3/gtk4/cron/manager.py:57 yast3/gtk4/datetime/window.py:157
 #: yast3/gtk4/git/window.py:70 yast3/gtk4/hostname/window.py:48
 #: yast3/gtk4/hosts/window.py:48 yast3/gtk4/languages/settings.py:65
-#: yast3/gtk4/proxy/window.py:44 yast3/gtk4/ssh/hosts/tab.py:48
+#: yast3/gtk4/proxy/window.py:44 yast3/gtk4/ssh/hosts_tab.py:48
 #: yast3/qt6/cron/manager.py:61 yast3/qt6/datetime/window.py:134
 #: yast3/qt6/git/window.py:78 yast3/qt6/hostname/window.py:51
 #: yast3/qt6/hosts/window.py:53 yast3/qt6/languages/settings.py:57
-#: yast3/qt6/proxy/window.py:55 yast3/qt6/ssh/hosts/tab.py:52
+#: yast3/qt6/proxy/window.py:55 yast3/qt6/ssh/hosts_tab.py:52
 #: yast3/tui/cron/window.py:82 yast3/tui/datetime/window.py:116
 #: yast3/tui/git/window.py:81 yast3/tui/hostname/window.py:69
 #: yast3/tui/hosts/window.py:72 yast3/tui/proxy/window.py:91
@@ -331,9 +331,9 @@ msgid "Save"
 msgstr "저장"
 
 #: yast3/gtk4/cron/manager.py:76 yast3/gtk4/hosts/window.py:76
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:38
-#: yast3/gtk4/repositories/window.py:101 yast3/gtk4/services/window.py:139
-#: yast3/gtk4/ssh/hosts/tab.py:74 yast3/qt6/repositories/repo_edit_dialog.py:42
+#: yast3/gtk4/repositories/repo_edit_dialog.py:38
+#: yast3/gtk4/repositories/window.py:102 yast3/gtk4/services/window.py:139
+#: yast3/gtk4/ssh/hosts_tab.py:74 yast3/qt6/repositories/repo_edit_dialog.py:42
 #: yast3/qt6/repositories/window.py:70 yast3/qt6/services/window.py:116
 #: yast3/tui/cron/window.py:117 yast3/tui/hosts/window.py:79
 #: yast3/tui/proxy/window.py:120 yast3/tui/repositories/window.py:80
@@ -350,11 +350,11 @@ msgstr "사용 중"
 #: yast3/gtk4/flatpak/remote_manager.py:122
 #: yast3/gtk4/flatpak/runtime_manager.py:114 yast3/gtk4/hosts/window.py:183
 #: yast3/gtk4/hosts/window.py:219 yast3/gtk4/languages/manager.py:148
-#: yast3/gtk4/languages/manager.py:182 yast3/gtk4/repositories/window.py:231
-#: yast3/gtk4/repositories/window.py:256 yast3/gtk4/repositories/window.py:310
+#: yast3/gtk4/languages/manager.py:182 yast3/gtk4/repositories/window.py:232
+#: yast3/gtk4/repositories/window.py:257 yast3/gtk4/repositories/window.py:311
 #: yast3/gtk4/services/window.py:271 yast3/gtk4/services/window.py:304
 #: yast3/gtk4/snapshots/window.py:249 yast3/gtk4/snapshots/window.py:269
-#: yast3/gtk4/ssh/hosts/tab.py:159 yast3/gtk4/ssh/hosts/tab.py:187
+#: yast3/gtk4/ssh/hosts_tab.py:159 yast3/gtk4/ssh/hosts_tab.py:187
 #: yast3/qt6/cron/manager.py:161 yast3/qt6/cron/manager.py:179
 #: yast3/qt6/flatpak/package_manager.py:347
 #: yast3/qt6/flatpak/package_manager.py:351
@@ -367,7 +367,7 @@ msgstr "사용 중"
 #: yast3/qt6/repositories/window.py:219 yast3/qt6/repositories/window.py:262
 #: yast3/qt6/services/window.py:227 yast3/qt6/services/window.py:256
 #: yast3/qt6/snapshots/window.py:175 yast3/qt6/snapshots/window.py:191
-#: yast3/qt6/ssh/hosts/tab.py:148 yast3/qt6/ssh/hosts/tab.py:169
+#: yast3/qt6/ssh/hosts_tab.py:148 yast3/qt6/ssh/hosts_tab.py:169
 msgid "Information"
 msgstr "정보"
 
@@ -386,16 +386,16 @@ msgstr "삭제할 cron 작업을 선택하십시오."
 #: yast3/gtk4/flatpak/remove_action.py:38
 #: yast3/gtk4/flatpak/runtime_manager.py:124 yast3/gtk4/hostname/window.py:98
 #: yast3/gtk4/hosts/window.py:228 yast3/gtk4/languages/manager.py:159
-#: yast3/gtk4/languages/manager.py:193 yast3/gtk4/repositories/window.py:323
-#: yast3/gtk4/repositories/window.py:362 yast3/gtk4/ssh/hosts/tab.py:204
+#: yast3/gtk4/languages/manager.py:193 yast3/gtk4/repositories/window.py:324
+#: yast3/gtk4/repositories/window.py:363 yast3/gtk4/ssh/hosts_tab.py:204
 #: yast3/qt6/cron/manager.py:183 yast3/qt6/flatpak/package_manager.py:369
 #: yast3/qt6/flatpak/remote_manager.py:127
 #: yast3/qt6/flatpak/remove_action.py:37
 #: yast3/qt6/flatpak/runtime_manager.py:139 yast3/qt6/hostname/window.py:109
 #: yast3/qt6/hosts/window.py:229 yast3/qt6/languages/manager.py:140
 #: yast3/qt6/languages/manager.py:168 yast3/qt6/repositories/window.py:269
-#: yast3/qt6/repositories/window.py:289 yast3/qt6/ssh/hosts/tab.py:181
-#: yast3/qt6/ssh/keys/generate_dialog.py:184
+#: yast3/qt6/repositories/window.py:289 yast3/qt6/ssh/hosts_tab.py:181
+#: yast3/qt6/ssh/keys_generate_dialog.py:184
 msgid "Confirm"
 msgstr "확인"
 
@@ -413,10 +413,10 @@ msgstr "이 cron 작업을 삭제하시겠습니까?"
 #: yast3/gtk4/flatpak/window.py:86 yast3/gtk4/git/window.py:275
 #: yast3/gtk4/hostname/window.py:105 yast3/gtk4/hosts/window.py:248
 #: yast3/gtk4/languages/settings.py:140 yast3/gtk4/proxy/window.py:110
-#: yast3/gtk4/repositories/window.py:247 yast3/gtk4/repositories/window.py:378
+#: yast3/gtk4/repositories/window.py:248 yast3/gtk4/repositories/window.py:379
 #: yast3/gtk4/snapshots/config_dialog.py:220 yast3/gtk4/ssh/__init__.py:87
-#: yast3/gtk4/ssh/hosts/tab.py:224 yast3/gtk4/ssh/keys/tab.py:194
-#: yast3/gtk4/ssh/keys/tab.py:246 yast3/qt6/cron/manager.py:229
+#: yast3/gtk4/ssh/hosts_tab.py:224 yast3/gtk4/ssh/keys_tab.py:194
+#: yast3/gtk4/ssh/keys_tab.py:246 yast3/qt6/cron/manager.py:229
 #: yast3/qt6/datetime/window.py:202 yast3/qt6/datetime/window.py:208
 #: yast3/qt6/flatpak/remote_manager.py:94
 #: yast3/qt6/flatpak/remote_manager.py:113
@@ -426,8 +426,8 @@ msgstr "이 cron 작업을 삭제하시겠습니까?"
 #: yast3/qt6/languages/settings.py:136 yast3/qt6/proxy/window.py:109
 #: yast3/qt6/repositories/window.py:120 yast3/qt6/repositories/window.py:301
 #: yast3/qt6/snapshots/config_dialog.py:168 yast3/qt6/ssh/__init__.py:67
-#: yast3/qt6/ssh/hosts/tab.py:222 yast3/qt6/ssh/keys/generate_dialog.py:232
-#: yast3/qt6/ssh/keys/tab.py:174 yast3/qt6/ssh/keys/tab.py:221
+#: yast3/qt6/ssh/hosts_tab.py:222 yast3/qt6/ssh/keys_generate_dialog.py:232
+#: yast3/qt6/ssh/keys_tab.py:174 yast3/qt6/ssh/keys_tab.py:221
 msgid "Success"
 msgstr "성공"
 
@@ -544,7 +544,7 @@ msgstr "NTP 설정이 성공적으로 업데이트되었습니다"
 
 #: yast3/gtk4/datetime/window.py:240 yast3/gtk4/hostname/window.py:110
 #: yast3/gtk4/hosts/window.py:252 yast3/gtk4/languages/settings.py:147
-#: yast3/gtk4/repositories/window.py:389 yast3/qt6/datetime/window.py:213
+#: yast3/gtk4/repositories/window.py:390 yast3/qt6/datetime/window.py:213
 #: yast3/qt6/hostname/window.py:134 yast3/qt6/hosts/window.py:275
 #: yast3/qt6/languages/settings.py:148
 msgid "Authentication failed or pkexec not available."
@@ -609,14 +609,14 @@ msgstr "재설정"
 #: yast3/gtk4/flatpak/remote_manager.py:40
 #: yast3/gtk4/flatpak/runtime_manager.py:51 yast3/gtk4/services/window.py:80
 #: yast3/gtk4/snapshots/window.py:58 yast3/gtk4/snapshots/window.py:178
-#: yast3/gtk4/snapshots/window.py:193 yast3/gtk4/ssh/keys/tab.py:47
+#: yast3/gtk4/snapshots/window.py:193 yast3/gtk4/ssh/keys_tab.py:47
 #: yast3/qt6/flatpak/package_manager.py:131
 #: yast3/qt6/flatpak/package_manager.py:203
 #: yast3/qt6/flatpak/package_manager.py:277
 #: yast3/qt6/flatpak/remote_manager.py:49
 #: yast3/qt6/flatpak/runtime_manager.py:72 yast3/qt6/services/window.py:81
 #: yast3/qt6/snapshots/window.py:55 yast3/qt6/snapshots/window.py:102
-#: yast3/qt6/snapshots/window.py:117 yast3/qt6/ssh/keys/tab.py:50
+#: yast3/qt6/snapshots/window.py:117 yast3/qt6/ssh/keys_tab.py:50
 #: yast3/tui/services/window.py:102 yast3/tui/snapshots/window.py:73
 #: yast3/tui/snapshots/window.py:135
 msgid "Refresh"
@@ -637,7 +637,7 @@ msgstr "다음"
 #: yast3/gtk4/flatpak/package_manager.py:128
 #: yast3/gtk4/flatpak/package_manager.py:141
 #: yast3/gtk4/flatpak/runtime_manager.py:65
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:34
+#: yast3/gtk4/repositories/repo_edit_dialog.py:34
 #: yast3/gtk4/snapshots/window.py:84 yast3/qt6/flatpak/package_manager.py:141
 #: yast3/qt6/flatpak/package_manager.py:213
 #: yast3/qt6/flatpak/runtime_manager.py:82
@@ -652,16 +652,16 @@ msgstr "ID"
 #: yast3/gtk4/flatpak/remote_manager.py:192
 #: yast3/gtk4/flatpak/remote_manager.py:257
 #: yast3/gtk4/flatpak/runtime_manager.py:66 yast3/gtk4/languages/manager.py:62
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:36
-#: yast3/gtk4/repositories/window.py:80 yast3/gtk4/services/window.py:121
-#: yast3/gtk4/ssh/keys/tab.py:68 yast3/qt6/flatpak/package_manager.py:142
+#: yast3/gtk4/repositories/repo_edit_dialog.py:36
+#: yast3/gtk4/repositories/window.py:81 yast3/gtk4/services/window.py:121
+#: yast3/gtk4/ssh/keys_tab.py:68 yast3/qt6/flatpak/package_manager.py:142
 #: yast3/qt6/flatpak/package_manager.py:214
 #: yast3/qt6/flatpak/remote_dialog.py:42 yast3/qt6/flatpak/remote_dialog.py:45
 #: yast3/qt6/flatpak/remote_manager.py:58
 #: yast3/qt6/flatpak/runtime_manager.py:83 yast3/qt6/languages/manager.py:57
 #: yast3/qt6/repositories/repo_edit_dialog.py:37
 #: yast3/qt6/repositories/window.py:70 yast3/qt6/services/window.py:116
-#: yast3/qt6/ssh/keys/tab.py:61 yast3/tui/repositories/window.py:80
+#: yast3/qt6/ssh/keys_tab.py:61 yast3/tui/repositories/window.py:80
 #: yast3/tui/repositories/window.py:328 yast3/tui/services/window.py:123
 #: yast3/tui/ssh/window.py:293 yast3/tui/ssh/window.py:613
 msgid "Name"
@@ -804,18 +804,18 @@ msgstr "패키지가 성공적으로 제거되었습니다."
 msgid "Failed to remove package: {0}"
 msgstr "Failed to remove package: {0}"
 
-#: yast3/gtk4/flatpak/package_manager.py:401 yast3/gtk4/ssh/keys/tab.py:147
-#: yast3/gtk4/ssh/keys/tab.py:148 yast3/gtk4/ssh/keys/tab.py:149
-#: yast3/qt6/flatpak/package_manager.py:522 yast3/qt6/ssh/keys/tab.py:137
-#: yast3/qt6/ssh/keys/tab.py:140 yast3/qt6/ssh/keys/tab.py:143
+#: yast3/gtk4/flatpak/package_manager.py:401 yast3/gtk4/ssh/keys_tab.py:147
+#: yast3/gtk4/ssh/keys_tab.py:148 yast3/gtk4/ssh/keys_tab.py:149
+#: yast3/qt6/flatpak/package_manager.py:522 yast3/qt6/ssh/keys_tab.py:137
+#: yast3/qt6/ssh/keys_tab.py:140 yast3/qt6/ssh/keys_tab.py:143
 #: yast3/tui/languages/window.py:53 yast3/tui/ssh/window.py:336
 msgid "Yes"
 msgstr "예"
 
-#: yast3/gtk4/flatpak/package_manager.py:401 yast3/gtk4/ssh/keys/tab.py:147
-#: yast3/gtk4/ssh/keys/tab.py:148 yast3/gtk4/ssh/keys/tab.py:149
-#: yast3/qt6/flatpak/package_manager.py:522 yast3/qt6/ssh/keys/tab.py:137
-#: yast3/qt6/ssh/keys/tab.py:140 yast3/qt6/ssh/keys/tab.py:143
+#: yast3/gtk4/flatpak/package_manager.py:401 yast3/gtk4/ssh/keys_tab.py:147
+#: yast3/gtk4/ssh/keys_tab.py:148 yast3/gtk4/ssh/keys_tab.py:149
+#: yast3/qt6/flatpak/package_manager.py:522 yast3/qt6/ssh/keys_tab.py:137
+#: yast3/qt6/ssh/keys_tab.py:140 yast3/qt6/ssh/keys_tab.py:143
 #: yast3/tui/languages/window.py:53 yast3/tui/ssh/window.py:336
 msgid "No"
 msgstr "아니오"
@@ -823,8 +823,8 @@ msgstr "아니오"
 #: yast3/gtk4/flatpak/remote_manager.py:53
 #: yast3/gtk4/flatpak/remote_manager.py:194
 #: yast3/gtk4/flatpak/remote_manager.py:259
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:59
-#: yast3/gtk4/repositories/window.py:87 yast3/qt6/flatpak/remote_dialog.py:49
+#: yast3/gtk4/repositories/repo_edit_dialog.py:59
+#: yast3/gtk4/repositories/window.py:88 yast3/qt6/flatpak/remote_dialog.py:49
 #: yast3/qt6/flatpak/remote_manager.py:58
 #: yast3/qt6/repositories/repo_edit_dialog.py:58
 #: yast3/qt6/repositories/window.py:70 yast3/tui/repositories/window.py:80
@@ -1188,20 +1188,20 @@ msgstr "{0} not found."
 msgid "IP address and hostname are required."
 msgstr "IP address and hostname are required."
 
-#: yast3/gtk4/hosts/window.py:183 yast3/gtk4/ssh/hosts/tab.py:159
-#: yast3/qt6/hosts/window.py:187 yast3/qt6/ssh/hosts/tab.py:148
+#: yast3/gtk4/hosts/window.py:183 yast3/gtk4/ssh/hosts_tab.py:159
+#: yast3/qt6/hosts/window.py:187 yast3/qt6/ssh/hosts_tab.py:148
 #: yast3/tui/hosts/window.py:130
 msgid "Please select a host entry to edit."
 msgstr "Please select a host entry to edit."
 
-#: yast3/gtk4/hosts/window.py:219 yast3/gtk4/ssh/hosts/tab.py:187
-#: yast3/qt6/hosts/window.py:224 yast3/qt6/ssh/hosts/tab.py:169
+#: yast3/gtk4/hosts/window.py:219 yast3/gtk4/ssh/hosts_tab.py:187
+#: yast3/qt6/hosts/window.py:224 yast3/qt6/ssh/hosts_tab.py:169
 #: yast3/tui/hosts/window.py:149
 msgid "Please select a host entry to delete."
 msgstr "Please select a host entry to delete."
 
-#: yast3/gtk4/hosts/window.py:230 yast3/gtk4/ssh/hosts/tab.py:206
-#: yast3/qt6/hosts/window.py:229 yast3/qt6/ssh/hosts/tab.py:181
+#: yast3/gtk4/hosts/window.py:230 yast3/gtk4/ssh/hosts_tab.py:206
+#: yast3/qt6/hosts/window.py:229 yast3/qt6/ssh/hosts_tab.py:181
 msgid "Are you sure you want to delete this entry?"
 msgstr "이 항목을 삭제하시겠습니까?"
 
@@ -1231,7 +1231,7 @@ msgid "Hostname:"
 msgstr "Hostname:"
 
 #: yast3/gtk4/hosts/window.py:319 yast3/qt6/hosts/dialogs.py:52
-#: yast3/qt6/ssh/keys/generate_dialog.py:123
+#: yast3/qt6/ssh/keys_generate_dialog.py:123
 msgid "Comment:"
 msgstr "주석:"
 
@@ -1421,75 +1421,145 @@ msgstr "저장소"
 msgid "Import"
 msgstr "가져오기"
 
-#: yast3/gtk4/repositories/dialogs/switch_mirror.py:17
-#: yast3/gtk4/repositories/window.py:54
-#: yast3/qt6/repositories/switch_mirror_dialog.py:21
-#: yast3/qt6/repositories/window.py:60 yast3/tui/repositories/window.py:73
-#: yast3/tui/repositories/window.py:473
-msgid "Switch Mirror"
-msgstr "Switch Mirror"
+#: yast3/gtk4/repositories/repo_edit_dialog.py:16
+#: yast3/qt6/repositories/repo_edit_dialog.py:24
+#: yast3/tui/repositories/window.py:133
+msgid "Add Repository"
+msgstr "저장소 추가"
 
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:88
-#: yast3/gtk4/repositories/window.py:93
-#: yast3/qt6/repositories/repo_edit_dialog.py:94
-#: yast3/qt6/repositories/window.py:70 yast3/tui/repositories/window.py:80
-#: yast3/tui/repositories/window.py:337
-msgid "Priority"
-msgstr "우선순위"
+#: yast3/gtk4/repositories/repo_edit_dialog.py:16
+#: yast3/qt6/repositories/repo_edit_dialog.py:24
+#: yast3/tui/repositories/window.py:146
+msgid "Edit Repository"
+msgstr "저장소 편집"
 
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:42
-#: yast3/gtk4/repositories/window.py:109
+#: yast3/gtk4/repositories/repo_edit_dialog.py:42
+#: yast3/gtk4/repositories/window.py:110
 #: yast3/qt6/repositories/repo_edit_dialog.py:46
 #: yast3/qt6/repositories/window.py:70 yast3/tui/repositories/window.py:80
 #: yast3/tui/repositories/window.py:350
 msgid "Auto Refresh"
 msgstr "자동 새로 고침"
 
-#: yast3/gtk4/repositories/window.py:132 yast3/qt6/repositories/window.py:135
+#: yast3/gtk4/repositories/repo_edit_dialog.py:47
+#: yast3/qt6/repositories/repo_edit_dialog.py:51
+msgid "URL Type"
+msgstr "URL 유형"
+
+#: yast3/gtk4/repositories/repo_edit_dialog.py:52
+#: yast3/qt6/repositories/repo_edit_dialog.py:53
+#: yast3/tui/repositories/window.py:331 yast3/tui/repositories/window.py:332
+msgid "Base URL"
+msgstr "기본 URL"
+
+#: yast3/gtk4/repositories/repo_edit_dialog.py:53
+#: yast3/qt6/repositories/repo_edit_dialog.py:53
+#: yast3/tui/repositories/window.py:334
+msgid "Mirror List"
+msgstr "미러 목록"
+
+#: yast3/gtk4/repositories/repo_edit_dialog.py:61
+#: yast3/qt6/repositories/repo_edit_dialog.py:68
+msgid "Path"
+msgstr "경로"
+
+#: yast3/gtk4/repositories/repo_edit_dialog.py:64
+#: yast3/gtk4/snapshots/window.py:89
+#: yast3/qt6/repositories/repo_edit_dialog.py:74
+#: yast3/qt6/snapshots/window.py:77 yast3/tui/repositories/window.py:340
+#: yast3/tui/snapshots/window.py:84 yast3/tui/ssh/window.py:293
+#: yast3/tui/ssh/window.py:616
+msgid "Type"
+msgstr "유형"
+
+#: yast3/gtk4/repositories/repo_edit_dialog.py:81
+#: yast3/qt6/repositories/repo_edit_dialog.py:83
+msgid "Check GPG signature"
+msgstr "GPG 서명 확인"
+
+#: yast3/gtk4/repositories/repo_edit_dialog.py:85
+#: yast3/qt6/repositories/repo_edit_dialog.py:88
+msgid "GPG Key URL"
+msgstr "GPG 키 URL"
+
+#: yast3/gtk4/repositories/repo_edit_dialog.py:88
+#: yast3/gtk4/repositories/window.py:94
+#: yast3/qt6/repositories/repo_edit_dialog.py:94
+#: yast3/qt6/repositories/window.py:70 yast3/tui/repositories/window.py:80
+#: yast3/tui/repositories/window.py:337
+msgid "Priority"
+msgstr "우선순위"
+
+#: yast3/gtk4/repositories/repo_edit_dialog.py:99
+#: yast3/qt6/repositories/repo_edit_dialog.py:101
+msgid "Keep packages"
+msgstr "Keep packages"
+
+#: yast3/gtk4/repositories/switch_mirror_dialog.py:17
+#: yast3/gtk4/repositories/window.py:55
+#: yast3/qt6/repositories/switch_mirror_dialog.py:21
+#: yast3/qt6/repositories/window.py:60 yast3/tui/repositories/window.py:73
+#: yast3/tui/repositories/window.py:473
+msgid "Switch Mirror"
+msgstr "Switch Mirror"
+
+#: yast3/gtk4/repositories/switch_mirror_dialog.py:35
+#: yast3/qt6/repositories/switch_mirror_dialog.py:28
+#: yast3/tui/repositories/window.py:475
+msgid "openSUSE"
+msgstr "openSUSE"
+
+#: yast3/gtk4/repositories/switch_mirror_dialog.py:58
+#: yast3/qt6/repositories/switch_mirror_dialog.py:48
+#: yast3/tui/repositories/window.py:479
+msgid "Packman"
+msgstr "Packman"
+
+#: yast3/gtk4/repositories/window.py:133 yast3/qt6/repositories/window.py:135
 msgid "Cannot read repository directory. Root permission required."
 msgstr "저장소 디렉토리를 읽을 수 없습니다. root 권한이 필요합니다."
 
-#: yast3/gtk4/repositories/window.py:194 yast3/gtk4/repositories/window.py:275
+#: yast3/gtk4/repositories/window.py:195 yast3/gtk4/repositories/window.py:276
 #: yast3/qt6/repositories/window.py:184 yast3/qt6/repositories/window.py:231
 msgid "Repository ID is required."
 msgstr "Repository ID is required."
 
-#: yast3/gtk4/repositories/window.py:198 yast3/gtk4/repositories/window.py:279
+#: yast3/gtk4/repositories/window.py:199 yast3/gtk4/repositories/window.py:280
 #: yast3/qt6/repositories/window.py:187 yast3/qt6/repositories/window.py:234
 msgid "URL is required."
 msgstr "URL is required."
 
-#: yast3/gtk4/repositories/window.py:232 yast3/qt6/repositories/window.py:107
+#: yast3/gtk4/repositories/window.py:233 yast3/qt6/repositories/window.py:107
 #, python-brace-format
 msgid "Repository '{}' already exists."
 msgstr "Repository '{}' already exists."
 
-#: yast3/gtk4/repositories/window.py:241 yast3/qt6/repositories/window.py:114
+#: yast3/gtk4/repositories/window.py:242 yast3/qt6/repositories/window.py:114
 #, fuzzy, python-format
 msgid "Failed to import repository: %s"
 msgstr "Failed to import repository: %s"
 
-#: yast3/gtk4/repositories/window.py:248 yast3/qt6/repositories/window.py:121
+#: yast3/gtk4/repositories/window.py:249 yast3/qt6/repositories/window.py:121
 #, fuzzy, python-brace-format
 msgid "Repository '{}' imported successfully."
 msgstr "Repository '{}' imported successfully."
 
-#: yast3/gtk4/repositories/window.py:256 yast3/qt6/repositories/window.py:219
+#: yast3/gtk4/repositories/window.py:257 yast3/qt6/repositories/window.py:219
 #: yast3/tui/repositories/window.py:139
 msgid "Please select a repository to edit."
 msgstr "Please select a repository to edit."
 
-#: yast3/gtk4/repositories/window.py:310 yast3/qt6/repositories/window.py:262
+#: yast3/gtk4/repositories/window.py:311 yast3/qt6/repositories/window.py:262
 #: yast3/tui/repositories/window.py:156
 msgid "Please select a repository to delete."
 msgstr "Please select a repository to delete."
 
-#: yast3/gtk4/repositories/window.py:326 yast3/qt6/repositories/window.py:270
+#: yast3/gtk4/repositories/window.py:327 yast3/qt6/repositories/window.py:270
 #, python-brace-format
 msgid "Are you sure you want to delete repository '{}'?"
 msgstr "저장소 '{}'을 삭제하시겠습니까?"
 
-#: yast3/gtk4/repositories/window.py:365 yast3/qt6/repositories/window.py:290
+#: yast3/gtk4/repositories/window.py:366 yast3/qt6/repositories/window.py:290
 #, python-brace-format
 msgid ""
 "Are you sure you want to switch mirrors?\n"
@@ -1502,88 +1572,18 @@ msgstr ""
 "openSUSE mirror: {}\n"
 "Packman mirror: {}"
 
-#: yast3/gtk4/repositories/window.py:378 yast3/qt6/repositories/window.py:302
+#: yast3/gtk4/repositories/window.py:379 yast3/qt6/repositories/window.py:302
 #: yast3/tui/repositories/window.py:176
 msgid "Mirror switching completed successfully."
 msgstr "미러 전환이 성공적으로 완료되었습니다."
 
-#: yast3/gtk4/repositories/window.py:387
+#: yast3/gtk4/repositories/window.py:388
 msgid "Cannot write to repository directory. Root permission required."
 msgstr "저장소 디렉토리에 쓸 수 없습니다. root 권한이 필요합니다."
 
-#: yast3/gtk4/repositories/window.py:391
+#: yast3/gtk4/repositories/window.py:392
 msgid "Failed to save repository configuration."
 msgstr "저장소 구성 저장에 실패했습니다."
-
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:16
-#: yast3/qt6/repositories/repo_edit_dialog.py:24
-#: yast3/tui/repositories/window.py:133
-msgid "Add Repository"
-msgstr "저장소 추가"
-
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:16
-#: yast3/qt6/repositories/repo_edit_dialog.py:24
-#: yast3/tui/repositories/window.py:146
-msgid "Edit Repository"
-msgstr "저장소 편집"
-
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:47
-#: yast3/qt6/repositories/repo_edit_dialog.py:51
-msgid "URL Type"
-msgstr "URL 유형"
-
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:52
-#: yast3/qt6/repositories/repo_edit_dialog.py:53
-#: yast3/tui/repositories/window.py:331 yast3/tui/repositories/window.py:332
-msgid "Base URL"
-msgstr "기본 URL"
-
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:53
-#: yast3/qt6/repositories/repo_edit_dialog.py:53
-#: yast3/tui/repositories/window.py:334
-msgid "Mirror List"
-msgstr "미러 목록"
-
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:61
-#: yast3/qt6/repositories/repo_edit_dialog.py:68
-msgid "Path"
-msgstr "경로"
-
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:64
-#: yast3/gtk4/snapshots/window.py:89
-#: yast3/qt6/repositories/repo_edit_dialog.py:74
-#: yast3/qt6/snapshots/window.py:77 yast3/tui/repositories/window.py:340
-#: yast3/tui/snapshots/window.py:84 yast3/tui/ssh/window.py:293
-#: yast3/tui/ssh/window.py:616
-msgid "Type"
-msgstr "유형"
-
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:81
-#: yast3/qt6/repositories/repo_edit_dialog.py:83
-msgid "Check GPG signature"
-msgstr "GPG 서명 확인"
-
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:85
-#: yast3/qt6/repositories/repo_edit_dialog.py:88
-msgid "GPG Key URL"
-msgstr "GPG 키 URL"
-
-#: yast3/gtk4/repositories/dialogs/repo_edit.py:99
-#: yast3/qt6/repositories/repo_edit_dialog.py:101
-msgid "Keep packages"
-msgstr "Keep packages"
-
-#: yast3/gtk4/repositories/dialogs/switch_mirror.py:35
-#: yast3/qt6/repositories/switch_mirror_dialog.py:28
-#: yast3/tui/repositories/window.py:475
-msgid "openSUSE"
-msgstr "openSUSE"
-
-#: yast3/gtk4/repositories/dialogs/switch_mirror.py:58
-#: yast3/qt6/repositories/switch_mirror_dialog.py:48
-#: yast3/tui/repositories/window.py:479
-msgid "Packman"
-msgstr "Packman"
 
 #: yast3/gtk4/services/__init__.py:16 yast3/qt6/services/__init__.py:10
 #: yast3/tui/services/__init__.py:12
@@ -2000,119 +2000,114 @@ msgstr "Options: {0}"
 msgid "No options set"
 msgstr "옵션이 설정되지 않았습니다"
 
-#: yast3/gtk4/ssh/window.py:36 yast3/qt6/ssh/window.py:40
-#: yast3/tui/ssh/window.py:252
-msgid "Keys"
-msgstr "키"
-
-#: yast3/gtk4/ssh/hosts/tab.py:81 yast3/qt6/ssh/hosts/tab.py:61
+#: yast3/gtk4/ssh/hosts_tab.py:81 yast3/qt6/ssh/hosts_tab.py:61
 #: yast3/tui/ssh/window.py:288
 msgid "Host Pattern"
 msgstr "호스트 패턴"
 
-#: yast3/gtk4/ssh/hosts/tab.py:88 yast3/qt6/ssh/hosts/tab.py:61
+#: yast3/gtk4/ssh/hosts_tab.py:88 yast3/qt6/ssh/hosts_tab.py:61
 #: yast3/tui/ssh/window.py:288
 msgid "Options"
 msgstr "옵션"
 
-#: yast3/gtk4/ssh/hosts/tab.py:122 yast3/qt6/ssh/hosts/tab.py:122
-#: yast3/qt6/ssh/hosts/tab.py:213 yast3/tui/ssh/window.py:327
+#: yast3/gtk4/ssh/hosts_tab.py:122 yast3/qt6/ssh/hosts_tab.py:122
+#: yast3/qt6/ssh/hosts_tab.py:213 yast3/tui/ssh/window.py:327
 #, python-brace-format
 msgid " and {0} more"
 msgstr " 그리고 {0} 개 더"
 
-#: yast3/gtk4/ssh/hosts/tab.py:152 yast3/gtk4/ssh/hosts/tab.py:180
-#: yast3/qt6/ssh/hosts/tab.py:141 yast3/qt6/ssh/hosts/tab.py:162
+#: yast3/gtk4/ssh/hosts_tab.py:152 yast3/gtk4/ssh/hosts_tab.py:180
+#: yast3/qt6/ssh/hosts_tab.py:141 yast3/qt6/ssh/hosts_tab.py:162
 msgid "Host pattern is required."
 msgstr "Host pattern is required."
 
-#: yast3/gtk4/ssh/hosts/tab.py:195 yast3/qt6/ssh/hosts/tab.py:176
+#: yast3/gtk4/ssh/hosts_tab.py:195 yast3/qt6/ssh/hosts_tab.py:176
 #: yast3/tui/ssh/window.py:383
 msgid "Cannot delete the default host entry."
 msgstr "기본 호스트 항목은 삭제할 수 없습니다."
 
-#: yast3/gtk4/ssh/hosts/tab.py:224 yast3/qt6/ssh/hosts/tab.py:222
+#: yast3/gtk4/ssh/hosts_tab.py:224 yast3/qt6/ssh/hosts_tab.py:222
 msgid "SSH config saved successfully."
 msgstr "SSH config saved successfully."
 
-#: yast3/gtk4/ssh/hosts/tab.py:226 yast3/qt6/ssh/hosts/tab.py:226
+#: yast3/gtk4/ssh/hosts_tab.py:226 yast3/qt6/ssh/hosts_tab.py:226
 msgid "Cannot write to SSH config. Check permissions."
 msgstr "SSH 구성에 쓸 수 없습니다. 권한을 확인하십시오."
 
-#: yast3/gtk4/ssh/hosts/tab.py:228 yast3/qt6/ssh/hosts/tab.py:229
+#: yast3/gtk4/ssh/hosts_tab.py:228 yast3/qt6/ssh/hosts_tab.py:229
 msgid "Failed to save SSH config."
 msgstr "Failed to save SSH config."
 
-#: yast3/gtk4/ssh/keys/generate_dialog.py:18
-#: yast3/qt6/ssh/keys/generate_dialog.py:80 yast3/tui/ssh/window.py:611
+#: yast3/gtk4/ssh/keys_generate_dialog.py:18
+#: yast3/qt6/ssh/keys_generate_dialog.py:80 yast3/tui/ssh/window.py:611
 msgid "Generate SSH Key"
 msgstr "Generate SSH Key"
 
-#: yast3/gtk4/ssh/keys/generate_dialog.py:27
-#: yast3/qt6/ssh/keys/generate_dialog.py:159 yast3/tui/ssh/window.py:268
+#: yast3/gtk4/ssh/keys_generate_dialog.py:27
+#: yast3/qt6/ssh/keys_generate_dialog.py:159 yast3/tui/ssh/window.py:268
 msgid "Generate"
 msgstr "생성"
 
-#: yast3/gtk4/ssh/keys/generate_dialog.py:39 yast3/gtk4/ssh/keys/tab.py:75
-#: yast3/qt6/ssh/keys/tab.py:62
+#: yast3/gtk4/ssh/keys_generate_dialog.py:39 yast3/gtk4/ssh/keys_tab.py:75
+#: yast3/qt6/ssh/keys_tab.py:62
 msgid "Algorithm"
 msgstr "알고리즘"
 
-#: yast3/gtk4/ssh/keys/generate_dialog.py:52
+#: yast3/gtk4/ssh/keys_generate_dialog.py:52
 msgid "Key Size"
 msgstr "Key Size"
 
-#: yast3/gtk4/ssh/keys/generate_dialog.py:70
+#: yast3/gtk4/ssh/keys_generate_dialog.py:70
 msgid "Optional comment (e.g., user@host)"
 msgstr "Optional comment (e.g., user@host)"
 
-#: yast3/gtk4/ssh/keys/generate_dialog.py:77 yast3/gtk4/ssh/keys/tab.py:102
-#: yast3/qt6/ssh/keys/tab.py:66 yast3/tui/ssh/window.py:293
+#: yast3/gtk4/ssh/keys_generate_dialog.py:77 yast3/gtk4/ssh/keys_tab.py:102
+#: yast3/qt6/ssh/keys_tab.py:66 yast3/tui/ssh/window.py:293
 msgid "Passphrase"
 msgstr "패스프레이즈"
 
-#: yast3/gtk4/ssh/keys/generate_dialog.py:82
+#: yast3/gtk4/ssh/keys_generate_dialog.py:82
 msgid "Optional passphrase"
 msgstr "Optional passphrase"
 
-#: yast3/gtk4/ssh/keys/generate_dialog.py:112
+#: yast3/gtk4/ssh/keys_generate_dialog.py:112
 #, fuzzy, python-brace-format
 msgid "Failed to generate key: {0}"
 msgstr "Failed to generate key: {0}"
 
-#: yast3/gtk4/ssh/keys/tab.py:37 yast3/qt6/ssh/keys/tab.py:40
+#: yast3/gtk4/ssh/keys_tab.py:37 yast3/qt6/ssh/keys_tab.py:40
 msgid "Copy Public Key"
 msgstr "공개 키 복사"
 
-#: yast3/gtk4/ssh/keys/tab.py:82 yast3/qt6/ssh/keys/tab.py:63
+#: yast3/gtk4/ssh/keys_tab.py:82 yast3/qt6/ssh/keys_tab.py:63
 msgid "Size"
 msgstr "크기"
 
-#: yast3/gtk4/ssh/keys/tab.py:89 yast3/qt6/ssh/keys/tab.py:64
+#: yast3/gtk4/ssh/keys_tab.py:89 yast3/qt6/ssh/keys_tab.py:64
 msgid "Fingerprint"
 msgstr "Fingerprint"
 
-#: yast3/gtk4/ssh/keys/tab.py:109 yast3/qt6/ssh/keys/tab.py:67
+#: yast3/gtk4/ssh/keys_tab.py:109 yast3/qt6/ssh/keys_tab.py:67
 msgid "Public"
 msgstr "퍼블릭"
 
-#: yast3/gtk4/ssh/keys/tab.py:116 yast3/qt6/ssh/keys/tab.py:68
+#: yast3/gtk4/ssh/keys_tab.py:116 yast3/qt6/ssh/keys_tab.py:68
 msgid "Private"
 msgstr "프라이빗"
 
-#: yast3/gtk4/ssh/keys/tab.py:194 yast3/qt6/ssh/keys/tab.py:174
+#: yast3/gtk4/ssh/keys_tab.py:194 yast3/qt6/ssh/keys_tab.py:174
 msgid "Public key copied to clipboard."
 msgstr "Public key copied to clipboard."
 
-#: yast3/gtk4/ssh/keys/tab.py:196 yast3/qt6/ssh/keys/tab.py:177
+#: yast3/gtk4/ssh/keys_tab.py:196 yast3/qt6/ssh/keys_tab.py:177
 msgid "Cannot read public key file."
 msgstr "공개 키 파일을 읽을 수 없습니다."
 
-#: yast3/gtk4/ssh/keys/tab.py:223 yast3/qt6/ssh/keys/tab.py:200
+#: yast3/gtk4/ssh/keys_tab.py:223 yast3/qt6/ssh/keys_tab.py:200
 msgid "Confirm Delete"
 msgstr "삭제 확인"
 
-#: yast3/gtk4/ssh/keys/tab.py:226 yast3/qt6/ssh/keys/tab.py:201
+#: yast3/gtk4/ssh/keys_tab.py:226 yast3/qt6/ssh/keys_tab.py:201
 #, python-brace-format
 msgid ""
 "Are you sure you want to delete the following keys?\n"
@@ -2123,7 +2118,7 @@ msgstr ""
 "\n"
 "{0}"
 
-#: yast3/gtk4/ssh/keys/tab.py:243 yast3/qt6/ssh/keys/tab.py:218
+#: yast3/gtk4/ssh/keys_tab.py:243 yast3/qt6/ssh/keys_tab.py:218
 #, python-brace-format
 msgid ""
 "Failed to delete some files:\n"
@@ -2134,9 +2129,14 @@ msgstr ""
 "\n"
 "{0}"
 
-#: yast3/gtk4/ssh/keys/tab.py:246 yast3/qt6/ssh/keys/tab.py:221
+#: yast3/gtk4/ssh/keys_tab.py:246 yast3/qt6/ssh/keys_tab.py:221
 msgid "Key deleted successfully."
 msgstr "Key deleted successfully."
+
+#: yast3/gtk4/ssh/window.py:36 yast3/qt6/ssh/window.py:40
+#: yast3/tui/ssh/window.py:252
+msgid "Keys"
+msgstr "키"
 
 #: yast3/qt6/datetime/window.py:154
 #, fuzzy, python-brace-format
@@ -2225,61 +2225,61 @@ msgstr "Failed to delete repository: %s"
 msgid "Failed to switch mirrors: %s"
 msgstr "Failed to switch mirrors: %s"
 
-#: yast3/qt6/ssh/keys/generate_dialog.py:90
+#: yast3/qt6/ssh/keys_generate_dialog.py:90
 msgid "Key Name:"
 msgstr "Key Name:"
 
-#: yast3/qt6/ssh/keys/generate_dialog.py:92
+#: yast3/qt6/ssh/keys_generate_dialog.py:92
 msgid "e.g., id_ed25519"
 msgstr "e.g., id_ed25519"
 
-#: yast3/qt6/ssh/keys/generate_dialog.py:98
+#: yast3/qt6/ssh/keys_generate_dialog.py:98
 msgid "Key Type:"
 msgstr "Key Type:"
 
-#: yast3/qt6/ssh/keys/generate_dialog.py:110
+#: yast3/qt6/ssh/keys_generate_dialog.py:110
 msgid "Key Size:"
 msgstr "Key Size:"
 
-#: yast3/qt6/ssh/keys/generate_dialog.py:125
+#: yast3/qt6/ssh/keys_generate_dialog.py:125
 msgid "e.g., user@hostname"
 msgstr "e.g., user@hostname"
 
-#: yast3/qt6/ssh/keys/generate_dialog.py:131
+#: yast3/qt6/ssh/keys_generate_dialog.py:131
 msgid "Passphrase:"
 msgstr "Passphrase:"
 
-#: yast3/qt6/ssh/keys/generate_dialog.py:138
+#: yast3/qt6/ssh/keys_generate_dialog.py:138
 #, python-brace-format
 msgid "The key will be saved to {0}"
 msgstr "The key will be saved to {0}"
 
-#: yast3/qt6/ssh/keys/generate_dialog.py:143
+#: yast3/qt6/ssh/keys_generate_dialog.py:143
 msgid "Public Key:"
 msgstr "Public Key:"
 
-#: yast3/qt6/ssh/keys/generate_dialog.py:177
+#: yast3/qt6/ssh/keys_generate_dialog.py:177
 msgid "Key name is required."
 msgstr "Key name is required."
 
-#: yast3/qt6/ssh/keys/generate_dialog.py:185
+#: yast3/qt6/ssh/keys_generate_dialog.py:185
 msgid "Key names starting with 'id_' are recommended. Continue anyway?"
 msgstr "Key names starting with 'id_' are recommended. Continue anyway?"
 
-#: yast3/qt6/ssh/keys/generate_dialog.py:195
+#: yast3/qt6/ssh/keys_generate_dialog.py:195
 msgid "A key with this name already exists."
 msgstr "이 이름의 키가 이미 존재합니다."
 
-#: yast3/qt6/ssh/keys/generate_dialog.py:232
+#: yast3/qt6/ssh/keys_generate_dialog.py:232
 msgid "SSH key generated successfully."
 msgstr "SSH key generated successfully."
 
-#: yast3/qt6/ssh/keys/generate_dialog.py:237
+#: yast3/qt6/ssh/keys_generate_dialog.py:237
 #, python-brace-format
 msgid "Failed to read public key: {0}"
 msgstr "Failed to read public key: {0}"
 
-#: yast3/qt6/ssh/keys/generate_dialog.py:242
+#: yast3/qt6/ssh/keys_generate_dialog.py:242
 #, python-brace-format
 msgid "Failed to generate SSH key: {0}"
 msgstr "Failed to generate SSH key: {0}"
@@ -2457,7 +2457,7 @@ msgstr "Error: {0} not found."
 #: yast3/tui/languages/window.py:114
 #, python-brace-format
 msgid "Success: Language changed to '{0}'. Changes take effect after logout."
-msgstr ""
+msgstr "성공: 언어가 '{0}'로 변경되었습니다. 변경 내용은 로그아웃 후에 적용됩니다."
 
 #: yast3/tui/packages/window.py:39
 msgid "Packages Management"

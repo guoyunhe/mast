@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.19 - 2026-07-14
+
+- feat(languages): added language module to manage installed languages.
+
 ## 0.0.18 - 2026-07-12
 
 - feat(cron): added cron module to manage cron jobs.

@@ -16,7 +16,7 @@ from PySide6.QtWidgets import (
 )
 
 from yast3.core.i18n import _
-from yast3.core.languages import LocaleItem, build_locale_install_command, build_locale_remove_command, refresh_locale_cache, get_locales_with_status
+from yast3.core.languages import LocaleItem, build_locale_install_command, build_locale_remove_command, refresh_locale_cache, get_all_locales
 from yast3.qt6.command.action import CommandAction
 
 
@@ -117,7 +117,7 @@ class LocaleManager(QWidget):
     def refresh_locales(self) -> None:
         try:
             refresh_locale_cache()
-            self._all_locales = get_locales_with_status()
+            self._all_locales = get_all_locales()
             self._filter_locales(self.search_edit.text())
         except Exception as e:
             QMessageBox.warning(self, _("Error"), _("Failed to load locales: {0}").format(str(e)))

@@ -7,7 +7,7 @@ gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk
 
 from yast3.core.i18n import _
-from yast3.core.languages import LocaleItem, build_locale_install_command, build_locale_remove_command, refresh_locale_cache, get_locales_with_status
+from yast3.core.languages import LocaleItem, build_locale_install_command, build_locale_remove_command, refresh_locale_cache, get_all_locales
 from yast3.gtk4.command.action import CommandAction
 
 
@@ -124,7 +124,7 @@ class LocaleManager(Gtk.Box):
     def refresh_locales(self) -> None:
         try:
             refresh_locale_cache()
-            self._all_locales = get_locales_with_status()
+            self._all_locales = get_all_locales()
             search_text = self.search_entry.get_text()
             self._filter_locales(search_text)
         except Exception as e:

@@ -7,7 +7,7 @@ gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk
 
 from yast3.core.i18n import _
-from yast3.core.languages import get_locales_with_status, LocaleItem
+from yast3.core.languages import get_all_locales, LocaleItem
 from yast3.gtk4.languages.settings import LanguageSettingsTab
 from yast3.gtk4.languages.manager import LocaleManager
 
@@ -26,7 +26,7 @@ class LanguagesWindow(Gtk.ApplicationWindow):
 
         self.notebook = Gtk.Notebook()
 
-        self._all_locales = get_locales_with_status()
+        self._all_locales = get_all_locales()
 
         settings_tab = LanguageSettingsTab(self._all_locales)
         settings_tab.connect("language-installed", self._on_language_installed)

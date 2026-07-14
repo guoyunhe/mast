@@ -6,6 +6,8 @@ import subprocess
 from dataclasses import dataclass
 from typing import Literal
 
+from .languages import _get_language_name
+
 
 @dataclass
 class LocaleItem:
@@ -14,146 +16,44 @@ class LocaleItem:
     installed: bool
 
 
-ALL_LOCALES = [
-    ("af_ZA", "Afrikaans (South Africa)"),
-    ("am_ET", "Amharic (Ethiopia)"),
-    ("ar_AE", "Arabic (UAE)"),
-    ("ar_BH", "Arabic (Bahrain)"),
-    ("ar_DZ", "Arabic (Algeria)"),
-    ("ar_EG", "Arabic (Egypt)"),
-    ("ar_IN", "Arabic (India)"),
-    ("ar_IQ", "Arabic (Iraq)"),
-    ("ar_JO", "Arabic (Jordan)"),
-    ("ar_KW", "Arabic (Kuwait)"),
-    ("ar_LB", "Arabic (Lebanon)"),
-    ("ar_LY", "Arabic (Libya)"),
-    ("ar_MA", "Arabic (Morocco)"),
-    ("ar_OM", "Arabic (Oman)"),
-    ("ar_QA", "Arabic (Qatar)"),
-    ("ar_SA", "Arabic (Saudi Arabia)"),
-    ("ar_SY", "Arabic (Syria)"),
-    ("ar_TN", "Arabic (Tunisia)"),
-    ("ar_YE", "Arabic (Yemen)"),
-    ("ast_ES", "Asturian (Spain)"),
-    ("be_BY", "Belarusian (Belarus)"),
-    ("bg_BG", "Bulgarian (Bulgaria)"),
-    ("bn_IN", "Bengali (India)"),
-    ("br_FR", "Breton (France)"),
-    ("bs_BA", "Bosnian (Bosnia and Herzegovina)"),
-    ("ca_ES", "Catalan (Spain)"),
-    ("cs_CZ", "Czech (Czech Republic)"),
-    ("cy_GB", "Welsh (United Kingdom)"),
-    ("da_DK", "Danish (Denmark)"),
-    ("de_AT", "German (Austria)"),
-    ("de_BE", "German (Belgium)"),
-    ("de_CH", "German (Switzerland)"),
-    ("de_DE", "German (Germany)"),
-    ("de_LU", "German (Luxembourg)"),
-    ("el_GR", "Greek (Greece)"),
-    ("en_AU", "English (Australia)"),
-    ("en_CA", "English (Canada)"),
-    ("en_GB", "English (United Kingdom)"),
-    ("en_HK", "English (Hong Kong)"),
-    ("en_IE", "English (Ireland)"),
-    ("en_IN", "English (India)"),
-    ("en_NZ", "English (New Zealand)"),
-    ("en_PH", "English (Philippines)"),
-    ("en_SG", "English (Singapore)"),
-    ("en_US", "English (United States)"),
-    ("en_ZA", "English (South Africa)"),
-    ("eo", "Esperanto"),
-    ("es_AR", "Spanish (Argentina)"),
-    ("es_BO", "Spanish (Bolivia)"),
-    ("es_CL", "Spanish (Chile)"),
-    ("es_CO", "Spanish (Colombia)"),
-    ("es_CR", "Spanish (Costa Rica)"),
-    ("es_DO", "Spanish (Dominican Republic)"),
-    ("es_EC", "Spanish (Ecuador)"),
-    ("es_ES", "Spanish (Spain)"),
-    ("es_GT", "Spanish (Guatemala)"),
-    ("es_HN", "Spanish (Honduras)"),
-    ("es_MX", "Spanish (Mexico)"),
-    ("es_NI", "Spanish (Nicaragua)"),
-    ("es_PA", "Spanish (Panama)"),
-    ("es_PE", "Spanish (Peru)"),
-    ("es_PR", "Spanish (Puerto Rico)"),
-    ("es_PY", "Spanish (Paraguay)"),
-    ("es_SV", "Spanish (El Salvador)"),
-    ("es_US", "Spanish (United States)"),
-    ("es_UY", "Spanish (Uruguay)"),
-    ("es_VE", "Spanish (Venezuela)"),
-    ("et_EE", "Estonian (Estonia)"),
-    ("eu_ES", "Basque (Spain)"),
-    ("fa_IR", "Persian (Iran)"),
-    ("fi_FI", "Finnish (Finland)"),
-    ("fil_PH", "Filipino (Philippines)"),
-    ("fr_BE", "French (Belgium)"),
-    ("fr_CA", "French (Canada)"),
-    ("fr_CH", "French (Switzerland)"),
-    ("fr_FR", "French (France)"),
-    ("fr_LU", "French (Luxembourg)"),
-    ("fr_MC", "French (Monaco)"),
-    ("fr_SG", "French (Singapore)"),
-    ("ga_IE", "Irish (Ireland)"),
-    ("gl_ES", "Galician (Spain)"),
-    ("gu_IN", "Gujarati (India)"),
-    ("he_IL", "Hebrew (Israel)"),
-    ("hi_IN", "Hindi (India)"),
-    ("hr_HR", "Croatian (Croatia)"),
-    ("hu_HU", "Hungarian (Hungary)"),
-    ("hy_AM", "Armenian (Armenia)"),
-    ("id_ID", "Indonesian (Indonesia)"),
-    ("is_IS", "Icelandic (Iceland)"),
-    ("it_CH", "Italian (Switzerland)"),
-    ("it_IT", "Italian (Italy)"),
-    ("ja_JP", "Japanese (Japan)"),
-    ("ka_GE", "Georgian (Georgia)"),
-    ("kk_KZ", "Kazakh (Kazakhstan)"),
-    ("km_KH", "Khmer (Cambodia)"),
-    ("kn_IN", "Kannada (India)"),
-    ("ko_KR", "Korean (South Korea)"),
-    ("ku_TR", "Kurdish (Turkey)"),
-    ("ky_KG", "Kyrgyz (Kyrgyzstan)"),
-    ("lo_LA", "Lao (Laos)"),
-    ("lt_LT", "Lithuanian (Lithuania)"),
-    ("lv_LV", "Latvian (Latvia)"),
-    ("mk_MK", "Macedonian (North Macedonia)"),
-    ("ml_IN", "Malayalam (India)"),
-    ("mn_MN", "Mongolian (Mongolia)"),
-    ("mr_IN", "Marathi (India)"),
-    ("ms_MY", "Malay (Malaysia)"),
-    ("mt_MT", "Maltese (Malta)"),
-    ("nb_NO", "Norwegian Bokmal (Norway)"),
-    ("ne_NP", "Nepali (Nepal)"),
-    ("nl_BE", "Dutch (Belgium)"),
-    ("nl_NL", "Dutch (Netherlands)"),
-    ("nn_NO", "Norwegian Nynorsk (Norway)"),
-    ("pl_PL", "Polish (Poland)"),
-    ("pt_BR", "Portuguese (Brazil)"),
-    ("pt_PT", "Portuguese (Portugal)"),
-    ("ro_RO", "Romanian (Romania)"),
-    ("ru_RU", "Russian (Russia)"),
-    ("si_LK", "Sinhala (Sri Lanka)"),
-    ("sk_SK", "Slovak (Slovakia)"),
-    ("sl_SI", "Slovenian (Slovenia)"),
-    ("sr_RS", "Serbian (Serbia)"),
-    ("sv_FI", "Swedish (Finland)"),
-    ("sv_SE", "Swedish (Sweden)"),
-    ("ta_IN", "Tamil (India)"),
-    ("te_IN", "Telugu (India)"),
-    ("th_TH", "Thai (Thailand)"),
-    ("tr_TR", "Turkish (Turkey)"),
-    ("uk_UA", "Ukrainian (Ukraine)"),
-    ("ur_PK", "Urdu (Pakistan)"),
-    ("uz_UZ", "Uzbek (Uzbekistan)"),
-    ("vi_VN", "Vietnamese (Vietnam)"),
-    ("zh_CN", "Chinese (China)"),
-    ("zh_HK", "Chinese (Hong Kong)"),
-    ("zh_TW", "Chinese (Taiwan)"),
-]
-
-
 _installed_cache: set[str] | None = None
+_all_locales_cache: list[str] | None = None
+
+
+def _read_all_locales() -> list[str]:
+    """Read all available locales using 'localectl list-locales'."""
+    global _all_locales_cache
+    if _all_locales_cache is not None:
+        return _all_locales_cache
+    
+    all_locales = []
+    try:
+        result = subprocess.run(
+            ["localectl", "list-locales"],
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+        if result.returncode == 0:
+            for line in result.stdout.strip().split("\n"):
+                code = line.strip()
+                if not code:
+                    continue
+                if code in ("C", "POSIX"):
+                    continue
+                
+                suffix_pos = code.find(".")
+                if suffix_pos == -1:
+                    suffix_pos = code.find("@")
+                if suffix_pos != -1:
+                    code = code[:suffix_pos]
+                
+                all_locales.append(code)
+    except (FileNotFoundError, TimeoutError):
+        pass
+    
+    _all_locales_cache = sorted(set(all_locales))
+    return _all_locales_cache
 
 
 def _read_installed_languages() -> set[str]:
@@ -187,8 +87,9 @@ def _read_installed_languages() -> set[str]:
 
 def _invalidate_cache() -> None:
     """Invalidate the installed languages cache."""
-    global _installed_cache
+    global _installed_cache, _all_locales_cache
     _installed_cache = None
+    _all_locales_cache = None
 
 
 def refresh_locale_cache() -> None:
@@ -202,11 +103,12 @@ def _is_locale_installed(locale_code: str, installed_codes: set[str]) -> bool:
 
 
 def get_all_locales() -> list[LocaleItem]:
-    """Get all available locales from the predefined list."""
+    """Get all available locales from localectl."""
     installed_codes = _read_installed_languages()
+    all_codes = _read_all_locales()
     locales = [
-        LocaleItem(code=code, name=name, installed=_is_locale_installed(code, installed_codes))
-        for code, name in ALL_LOCALES
+        LocaleItem(code=code, name=_get_language_name(code), installed=_is_locale_installed(code, installed_codes))
+        for code in all_codes
     ]
     return sorted(locales, key=lambda x: (not x.installed, x.name))
 
@@ -214,16 +116,12 @@ def get_all_locales() -> list[LocaleItem]:
 def get_installed_locales() -> list[LocaleItem]:
     """Get installed locales."""
     installed_codes = _read_installed_languages()
+    all_codes = _read_all_locales()
     return [
-        LocaleItem(code=code, name=name, installed=True)
-        for code, name in ALL_LOCALES
+        LocaleItem(code=code, name=_get_language_name(code), installed=True)
+        for code in all_codes
         if _is_locale_installed(code, installed_codes)
     ]
-
-
-def get_locales_with_status() -> list[LocaleItem]:
-    """Get all locales with installation status."""
-    return get_all_locales()
 
 
 def build_locale_install_command(locale_code: str) -> list[str]:

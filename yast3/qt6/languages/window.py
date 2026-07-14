@@ -11,7 +11,7 @@ from PySide6.QtWidgets import (
 )
 
 from yast3.core.i18n import _
-from yast3.core.languages import get_locales_with_status, LocaleItem
+from yast3.core.languages import get_all_locales
 from yast3.qt6.languages.settings import LanguageSettings
 from yast3.qt6.languages.manager import LocaleManager
 
@@ -31,7 +31,7 @@ class LanguagesWindow(QMainWindow):
         self.tab_widget = QTabWidget()
         layout.addWidget(self.tab_widget)
 
-        self._all_locales = get_locales_with_status()
+        self._all_locales = get_all_locales()
 
         self.settings_tab = LanguageSettings(self._all_locales)
         self.settings_tab.language_installed.connect(self._on_language_installed)

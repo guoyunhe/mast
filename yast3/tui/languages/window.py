@@ -10,7 +10,7 @@ from yast3.core.languages import (
     get_current_language,
     get_use_utf8,
     save_language_settings,
-    get_locales_with_status,
+    get_all_locales,
     install_locale,
     uninstall_locale,
     LocaleItem,
@@ -176,7 +176,7 @@ class LanguageManagementPane(TabPane):
         try:
             from yast3.core.languages import refresh_locale_cache
             refresh_locale_cache()
-            self._all_locales = get_locales_with_status()
+            self._all_locales = get_all_locales()
             search_input = self.query_one("#search-input", Input)
             self._filter_locales(search_input.value)
         except Exception as e:
@@ -321,7 +321,7 @@ class LanguagesWindow(Screen):
 
     def compose(self) -> ComposeResult:
         yield Header()
-        locales = get_locales_with_status()
+        locales = get_all_locales()
         with Vertical(classes="container"):
             yield Label("Language Configuration", classes="title")
             yield TabbedContent(

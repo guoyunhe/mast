@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.21 - 2026-07-16
+
+- refactor: rename the project to MaST.
+
 ## 0.0.20 - 2026-07-15
 
 - feat(packages): added package module to launch myrlyn-sudo package manager.

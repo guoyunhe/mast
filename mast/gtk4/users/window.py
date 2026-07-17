@@ -9,8 +9,8 @@ gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk
 
 from mast.core.i18n import _
-from mast.gtk4.users.users_tab import UsersTab
-from mast.gtk4.users.groups_tab import GroupsTab
+from mast.gtk4.users.users_manager import UsersManager
+from mast.gtk4.users.groups_manager import GroupsManager
 
 
 class UsersWindow(Gtk.ApplicationWindow):
@@ -27,10 +27,10 @@ class UsersWindow(Gtk.ApplicationWindow):
 
         self.notebook = Gtk.Notebook()
 
-        self.users_tab = UsersTab()
+        self.users_tab = UsersManager()
         self.notebook.append_page(self.users_tab, Gtk.Label(label=_("Users")))
 
-        self.groups_tab = GroupsTab()
+        self.groups_tab = GroupsManager()
         self.notebook.append_page(self.groups_tab, Gtk.Label(label=_("Groups")))
 
         self.main_box.append(self.notebook)

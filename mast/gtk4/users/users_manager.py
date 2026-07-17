@@ -187,7 +187,7 @@ class UsersManager(Gtk.Box):
         for row_index, user in enumerate(self._users):
             list_row = Gtk.ListBoxRow()
             list_row.set_child(Gtk.Label(label=user.username))
-            list_row.set_data("user", user)
+            list_row.user_data = user
             self.user_list.append(list_row)
             if current_username and user.username == current_username:
                 selected_row = list_row
@@ -204,7 +204,7 @@ class UsersManager(Gtk.Box):
         for group in self._groups:
             list_row = Gtk.ListBoxRow()
             list_row.set_child(Gtk.Label(label=group.gr_name))
-            list_row.set_data("group", group)
+            list_row.group_data = group
             self.groups_list.append(list_row)
 
             self.primary_group_combo.append_text(group.gr_name)
@@ -212,7 +212,7 @@ class UsersManager(Gtk.Box):
     def _on_user_selected(self, _listbox, row: Gtk.ListBoxRow | None) -> None:
         if row:
             self._is_new_user = False
-            self._selected_user = row.get_data("user")
+            self._selected_user = getattr(row, "user_data", None)
             if self._selected_user:
                 self._fill_user_form(self._selected_user)
                 self.delete_btn.set_sensitive(is_user_deletable(self._selected_user))
@@ -237,14 +237,18 @@ class UsersManager(Gtk.Box):
         self.password_edit.set_text("")
 
         self.primary_group_combo.set_active(0)
-        for i in range(self.primary_group_combo.get_count()):
-            if self.primary_group_combo.get_text(i) == user.primary_group:
+        model = self.primary_group_combo.get_model()
+        for i in range(len(model)):
+            if model[i][0] == user.primary_group:
                 self.primary_group_combo.set_active(i)
                 break
 
         for row in self.groups_list:
             group_name = row.get_child().get_text()
-            row.set_selected(group_name in user.groups)
+            if group_name in user.groups:
+                self.groups_list.select_row(row)
+            else:
+                self.groups_list.unselect_row(row)
 
         self.full_name_edit.set_editable(not is_root)
         self.home_dir_edit.set_editable(not is_root)

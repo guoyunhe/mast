@@ -167,7 +167,7 @@ class GroupsManager(Gtk.Box):
         for user in self._users:
             list_row = Gtk.ListBoxRow()
             list_row.set_child(Gtk.Label(label=user.username))
-            list_row.set_data("user", user)
+            list_row.user_data = user
             self.members_list.append(list_row)
 
     def _on_group_selected(self, selection) -> None:
@@ -195,7 +195,10 @@ class GroupsManager(Gtk.Box):
 
         for row in self.members_list:
             username = row.get_child().get_text()
-            row.set_selected(username in group.gr_mem)
+            if username in group.gr_mem:
+                self.members_list.select_row(row)
+            else:
+                self.members_list.unselect_row(row)
 
     def _clear_form(self) -> None:
         self.group_name_edit.set_text("")

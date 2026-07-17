@@ -38,20 +38,17 @@ class UsersManager(Gtk.Box):
     def _setup_ui(self) -> None:
         left_panel = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
 
-        left_group = Gtk.Frame(label=_("Users"))
-        left_group.set_margin_start(8)
-        left_group.set_margin_top(8)
-
         self.user_list = Gtk.ListBox()
         self.user_list.set_selection_mode(Gtk.SelectionMode.SINGLE)
         self.user_list.connect("row-selected", self._on_user_selected)
+        self.user_list.set_margin_start(8)
+        self.user_list.set_margin_top(8)
 
         scrolled = Gtk.ScrolledWindow()
         scrolled.set_child(self.user_list)
         scrolled.set_vexpand(True)
 
-        left_group.set_child(scrolled)
-        left_panel.append(left_group)
+        left_panel.append(scrolled)
 
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
         button_box.set_margin_start(8)
@@ -75,10 +72,6 @@ class UsersManager(Gtk.Box):
         self.append(separator)
 
         right_panel = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
-
-        right_group = Gtk.Frame(label=_("User Details"))
-        right_group.set_margin_end(8)
-        right_group.set_margin_top(8)
 
         grid = Gtk.Grid()
         grid.set_column_spacing(8)
@@ -118,8 +111,7 @@ class UsersManager(Gtk.Box):
         self.password_edit.set_placeholder_text(_("Leave empty to skip"))
         grid.attach(self.password_edit, 1, 5, 1, 1)
 
-        right_group.set_child(grid)
-        right_panel.append(right_group)
+        right_panel.append(grid)
 
         groups_label = Gtk.Label(label=_("Additional Groups"))
         groups_label.set_margin_start(8)

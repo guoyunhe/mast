@@ -4,10 +4,9 @@ from __future__ import annotations
 
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
-    QCheckBox,
+    QComboBox,
     QFrame,
     QGridLayout,
-    QGroupBox,
     QHBoxLayout,
     QLabel,
     QLineEdit,
@@ -17,7 +16,6 @@ from PySide6.QtWidgets import (
     QPushButton,
     QVBoxLayout,
     QWidget,
-    QComboBox,
 )
 
 import grp
@@ -54,13 +52,10 @@ class UsersManager(QWidget):
         left_layout = QVBoxLayout(left_panel)
         left_layout.setSpacing(8)
 
-        left_group = QGroupBox(_("Users"))
-        left_group_layout = QVBoxLayout(left_group)
-
         self.user_list = QListWidget()
         self.user_list.setSelectionMode(QListWidget.SelectionMode.SingleSelection)
         self.user_list.currentItemChanged.connect(self._on_user_selected)
-        left_group_layout.addWidget(self.user_list)
+        left_layout.addWidget(self.user_list)
 
         button_layout = QHBoxLayout()
         self.add_btn = QPushButton(_("Add"))
@@ -72,8 +67,7 @@ class UsersManager(QWidget):
         self.delete_btn.setEnabled(False)
         button_layout.addWidget(self.delete_btn)
 
-        left_group_layout.addLayout(button_layout)
-        left_layout.addWidget(left_group)
+        left_layout.addLayout(button_layout)
 
         layout.addWidget(left_panel, 1)
 
@@ -85,9 +79,6 @@ class UsersManager(QWidget):
         right_panel = QWidget()
         right_layout = QVBoxLayout(right_panel)
         right_layout.setSpacing(8)
-
-        right_group = QGroupBox(_("User Details"))
-        right_group_layout = QVBoxLayout(right_group)
 
         form_layout = QGridLayout()
         form_layout.setSpacing(8)
@@ -122,16 +113,14 @@ class UsersManager(QWidget):
         self.password_edit.setPlaceholderText(_("Leave empty to skip"))
         form_layout.addWidget(self.password_edit, 5, 1)
 
-        right_group_layout.addLayout(form_layout)
+        right_layout.addLayout(form_layout)
 
         groups_label = QLabel(_("Additional Groups"))
-        right_group_layout.addWidget(groups_label)
+        right_layout.addWidget(groups_label)
 
         self.groups_list = QListWidget()
         self.groups_list.setSelectionMode(QListWidget.SelectionMode.MultiSelection)
-        right_group_layout.addWidget(self.groups_list)
-
-        right_layout.addWidget(right_group)
+        right_layout.addWidget(self.groups_list)
 
         save_layout = QHBoxLayout()
         save_layout.addStretch()
@@ -215,8 +204,9 @@ class UsersManager(QWidget):
 
         for i in range(self.groups_list.count()):
             item = self.groups_list.item(i)
-            group_name = item.text()
-            item.setSelected(group_name in user.groups)
+            if item:
+                group_name = item.text()
+                item.setSelected(group_name in user.groups)
 
         self.full_name_edit.setReadOnly(is_root)
         self.home_dir_edit.setReadOnly(is_root)
@@ -296,8 +286,9 @@ class UsersManager(QWidget):
 
         selected_groups = []
         for i in range(self.groups_list.count()):
-            if self.groups_list.item(i).isSelected():
-                selected_groups.append(self.groups_list.item(i).text())
+            item = self.groups_list.item(i)
+            if item and item.isSelected():
+                selected_groups.append(item.text())
 
         primary_group = self.primary_group_combo.currentText()
 

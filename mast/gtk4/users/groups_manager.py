@@ -36,13 +36,11 @@ class GroupsManager(Gtk.Box):
     def _setup_ui(self) -> None:
         left_panel = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
 
-        left_group = Gtk.Frame(label=_("Groups"))
-        left_group.set_margin_start(8)
-        left_group.set_margin_top(8)
-
         self.group_tree = Gtk.TreeView()
         self.group_tree.set_headers_visible(False)
         self.group_tree.set_selection_mode(Gtk.SelectionMode.SINGLE)
+        self.group_tree.set_margin_start(8)
+        self.group_tree.set_margin_top(8)
 
         column = Gtk.TreeViewColumn()
         renderer = Gtk.CellRendererText()
@@ -59,8 +57,7 @@ class GroupsManager(Gtk.Box):
         scrolled.set_child(self.group_tree)
         scrolled.set_vexpand(True)
 
-        left_group.set_child(scrolled)
-        left_panel.append(left_group)
+        left_panel.append(scrolled)
 
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
         button_box.set_margin_start(8)
@@ -85,10 +82,6 @@ class GroupsManager(Gtk.Box):
 
         right_panel = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
 
-        right_group = Gtk.Frame(label=_("Group Details"))
-        right_group.set_margin_end(8)
-        right_group.set_margin_top(8)
-
         grid = Gtk.Grid()
         grid.set_column_spacing(8)
         grid.set_row_spacing(8)
@@ -101,8 +94,7 @@ class GroupsManager(Gtk.Box):
         self.group_name_edit = Gtk.Entry()
         grid.attach(self.group_name_edit, 1, 0, 1, 1)
 
-        right_group.set_child(grid)
-        right_panel.append(right_group)
+        right_panel.append(grid)
 
         members_label = Gtk.Label(label=_("Members"))
         members_label.set_margin_start(8)

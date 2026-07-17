@@ -6,7 +6,6 @@ from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QFrame,
     QGridLayout,
-    QGroupBox,
     QHBoxLayout,
     QLabel,
     QLineEdit,
@@ -14,10 +13,10 @@ from PySide6.QtWidgets import (
     QListWidgetItem,
     QMessageBox,
     QPushButton,
-    QVBoxLayout,
-    QWidget,
     QTreeWidget,
     QTreeWidgetItem,
+    QVBoxLayout,
+    QWidget,
 )
 
 import grp
@@ -51,14 +50,11 @@ class GroupsManager(QWidget):
         left_layout = QVBoxLayout(left_panel)
         left_layout.setSpacing(8)
 
-        left_group = QGroupBox(_("Groups"))
-        left_group_layout = QVBoxLayout(left_group)
-
         self.group_list = QTreeWidget()
         self.group_list.setColumnCount(1)
         self.group_list.setHeaderHidden(True)
         self.group_list.currentItemChanged.connect(self._on_group_selected)
-        left_group_layout.addWidget(self.group_list)
+        left_layout.addWidget(self.group_list)
 
         button_layout = QHBoxLayout()
         self.add_btn = QPushButton(_("Add"))
@@ -70,8 +66,7 @@ class GroupsManager(QWidget):
         self.delete_btn.setEnabled(False)
         button_layout.addWidget(self.delete_btn)
 
-        left_group_layout.addLayout(button_layout)
-        left_layout.addWidget(left_group)
+        left_layout.addLayout(button_layout)
 
         layout.addWidget(left_panel, 1)
 
@@ -83,9 +78,6 @@ class GroupsManager(QWidget):
         right_panel = QWidget()
         right_layout = QVBoxLayout(right_panel)
         right_layout.setSpacing(8)
-
-        right_group = QGroupBox(_("Group Details"))
-        right_group_layout = QVBoxLayout(right_group)
 
         form_layout = QGridLayout()
         form_layout.setSpacing(8)
@@ -100,16 +92,14 @@ class GroupsManager(QWidget):
         self.gid_edit.setReadOnly(True)
         form_layout.addWidget(self.gid_edit, 1, 1)
 
-        right_group_layout.addLayout(form_layout)
+        right_layout.addLayout(form_layout)
 
         members_label = QLabel(_("Members"))
-        right_group_layout.addWidget(members_label)
+        right_layout.addWidget(members_label)
 
         self.members_list = QListWidget()
         self.members_list.setSelectionMode(QListWidget.SelectionMode.MultiSelection)
-        right_group_layout.addWidget(self.members_list)
-
-        right_layout.addWidget(right_group)
+        right_layout.addWidget(self.members_list)
 
         save_layout = QHBoxLayout()
         save_layout.addStretch()

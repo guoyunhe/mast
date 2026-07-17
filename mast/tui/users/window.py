@@ -250,9 +250,9 @@ class UsersWindow(Screen):
 
         groups_table = self.query_one("#user-groups-table", DataTable)
         for row_key in groups_table.rows:
-            group_name = groups_table.get_cell(row_key, 0)
+            group_name = groups_table.get_cell(row_key, _("Group"))
             selected = "✓" if group_name in user.groups else ""
-            groups_table.update_cell(row_key, 1, selected)
+            groups_table.update_cell(row_key, _("Selected"), selected)
 
         self.query_one("#fullname-input", Input).disabled = is_root
         self.query_one("#homedir-input", Input).disabled = is_root
@@ -274,17 +274,17 @@ class UsersWindow(Screen):
 
         groups_table = self.query_one("#user-groups-table", DataTable)
         for row_key in groups_table.rows:
-            groups_table.update_cell(row_key, 1, "")
+            groups_table.update_cell(row_key, _("Selected"), "")
 
     def _fill_group_form(self, group: grp.struct_group) -> None:
         self.query_one("#group-name-input", Input).value = group.gr_name
         self.query_one("#group-name-input", Input).disabled = True
 
         members_table = self.query_one("#group-members-table", DataTable)
-        for row_key in members_table.rows:
-            username = members_table.get_cell(row_key, 0)
-            selected = "✓" if username in group.gr_mem else ""
-            members_table.update_cell(row_key, 1, selected)
+        for idx, row_key in enumerate(members_table.rows):
+            user = self._users[idx]
+            selected = "✓" if user.primary_group == group.gr_name or user.username in group.gr_mem else ""
+            members_table.update_cell(row_key, _("Member"), selected)
 
     def _clear_group_form(self) -> None:
         self.query_one("#group-name-input", Input).value = ""
@@ -292,7 +292,7 @@ class UsersWindow(Screen):
 
         members_table = self.query_one("#group-members-table", DataTable)
         for row_key in members_table.rows:
-            members_table.update_cell(row_key, 1, "")
+            members_table.update_cell(row_key, _("Member"), "")
 
     def show_message(self, message: str, error: bool = False, success: bool = False) -> None:
         msg_widget = self.query_one("#message", Static)
@@ -322,9 +322,9 @@ class UsersWindow(Screen):
             for row_key in table.rows:
                 idx = list(table.rows).index(row_key)
                 if idx == table.cursor_row:
-                    current = table.get_cell(row_key, 1)
+                    current = table.get_cell(row_key, _("Selected"))
                     new_val = "" if current == "✓" else "✓"
-                    table.update_cell(row_key, 1, new_val)
+                    table.update_cell(row_key, _("Selected"), new_val)
                     break
 
     def _handle_groups_table_selection(self, table: DataTable) -> None:
@@ -349,9 +349,9 @@ class UsersWindow(Screen):
             for row_key in table.rows:
                 idx = list(table.rows).index(row_key)
                 if idx == table.cursor_row:
-                    current = table.get_cell(row_key, 1)
+                    current = table.get_cell(row_key, _("Member"))
                     new_val = "" if current == "✓" else "✓"
-                    table.update_cell(row_key, 1, new_val)
+                    table.update_cell(row_key, _("Member"), new_val)
                     break
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
@@ -425,8 +425,8 @@ class UsersWindow(Screen):
         selected_groups = []
         groups_table = self.query_one("#user-groups-table", DataTable)
         for row_key in groups_table.rows:
-            if groups_table.get_cell(row_key, 1) == "✓":
-                selected_groups.append(groups_table.get_cell(row_key, 0))
+            if groups_table.get_cell(row_key, _("Selected")) == "✓":
+                selected_groups.append(groups_table.get_cell(row_key, _("Group")))
 
         if self._is_new_user:
             cmd = build_add_user_command(
@@ -483,8 +483,8 @@ class UsersWindow(Screen):
         selected_users = []
         members_table = self.query_one("#group-members-table", DataTable)
         for row_key in members_table.rows:
-            if members_table.get_cell(row_key, 1) == "✓":
-                selected_users.append(members_table.get_cell(row_key, 0))
+            if members_table.get_cell(row_key, _("Member")) == "✓":
+                selected_users.append(members_table.get_cell(row_key, _("User")))
 
         if self._is_new_group:
             cmd = build_add_group_command(group_name)

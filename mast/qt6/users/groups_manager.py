@@ -92,14 +92,15 @@ class GroupsManager(QWidget):
         self.gid_edit.setReadOnly(True)
         form_layout.addWidget(self.gid_edit, 1, 1)
 
-        right_layout.addLayout(form_layout)
-
         members_label = QLabel(_("Members"))
-        right_layout.addWidget(members_label)
+        members_label.setAlignment(Qt.AlignmentFlag.AlignTop)
+        form_layout.addWidget(members_label, 2, 0)
 
         self.members_list = QListWidget()
         self.members_list.setSelectionMode(QListWidget.SelectionMode.MultiSelection)
-        right_layout.addWidget(self.members_list)
+        form_layout.addWidget(self.members_list, 2, 1)
+
+        right_layout.addLayout(form_layout)
 
         save_layout = QHBoxLayout()
         save_layout.addStretch()
@@ -174,8 +175,8 @@ class GroupsManager(QWidget):
 
         for i in range(self.members_list.count()):
             item = self.members_list.item(i)
-            username = item.text()
-            item.setSelected(username in group.gr_mem)
+            user = item.data(Qt.ItemDataRole.UserRole)
+            item.setSelected(user.primary_group == group.gr_name or user.username in group.gr_mem)
 
     def _clear_form(self) -> None:
         self.name_edit.clear()

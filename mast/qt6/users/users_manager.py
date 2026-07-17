@@ -148,8 +148,8 @@ class UsersManager(QWidget):
             self._users = list_users()
             self._groups = grp.getgrall()
             self._groups.sort(key=lambda g: g.gr_name)
-            self._populate_user_list()
             self._populate_groups_list()
+            self._populate_user_list()
         except Exception as e:
             QMessageBox.warning(self, _("Error"), _("Failed to load users: {0}").format(str(e)))
 

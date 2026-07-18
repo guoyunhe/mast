@@ -118,6 +118,8 @@ class GroupsManager(QWidget):
             self._users = list_users()
             self._populate_group_list()
             self._populate_members_list()
+            if self._selected_group:
+                self._fill_group_form(self._selected_group)
         except Exception as e:
             QMessageBox.warning(self, _("Error"), _("Failed to load groups: {0}").format(str(e)))
 

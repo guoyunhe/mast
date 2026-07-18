@@ -22,6 +22,7 @@ class GroupList(Gtk.Box):
     __gtype_name__ = "GroupList"
     group_selected = GObject.Signal("group-selected", arg_types=(object,))
     group_added = GObject.Signal("group-added")
+    group_deleted = GObject.Signal("group-deleted")
     def __init__(self):
         super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=8)
         self._groups: list[grp.struct_group] = []
@@ -148,3 +149,4 @@ class GroupList(Gtk.Box):
         if success:
             self._selected_group = None
             self.delete_btn.set_sensitive(False)
+            self.group_deleted.emit()

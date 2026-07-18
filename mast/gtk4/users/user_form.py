@@ -9,7 +9,7 @@ import gi
 
 gi.require_version("Gtk", "4.0")
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GObject
 
 from mast.core.i18n import _
 from mast.core.users import (
@@ -22,6 +22,8 @@ from mast.gtk4.command.action import CommandAction
 
 
 class UserForm(Gtk.Box):
+    __gtype_name__ = "UserForm"
+    user_saved = GObject.Signal("user-saved")
     def __init__(self):
         super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=8)
         self._groups: list[grp.struct_group] = []
@@ -281,5 +283,4 @@ class UserForm(Gtk.Box):
         if success:
             self.username_edit.set_editable(False)
             self._is_new_user = False
-            if hasattr(self, 'user_saved'):
-                self.user_saved.emit(username)
+            self.user_saved.emit()

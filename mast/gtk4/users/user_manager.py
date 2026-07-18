@@ -8,7 +8,7 @@ import gi
 
 gi.require_version("Gtk", "4.0")
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GObject
 
 from mast.core.i18n import _
 from mast.core.users import UserEntry, list_users
@@ -18,6 +18,8 @@ from mast.gtk4.users.user_form import UserForm
 
 
 class UserManager(Gtk.Box):
+    __gtype_name__ = "UserManager"
+    user_changed = GObject.Signal("user-changed")
     def __init__(self):
         super().__init__(orientation=Gtk.Orientation.HORIZONTAL, spacing=16)
         self._users: list[UserEntry] = []
@@ -29,12 +31,14 @@ class UserManager(Gtk.Box):
         self.user_list = UserList()
         self.user_list.connect("user-selected", self._on_user_selected)
         self.user_list.connect("user-added", self._on_add_user)
+        self.user_list.connect("user-deleted", self._on_user_deleted)
         self.append(self.user_list)
 
         separator = Gtk.Separator(orientation=Gtk.Orientation.VERTICAL)
         self.append(separator)
 
         self.user_form = UserForm()
+        self.user_form.connect("user-saved", self._on_user_saved)
         self.append(self.user_form)
 
     def _load_data(self) -> None:
@@ -66,3 +70,11 @@ class UserManager(Gtk.Box):
 
     def _on_add_user(self, _sender) -> None:
         self.user_form._on_add_user()
+
+    def _on_user_saved(self, _sender) -> None:
+        self._load_data()
+        self.user_changed.emit()
+
+    def _on_user_deleted(self, _sender) -> None:
+        self._load_data()
+        self.user_changed.emit()

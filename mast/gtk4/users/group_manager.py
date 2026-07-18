@@ -8,7 +8,7 @@ import gi
 
 gi.require_version("Gtk", "4.0")
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GObject
 
 from mast.core.i18n import _
 from mast.core.users import UserEntry, list_users, is_system_group
@@ -18,6 +18,8 @@ from mast.gtk4.users.group_form import GroupForm
 
 
 class GroupManager(Gtk.Box):
+    __gtype_name__ = "GroupManager"
+    group_changed = GObject.Signal("group-changed")
     def __init__(self):
         super().__init__(orientation=Gtk.Orientation.HORIZONTAL, spacing=16)
         self._groups: list[grp.struct_group] = []
@@ -29,12 +31,14 @@ class GroupManager(Gtk.Box):
         self.group_list = GroupList()
         self.group_list.connect("group-selected", self._on_group_selected)
         self.group_list.connect("group-added", self._on_add_group)
+        self.group_list.connect("group-deleted", self._on_group_deleted)
         self.append(self.group_list)
 
         separator = Gtk.Separator(orientation=Gtk.Orientation.VERTICAL)
         self.append(separator)
 
         self.group_form = GroupForm()
+        self.group_form.connect("group-saved", self._on_group_saved)
         self.append(self.group_form)
 
     def _load_data(self) -> None:
@@ -66,3 +70,11 @@ class GroupManager(Gtk.Box):
 
     def _on_add_group(self, _sender) -> None:
         self.group_form._on_add_group()
+
+    def _on_group_saved(self, _sender) -> None:
+        self._load_data()
+        self.group_changed.emit()
+
+    def _on_group_deleted(self, _sender) -> None:
+        self._load_data()
+        self.group_changed.emit()

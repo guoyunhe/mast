@@ -19,6 +19,7 @@ class UserList(Gtk.Box):
     __gtype_name__ = "UserList"
     user_selected = GObject.Signal("user-selected", arg_types=(object,))
     user_added = GObject.Signal("user-added")
+    user_deleted = GObject.Signal("user-deleted")
     def __init__(self):
         super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=8)
         self._users: list[UserEntry] = []
@@ -149,6 +150,7 @@ class UserList(Gtk.Box):
         if success:
             self._selected_user = None
             self.delete_btn.set_sensitive(False)
+            self.user_deleted.emit()
 
     def select_user(self, username: str) -> None:
         for row in self.user_list:

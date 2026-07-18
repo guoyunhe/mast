@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from PySide6.QtCore import Signal
 from PySide6.QtWidgets import (
     QFrame,
     QHBoxLayout,
@@ -18,6 +19,7 @@ from mast.qt6.users.user_form import UserForm
 
 
 class UserManager(QWidget):
+    user_changed = Signal()
     def __init__(self, parent: QWidget | None = None):
         super().__init__(parent)
         self._users: list[UserEntry] = []
@@ -32,6 +34,7 @@ class UserManager(QWidget):
         self.user_list = UserList()
         self.user_list.user_selected.connect(self._on_user_selected)
         self.user_list.user_added.connect(self._on_add_user)
+        self.user_list.user_deleted.connect(self._on_user_deleted)
         layout.addWidget(self.user_list, 1)
 
         separator = QFrame()
@@ -68,3 +71,8 @@ class UserManager(QWidget):
         self._load_data()
         if username:
             self.user_list.select_user(username)
+        self.user_changed.emit()
+
+    def _on_user_deleted(self) -> None:
+        self._load_data()
+        self.user_changed.emit()

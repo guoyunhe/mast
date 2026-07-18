@@ -9,7 +9,7 @@ import gi
 
 gi.require_version("Gtk", "4.0")
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GObject
 
 from mast.core.i18n import _
 from mast.core.users import (
@@ -22,6 +22,8 @@ from mast.gtk4.command.action import CommandAction
 
 
 class GroupForm(Gtk.Box):
+    __gtype_name__ = "GroupForm"
+    group_saved = GObject.Signal("group-saved")
     def __init__(self):
         super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=8)
         self._users: list[UserEntry] = []
@@ -179,3 +181,4 @@ class GroupForm(Gtk.Box):
             self._clear_form()
             self._is_new_group = False
             self.save_btn.set_sensitive(False)
+            self.group_saved.emit()

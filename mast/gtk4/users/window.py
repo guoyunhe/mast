@@ -33,6 +33,15 @@ class UsersWindow(Gtk.ApplicationWindow):
         self.groups_tab = GroupManager()
         self.notebook.append_page(self.groups_tab, Gtk.Label(label=_("Groups")))
 
+        self.users_tab.connect("user-changed", self._on_user_changed)
+        self.groups_tab.connect("group-changed", self._on_group_changed)
+
         self.main_box.append(self.notebook)
 
         self.set_child(self.main_box)
+
+    def _on_user_changed(self, _sender) -> None:
+        self.groups_tab._load_data()
+
+    def _on_group_changed(self, _sender) -> None:
+        self.users_tab._load_data()

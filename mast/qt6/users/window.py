@@ -36,6 +36,15 @@ class UsersWindow(QMainWindow):
         self.groups_tab = GroupManager()
         self.tab_widget.addTab(self.groups_tab, _("Groups"))
 
+        self.users_tab.user_changed.connect(self._on_user_changed)
+        self.groups_tab.group_changed.connect(self._on_group_changed)
+
     def closeEvent(self, _event) -> None:
         self.closed.emit()
         self.deleteLater()
+
+    def _on_user_changed(self) -> None:
+        self.groups_tab._load_data()
+
+    def _on_group_changed(self) -> None:
+        self.users_tab._load_data()

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from PySide6.QtCore import Signal
 from PySide6.QtWidgets import (
     QFrame,
     QHBoxLayout,
@@ -18,6 +19,7 @@ from mast.qt6.users.group_form import GroupForm
 
 
 class GroupManager(QWidget):
+    group_changed = Signal()
     def __init__(self, parent: QWidget | None = None):
         super().__init__(parent)
         self._groups: list[grp.struct_group] = []
@@ -32,6 +34,7 @@ class GroupManager(QWidget):
         self.group_list = GroupList()
         self.group_list.group_selected.connect(self._on_group_selected)
         self.group_list.group_added.connect(self._on_add_group)
+        self.group_list.group_deleted.connect(self._on_group_deleted)
         layout.addWidget(self.group_list, 1)
 
         separator = QFrame()
@@ -66,3 +69,8 @@ class GroupManager(QWidget):
 
     def _on_group_saved(self) -> None:
         self._load_data()
+        self.group_changed.emit()
+
+    def _on_group_deleted(self) -> None:
+        self._load_data()
+        self.group_changed.emit()

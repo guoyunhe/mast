@@ -21,6 +21,7 @@ from mast.qt6.command.action import CommandAction
 class UserList(QWidget):
     user_selected = Signal(UserEntry)
     user_added = Signal()
+    user_deleted = Signal()
 
     def __init__(self, parent: QWidget | None = None):
         super().__init__(parent)
@@ -124,6 +125,7 @@ class UserList(QWidget):
         if success:
             self._selected_user = None
             self.delete_btn.setEnabled(False)
+            self.user_deleted.emit()
 
     def select_user(self, username: str) -> None:
         for i in range(self.user_list.count()):

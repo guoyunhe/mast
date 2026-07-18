@@ -22,6 +22,7 @@ from mast.qt6.command.action import CommandAction
 class GroupList(QWidget):
     group_selected = Signal(grp.struct_group)
     group_added = Signal()
+    group_deleted = Signal()
 
     def __init__(self, parent: QWidget | None = None):
         super().__init__(parent)
@@ -131,3 +132,4 @@ class GroupList(QWidget):
         if success:
             self._selected_group = None
             self.delete_btn.setEnabled(False)
+            self.group_deleted.emit()

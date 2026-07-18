@@ -379,8 +379,5 @@ class UsersManager(QWidget):
     def _on_action_finished(self, success: bool, _error: str, _stdout: str) -> None:
         if success:
             self._load_data()
-            self._clear_form()
             self.username_edit.setReadOnly(True)
             self._is_new_user = False
-            self.save_btn.setEnabled(False)
-            self.delete_btn.setEnabled(False)

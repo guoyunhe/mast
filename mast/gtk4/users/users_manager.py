@@ -413,8 +413,5 @@ class UsersManager(Gtk.Box):
     def _on_action_finished(self, success: bool, _error: str, _stdout: str) -> None:
         if success:
             self._load_data()
-            self._clear_form()
             self.username_edit.set_editable(False)
             self._is_new_user = False
-            self.save_btn.set_sensitive(False)
-            self.delete_btn.set_sensitive(False)

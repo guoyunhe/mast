@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.23 - 2026-07-20
+
+- feat(users): grouped users into system users and local users.
+
 ## 0.0.22 - 2026-07-18
 
 - feat(users): added users module to manage users and groups.
